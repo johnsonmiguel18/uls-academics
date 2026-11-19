@@ -2520,18 +2520,7 @@ a.college-tile:focus-visible {
     gap: 40px;
 }
 
-.news-feature {
-    display: flex;
-    flex-direction: column;
-}
-
-.news-feature-media {
-    display: block;
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-    background: var(--surface);
-}
-
+/* .news-feature (featured story) lives in news-card.css */
 .news-media-fallback {
     display: grid;
     place-items: center;
@@ -2545,13 +2534,6 @@ a.college-tile:focus-visible {
     max-width: 120px;
     height: auto;
     object-fit: contain;
-}
-
-.news-feature-body {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding-top: 20px;
 }
 
 .news-meta {
@@ -2571,21 +2553,11 @@ a.college-tile:focus-visible {
     text-transform: uppercase;
 }
 
-.news-feature h2,
-.news-feature h3 {
-    margin: 0;
-    font-size: clamp(22px, 2.4vw, 30px);
-}
-
-.news-feature h2 a,
-.news-feature h3 a,
 .news-item h4 a,
 .news-card h3 a {
     color: var(--ink);
 }
 
-.news-feature h2 a:hover,
-.news-feature h3 a:hover,
 .news-item h4 a:hover,
 .news-card h3 a:hover {
     text-decoration: underline;
@@ -3208,24 +3180,6 @@ a.college-tile:focus-visible {
     border-bottom-color: var(--navy);
 }
 
-.news-feature-wide {
-    display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-    gap: 40px;
-    margin-bottom: 56px;
-}
-
-.news-feature-wide .news-feature-media {
-    height: 100%;
-    min-height: 340px;
-    aspect-ratio: auto;
-}
-
-.news-feature-wide .news-feature-body {
-    justify-content: center;
-    padding-top: 0;
-}
-
 .news-index-heading {
     margin: 0 0 8px;
     padding-bottom: 12px;
@@ -3390,14 +3344,8 @@ a.college-tile:focus-visible {
 
 @media (max-width: 900px) {
     .news-layout,
-    .accreditation-inner,
-    .news-feature-wide {
+    .accreditation-inner {
         grid-template-columns: 1fr;
-    }
-
-    .news-feature-wide .news-feature-media {
-        min-height: 0;
-        aspect-ratio: 16 / 9;
     }
 }
 
