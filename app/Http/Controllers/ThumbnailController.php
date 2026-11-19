@@ -36,35 +36,56 @@ class ThumbnailController extends Controller
         $target = public_path("thumbs/$width/$source/$path");
         File::ensureDirectoryExists(dirname($target));
 
-        $this->resize($original, $target, $width, $webp);
+        // Written to a temporary name first, so a visitor asking at the same moment never gets half a file.
+        $temp = $target . '.' . bin2hex(random_bytes(4)) . '.tmp';
+        if (! $this->resize($original, $temp, $width, $webp)) {
+            @unlink($temp);
+            abort(404); // not a readable image after all
+        }
+        rename($temp, $target);
 
         return response()->file($target, ['Cache-Control' => 'public, max-age=31536000, immutable', 'Content-Type' => $webp ? 'image/webp' : mime_content_type($target)]);
     }
 
-    private function resize(string $from, string $to, int $width, bool $webp = false): void
+    /** Writes the resized copy; false when the file is not a readable JPEG or PNG. */
+    private function resize(string $from, string $to, int $width, bool $webp = false): bool
     {
-        [$w, $h, $type] = getimagesize($from);
+        $info = @getimagesize($from);
 
-        if ($w <= $width && ! $webp) {
-            File::copy($from, $to);
-
-            return;
+        if (! $info || ! in_array($info[2], [IMAGETYPE_JPEG, IMAGETYPE_PNG], true)) {
+            return false;
         }
 
-        $src = $type === IMAGETYPE_PNG ? imagecreatefrompng($from) : imagecreatefromjpeg($from);
+        [$w, $h, $type] = $info;
+
+        if ($w <= $width && ! $webp) {
+            return File::copy($from, $to);
+        }
+
+        $src = $type === IMAGETYPE_PNG ? @imagecreatefrompng($from) : @imagecreatefromjpeg($from);
+
+        if (! $src) {
+            return false;
+        }
+
         $dst = $w > $width ? imagescale($src, $width, (int) round($h * $width / $w), IMG_BICUBIC) : $src;
 
         if ($webp) {
             imagealphablending($dst, false);
             imagesavealpha($dst, true);
-            imagewebp($dst, $to, 78);
-        } elseif ($type === IMAGETYPE_PNG) {
+
+            return imagewebp($dst, $to, 78);
+        }
+
+        if ($type === IMAGETYPE_PNG) {
             imagealphablending($dst, false);
             imagesavealpha($dst, true);
-            imagepng($dst, $to, 8);
-        } else {
-            imageinterlace($dst, true);  // progressive
-            imagejpeg($dst, $to, 78);
+
+            return imagepng($dst, $to, 8);
         }
+
+        imageinterlace($dst, true);  // progressive
+
+        return imagejpeg($dst, $to, 78);
     }
 }
