@@ -15,6 +15,10 @@
     <link rel="stylesheet" href="{{ \App\Support\Asset::url('css/university-v3.css') }}">
 @endpush
 
+@push('styles')
+    <link rel="stylesheet" href="{{ \App\Support\Asset::url('css/news-card.css') }}">
+@endpush
+
 @php($label = fn (string $key, array $replace = []) => Site::text("news.labels.$key", $replace))
 
 @section('content')
@@ -42,6 +46,11 @@
 
 <main class="article-main">
     <article class="article-body {{ $article->featured_image ? 'has-image' : '' }}">
+        <div class="article-tags">
+            <a class="news-category" href="{{ route('news.index', ['category' => $article->category]) }}">{{ \App\Models\Term::label('news_category', $article->category) }}</a>
+            @include('partials.news-sdgs', ['sdgs' => $article->sdgs, 'max' => 17])
+        </div>
+
         @if ($article->featured_image)
             <figure class="article-figure">
                 <img src="{{ \App\Support\Thumb::url($article->featured_image, 960) }}" srcset="{{ \App\Support\Thumb::srcset($article->featured_image) }}" sizes="(max-width: 900px) 92vw, 820px" alt="{{ $article->title }}" fetchpriority="high">
@@ -56,6 +65,23 @@
                 {!! nl2br(e($article->content)) !!}
             @endif
         </div>
+
+        @if ($previousNews || $nextNews)
+            <nav class="article-pager" aria-label="{{ $label('story_nav') }}">
+                @if ($previousNews)
+                    <a href="{{ route('news.show', $previousNews->slug) }}" rel="prev" class="article-pager-prev">
+                        <span class="article-pager-kicker"><span aria-hidden="true">←</span> {{ $label('previous_story') }}</span>
+                        <span class="article-pager-title">{{ $previousNews->title }}</span>
+                    </a>
+                @endif
+                @if ($nextNews)
+                    <a href="{{ route('news.show', $nextNews->slug) }}" rel="next" class="article-pager-next">
+                        <span class="article-pager-kicker">{{ $label('next_story') }} <span aria-hidden="true">→</span></span>
+                        <span class="article-pager-title">{{ $nextNews->title }}</span>
+                    </a>
+                @endif
+            </nav>
+        @endif
 
         <a href="{{ route('news.index') }}" class="news-read">
             <span aria-hidden="true">←</span> {{ $label('back') }}

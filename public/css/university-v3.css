@@ -1294,7 +1294,6 @@ a.v3-college:focus-visible {
     font-weight: 400;
 }
 
-.news-feature-media,
 .news-item-media,
 .news-card-media {
     border-radius: var(--v3-radius);
@@ -1310,20 +1309,16 @@ a.v3-college:focus-visible {
     border: 0;
 }
 
-.news-feature-media img,
 .news-card-media img,
 .news-item-media img {
     transition: scale 0.9s var(--v3-ease);
 }
 
-.news-feature:hover .news-feature-media img,
 .news-card:hover .news-card-media img,
 .news-item:hover .news-item-media img {
     scale: 1.06;
 }
 
-.news-feature h2 a,
-.news-feature h3 a,
 .news-card h3 a {
     font-family: var(--v3-serif);
     font-weight: 400;
