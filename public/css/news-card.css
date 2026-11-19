@@ -1,4 +1,6 @@
-/* News cards on the home and college pages, taken from the main website styles (university.css, university-v3.css). */
+/* News cards (home, college, SDG and global pages, and the news pages), the featured story (.news-feature)
+   and the news front page. Taken from the main website styles (university.css, university-v3.css);
+   the news pages get the tokens (--ink, --navy, --v3-*) from those files, other pages from .ac-news-grid below. */
 .ac-news-grid { --ink: #14204f; --label: #192a8a; --muted: #5c5c5c; --navy: #192a8a; --surface: #f5f5f5; --v3-ease: cubic-bezier(0.2, 0.7, 0.2, 1); --v3-radius: 6px; --v3-serif: Georgia, "Times New Roman", serif; }
 .news-media-fallback {
     display: grid;
@@ -12,6 +14,28 @@
     max-width: 120px;
     height: auto;
     object-fit: contain;
+}
+/* Featured story: the only home of .news-feature (moved out of university.css and university-v3.css) */
+.news-feature {
+    display: flex;
+    flex-direction: column;
+}
+.news-feature-media {
+    display: block;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--surface);
+}
+.news-feature-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 20px;
+}
+.news-feature h2,
+.news-feature h3 {
+    margin: 0;
+    font-size: clamp(22px, 2.4vw, 30px);
 }
 .news-meta {
     display: flex;
@@ -97,4 +121,319 @@
 .news-card h3 a {
     font-family: var(--v3-serif);
     font-weight: 400;
+}
+
+
+/* =====================================================================
+   News front page (news/index): featured story, card grid that turns into
+   a swipe rail on phones, and a sidebar of compact rows
+===================================================================== */
+.news-front {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 56px;
+}
+.news-front-main {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    min-width: 0;
+}
+.news-section-label {
+    margin: 0 0 16px;
+    color: var(--label);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+/* The featured story stays dominant: full width of the main column, large serif headline */
+.news-feature-hero .news-feature-body {
+    gap: 12px;
+}
+.news-feature-hero h3 {
+    font-size: clamp(28px, 3.4vw, 42px);
+    line-height: 1.15;
+}
+.news-feature-hero .news-lead,
+.news-feature-hero .news-summary {
+    max-width: 68ch;
+    font-size: 17px;
+}
+
+/* Previous stories: 3 columns inside the main column */
+.news-rail {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 36px 24px;
+}
+.news-rail .news-card h3 {
+    font-size: 17px;
+}
+.news-rail:focus-visible {
+    outline: 3px solid var(--navy);
+    outline-offset: 6px;
+}
+
+/* Sidebar: compact rows (small thumbnail, title, date, category, SDGs) */
+.news-front-aside {
+    min-width: 0;
+}
+.news-rows {
+    display: flex;
+    flex-direction: column;
+    padding-top: 12px;
+}
+.news-row {
+    display: grid;
+    grid-template-columns: 96px minmax(0, 1fr);
+    align-items: start;
+    gap: 14px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+}
+.news-row:last-child {
+    border-bottom: 0;
+}
+.news-row .news-card-media {
+    aspect-ratio: 1;
+}
+.news-row .news-media-fallback img {
+    width: 50%;
+}
+.news-row .news-card-body {
+    gap: 6px;
+    padding-top: 0;
+}
+.news-row .news-meta {
+    font-size: 12.5px;
+}
+.news-row h3 {
+    font-size: 15.5px;
+}
+
+/* SDG labels on stories: each goal's own color with its contrast-checked text color
+   (Sdg::goals()). Same look as .ac-sdgs in academics-college.css, but these are links. */
+.news-sdgs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 2px 0 0;
+    padding: 0;
+    list-style: none;
+}
+.news-sdg,
+.news-sdg-more,
+.news-sdg-chip {
+    position: relative; /* keeps the screen-reader text inside, so scrolling rows do not widen the page */
+}
+.news-sdg,
+.news-sdg-more {
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+    padding: 2px 9px;
+    border-radius: 999px;
+    font-size: 11.5px;
+    font-weight: 700;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+.news-sdg {
+    color: var(--sdg-ink);
+    background: var(--sdg);
+    text-decoration: none;
+}
+.news-sdg:hover {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+.news-sdg:focus-visible,
+.news-sdg-chip:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
+}
+.news-sdg-more {
+    color: var(--ink);
+    background: var(--surface);
+    cursor: default;
+}
+
+/* SDG filter row under the category chips: pale tint of each goal, its full color when chosen */
+.news-sdg-filter {
+    display: flex;
+    flex-basis: 100%;
+    min-width: 0;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+.news-sdg-chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    color: var(--sdg-tint-ink);
+    background: var(--sdg-tint);
+    font-size: 12.5px;
+    font-weight: 700;
+    white-space: nowrap;
+    text-decoration: none;
+}
+.news-sdg-chip:hover,
+.news-sdg-chip[aria-current="page"] {
+    color: var(--sdg-ink);
+    background: var(--sdg);
+}
+.news-sdg-chip[aria-current="page"] {
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px var(--ink);
+}
+.news-sdg-chip.is-all {
+    color: var(--ink);
+    background: var(--surface);
+}
+.news-sdg-chip.is-all:hover,
+.news-sdg-chip.is-all[aria-current="page"] {
+    color: #ffffff;
+    background: var(--navy);
+}
+
+/* Article page: category and SDGs above the text, previous / next story below it */
+.article-tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 14px;
+    margin-bottom: 24px;
+}
+.article-tags .news-category {
+    display: inline-block;
+    padding-block: 3px;
+}
+.article-tags .news-sdgs {
+    margin: 0;
+}
+.article-pager {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+}
+.article-pager a {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    color: var(--ink);
+}
+.article-pager-next {
+    grid-column: 2;
+    text-align: right;
+}
+.article-pager-kicker {
+    color: var(--label);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+.article-pager-title {
+    font-family: var(--v3-serif);
+    font-size: 18px;
+    line-height: 1.35;
+}
+.article-pager a:hover .article-pager-title {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+/* Desktop: two columns, about 70 / 30; the sidebar stays in view when the window is tall enough */
+@media (min-width: 1100px) {
+    .news-front.has-aside {
+        grid-template-columns: minmax(0, 7fr) minmax(0, 3fr);
+        gap: 48px;
+    }
+}
+@media (min-width: 1100px) and (min-height: 820px) {
+    .news-front-aside {
+        position: sticky;
+        top: 24px;
+        align-self: start;
+    }
+}
+
+/* Tablet: one column; the sidebar rows sit below in two columns */
+@media (min-width: 760px) and (max-width: 1099px) {
+    .news-rows {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 32px;
+    }
+    .news-row:last-child {
+        border-bottom: 1px solid var(--line);
+    }
+}
+
+/* Phone: the previous stories become a sideways swipe rail with the next card peeking in */
+@media (max-width: 759px) {
+    .news-front,
+    .news-front-main {
+        gap: 40px;
+    }
+    .news-rail {
+        display: flex;
+        gap: 16px;
+        margin: 0 -20px;
+        padding: 20px 20px 16px;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x mandatory;
+        scroll-padding-inline: 20px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+    }
+    .news-rail > .news-card {
+        flex: 0 0 80%;
+        scroll-snap-align: start;
+    }
+    .news-rail:focus-visible {
+        outline-offset: -3px;
+    }
+    .news-sdg-filter {
+        flex-wrap: nowrap;
+        margin: 0 -20px;
+        padding: 4px 20px;
+        overflow-x: auto;
+    }
+    .news-row {
+        grid-template-columns: 84px minmax(0, 1fr);
+        gap: 12px;
+    }
+}
+@media (max-width: 600px) {
+    .article-pager {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .article-pager-next {
+        grid-column: auto;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .news-rail {
+        scroll-behavior: auto;
+    }
+    .news-feature-media img,
+    .news-card-media img,
+    .news-item-media img {
+        transition: none;
+    }
+    .news-feature:hover .news-feature-media img,
+    .news-card:hover .news-card-media img,
+    .news-item:hover .news-item-media img {
+        scale: none;
+    }
 }
