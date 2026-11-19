@@ -22,6 +22,24 @@ main university website (University Website v5), which is not changed.
 > 3-column grid (a swipe rail on phones), a sidebar of headline rows, and colored SDG labels that filter the news.
 > See [Releases](https://github.com/johnsonmiguel18/uls-academics/releases) for the release notes.
 
+<p align="center">
+  <img width="400" alt="Academics home with program search and college numbers" src="docs/screenshots/home.png" />
+  <img width="400" alt="Program finder with level, college and degree filters" src="docs/screenshots/program-finder.png" />
+  <img width="400" alt="News front page with featured story and headline sidebar" src="docs/screenshots/news.png" />
+  <img width="400" alt="News filtered by SDG 4 with colored goal labels" src="docs/screenshots/news-filtered-by-sdg.png" />
+  <img width="400" alt="News article with category and SDG labels" src="docs/screenshots/news-article.png" />
+  <img width="400" alt="SDG report with story counts for the 17 goals" src="docs/screenshots/sdg-report.png" />
+  <img width="400" alt="Admin dashboard with content counts and site speed" src="docs/screenshots/admin-dashboard.png" />
+  <img width="400" alt="Publishing timeline with stories grouped by college" src="docs/screenshots/admin-publishing-timeline.png" />
+</p>
+
+<p align="center">
+  <img width="190" alt="Mobile academics home" src="docs/screenshots/mobile-home.png" />
+  <img width="190" alt="Mobile news featured story" src="docs/screenshots/mobile-news.png" />
+  <img width="190" alt="Mobile news swipe rail with the next card peeking in" src="docs/screenshots/mobile-news-rail.png" />
+  <img width="190" alt="Mobile news article with SDG labels" src="docs/screenshots/mobile-news-article.png" />
+</p>
+
 Built on the same stack as the main site: Laravel 12, PHP 8.4, Filament 5, MySQL.
 No `npm` build: styles are plain CSS in `public/css/`.
 
