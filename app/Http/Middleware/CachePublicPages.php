@@ -28,7 +28,11 @@ class CachePublicPages
         $minutes = (int) Site::get('performance.page_cache_minutes', 0);
 
         // Pages showing a one-time message (form sent, validation errors) are never cached or served from cache.
-        if (! $request->isMethodCacheable() || $minutes <= 0 || $request->user() || ($request->hasSession() && $request->session()->get('_flash.old'))) {
+        // Only plain addresses on the site's own host names are kept: every other query string or Host header
+        // would add a new cache entry, so anyone could fill the cache (and the disk) with random variants.
+        // Filtered and paged lists are cheap and simply skip the cache.
+        if (! $request->isMethodCacheable() || $minutes <= 0 || $request->user() || ($request->hasSession() && $request->session()->get('_flash.old'))
+            || $request->getQueryString() !== null || ! in_array($request->getHost(), self::hosts(), true)) {
             return $next($request);
         }
 
@@ -68,6 +72,12 @@ class CachePublicPages
         $response->headers->set('Cache-Control', 'no-cache, private');
 
         return $response;
+    }
+
+    /** Host names the site answers on: APP_URL's host and, when set, the Global subdomain. */
+    private static function hosts(): array
+    {
+        return array_values(array_filter([parse_url((string) config('app.url'), PHP_URL_HOST), config('app.global_domain')]));
     }
 
     /** Seconds until something time-based changes on the public site; at most a day. */
