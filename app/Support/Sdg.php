@@ -44,10 +44,16 @@ class Sdg
         return self::goals()[$number][0] ?? null;
     }
 
-    /** White or dark text, whichever contrasts more with the color. */
+    /**
+     * Text color for a badge in this color: white when it reaches WCAG AA for small text (4.5:1),
+     * otherwise black, or white if that still contrasts more. Black instead of the site's dark navy,
+     * because navy left some goals (SDG 5) under 4.5:1 and others (SDG 3) only just over it.
+     */
     public static function ink(string $color): string
     {
-        return self::contrast('#FFFFFF', $color) >= self::contrast('#1F2330', $color) ? '#FFFFFF' : '#1F2330';
+        $white = self::contrast('#FFFFFF', $color);
+
+        return $white >= 4.5 || $white >= self::contrast('#000000', $color) ? '#FFFFFF' : '#000000';
     }
 
     /** Pale, desaturated tint of the hue, and the lightest text of that hue reaching 4.5:1 on it. */

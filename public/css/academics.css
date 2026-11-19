@@ -722,7 +722,7 @@ button { cursor: pointer; }
 /* =====================================================================
    WCAG 2.2 AA FIXES
 ===================================================================== */
-/* 1.4.3: SDG colors carry their own text color (white or near-black, both >= 4.5:1) */
+/* 1.4.3: SDG colors carry their own text color (white or black, Sdg::ink(), >= 4.5:1 on every goal) */
 /* Goals with no stories keep their own hue as a light tint (Sdg::GOALS), with a darker text of that hue. */
 
 /* Text over the photo side of the header gets a solid backing */
