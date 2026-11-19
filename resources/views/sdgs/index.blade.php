@@ -77,7 +77,7 @@
                                 <tr>
                                     <th scope="row"><a href="{{ route('academics.college', $row['college']) }}#sdgs">{{ $row['college']->name }}</a></th>
                                     <td>@include('academics.partials.sdgs', ['sdgs' => $row['goals']])</td>
-                                    <td class="is-num">{{ $row['items'] }}</td>
+                                    <td class="is-num" data-label="{{ $label('items_column') }}">{{ $row['items'] }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
