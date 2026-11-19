@@ -16,15 +16,19 @@ class ThumbnailController extends Controller
 
     public function __invoke(int $width, string $source, string $path)
     {
-        $base = $source === 'media' ? public_path('media') : storage_path('app/public');
+        $base = realpath($source === 'media' ? public_path('media') : storage_path('app/public'));
         $webp = str_ends_with($path, '.webp');
-        $original = realpath($base . DIRECTORY_SEPARATOR . ($webp ? substr($path, 0, -5) : $path));
+        $requested = $webp ? substr($path, 0, -5) : $path;
+        $original = realpath($base . DIRECTORY_SEPARATOR . $requested);
 
-        // Only real images inside the allowed folder (no ../ tricks).
+        // Only real images inside the allowed folder, asked for by their plain path: "../", "./" or "//"
+        // would make the copy's path below (built from the URL) differ from the original's and land
+        // anywhere, even on top of the original.
         abort_unless(
             in_array($width, self::WIDTHS, true)
-                && $original
-                && str_starts_with($original, realpath($base))
+                && $base && $original
+                && str_starts_with($original, $base . DIRECTORY_SEPARATOR)
+                && substr($original, strlen($base) + 1) === $requested
                 && preg_match('/\.(jpe?g|png)$/i', $original),
             404
         );
