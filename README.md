@@ -1,8 +1,26 @@
-# ULS Academics
+<div align="center"><img src="public/media/uls-seal.png" width="100" alt="University of La Salette seal"></div>
+<h1 align="center">ULS Academics</h1>
+<p align="center">
+  <img src="https://img.shields.io/badge/version-0.1.0-192A8A?style=flat-square" alt="version">
+  <img src="https://img.shields.io/badge/status-in%20development-192A8A?style=flat-square" alt="status">
+  <img src="https://img.shields.io/badge/Laravel-12-FF2D20?style=flat-square&logo=laravel&logoColor=white" alt="Laravel">
+  <img src="https://img.shields.io/badge/PHP-8.4+-777BB4?style=flat-square&logo=php&logoColor=white" alt="PHP">
+  <img src="https://img.shields.io/badge/Filament-5-FDAE4B?style=flat-square" alt="Filament">
+  <img src="https://img.shields.io/badge/MySQL-database-4479A1?style=flat-square&logo=mysql&logoColor=white" alt="MySQL">
+</p>
+<p align="center">
+  <b>Download v0.1.0:</b>
+  <a href="https://github.com/johnsonmiguel18/uls-academics/archive/refs/tags/v0.1.0.zip">Source (.zip)</a> |
+  <a href="https://github.com/johnsonmiguel18/uls-academics/releases">All releases</a>
+</p>
 
 The standalone Academics website of the University of La Salette, with its own CMS
 (Filament admin at `/admin`), its own database and its own users. It runs next to the
 main university website (University Website v5), which is not changed.
+
+> **Current version: v0.1.0**: a news front page with one large featured story, the previous stories in a
+> 3-column grid (a swipe rail on phones), a sidebar of headline rows, and colored SDG labels that filter the news.
+> See [Releases](https://github.com/johnsonmiguel18/uls-academics/releases) for the release notes.
 
 Built on the same stack as the main site: Laravel 12, PHP 8.4, Filament 5, MySQL.
 No `npm` build: styles are plain CSS in `public/css/`.
