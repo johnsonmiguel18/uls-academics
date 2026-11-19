@@ -65,16 +65,25 @@ trait ScopedToCollege
         return static::managesAllColleges();
     }
 
-    /** College picker: a college admin only gets their own college, preselected. */
+    /** A college admin without "manage_academics": works on their own college only. */
+    public static function limitedToOwnCollege(): bool
+    {
+        return ! static::managesAllColleges() && (auth()->user()?->hasRole('college_admin') ?? false);
+    }
+
+    /**
+     * College picker: a college admin only gets their own college, preselected and required.
+     * Everyone else who can open the form (managers, university-wide news editors) gets every college.
+     */
     public static function collegeSelect(bool $required = true): Select
     {
         return Select::make('college_id')
             ->label('College / Academic Unit')
-            ->relationship('college', 'name', fn (Builder $query) => static::managesAllColleges()
-                ? $query->orderBy('sort_order')
-                : $query->whereKey(static::ownCollegeId() ?? 0))
+            ->relationship('college', 'name', fn (Builder $query) => static::limitedToOwnCollege()
+                ? $query->whereKey(static::ownCollegeId() ?? 0)
+                : $query->orderBy('sort_order'))
             ->default(fn () => static::ownCollegeId())
-            ->required($required || ! static::managesAllColleges())
+            ->required($required || static::limitedToOwnCollege())
             ->live()
             ->preload()
             ->searchable();
