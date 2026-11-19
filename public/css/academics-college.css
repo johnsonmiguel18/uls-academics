@@ -79,7 +79,7 @@
 
 /* SDG badges */
 .ac-sdgs { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 0; padding: 0; list-style: none; }
-.ac-sdgs li { padding: 3px 9px; border-radius: 999px; color: #ffffff; background: var(--sdg); font-size: 11px; font-weight: 700; }
+.ac-sdgs li { padding: 3px 9px; border-radius: 999px; color: #ffffff; background: var(--sdg); font-size: 11px; font-weight: 700; white-space: nowrap; }
 
 /* Partners */
 .ac-partner-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
