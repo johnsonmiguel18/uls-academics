@@ -30,5 +30,16 @@
     .ac-sdg-hero { grid-template-columns: 1fr; }
     .ac-sdg-badge { order: -1; width: 72px; font-size: 36px; }
     .ac-sdg-report { grid-template-columns: repeat(2, 1fr); }
+
+    /* By college: each row becomes a block (college, then its goals in a row, then the count),
+       so the goals column is never squeezed into one badge per line. Headers stay for screen readers. */
+    .ac-sdg-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+    .ac-sdg-table, .ac-sdg-table tbody, .ac-sdg-table tr, .ac-sdg-table th, .ac-sdg-table td { display: block; }
+    .ac-sdg-table tr { padding: 14px 16px; border-bottom: 1px solid var(--ac-line); }
+    .ac-sdg-table tr:last-child { border-bottom: 0; }
+    .ac-sdg-table tbody th, .ac-sdg-table td { padding: 0; border-bottom: 0; }
+    .ac-sdg-table td { margin-top: 8px; }
+    .ac-sdg-table .is-num { color: var(--ac-muted); font-size: 14px; text-align: left; }
+    .ac-sdg-table .is-num::before { content: attr(data-label) ": "; }
 }
 .ac-sdg-table th a { display: inline-block; padding: 3px 0; }
