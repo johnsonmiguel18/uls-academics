@@ -1,0 +1,1588 @@
+[
+  {
+    "slug": "mission-and-vision",
+    "title": "Vision and Mission",
+    "navigation_group": "university",
+    "parent": null,
+    "navigation_order": 1,
+    "show_in_navigation": true,
+    "status": null,
+    "content": [
+      {
+        "type": "cards",
+        "data": {
+          "heading": "Vision and Mission",
+          "items": [
+            {
+              "title": "Vision",
+              "description": "The University of La Salette, Inc., a Catholic institution founded by the Missionaries of Our Lady of La Salette, forms RECONCILERS “so that they may have life, and have it to the full.” (John 10:10)"
+            },
+            {
+              "title": "Mission",
+              "description": "The University of La Salette, Inc. is a premier institution of choice, providing accessible, quality, and transformative education for integral human development particularly the poor."
+            }
+          ]
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Philosophy of Education",
+          "body": "La Salette education is a transformative process towards the fullness of being, inspired by the message of reconciliation, as lived and experienced by the community through the integration of Filipino cultural and University core values rooted in Jesus Christ."
+        }
+      }
+    ]
+  },
+  {
+    "slug": "philosophy-of-education",
+    "title": "Philosophy of Education",
+    "navigation_group": "university",
+    "parent": null,
+    "navigation_order": 2,
+    "show_in_navigation": true,
+    "status": null,
+    "content": [
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "",
+          "body": "La Salette education is a transformative process towards the fullness of being, inspired by the message of reconciliation, as lived and experienced by the community through the integration of Filipino cultural and University core values rooted in Jesus Christ."
+        }
+      }
+    ]
+  },
+  {
+    "slug": "core-values",
+    "title": "Core Values and Competencies",
+    "navigation_group": "university",
+    "parent": null,
+    "navigation_order": 3,
+    "show_in_navigation": true,
+    "status": null,
+    "content": [
+      {
+        "type": "cards",
+        "data": {
+          "heading": "Core Values",
+          "items": [
+            {
+              "title": "Faith",
+              "description": "The total submission to God's call to Holiness to His will."
+            },
+            {
+              "title": "Reconciliation",
+              "description": "Constantly renewing our relationship with God, others and all creation through a life of prayer, penance and zeal."
+            },
+            {
+              "title": "Integrity",
+              "description": "The courage and determination to live and to die for Salettinian ideals."
+            },
+            {
+              "title": "Excellence",
+              "description": "Upholding the highest standard of quality education and professionalism in the areas of instruction, research and extension."
+            },
+            {
+              "title": "Solidarity",
+              "description": "Commitment to building a community anchored on mutual trust, confidence, teamwork, unity and respect for the dignity of the human person and creation."
+            }
+          ]
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Core Competencies",
+          "body": "- Researched-Based Oriented Learning\n- ICT-Integrated Learning\n- Industry-Based Oriented Learning\n- Oriented Toward Transformative Learning\n- Oriented Toward Integrative Learning"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "institutional-objectives-and-outcomes",
+    "title": "Institutional Objectives and Outcomes",
+    "navigation_group": "university",
+    "parent": null,
+    "navigation_order": 4,
+    "show_in_navigation": true,
+    "status": null,
+    "content": [
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Institutional Objectives",
+          "body": "**In keeping with its Philosophy, Vision and Mission, La Salette professes the following institutional objectives:**\n- To foster a reconciled and reconciling community through spiritual upliftment programs and liturgical activities.\n- To sustain the quality assured education of the university through institutional and program accreditations, professional certification, and compliance with international standards for curricular programs and university management.\n- To provide accessible education through various modalities of learning.\n- To lead the academic community with strategic and transformative competencies in realizing the Vision, Mission and La Salette Philosophy of Education.\n- To develop and implement transformative teaching and learning experience through critical approach and values-based integration.\n- To undertake research on various disciplines and generate new knowledge needed for the advancement of the university as well as for the national development.\n- To realize ICT oriented learning by establishing the monitoring system to collect and review information needed to manage an organization or on-going activities of the university.\n- To provide industry experience through on-the-job-trainings, exposures, internship, immersion programs and linkages.\n- To provide a holistic curriculum that integrates instruction, extension, research, ICT, industry experience for both students and faculty.\n- To adopt an interdisciplinary approach by enhancing the institution’s interest in the understanding of the cultural reproduction and social integration and in spiritual and moral formation"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Institutional Outcomes",
+          "body": "Having finished their academic degree at the University of La Salette, the graduates are expected to become:\n\n**Transformative Leaders** . Active involvement in their respective community and organization by championing the Salettinian ideals.\n\n**Reconcilers.** Continue to communicate their Salettinian identity and culture through active involvements in the evangelizing ministry of reconciliation in their local communities, work-places and in social organizations.\n\n**Industry Competent** . Demonstrate their readiness in the arena of and qualification for employment through the established link between theoretical aspect of the curriculum and its practical dimension as a result of their on-the-job trainings, exposures, internship, immersion programs and linkages with relevant industries or workplaces.\n\n**Research-Oriented** . Keep abreast with current developments and trends in all relevant technical/professional knowledge areas for successful adaptation to a changing and complex world through continuing engagement in research projects to contribute to the humanization of the world in general, and to the reconciling effects on their relationships with God, with fellow human beings, with society and with nature.\n\n**Information and Communication Technology Proficient** . Demonstrate contemporary skills applications as they offer innovative solutions in work situations through the employment of new technology and new ways of communication.\n\n**Critical Thinkers** . Engage themselves in critical reflection and communicative discourses on uncritically assimilated assumptions, beliefs, value-system and diverse perspectives that need to be collaboratively addressed for an emancipatory and integral process of human growth and community building.\n\n**Holistic Persons** . Demonstrate through their attitude, behavior and engagement a synthesis of faith and lived experience, of faith and science; synthesis of cognitive, affective and behavioral aspects of learning; synthesis of cultural and global concerns, and a synthesis of curricular and co-curricular programs."
+        }
+      }
+    ]
+  },
+  {
+    "slug": "uls-administration",
+    "title": "Administration",
+    "navigation_group": "university",
+    "parent": null,
+    "navigation_order": 5,
+    "show_in_navigation": true,
+    "status": null,
+    "content": [
+      {
+        "type": "cards",
+        "data": {
+          "heading": "University Administrators",
+          "items": [
+            {
+              "title": "Rev. Fr. Franklin G. Picio, MS, Ph.D.",
+              "description": "University President"
+            },
+            {
+              "title": "Rev. Fr. Pedro Q. Dolar, MS, MA",
+              "description": "Vice President for Administration"
+            },
+            {
+              "title": "Madeilyn B. Estacio, Ph.D.",
+              "description": "Vice President for Academic Affairs"
+            },
+            {
+              "title": "Rev. Fr. Joseph Christian M. Pilotin, MS, MA",
+              "description": "University Chaplain"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "slug": "deans",
+    "title": "Deans",
+    "navigation_group": null,
+    "parent": "uls-administration",
+    "navigation_order": 1,
+    "show_in_navigation": true,
+    "status": null,
+    "content": [
+      {
+        "type": "cards",
+        "data": {
+          "heading": "Deans of the Colleges and Graduate School",
+          "items": [
+            {
+              "title": "Madeilyn B. Estacio, PhD",
+              "description": "Dean, Graduate School"
+            },
+            {
+              "title": "Atty. Jose Romeo S. Dela Cruz",
+              "description": "Dean, College of Law"
+            },
+            {
+              "title": "Jayson L. Jamco, EdD",
+              "description": "Dean, College of Teacher Education"
+            },
+            {
+              "title": "Aimee P. Calingasan, MAEd",
+              "description": "Assistant Dean, College of Arts and Sciences"
+            },
+            {
+              "title": "Atty. Jimmy I. Peru, LLM, MICB, CPA",
+              "description": "Dean, College of Accountancy"
+            },
+            {
+              "title": "Bienvenido B. Abad, Jr., DIT",
+              "description": "Dean, College of Information Technology"
+            },
+            {
+              "title": "Agnes C. Ambrosio, DPA",
+              "description": "Dean, College of Business Education"
+            },
+            {
+              "title": "Engr. Ariel M. Lorenzo, DEM, LPT",
+              "description": "Dean, College of Engineering and Architecture"
+            },
+            {
+              "title": "Erika G. Llabres, CCpE, MIT",
+              "description": "Assistant Dean, College of Engineering and Architecture"
+            },
+            {
+              "title": "Bella G. Fontanilla, RN, MAN",
+              "description": "Dean, College of Nursing, Public Health and Midwifery"
+            },
+            {
+              "title": "Gilda C. Octavo, PhD-CRIM",
+              "description": "Dean, College of Criminology"
+            },
+            {
+              "title": "Albert A. Camungao, MD",
+              "description": "Dean, College of Medical and Allied Medical Program"
+            },
+            {
+              "title": "Marisa S. Tan, RMT, RN, MSPH",
+              "description": "Assistant Dean, College of Medical and Allied Medical Program"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "slug": "University-officials",
+    "title": "Office Heads",
+    "navigation_group": null,
+    "parent": "uls-administration",
+    "navigation_order": 2,
+    "show_in_navigation": true,
+    "status": null,
+    "content": [
+      {
+        "type": "cards",
+        "data": {
+          "heading": "Directors and Office Heads",
+          "items": [
+            {
+              "title": "Arnold A. Duldulao, MBM",
+              "description": "University Registrar"
+            },
+            {
+              "title": "Evelyn C. Corpuz, MBM",
+              "description": "University Treasurer"
+            },
+            {
+              "title": "Rev. Fr. Joseph Christian Pilotin, MS",
+              "description": "Director, Christian Formation Office"
+            },
+            {
+              "title": "Bernard Joseph L. Ariola, LPT, CHRA",
+              "description": "Community Extension and Outreach Program Director"
+            },
+            {
+              "title": "Jhoann Marie G. Reyes, RPm, MOP, RPsy",
+              "description": "Human Development Center Director"
+            },
+            {
+              "title": "James L. Alcantara, LPT, MAEd",
+              "description": "Facility Management Director"
+            },
+            {
+              "title": "John Noel E. Fermin, RPm, CHRA, RGC",
+              "description": "Human Resource Management Director"
+            },
+            {
+              "title": "Emmanuel T. Mendoza, RL, MLIS",
+              "description": "IMC Director"
+            },
+            {
+              "title": "Joel P. Bembo, MAP",
+              "description": "University Publication Director"
+            },
+            {
+              "title": "Belinda A. Ramos, MD",
+              "description": "Research and Creative Works Director"
+            },
+            {
+              "title": "Mr. Christian Paul R. Torres",
+              "description": "Prefect of Discipline"
+            },
+            {
+              "title": "Wilfrido F. Simbul, MD",
+              "description": "Health Services Director"
+            },
+            {
+              "title": "Laila D. Sanchez, MAEd",
+              "description": "Laboratory Director"
+            },
+            {
+              "title": "Regine L. Pace, RMT",
+              "description": "Asst. Laboratory Director"
+            },
+            {
+              "title": "Queenne Kimverlee C. Landingin, RN, MAN, MSN, MAEd",
+              "description": "Quality Assurance Director"
+            },
+            {
+              "title": "Bienvenido B. Abad, Jr., DIT",
+              "description": "EMIS Director"
+            },
+            {
+              "title": "Rouel L. Ramirez, DBM",
+              "description": "External Affairs and International Relations Director"
+            },
+            {
+              "title": "Limuel Arjay A. Esteban, MBA",
+              "description": "Student Services and Affairs Director"
+            },
+            {
+              "title": "Lorna V. Fulong, MBM",
+              "description": "Alumni Affairs Director"
+            },
+            {
+              "title": "Rodolfo R. De Guzman Jr., RCrim, MSCrim",
+              "description": "Safety and Security Director"
+            },
+            {
+              "title": "Dominick R. Domingo, LPT",
+              "description": "NSTP and SDG Coordinator"
+            },
+            {
+              "title": "Mr. Reynaldo T. Belarmino",
+              "description": "Bookstore Manager"
+            },
+            {
+              "title": "Vilma D. Duldulao, MBM",
+              "description": "Accountant"
+            },
+            {
+              "title": "Benedict B. Marquez, RMT",
+              "description": "Asst. Research Director/Medical Laboratory Science Prog. Coor."
+            },
+            {
+              "title": "Gretchen D. Rosal, LPT, MAEd",
+              "description": "Dormitory and CPD"
+            },
+            {
+              "title": "Jaypee Fernan M. Ramirez, LPT, MBA",
+              "description": "Expanded Tertiary Education Equivalency and Accreditation Program (ETEEAP) Coordinator"
+            },
+            {
+              "title": "Shampaine Diana Rose R. Andaya, LPT, MAEd EM",
+              "description": "Instructional Coordinator for Academic Quality Enhancement"
+            },
+            {
+              "title": "Jaycell A. Tucay, LPT, MAEd",
+              "description": "Instructional Coordinator for Institutional Rankings and Performance Analytics"
+            },
+            {
+              "title": "Arsenio P. Asuncion, Jr., MPA",
+              "description": "Sports Coordinator"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "slug": "basic-education",
+    "title": "Basic Education",
+    "navigation_group": "academics",
+    "parent": null,
+    "navigation_order": 1,
+    "show_in_navigation": true,
+    "status": null,
+    "content": [
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "La Salette Philosophy of Education",
+          "body": "La Salette Education is an-on going process of growth in freedom and in fullness of being prepared for, lived and experienced by the entire school community, realized in the reconciliation and integration of Filipino Cultural Values and those of Jesus Christ who came so that “they may have life and have it to the full”. (John 10:10)"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Vision",
+          "body": "A community living in freedom and in fullness of being, fully reconciled with self, others nature and God."
+        }
+      }
+    ]
+  },
+  {
+    "slug": "grade--school",
+    "title": "Grade School",
+    "navigation_group": null,
+    "parent": "basic-education",
+    "navigation_order": 1,
+    "show_in_navigation": true,
+    "status": null,
+    "content": [
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "La Salette Philosophy of Education",
+          "body": "La Salette Education is an-on going process of growth in freedom and in fullness of being prepared for, lived and experienced by the entire school community, realized in the reconciliation and integration of Filipino Cultural Values and those of Jesus Christ who came so that “they may have life and have it to the full”. (John 10:10)"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Vision",
+          "body": "A community living in freedom and in fullness of being, fully reconciled with self, others nature and God."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Mission Statement",
+          "body": "The University of La Salette Grade School Department pledges to provide a culture of excellence that permeates in the community of young Christians responsive to socio-economic, cultural and political concerns of the times, globally competitive and deeply rooted in the Salettinian spirituality of Reconciliation.\n\n**IDENTITY:** La Salette School System is a community of Catholic Schools called to evangelize the young in the spirit of Our Lady of La Salette’s message of Reconciliation.\n\n**CORE PURPOSE:** To provide excellent Catholic education to enable the young to attain “fullness of life”. (John 10:10)\n\n**CORE VALUES:**\n- Mary’s Fiat- Obedience, humble submission and commitment to respond wholeheartedly to God’s call.\n- Penance, Prayer and Zeal- Making God as the center of one’s life; constantly renewing one’s relationship with Him, others and all creation; assiduously living one’s faith.\n- Excellence- Going beyond mere compliance; doing everything in the best way possible providing no room for mediocrity.\n- Solidarity- Being in communion with members of God’s family in building a world where every person lives in dignity.\n- Stewardship- Responsible care and prudent use of all resources."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Elementary",
+          "body": "● Grade I to Grade VI  \nPre-School Education  \n● Senior Kindergarten  \n● Junior Kindergarten  \n● Nursery"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "high-school",
+    "title": "High School",
+    "navigation_group": null,
+    "parent": "basic-education",
+    "navigation_order": 2,
+    "show_in_navigation": true,
+    "status": null,
+    "content": [
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "La Salette Philosophy of Education",
+          "body": "La Salette Education is an on-going process of growth in freedom and in fullness of being, prepared for, lived and experienced by the entire school community, realized in the reconciliation and integration of Filipino cultural values and those of Jesus Christ who came “so that they may have  \nlife and have it to the full.”John 10:10"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Vision",
+          "body": "A community living in freedom and fullness of being fully reconciled with self, others, nature and God."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Mission Statement",
+          "body": "The mission statement of the University of La Salette High School as an educational institution is to assist the government and the Church through a program of systematic learning experiences that will enable its students to embark on a process of self-discovery and growth in all areas of his life: physical, psychological, socio-cultural, moral and spiritual, and to emerge thereby competent, capable and versatile citizen committed to the betterment of the nation and of the larger community.\n\nIn pursuing this mission, University of La Salette High School is guided by the following commitments:\n- It is Christian in its value system, committed to a belief in the religious and spiritual as a fundamental dimension of man, and to making available academic, social and liturgical avenues for the free pursuit of the Christian faith through a decidedly liberal Christian education. It is an academic community integrating the La Salette Missionaries, the administration and personnel, and the students into a school-centered Basic Christian Community;\n- As an academic agent for national development, it is committed to fostering the student’s awareness and responsive concern for the role of the individual Christian and the Church in the betterment of immediate society and of the nation. It is committed to helping its students develop the skills of citizenship and leadership needed in a developing country like the Philippines;\n- It is committed to the service of the larger community by making its type of education accessible to deserving and capable students; by making its physical and human resources readily available and by furthering cooperative efforts with other educational institutions and civic organizations; and\n- – it is committed to provide and atmosphere of family spirit throbbing with personal presence, availability and challenging experiences that allow people not only to walk together, affirming, supporting, respecting and evoking creative responses and alternative but also to continually grow in intellectual, professional research competencies geared towards the transformation of self, community and society."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Institutional Goals and Objectives",
+          "body": "Goals:\n\nIn keeping with its philosophy and mission and the nature of its clientele, the University of La Salette High School has formulated the following goals and objectives:"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Religious Goals",
+          "body": "The fullness of Christian maturity is developed when the individual, knowing the Gospel and integrating its message in his everyday living, becomes a totally committed Christian. University of La Salette High School Department helps each student gain KNOWLEDGE, INSIGHT, and INTERNALIZATION of this Gospel message. This is realized not only by offering formal Religion classes in all year levels but also by integrating religious values in other subject areas and discipline within the curriculum so that the student shall be developing progressively a system of values whereby the Gospel of Christ may pass from the level of awareness to a lived witnessing in service and love for others."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Intellectual Goals",
+          "body": "University of La Salette high School helps the student gain access to the accumulated culture and knowledge of man, fosters an intellectual curiosity and reverence for life and equips him with skills – manual, visual, vocal which will enable him to give artistic and creative expression of the true, the good and the beautiful and further to contribute to the development of knowledge and culture, so that the processes of education are recognized as the means while HUMAN and SOCIAL DEVELOPMENT as the ultimate ends of education."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Social Goals",
+          "body": "University of La Salette High School offers a unique corporate witness to the relevance of and the need for religious social values in the Philippine society.\n\nThe student shall be actively involved in a Christian learning community which offers varied patterns of personal, social and work interaction among its members- students, faculty and parents.\n\nThe student shall develop a responsible concern for the role of the Church and the individual Christian in the problems of their immediate society through active involvement in programs, projects and activities for social, economic and cultural upliftment of the school community.\n\nThe student shall develop attitudes of patriotism and nationalism combined with an attitude of mutual respect and understanding for those of the larger society encompassing people of all races, cultures and creeds.\n\nThe student shall learn how to function effectively and positively in society through the exercises of his rights and obligations as a responsible agent of change and development to bring about a better barrio, municipality, province and the world."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Physical and Psychological Goals",
+          "body": "University of La Salette High School aims to foster in the students good attitudes and habits of living conducive to physical and moral health.\n\nThe Physical Education, Music and Health Program of the school aims to develop the physical, emotional and social fitness of the students through a carefully selected core of physical activities, sports and games.\n\nThe student shall be helped to develop sound patterns and attitudes of health leading to an optimum physical growth and development within his capacity.\n\nThe student shall learn how to attain and persevere physical and mental health, the ability to make adaptations and to deal constructively with psychological tensions that characterize the teenage years.\n\nThe student shall be exposed to physical development programs that aim at achieving maximum development of bodily coordination, graciousness of movements, agility and balance.\n\nThe student shall be led to appreciate the human body and bodily aspects as sacred gifts of God that must be fully developed and utilized for the purposes of which God created them.\n\n**Objectives:**\n\n1. To provide the student with opportunities to experience his dignity as a human person and understand his basic yearnings in the light of divine revelation in Christ through the offering of a life-oriented curricular program of religious education;\n\n2. To create an atmosphere where the student can celebrate and live meaningfully his fellowship in Christ through a consistent effort of building a school-centered Basic Christian Community;\n\n3. To provide learning opportunities for the student to develop himself, to think critically, judge intelligently, weigh moral values with an upright conscience and make free and responsible decisions;\n\n4. To aid the student to reaffirm and to strengthen a personal value system with emphasis on integrity, magnanimity and passion for truth in a spirit of faith, service and love by exposing him to the eminently SALETTINIAN SPIRITUALITY of PENANCE, PRAYER AND ZEAL;\n\n5. To promote in the student the spirit of true nationalism and patriotism, to enable him to develop a reasoned commitment to the goals of national development, and to provide further opportunities for the development of the student’s appreciation of his cultural heritage;\n\n6. To conscienticize the student regarding the plight of the less privileged, the victims of injustices and oppressions and of his responsibility to participate in enabling the needy to mobilize their inner strength, so that in concerted effort, both rich and poor, the more educated and less educated may effect a positive change for human and just society;\n\n7. To help the student acquire basic occupational skills, knowledge and attitudes essential for obtaining initial gainful employment and for making intelligent choice of occupation or career to become a productive contributor to our developing society;\n\n8. To provide for continuous development and training of the school’s manpower (human resources) so that each individual employee in the particular relationship he finds himself within the school will:\n\n– attain his full potential as a human being,  \n– enhance the range and quality of his participants in the basic functions of the school,  \n– further develop into a productive and versatile leader/member of this institution.\n\n9. To assure the physical and financial resources sufficient to meet the needs of the institution for the efficient and effective accomplishment of its goals and objectives through a viable scheme of financing from various sources aside from student fees and through an effective program of development and wise utilization of existing facilities;\n\nso that. . .\n\nat the end of a four year secondary course, the student of the University of La Salette High School shall have been able to:\n- acquire basic insights into the Catholic Christian Faith and practices evidenced by personal prayer and active participation in community worship;\n- live a Christian life evidenced by concern, service and appreciation of fellowmen, especially those within everyday contact; and\n- acquire the basic competence and skills to be able to engage in gainful employment and contribute to nation-building in its various aspects: spiritual and religious, socio-economic, civic, and cultural, at gradually expanding levels of family, community, region, and nation.\n- begin to assume Christian leadership within a local church (parish and/or barangay) that is rapidly moving towards responsible involvement and commitment of the laity for social transformation; and\n- acquire an adequate academic background to meet the challenges of collegiate life."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Goals and Objectives",
+          "body": "In keeping with the objectives of Secondary Education as stated in Section 9 of the 2002 Education Law and the Private Schools to wit:\n\na) To continue to promote the objectives of the elementary education, but shifting in emphasis from the mastery of basic tools of learning, expression, and understanding to the use and extension of the tools for further exploring and acquiring intellectual , social, moral and physical concepts, ideals, attitudes and skills in order to develop the whole human being.\n\nb) To discover and enhance, in addition, the different aptitudes and interests of the individual student so as to equip him with skills for productive endeavor and thus prepare him for work in the real world and/or for further formal studies in higher education.\n\nSecondary Education prepares the student for the demands of higher education. It aims to achieve “maximum development of the adolescent to make him effective and efficient in the roles that he will play in the different social groups to which he belongs, whether in the academe or in the work force.”\n\nIt ensures:\n- the development of the cultural, socio-civic, physical, moral and spiritual aspects of the individual;\n- the development of his sense of membership in a national community;\n- the development of his intellectual and work skills; and\n- the development of his values.\n\nIn keeping with its philosophy and mission and the nature of its clientele, the La Salette Schools has formulated the following goals and objectives:\n- To provide the student with opportunities to experience his dignity as a human person and understand his basic yearnings in the light of divine revelation in Christ through the offering of a life-oriented curricular program of religious education;\n- To create an atmosphere where the student can celebrate and live meaningfully his fellowship in Christ through a consistent effort of building a school-centered Basic Christian Community;\n- To provide learning opportunities for the student to develop himself, to think critically, judge intelligently, weigh moral values with an upright conscience and make free and responsible decisions;\n- To aid the student to reaffirm and to strengthen a personal value system with emphasis on integrity, magnanimity and passion for truth in a spirit of faith, service and love by exposing him to the eminently SALETTINIAN SPIRITUALITY of PENANCE, PRAYER AND ZEAL;\n- To promote in the student the spirit of true nationalism and patriotism, to enable him to develop a reasoned commitment to the goals of national development, and to provide further opportunities for the development of the student’s appreciation of his cultural heritage;\n- To conscienticize the student regarding the plight of the less privileged, the victims of injustices and oppressions and of his responsibility to participate in enabling the needy to mobilize their inner strength, so that in concerted effort, both rich and poor, the more educated and less educated may effect a positive change for human and just society;\n- To help the student acquire basic occupational skills, knowledge and attitudes essential for obtaining initial gainful employment and for making intelligent choice of occupation or career to become a productive contributor to our developing society;\n- To provide for continuous development and training of the school’s manpower (human resources) so that each individual employee in the particular relationship he finds himself within the school will: (a)attain his full potential as a human being, (b) enhance the range and quality of his participants in the basic functions of the school, (c)further develop into a productive and versatile leader/member of this institution.\n- To assure the physical and financial resources sufficient to meet the needs of the institution for the efficient and effective accomplishment of its goals and objectives through a viable scheme of financing from various sources aside from student fees and through an effective program of development and wise utilization of existing facilities; — so that. . .\n\nat the end of a four year secondary course, the student of the La Salette Schools shall have been able to:\n- acquire basic insights into the Catholic Christian Faith and practices evidenced by personal prayer and active participation in community worship;\n- live a Christian life evidenced by concern, service and appreciation of fellowmen, especially those within everyday contact; and\n- acquire the basic competence and skills to be able to engage in gainful employment and contribute to nation-building in its various aspects: spiritual and religious, socio-economic, civic, and cultural, at gradually expanding levels of family, community, region, and nation.\n- begin to assume Christian leadership within a local church (parish and/or barangay) that is rapidly moving towards responsible involvement and commitment of the laity for social transformation; and\n- acquire an adequate academic background to meet the challenges of collegiate life.\n\na. Senior High School  \n● Grade XI to Grade XII  \nb. Junior High School  \n● Grade VII to Grade X"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "college-of-nursing-public-health-and-midwifery",
+    "title": "College of Nursing, Public Health and Midwifery",
+    "navigation_group": null,
+    "parent": "undergraduate-programs",
+    "navigation_order": 1,
+    "show_in_navigation": true,
+    "status": null,
+    "content": [
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "College Leadership",
+          "body": "- **Dean:** Bella G. Fontanilla, RN, MAN"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Program Offerings",
+          "body": "- Bachelor of Science in Nursing\n- Bachelor of Science in Midwifery\n- Bachelor of Science in Public Health"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Program Outcomes",
+          "body": "Program outcomes are the sets of competencies (related knowledge, skills and attitudes) that all learners are expected to demonstrate upon graduation. The minimum standards for the BS Nursing program are expressed in the following minimum set of program nursing outcomes.\n\nSpecific to BSN:\n- Apply knowledge of physical, social, natural and health sciences and humanities in the practice of nursing\n- Provide safe, appropriate, and holistic care to individuals, families, population group, and community utilizing nursing process\n- Apply guidelines and principles of evidence- based practice in the delivery of care\n- Practice nursing in accordance with existing laws, legal, ethical and moral principles\n- Communicate effectively in speaking, writing and presenting using culturally- appropriate language\n- Document to include reporting up-to-date client care accurately and comprehensively\n- Work effectively in collaboration with inter-, intra- and multi-disciplinary and multi-cultural teams\n- Practice beginning management and leadership skills in the delivery of client care using a systems approach\n- Conduct research with an experienced researcher\n- Engage in lifelong learning with a passion to keep current with national and global developments in general, nursing and health developments in particular\n- Demonstrate responsible citizenship and pride of being a Filipino\n- Apply techno-intelligent care systems and processes in health care delivery.\n- Adopt the nursing core values in the practice of the profession\n- Apply entrepreneurial skills in the delivery of nursing."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Nursing Year Level Outcomes",
+          "body": "These are outcomes expected to be achieved at the end of the specific year level. The level outcomes are as follows:\n\n**First year:** At the end of the first year given simulated situations in selected settings, the learners demonstrate basic nursing skills in rendering safe and appropriate care utilizing the nursing process.\n\n**Second year:** At the end of the second year, given a normal and high risk mother and newborn, child, family, communities and population groups in any health care setting, the learners demonstrate safe, appropriate and holistic care utilizing the nursing process.\n\n**Third year:** At the end of the third year, given individuals, families, population groups and communities with physiologic and psychosocial health problems and maladaptive patterns of behavior in varied health care settings, the learners demonstrate safe, appropriate and holistic care utilizing the nursing process and applying research and evidence- based practice.\n\n**Fourth year:** At the end of the fourth year, given groups of clients (individuals, families, population group and communities) with health problems and special needs, the learners demonstrate safe, appropriate and holistic care utilizing the nursing process and can assume first level entry positions in any field of nursing."
+        }
+      }
+    ]
+  },
+  {
+    "slug": "college-of-information-technology",
+    "title": "College of Information Technology",
+    "navigation_group": null,
+    "parent": "undergraduate-programs",
+    "navigation_order": 2,
+    "show_in_navigation": true,
+    "status": null,
+    "content": [
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "College Leadership",
+          "body": "- **Dean:** Bienvenido B. Abad, Jr., DIT"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Program Offerings",
+          "body": "- Bachelor of Science in Information Technology\n- Bachelor of Library and Information Science"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Mission",
+          "body": "The College of Information Technology is committed to provide quality education through competent instruction, research project and extension for the development of responsible professionals that carries out proficiency in Information Technology and resilient to Salettinian values and ethical standards."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Objectives",
+          "body": "In keeping with the mission statement of the College of Information Technology, it aims to:\n- To produce graduates who can demonstrate and contribute to the scientific and theoretical foundations on which Information Technology are built;\n- To produce graduates who are technically competent in managing information technology resources;\n- To produce fully empowered graduates who are globally competitive, contributor to nation building, ready and willing to share their technical expertise;\n- To develop technically oriented graduates who possess work values and who can relate well with others in the workplace; and\n\nTo produce Christian professionals who are God-fearing, socially responsible, and care of nature."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Programs in Detail",
+          "body": "### Bachelor of Science in Information Technology\n\nThe BS Information Technology program includes the study of the utilization of both hardware and software technologies involving planning, installing, customizing, operating, managing and administering, and maintaining information technology infrastructure that provides computing solutions to address the needs of an organization.\n\nThe program prepares graduates to address various user needs involving the selection, development, application, integration and management of computing technologies within an organization.\n\n### Program Goals\n\nThe BSIT graduates are expected to become globally competent, innovative, and socially and ethically responsible computing professionals engaged in life-long learning endeavors. They are capable of contributing to the country’s national development goals.\n\n### Program Outcomes\n\nThe graduates of BS Information Technology program must have the ability to:\n- Analyze complex problems, and identify and define the computing requirements needed to design an appropriate solution;\n- Apply computing and other knowledge domains to address real-world problems;\n- Design and develop computing solutions using a system-level perspective;\n- Utilize modern computing tools;\n- Articulate and discuss the latest developments in the specific field of practice;\n- Effectively communicate orally and in writing using both English and Filipino;\n- Work effectively and independently in multi-disciplinary and multi-cultural teams;\n- Act in recognition of professional, social and ethical responsibility; and\n- Preserve and promote “Filipino historical and cultural heritage”"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "college-of-medicine-and-allied-medical-programs",
+    "title": "College of Medicine and Allied Medical Programs",
+    "navigation_group": null,
+    "parent": "undergraduate-programs",
+    "navigation_order": 3,
+    "show_in_navigation": true,
+    "status": null,
+    "content": [
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "College Leadership",
+          "body": "- **Dean:** Albert A. Camungao, MD\n- **Assistant Dean:** Marisa S. Tan, RMT, RN, MSPH"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Program Offering",
+          "body": "- Bachelor of Science in Medical Laboratory Science\n- Bachelor of Science in Radiologic Technology\n- Bachelor of Science in Pharmacy\n- Bachelor of Science in Physical Therapy"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Mission",
+          "body": "The College of Medicine and Allied Medical Programs envisioned health providers who are reconcilers, give competent selfless services to the community, anchored to the moral and ethical principles of the Salettinian core values and harmony with the environment for the society may live life in full."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Objectives",
+          "body": "The College of Medicine and Allied Medical Programs seeks to provide quality education with Catholic values formation from which will evolve scientifically equipped and professionally trained allied health professionals who are cognizant of their future roles in building and maintaining a healthy Christian community. Specifically, it aims:\n- To produce graduates, who are academically accomplished and adequately trained in their respective disciplines, thus, empowering them to become competent health care professionals.\n- To instill the Christian value formation of the inner self by recognizing the one’s acquired and God-given talents are instruments in the graduates continuing role in the development of a Christ-centered and healthy community.\n- To promote genuine concern for the less fortunate members of our society so that our graduates may become witnesses to God’s reconciling Love and Mercy\n- To develop a commitment of continuously seeking improvement in the graduates’ quest for better health care delivery by undertaking updates and researches in the ever-changing field of medical and allied medical science.\n\n**Bachelor of Science in Medical Technology/ Bachelor of Science in Medical Laboratory Science**"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Program Outcomes",
+          "body": "Graduates of Bachelor of Science in Medical Technology/Bachelor in Medical Laboratory Science like any other Health Professions Education must be able to apply analytical and critical thinking in clinical laboratory:\n- demonstrate technical competence in the performance of clinical laboratory tests in aid of diagnosis, treatment, and management of diseases vis-a-vis biosafety and waste management;\n- demonstrate analytical and critical thinking skills in the workplace;\n- engage in the collection, analysis, and projection of health information for improving the health care management system;\n- demonstrate inter-personal skills, leadership qualities, and ethical practice of the profession;\n- apply research skills in relevant areas of Medical Technology/Medical Laboratory Science practice;\n- participate in community-oriented activities;\n- engage in life-long learning activities; and\n- demonstrate effective teaching and communication skills."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Program Goals",
+          "body": "For the graduates to:\n- develop the knowledge, skills, professional attitudes and value in the performance of clinical laboratory procedures needed to help the physician in the proper diagnosis, treatment, prognosis and prevention of diseases;\n- acquire critical thinking skills in Medical Technology/Medical Laboratory Science\n- engage in research and community-related activities\n- participate in activities related to promoting the profession and actively engage in life-long learning undertakings; and develop collaborative and leadership qualities"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Programs in Detail",
+          "body": "### Bachelor of Science in Pharmacy\n\n### Program Outcomes\n\nThe main concern of Pharmacy Education is to provide the country with pharmacists who are scientifically competent to deliver the full spectrum of pharmaceutical services required in health care delivery. After finishing the program, the graduate shall have acquired and developed the knowledge, skills, aptitude and competencies in:\n- Conducting scientific research methods and processes;\n- Developing drugs for prevention, diagnosis, mitigation and treatment of diseases of man and animals;\n- Identifying, compounding, manufacturing, storing and dispensing drugs;\n- Managing drug establishments based on sound entrepreneurial practice;\n- Providing pharmaceutical care as well as counseling clients in the proper use of both prescribed and patient chosen medication;\n- Providing drug and health related information;\n- Advocating professional and ethical pharmacy practice;\n- Contributing to the overall social, mental, emotional and physical health of individuals, communities and the country\n\n### Bachelor of Science in Physical Therapy\n\n### Program Outcomes\n\nGraduates of BSPT are expected to be able to perform any of the following roles:\n- Apply knowledge of physical sciences, social sciences, health sciences and natural sciences to the practice of physical therapy.\n- Demonstrate consistent competence in conducting a comprehensive examination, evaluation, and assessment of patients/clients across the lifespan within a broad continuum of care.\n- Demonstrate consistent competence in planning and implementing appropriate physical therapy interventions for patients/clients across the lifespan within a broad continuum of care.\n- Apply teaching- learning principles in different learning environments management leadership skills in various settings.\n- Practice beginning management and leadership skills in various practice settings.\n- Demonstrate research-related skills in the application of best practice evidence in the performance of various roles in different practice settings\n- Promote health and improved quality of life through the practice of the profession.\n- Actively engage in lifelong learning activities.\n- Work effectively in an inter-professional collaborative setting.\n- Demonstrate proficiency in oral and written communication skills as well as reading and listening.\n- Demonstrate social and professional responsibility and ethical behaviors in multi-cultural settings and scenarios.\n- Maximize the use of innovative technology in practice of the profession.\n\n### Bachelor of Science in Radiologic Technology\n\n### Program Outcomes\n\nGraduates of the BS Radiologic Technology program equipped with relevant knowledge, skills, attitude and values shall be able to:\n- Acquire and develop knowledge, attitudes, values, and skills necessary to contribute to the overall social, mental, and physical health of the community and country.\n- Respond to the technological advancement in the field of Radiologic Sciences thru research and continuing professional development.\n- Identify the elements of patient care and management as they relate to the radiography.\n- Demonstrate and developed skills in patient identification and observation, transfer and control of infection, observation of vital signs, and identification and management of emergence situation."
+        }
+      }
+    ]
+  },
+  {
+    "slug": "college-of-law",
+    "title": "College of Law",
+    "navigation_group": null,
+    "parent": "undergraduate-programs",
+    "navigation_order": 4,
+    "show_in_navigation": true,
+    "status": null,
+    "content": [
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "College Leadership",
+          "body": "- **Dean:** Atty. Jose Romeo S. Dela Cruz"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Program Offerings",
+          "body": "- Juris Doctor (Bachelor of Laws)"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Programs in Detail",
+          "body": "### Juris Doctor Program\n\nThe College of Law of University of La Salette, Inc. offer four year undergraduate program leading to a Juris Doctor (J.D) degree.\n\n### Mission\n\nThe College of Law seeks to contribute to the development of the quality of the legal system, by producing lawyers who are not only knowledgeable of the law but are also professionally and ethically responsible to promote public interest and protection of human rights.\n\n### Objectives\n\nWithin the framework of the basic commitment of University of La Salette to Christian Faith, The College of Law specially aims to:\n- Form, transform and empower competent and compassionate Christian Lawyers, who:\n- Believe in the Salettinian philosophy of “fullness of Life Christ” (John 10:10);\n- Are sensitive to the needs of others, particularly those who belong to the marginalized sectors of the society. Have\n- Are self-disciplined, principled persons of conviction, with a deep sense of social awareness, which urges them to work for the establishment of a just, equitable and reconciled human order; and\n- Hold in their person deep respect human rights and care for the natural environment.\n- Form competent Christian Lawyers who will have preferential option for the underprivileged and underserved, and who will living witnesses and epitomes of Christian values, particularly the values of peace, justice and reconciliation;\n- Equip law students with the necessary conceptual, technical and human skills with which to productively address crucial legal needs of their future clientele, with a high degree of articulation, creativity and critical thinking:\n- Empower the would-be Salettinian lawyers with all the necessary learning experiences, so as to develop them into:\n- Outstanding Christian leaders and mature individuals, who are fully equipped with skills, competencies and human values; and\n- Self-directed persons and effective professionals, who will contribute their share to nation-building, as they will address societal problems, issues and concerns in defense of the rights of their fellowmen and protection of the environment.\n\n### Program Goals and Outcomes\n\nThe basic law program through the revised model curriculum shall produce graduates who are professionally competent, practice-ready, active, self-directed and lifelong learners, responsible, highly ethical, honorable, socially mindful, and gender sensitive; willing leaders and servants; and, thinkers and innovators in law. This goal is without prejudice to academic freedom of LEI’s to enhance their program design. (LEBMO No. 24, Series of 2021, Section 5)"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "college-of-business-education",
+    "title": "College of Business Education",
+    "navigation_group": null,
+    "parent": "undergraduate-programs",
+    "navigation_order": 5,
+    "show_in_navigation": true,
+    "status": null,
+    "content": [
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "College Leadership",
+          "body": "- **Dean:** Agnes C. Ambrosio, DPA"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Program Offerings",
+          "body": "- Bachelor of Science in Business Administration\n- Major in: Human Resources Management, Financial Management, Marketing Management\n- Bachelor of Science in Office Administration\n- Bachelor of Science in Hospitality Management\n- Bachelor of Science in Tourism Management"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Program Objectives",
+          "body": "The **College of Business Education** endeavors to produce graduates imbued with Christian leadership and values and who are adequately equipped with modern business knowledge, management skills, and competencies needed for self-employment or for employment in industry, and government thus contributing to the growth and development of the nation and of the world.\n\nSpecifically, the College of Business Education aims to:\n- Equip students with a complete understanding and strong foundation on the concepts, principles, and best management practices in the areas of Finance, Human Resource Management, Marketing, Entrepreneurship, Hospitality, Tourism, and Office Administration to make the more globally competitive.\n- Assist students to acquire skills in analytical and critical thinking, problem-solving, and decision-making essential in managing today’s complex business environment in a scenario of global competition.\n- Expose students to the integration of academic theory and practice through research, on-the-job training, and community outreach activities to better prepare them for their chosen careers.\n- Shape student’s high ethical standards, and live up the values of peace, reconciliation, truth, justice, innovativeness, risk-taking, civic-mindedness, and responsible citizenship.\n- Manifest interest and concern in the major issues, thrusts, and challenges of local, national, and global economy and commits to make meaningful contributions to improve the quality of life of the community they serve."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Program Outcomes Common to Business Administration",
+          "body": "The  \ngraduate should be able to:\n- articulate and discuss the latest developments in the field of practice;\n- effectively communicate orally in writing using both English and Filipino;\n- work effectively and independently in multi-disciplinary and multi-cultural teams;\n- act in recognition of professional, social, and ethical responsibility;\n- preserve and promote “Filipino historical and cultural heritage”;\n- perform the basic functions of management such as planning, organizing, staffing, directing, and controlling;\n- articulate the core values and competencies of the University both in their personal and professional lives."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Program Outcomes specific to Human Resource Management",
+          "body": "The graduate of BSBA major in Human Resource Management should be able to:\n- explain contemporary human resource management theories, principles, and best practices as applied to organizations;\n- design effective human resource management strategies that are aligned with the organization’s goals and objectives;\n- analyze the dynamics of an organization’s systems at all levels, individual, peer group, intergroup, and the total organization, thereby enabling the students to develop critical competencies required for the profession;\n- participate effectively in the management and development of human resources in business and industry;\n- apply research for strategic human resource decision-making."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Program Outcomes Specific to Financial Management",
+          "body": "The graduate of BSBA major in Financial Management should be able to:\n- demonstrate an understanding of financial management theories, principles, and best practices as applied to organizations;\n- design effective financial management strategies that are aligned with the organization’s goals and objectives;\n- assess the ethical, legal, and global issues that impact an organization’s financial — position;\n- analyze the dynamics of an organization’s system enabling them to develop critical — competencies for employment and assume entry-level positions for various — careers in financial management; and,\n- apply research for strategic financial management decision-making."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Program Outcomes Specific to Marketing Management",
+          "body": "The graduate of BSBA major in Marketing Management should be able to:\n- demonstrate an understanding of marketing management theories, principles, and best practices as applied to organizations;\n- design effective marketing management strategies that are aligned with the organization’s goals and objectives;\n- craft and implement a comprehensive business plan to assist existing business or as — start-ups;\n- analyze the dynamics of an organization’s system enabling them to develop critical — competencies for employment and assume entry-level positions for various careers in the field of marketing; and,\n- apply technology and research for strategic marketing management decision-making."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Program Outcomes Specific to BS Office Administration",
+          "body": "The graduate of the program should be able to:\n- provide general administrative and clerical support to high-level executives guided by the Code of Ethics for Office Professionals;\n- coordinate office management activities;\n- manage office communications;\n- organize files, information, and office supplies effectively;\n- exhibit acceptable human relations skills in a divers environment; and,\n- engage in lifelong learning to keep abreast of the development in the international — employment market."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Program Outcomes Common to Tourism and Hospitality",
+          "body": "The  \ngraduate should be able to:\n- demonstrate knowledge of the tourism industry, local tourism products, and services;\n- interpret and apply relevant laws related to the tourism industry\n- observe and perform risk mitigation activities;\n- utilize information technology applications for tourism and hospitality;\n- manage and market a service-oriented business organization;\n- demonstrate administrative and managerial skills in a service-oriented business organization;\n- prepare and monitor industry-specific financial transactions and reports;\n- perform human capital development functions of a tourism-oriented organization; and,\n- utilize various communication channels proficiently in dealing with guests and colleagues."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Program Outcomes Specific to BS Hospitality Management",
+          "body": "The  \ngraduate of the program should be able to:\n- produce food products and services complying with enterprise standards;\n- apply management skills in food and beverage service and operations;\n- perform and provide full guest cycle services for the front office;\n- perform and maintain various housekeeping services for guest and facility operations;\n- plan and implement a risk management program to provide a safe and secure workplace; and,\n- provide food and beverage service and manage the operation seamlessly based on industry standards."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Program Outcomes Specific to BS Tourism Management",
+          "body": "The graduate of the program should be able to:\n- plan, implement, and monitor tours and sales activities;\n- research, plan, and conduct various tour guiding activities;\n- develop appropriate marketing programs and arrange the required travel services;\n- plan, organize, implement, and evaluate meeting, incentive, convention, and exhibition activities; and,\n- plan, develop and evaluate tourism sites and attractions"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "college-of-accountancy",
+    "title": "College of Accountancy",
+    "navigation_group": null,
+    "parent": "undergraduate-programs",
+    "navigation_order": 6,
+    "show_in_navigation": true,
+    "status": null,
+    "content": [
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "College Leadership",
+          "body": "- **Dean:** Atty. Jimmy I. Peru, LLM, MICB, CPA"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Program Offerings",
+          "body": "- Bachelor of Science in Accountancy\n- Bachelor of Science in Accounting Information System"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "College Objectives",
+          "body": "- Produce graduates equipped with basic concerns and professional competence in Accounting anchored on Christian faith, love and value.\n- Form socially and morally responsible individuals for the promotional of common goods on the basis of Christian values, integrity and discipline;\n- Develop progressive accountants imbued with Christian authentic principles receptive to the dynamism and challenges of local, national, international business communities; and\n- Equip Graduates with entrepreneurial skills to be global competitive and encourage researches for individual development."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Program Outcomes",
+          "body": "- Resolve business issues and problems, with a global and strategic perspective using knowledge and technical proficiency in the areas of financial accounting and reporting, cost accounting and management, accounting and control, taxation and accounting information systems.\n- Conduct accountancy/accounting information system research through independent studies of relevant literature and appropriate use of accounting theory and methodologies.\n- Employ technology as a business tool in capturing financial and non-financial information, generating reports and making decisions.\n- Apply knowledge and skills that will successfully respond to various types of assessments (including professional licensure and certifications).\n- Confidently maintain a commitment to good corporate citizenship, social responsibility and ethical practice in performing functions as an accountant.\n- Uphold the La Salette vision and core values of Faith, reconciliation, integrity, excellence and solidarity in performing functions as an accountant."
+        }
+      }
+    ]
+  },
+  {
+    "slug": "college-of-engineering-and-architecture",
+    "title": "College of Engineering and Architecture",
+    "navigation_group": null,
+    "parent": "undergraduate-programs",
+    "navigation_order": 7,
+    "show_in_navigation": true,
+    "status": null,
+    "content": [
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "College Leadership",
+          "body": "- **Dean:** Engr. Ariel M. Lorenzo, DEM, LPT\n- **Assistant Dean:** Erika G. Llabres, CCpE, MIT"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Program Offerings",
+          "body": "- Bachelor of Science in Civil Engineering\n- Bachelor of Science in Electronics Engineering\n- Bachelor of Science in Computer Engineering\n- Bachelor of Science in Architecture\n- Bachelor of Science in Geodetic Engineering"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "College Objectives",
+          "body": "The College of Engineering and Architecture offering a five-year course aims to:\n- Provide its graduates a solid foundation and working knowledge of applied mathematics; physics and chemistry together with cultural subjects in languages and social sciences;\n- Foster in its graduates Christian leadership and equip them with technical competence and ethical standards of the engineering professions;\n- Develop in its graduates proper method in drafting, surveying, computer programming and electronics;\n- Equip in its graduates the capability to design and conduct quality infrastructures and other public work projects and the capability to design, develop and construct medium of electronics information processing transmission and reception; and\n- Develop in its graduates the competence in conducting research-oriented activities relevant to the technical profession."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Mission",
+          "body": "The College of Engineering and Architecture commits to empower students with the knowledge, skills, and abilities needed for successful professional careers in engineering and architecture; to encourage innovation, creativity and an entrepreneurial spirit; to instill a sense of community responsibility, and to develop highly trained Engineers and Architects to become active and competent Christian leaders in their chosen fields of specialization, and promote scientific and technological innovations for the improvement of life and the environment."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Program Outcomes",
+          "body": "A graduate of the **Bachelor of Science in Civil Engineering** (BSCE) program must attain:\n- an ability to apply knowledge of mathematics, physical sciences, engineering sciences to the practice of civil engineering;\n- an ability to design and conduct experiments, as well as to analyze and interpret data;\n- an ability to design, build improve, and install systems or processes which meet desired needs within realistic constraints;\n- An ability to work effectively in multi-disciplinary and multi-cultural teams;\n- An ability to recognized, formulate, and solve engineering problems;\n- An understanding of the effects and impact of civil engineering projects on nature and society, and of the civil engineers’ social and ethical responsibilities;\n- Specialized engineering knowledge in each applicable filed, and the ability to apply such knowledge to provide solutions to actual problems;\n- An ability to effectively communicate orally and in writing using the English language.;\n- An ability to engage in life-long learning and an acceptance of the need to keep current of the development in the specific field of specialization;\n- An ability to use the appropriate techniques, skills and modern engineering tools necessary for the practice of civil engineering; and\n- A knowledge of contemporary issues.\n\nA graduate of the **Bachelor of Science in Electronics Engineering** (BSEE) program must attain:\n- Ability to apply knowledge of mathematics and science to solve engineering problems.\n- Ability to design and conduct experiments, as well as to analyze and interpret data.\n- Ability to design a system, component, or process to meet desired needs within realistic constraints such as economic, environmental, social, ethical, health and safety manufacturability, and sustainability in accordance with standards.\n- Ability to function on multi-disciplinary teams.\n- Ability to identify, formulate, and solve engineering problems.\n- Understanding of professional and ethical responsibility.\n- Communicate effectively.\n- Broad education, necessary to understand the impact of engineering solutions in a global, economic, environmental, and societal context.\n- Recognition of the need for, and an ability to engage in life-long learning.\n- Knowledge on contemporary issues.\n- Ability to use techniques, skills, and modern engineering tools necessary for engineering practice.\n- Knowledge and understanding of engineering and management principles as a member and leader in a team, manage projects and in multi-disciplinary environment.\n\nA graduate of the **Bachelor of Science in Computer Engineering** (BSCpE) program must attain:\n- apply knowledge of mathematics and science to solve engineering problems\n- design and conduct experiments, as well as to analyze and interpret data\n- design a system, component, or process to meet desired needs within realistic constraints such as economic, environmental, social, political, ethical, health and safety, manufacturability, and sustainability, in accordance with standards\n- identify, formulate and solve engineering problems\n- apply professional and ethical responsibility\n- communicate effectively\n- identify the impact of engineering solutions in a global, economic, environmental and societal context\n- recognize the need for, and an ability to engage in life-long learning\n- apply knowledge of contemporary issues\n- use techniques, skills, and modern engineering tools necessary for engineering practice\n- apply knowledge of engineering and management principles as a member and leader in a team, to manage projects and in multidisciplinary environments\n- understand at least one specialized field of Engineering practice.\n\nA graduate of the **Bachelor of Science in Architecture** (BSArc) program are expected to demonstrate:\n- To keep abreast of the developments in the field of architecture practice\n- The ability to effectively communicate orally and in writing using both English and Filipino\n- A recognition of professional, social, and ethical responsibility\n- Creation of architectural solutions by applying knowledge in history, theory, planning, building technology and utilities, structural concepts and professional practice.\n- Use of concepts and principles from specialized fields and allied disciplines into various architectural problems.\n- Preparation of contract documents, technical reports and other legal documents used in architectural practice adhering to applicable laws, standards and regulations.\n- Interpretation and application of relevant laws, codes, charters and standards of architecture and the built environment.\n- Application of research methods to address architectural problems.\n- Use of various information and communication technology (ICT) media for architectural solutions, presentation, and techniques in design and construction.\n- Acquisition of entrepreneurial and business acumen relevant to architectural practice.\n- Involvement in the management of the construction works and building administration.\n\nA graduate of the **Bachelor of Science in Geodetic Engineering** (BSGE) program can:\n- apply knowledge of mathematics, physical sciences, and engineering sciences to the practices of geodetic engineering;\n- design and conduct experiments to test hypothesis and verify assumptions, as well as to organize, analyze and interpret data, draw valid conclusions, and develop mathematical models for processes;\n- design, improve, innovate, and supervise systems or procedures to meet desired needs with realistic constraints, in accordance with standards;\n- work effectively in multi-disciplinary and multi-cultural teams in diverse fields of practice;\n- identify, formulate, and solve geodetic engineering problem;\n- understand professional, social, and ethical responsibility;\n- communicate effectively through oral, written, print, and other media;\n- understand the effects and impacts of geodetic engineering profession on environment and the society;\n- engage in a life-long learning and keep current of the developments in specific field of specialization;\n- know contemporary issues;\n- use the appropriate techniques, skills and tools necessary for the practice of geodetic engineering;\n- understand and know engineering and management principles as a member and leader of a team, and mange projects in a multidisciplinary environment;\n- understand at least one focus area of geodetic engineering practice and apply such knowledge to provide solutions to actual problems."
+        }
+      }
+    ]
+  },
+  {
+    "slug": "college-of-criminal-justice-education",
+    "title": "College of Criminal Justice Education",
+    "navigation_group": null,
+    "parent": "undergraduate-programs",
+    "navigation_order": 8,
+    "show_in_navigation": true,
+    "status": null,
+    "content": [
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "College Leadership",
+          "body": "- **Dean:** Gilda C. Octavo, PhD-CRIM"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Program Offering",
+          "body": "- Bachelor of Science in Criminology"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Programs Goals",
+          "body": "The Program aim to:\n- encourage research and inquiry on the nature, causes, treatment or punishment of criminal behavior and how criminal justice a gencies function and respond to crime, criminals and victims.\n- prepare the students for careers in crime prevention, law enforcement, scientific crime detection, correctional administration, public safety and allied fields;\n- foster the values of leadership, integrity, accountability and responsibility while serving their fellowmen, community and country."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Program Outcomes",
+          "body": "- Articulate and discuss the latest developments in the specific field of practice (PQF Level 6 descriptor)\n- Effectively communicate orally and writing using both English and Filipino\n- Work effectively and independently in multi-disciplinary and multi-cultural teams (PQF level 6 descriptor)\n- Act in recognition of professional, social and ethical responsibility\n- Preserve and promote “Filipino historical and cultural heritage” (based on RA 7722)"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Common to the Criminal Justice Education",
+          "body": "- Conduct criminological research and further studies\n- Ensure public safety and order maintenance\n- Prevent, suppress and control crime\n- Investigate and detect crime\n- Enforce laws, rules and regulations\n- Protect lives and properties"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Graduate attributes and outcomes",
+          "body": "- Conduct criminological research on crimes, crime causation, victims, and offenders to include deviant behavior.\n- Internalize the concepts of human rights and victim welfare\n- Demonstrate competence and broad understanding in law enforcement administration, public safety and criminal justice;\n- Utilize criminalistics or forensic science in the investigation and detection of crime;\n- Apply the principles and jurisprudence of criminal law, evidence and criminal procedure;\n- Ensure offenders’ welfare and development for their re-integration to the community."
+        }
+      }
+    ]
+  },
+  {
+    "slug": "college-of-arts-and-sciences",
+    "title": "College of Arts and Sciences",
+    "navigation_group": null,
+    "parent": "undergraduate-programs",
+    "navigation_order": 9,
+    "show_in_navigation": true,
+    "status": null,
+    "content": [
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "College Leadership",
+          "body": "- **Assistant Dean:** Aimee P. Calingasan, MAEd"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Program Offerings",
+          "body": "- Bachelor of Arts in Political Science\n- Bachelor of Arts in Journalism\n- Bachelor of Arts in Philosophy\n- Bachelor of Science in Psychology\n- Bachelor of Science in Social Work"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Mission",
+          "body": "The College of Arts and Sciences through its highly competent faculty and staff is committed to provide students with an excellent holistic Salettinian education in the Liberal Arts and Sciences Disciplines to develop and nurture a vision for a transformed community."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Goals",
+          "body": "The College of Arts and Sciences shall serve the students and the community by offering quality curricular and co-curricular programs in the discipline imbued with Salettinian values and with a clear understanding of their Filipino heritage."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Objectives",
+          "body": "Specifically, the College of Arts and Sciences aims to:\n- provide relevant and innovative teaching and learning experiences in the general education and professional courses geared towards the development of Salettinian values and core competencies;\n- encourage the quest for a deeper understanding of the human experience and fosters a personal commitment to lifelong learning, intellectual growth, and the enduring values of the liberal arts;\n- create an intellectual environment that enhances individual growth and supports scholarly activities and creative endeavors that augment students’ analytical and critical skills, creative abilities, and a sense of social and civic responsibility needed in an increasingly globalized world;\n- create and strengthen linkages, collaborative efforts, and networking for the enhancement of programs in instruction, research, extension, and resource generation; and\n- undertake researches in the arts and sciences for curricular enrichment, community empowerment, and human development"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Programs in Detail",
+          "body": "### Bachelor of Arts in Political Science\n\n### Program Outcomes\n- Compare, contrast and classify the major concepts in the discipline\n- Recognize and define the distinctiveness of the discipline, its fields, theories and methods\n- Design and execute research inquiries using appropriate quantitative and qualitative methods guided by theories or conceptual frameworks\n- Demonstrate written, visual and oral presentation skills to produce and present analytical reports\n- Critique, judge and respond to current issues and problems based on a substantive understanding of the historical and contemporary developments in the national and global contexts.\n- Develop a predisposition towards ethical political involvement and practice in various forms and on different levels of engagement\n\n### Bachelor of Arts in Journalism\n\n### Program Goals\n\nThese program aim to equip students with the requisite knowledge, skills and attitude, and a commitment to uphold professional ethics and standards in the practice of journalism, as well as the capacity to anticipate and respond to the needs of rapidly developing media.\n\n### Program Outcomes\n\nGraduates of AB in Journalism may pursue a career path in different companies and organizations within the press and media industry including local newspaper organizations, magazine companies, online publications, public relations and advertising firms, television networks, and radio companies.\n\nThey may apply as a media researcher, reporter, feature writer, layout artist, creative writer, sports writer, travel writer, photojournalist, editorial assistant, columnist, or public relations officer.\n\n### Bachelor of Arts in Philosophy\n\n### Program Goals\n\nThe program specifically aims to:\n- Develop critical and creative thinking\n- Empower students with the ability to form sound value judgment; and\n- Equip students with skills necessary for research along and across multi-disciplines\n\n### Program Outcomes\n- Demonstrate critical thinking and cogent argumentation.\n- Understand and analyze and apply theories to concrete situations.\n- Evaluate judiciously the essence of philosophical learning of the True, the Good, and the Just.\n- Communicate philosophical understanding and insight within the appropriate cultural perspective.\n\n### Graduate Attributes and Outcomes\n- For professional institutions: a service orientation in one’s profession\n- For colleges: an ability to participate in various types of employment, development activities, and public discourses particularly in response of the needs of the communities one serves\n- For universities: an ability to participate in the generation of new knowledge or in research and development projects\n\n### Bachelor of Science in Psychology\n\n### Program Goals\n\n**AB Psychology** – This program produces graduates with a solid basic knowledge and skills in psychology.\n\n**BS Pschology** – The objectives are the same as in AB Psychology but with additional preparation in the natural sciences\n\n### Program Outcomes\n- Demonstrate the capability to discuss and analyze the major theories and concepts in psychology (knowledge in psychology).\n- Demonstrate and apply the methods of psychological inquiry in personal and building knowledge on local culture and context (psychological research).\n- Demonstrate and apply psychological theories and methods in personal and professional setting (application of psychology).\n- Demonstrate capability for self-reflection and independent learning in graduate education or in a professional context (independent learning)\n- Demonstrate professional and ethical behaviors in research and practice in Psychology (ethics)\n- Demonstrate harmonious interpersonal relationship with colleagues, clients and others (interpersonal skills) in diverse cultural setting.\n- Demonstrate the ability to conduct psychological assessments and evaluation (psychological assessment)\n\n### Bachelor of Science in Social Work\n\n### Program Outcomes\n\nBS Social Work — in an era where social development issues, challenges and responses are interconnected globally, the social work profession has become a global profession. Accordingly, the BSSW program in the Philippines integrates internationally benchmarked outcomes without ignoring the particularities and priorities of the national situation. These international outcomes are contained in the document “Global Standards for the Education and Training of the Social Work Profession” which was adopted in the General Assemblies of the International Federation of Social Workers (IFSW) and the International Association of Schools of Social Work CASSV) in Adelaide, Australia in 2004.\n\nThe starting point of the BSSW program is the global definition of social work that was adopted in July 2014, i.e., “Social work is a practice-based profession and an academic discipline that promotes social change and development, social cohesion, and the empowerment and liberation of people. Principles of social justice, human rights, collective responsibility and respect for diversities are central to social work. Underpinned by theories of social work, social sciences, humanities and indigenous knowledges, social work engages people and structures to address life challenges and enhance wellbeing.”\n\n**The graduates of BS Social Work program have the ability to:**\n- Demonstrate knowledge, skills, and attitudes in engaging in a generalist helping process and planned change process for therapeutic, protective, preventive, and transformative purposes.\n- Analyze critically the origin, development, and purposes of social work in the Philippines.\n- Critique the impacts of global and national socio-structural inadequacies, discrimination, and oppression on a quality of life.\n- Apply knowledge of human behavior and social environment with emphasis on the person-in-situation dynamic for social work assessment and intervention.\n- Critique social welfare policies, programs, and services of the locality, country and/ or region in terms of relevance, responsiveness, accessibility and availability to target populations.\n- Engage in advocacy work to promote socio-economic and cultural rights and well-being.\n- Generate sources for networking and partnership development.\n- Identify with social work profession and conduct oneself in accordance with social work values and ethical principles.\n- Engage in social work practices that promote diversity and difference in client systems.\n- Use supervision to develop critical self-reflective practice for personal and professional growth.\n- Produce a portfolio of recordings, case studies and other social work documentation to reflect the quality and progress of practice.\n- Uphold the Salettinian values of faith, reconciliation, integrity, excellence and solidarity in the fulfilment of their social responsibilities as social workers\n\n### Graduate Attributes and Outcomes\n- Graduates of professional institutions demonstrate a service orientation in their profession\n- Graduates of colleges participate in various types of employment, development activities and public discourses, particularly in response to the needs of the communities they serve\n- Graduates of universities participates in the generation of new knowledge or in research and development projects"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "college-of-teacher-education",
+    "title": "College of Teacher Education",
+    "navigation_group": null,
+    "parent": "undergraduate-programs",
+    "navigation_order": 10,
+    "show_in_navigation": true,
+    "status": null,
+    "content": [
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "College Leadership",
+          "body": "- **Dean:** Jayson L. Jamco, EdD"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Program Offerings",
+          "body": "- Bachelor of Elementary Education\n- Bachelor of Secondary Early Childhood Education\n- Bachelor of Physical Education\n- Bachelor of Secondary Education — Major in: English, Filipino, Mathematics, Sciences, and Social Studies"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Mission",
+          "body": "The College of Education, a teacher-education program, is committed to produce Salettinian facilitators who are competent in their fields of specialization acquired in an atmosphere of excellence, quality and relevance and who are capable of fostering the spirit of Christian service to witness to the Gospel truths by their lives, attitudes and examples."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Goals and Objectives",
+          "body": "The College of Education is committed to produce competent Salettinian educators “providing accessible, quality and transformative education”.\n\nSpecifically, it aims to:\n- equip pre-service teachers with teaching competencies and research capability towards the attainment of the thrust on basic education;\n- effect desire among pre-service teachers to pursue professional development t and personal growth to address the changing demands, of the society for global comparativeness; and\n- inspire pre-service teachers to manifest Salettinian core values of Faith, Reconciliation, Integrity, Excellence, and Solidarity.\n- meet the needs of professional teachers for elementary education schools, who are generalists and who can teach across the different learning areas.\n- meet the needs of professional teachers who can teach in one of the different learning areas in secondary like Mathematics, Physical Sciences, Biological Sciences, English, Filipino, Social Sciences, among others."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Programs in Detail",
+          "body": "### Bachelor of Elementary Education\n\n### Program Goals\n\nThe BEEd degree program aims to develop highly motivated and competent teachers specializing in the content and pedagogy for elementary education.\n\n### Program Outcomes\n- Demonstrate in-depth understanding of the diversity of learners in various learning areas\n- Manifest meaningful and comprehensive pedagogical content knowledge (PCK) of the different subject areas\n- Utilize appropriate assessment and evaluation tools to measure learning outcomes.\n- Manifest skills in communication, higher order thinking and use of tools and technology to accelerate learning and teaching.\n- Demonstrate positive attributes of a model teacher, both as an individual and as a professional\n- Manifest a desire to continuously pursue personal and professional development.\n\n### Bachelor of** **Physical Education\n\n### Program Goals\n\nThe BPEd is a four-year program aimed at equipping graduates with the competencies to meet the psychomotor, cognitive and affective needs of learners. This consist of : (1) a strong and substantial foundation of the subject matter ( disciplinary knowledge) that informs their curricular choices when planning, designing, implementing and assessing learning activities curriculum and program planning, implementation, monitoring and evaluation); (2) an understanding of the scope and sequence of various movement forms, as well as elements, strategies and tactics of these various movements in a multitude of settings (movement competency and proficiency) that enables them to meet the needs of learners to know how, be able to do and how to learn; (3) expert knowledge of pedagogy for maximizing student engagement, mentoring students and modeling respect for differences in gender, ability and culture; (4) reflective practice that (a) propels them to set high standards for and hold themselves accountable to the professional standards (p[rofessional accountability and responsibility) ; (b) enables them to identify gaps in their current competencies and pursue professional development opportunities; and (c) assists them in studying the impact of their teaching on student learning; (5) building and cultivating relationships with colleagues, stakeholders, other professionals and learning communities; advocating for PE, being role models of integrity and professional excellence, as well as leaders in the service of education.\n\n### Program Outcomes\n- Disciplinal Knowledge: Apply scientific and evidence based practices critical to the educational and learning processes.\n- Movement and Competency and Proficiency: — Demonstrate skillful performance in a variety of physical activities. — Adapt performance to variety of physical activity settings: (e.g. formal classes, recreational and competitive)\n- Curriculum and Program Planning, Implementation, Monitoring and Evaluation: — Critically examine the curriculum (e.g. content, pedagogy and assessments) and program, and enhance (e.g. innovate) them necessarily. — Plan and implement safe and effective physical activity program to address the needs of individual and groups in school and/or non-school settings. — Monitor and evaluate physical activity programs in school and/or non-school settings. — Use appropriate assessments in as and for student or client learning. — Use information, media and technology in pedagogy and for lifelong learning.\n- Professional Accountability and Responsibility: — Demonstrate firm work/professional ethics — Cultivate solidarity by working and dealing with /relating to others harmoniously. — Promote the advancement of the profession by making sense of and getting involved in current discourse that impact on the profession. — Pursue lifelong learning for personal and professional development\n- Communication: — Communicate effectively with PE practitioners, other professionals and stakeholders — Use oral, written, and technology formats deftly.\n\n### Bachelor of Secondary Education\n\n### Program Goals\n\nThe BSEd degree program aims to develop highly motivated and competent teachers specializing in the content and pedagogy for secondary education.\n\n### Program Outcomes\n\n### Bachelor of Secondary Education Major in English\n- Possess broad knowledge of language and literature for effective learning\n- Use English as a glocal language in a in a multilingual context as it applies to the teaching of language and literature\n- Acquire extensive reading background in language, literature and allied fields\n- Demonstrate proficiency in oral and written communication\n- Shows competence in employing innovative language and literature teaching approaches, methodologies, and strategies.\n- Use technology in facilitating language of learning and teaching\n- Inspire students and colleagues to lead relevant and transformative changes to improve learning and teaching language and literature.\n- Display skills and abilities to be reflective and research-oriented language and literature teacher\n\n### Bachelor of Secondary Education Major in Filipino\n- Nagpapamalas ng mataas na antas na kaalaman sa pagtuturo ng wika at panitikang Filipino.\n- Nagpapakita ng malawak at malalim na pag unawa at kaalaman sa ugnayan ng wika, kultura, at lipunan\n- Nakakgagamit ng iba’t ibang kasanayan at kaalaman sa proseso ng pagtuturo-pagkatuto.\n- Nagtataglay ng kaalaman hinggil sa usapan ng kultura at linggwistikong dibersidad ng bansa.\n- Nakapagdidisenyo ng malikhain, inobatibo, at integratibong mga altermatibong dulog sa pagtuturo at pagkatuto\n- Nakagagawa ng pananaliksik ukol sa ikauulad ng wikang Filipino bilang wikang panturo\n\n### Bachelor of Secondary Education Major in Mathematics\n- Exhibit competence in mathematical concepts and procedures\n- Exhibit proficiency in relating mathematics to other curricular areas\n- Manifest meaningful and comprehensive pedagogical content knowledge (PCK) of mathematics\n- Demonstrate competence in designing, constructing and utilizing different forms of assessment in mathematics\n- Demonstrate proficiency in problem-solving by solving and creating routine and non-routine problems with different levels of complexity\n- Use effectively appropriate approaches, methods, and techniques in teaching mathematics including technological tools\n- Appreciate mathematics as an opportunity for creative work, moments of enlightenment, discovery and gaining insights of the world\n\n### Bachelor of Secondary Education Major in Sciences\n- Demonstrate deep understanding of scientific concepts and principles\n- Apply scientific inquiry in teaching and learning\n- Utilize effective science teaching and assessment methods\n\n### Bachelor of Secondary Education Major in Social Studies\n- Utilize appropriate various sociocultural and historical materials in explaining current issues\n- Organize communities towards self-reliance and self-sufficiency\n- Demonstrate leadership skills that will help in teaching or training students who will empower their communities\n- Integrate local and global perspectives in teaching the principle of the common good\n- Employ principles of sustainable development in teaching the principle of the common good\n- Show scholarship research and further learning\n- Display the qualities if an innovative teacher who has mastery of the subject matter"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "academic-programs",
+    "title": "Academic Programs Offered",
+    "navigation_group": "academics",
+    "parent": null,
+    "navigation_order": 0,
+    "show_in_navigation": true,
+    "status": null,
+    "content": [
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Basic Education",
+          "body": "- Grade School\n- High School"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Undergraduate Programs",
+          "body": "### College of Nursing, Public Health and Midwifery\n- Bachelor of Science in Nursing\n- Bachelor of Science in Midwifery\n- Bachelor of Science in Public Health\n\n### College of Information Technology\n- Bachelor of Science in Information Technology\n- Bachelor of Library and Information Science\n\n### College of Medicine and Allied Medical Programs\n- Bachelor of Science in Medical Laboratory Science\n- Bachelor of Science in Radiologic Technology\n- Bachelor of Science in Pharmacy\n- Bachelor of Science in Physical Therapy\n\n### College of Law\n- Juris Doctor (Bachelor of Laws)\n\n### College of Business Education\n- Bachelor of Science in Business Administration — Major in: Human Resources Management, Financial Management, Marketing Management\n- Bachelor of Science in Office Administration\n- Bachelor of Science in Hospitality Management\n- Bachelor of Science in Tourism Management\n\n### College of Accountancy\n- Bachelor of Science in Accountancy\n- Bachelor of Science in Accounting Information System\n\n### College of Engineering and Architecture\n- Bachelor of Science in Civil Engineering\n- Bachelor of Science in Electronics Engineering\n- Bachelor of Science in Computer Engineering\n- Bachelor of Science in Architecture\n- Bachelor of Science in Geodetic Engineering\n\n### College of Criminal Justice Education\n- Bachelor of Science in Criminology\n\n### College of Arts and Sciences\n- Bachelor of Arts in Political Science\n- Bachelor of Arts in Journalism\n- Bachelor of Arts in Philosophy\n- Bachelor of Science in Psychology\n- Bachelor of Science in Social Work\n\n### College of Teacher Education\n- Bachelor of Elementary Education\n- Bachelor of Secondary Early Childhood Education\n- Bachelor of Physical Education\n- Bachelor of Secondary Education — Major in: English, Filipino, Mathematics, Sciences, and Social Studies"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Graduate School",
+          "body": "- Doctor in Business Administration\n- Doctor in Public Administration\n- Doctor of Philosophy in Educational Management\n- Doctor of Philosophy in Education — Major in Science Education\n- Master in Business Management\n- Master of Arts in Education — Major in: English, Educational Management, Filipino, Mathematics, Guidance and Counseling, Science, Physical Education, Peace and Reconciliation Studies\n- Master of Arts in Nursing — Major in: Nursing Service Administration\n- Master of Science in Nursing — Major in: Community Health Nursing, Medical-Surgical Nursing, and Maternal & Child Nursing\n- Master of Arts in Criminology\n- Master of Science in Engineering Management\n- Master of Science in Library and Information Science\n- Master of Science in Public Health\n- Master of Science in Social Work\n- Master of Information Technology"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "ETEEAP (Expanded Tertiary Education Equivalency and Accreditation Program)",
+          "body": "- Bachelor of Science in Public Administration\n- Bachelor of Science in Business Administration — Major in: Financial Management, Human Resource Development & Management, and Marketing Management"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "undergraduate-programs",
+    "title": "Undergraduate Programs",
+    "navigation_group": "academics",
+    "parent": null,
+    "navigation_order": 2,
+    "show_in_navigation": true,
+    "status": "published",
+    "content": [
+      {
+        "type": "cards",
+        "data": {
+          "heading": "Our Colleges",
+          "items": [
+            {
+              "title": "College of Nursing, Public Health and Midwifery",
+              "description": "Bachelor of Science in Nursing; Bachelor of Science in Midwifery; Bachelor of Science in Public Health",
+              "link_text": "Explore the college",
+              "link_url": "/pages/college-of-nursing-public-health-and-midwifery"
+            },
+            {
+              "title": "College of Information Technology",
+              "description": "Bachelor of Science in Information Technology; Bachelor of Library and Information Science",
+              "link_text": "Explore the college",
+              "link_url": "/pages/college-of-information-technology"
+            },
+            {
+              "title": "College of Medicine and Allied Medical Programs",
+              "description": "Bachelor of Science in Medical Laboratory Science; Bachelor of Science in Radiologic Technology; Bachelor of Science in Pharmacy; Bachelor of Science in Physical Therapy",
+              "link_text": "Explore the college",
+              "link_url": "/pages/college-of-medicine-and-allied-medical-programs"
+            },
+            {
+              "title": "College of Law",
+              "description": "Juris Doctor (Bachelor of Laws)",
+              "link_text": "Explore the college",
+              "link_url": "/pages/college-of-law"
+            },
+            {
+              "title": "College of Business Education",
+              "description": "Bachelor of Science in Business Administration — Major in: Human Resources Management, Financial Management, Marketing Management; Bachelor of Science in Office Administration; Bachelor of Science in Hospitality Management; Bachelor of Science in Tourism Management",
+              "link_text": "Explore the college",
+              "link_url": "/pages/college-of-business-education"
+            },
+            {
+              "title": "College of Accountancy",
+              "description": "Bachelor of Science in Accountancy; Bachelor of Science in Accounting Information System",
+              "link_text": "Explore the college",
+              "link_url": "/pages/college-of-accountancy"
+            },
+            {
+              "title": "College of Engineering and Architecture",
+              "description": "Bachelor of Science in Civil Engineering; Bachelor of Science in Electronics Engineering; Bachelor of Science in Computer Engineering; Bachelor of Science in Architecture; Bachelor of Science in Geodetic Engineering",
+              "link_text": "Explore the college",
+              "link_url": "/pages/college-of-engineering-and-architecture"
+            },
+            {
+              "title": "College of Criminal Justice Education",
+              "description": "Bachelor of Science in Criminology",
+              "link_text": "Explore the college",
+              "link_url": "/pages/college-of-criminal-justice-education"
+            },
+            {
+              "title": "College of Arts and Sciences",
+              "description": "Bachelor of Arts in Political Science; Bachelor of Arts in Journalism; Bachelor of Arts in Philosophy; Bachelor of Science in Psychology; Bachelor of Science in Social Work",
+              "link_text": "Explore the college",
+              "link_url": "/pages/college-of-arts-and-sciences"
+            },
+            {
+              "title": "College of Teacher Education",
+              "description": "Bachelor of Elementary Education; Bachelor of Secondary Early Childhood Education; Bachelor of Physical Education; Bachelor of Secondary Education — Major in: English, Filipino, Mathematics, Sciences, and Social Studies",
+              "link_text": "Explore the college",
+              "link_url": "/pages/college-of-teacher-education"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "slug": "graduate-programs",
+    "title": "Graduate School",
+    "navigation_group": "academics",
+    "parent": null,
+    "navigation_order": 3,
+    "show_in_navigation": true,
+    "status": null,
+    "content": [
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Leadership",
+          "body": "- **Dean:** Madeilyn B. Estacio, PhD"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Program Offerings",
+          "body": "- Doctor in Business Administration\n- Doctor in Public Administration\n- Doctor of Philosophy in Educational Management\n- Doctor of Philosophy in Education — Major in Science Education\n- Master in Business Management\n- Master of Arts in Education — Major in: English, Educational Management, Filipino, Mathematics, Guidance and Counseling, Science, Physical Education, Peace and Reconciliation Studies\n- Master of Arts in Nursing — Major in: Nursing Service Administration\n- Master of Science in Nursing — Major in: Community Health Nursing, Medical-Surgical Nursing, and Maternal & Child Nursing\n- Master of Arts in Criminology\n- Master of Science in Engineering Management\n- Master of Science in Library and Information Science\n- Master of Science in Public Health\n- Master of Science in Social Work\n- Master of Information Technology\n\nThe graduate school strives to develop and form research-oriented students, practitioners and professionals who are well-prepared and mature Christians responsive to the demands of their chosen professions and/or specialized trainings in order that they may contribute to the welfare of the community and to the progress of their professions.\n\n**Objectives:**\n- To provide the ambience to develop truly educated, critical, self-directed, effective professional leaders and productive contributors in the solution of problems and issues confronting the society of which he is a part.\n- To provide necessary competence for nation building in its different aspects; spiritual and religious, socio-economic, civic and cultural at gradually expanding levels: family, community, region, nation.\n- To improve competence and expertise in teaching, supervision, administration and management.\n- To promote and maintain productive scholarships and research in all areas."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Admission Policy",
+          "body": "- Accomplished admission slip and requirements must be personally submitted by the applicant at the Graduate School Office during the enrollment period.\n- A student who wishes to pursue this doctorate program must be a graduate of master’s program in business education with thesis. If graduate from a non-thesis master’s program, he/she must complete Thesis Writing 1 and Writing 2 prior to the enrollment of major subjects and must submit duly approved thesis.\n- Courses taken from other university may be credited provided it was taken in the past five years and subject to the approval of the Dean of the Graduate School."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Admission Requirements",
+          "body": "- Official Transcript of Records;\n- Transfer Credential (For Transferee);\n- Photocopy of PSA-issued Birth Certificate;\n- If married, copy of Philippine Statistics Authority (PSA) authenticated marriage certificate.\n- Entrance Examination;\n- Two (2) copies of recent 2″ x 2” colored photo;\n- Study Permit (for employed);\n- Affidavit of no employment during the period of enrollment at ULS Graduate School;"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Institutional Learning Outcomes",
+          "body": "Having finished their academic degree at the University of La Salette, the graduates should be:\n- Transformative Leader. Active involvement in their respective community and organization by championing Salettinian ideals.\n- Reconciler. Continue to communicate their Salettinian identity and culture through active involvements in the evangelizing ministry of reconciliation in their local communities, work-places and in social organizations.\n- Industry Competent. Demonstrate their readiness in the arena of and qualification for employment through the established link between theoretical aspect of the curriculum and its practical dimension as a result of their on-the-job training, exposure internship, immersion programs and linkages with relevant industries or workplaces.\n- Research-Oriented. Keep abreast with current development and trends in all relevant technical/professional knowledge areas for successful adaptation to a changing and complex work through continuing engagement in research projects to contribute to the humanization of world in general, and to the reconciling effects on their relationship with God, with fellow human beings, with society and with nature.\n- Information and Communication Technology Proficient. Demonstrate contemporary skills applications as they offer innovative solutions in work situations through the employment of new technology and new ways of communication.\n- Critical Thinker. Engage themselves in critical reflection and communicative discourses on uncritically assimilated assumptions, beliefs, value systems and diverse perspective that need to be collaboratively addressed for an emancipator and integral process of human growth and community building.\n- Holistic Person. Demonstrate through their attitude, behavior and engagement in synthesis of faith and lived experience, of faith and science; synthesis of cognitive, effective and behavioral aspects of learning; synthesis of cultural and global concerns, and a synthesis of curricular and co-curricular programs."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Graduate School Vision",
+          "body": "The Graduate School aspires to be a Catholic graduation education institution of excellence producing graduates who are “Reconcilers” in specialized fields of study for national development."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Graduate School Mision",
+          "body": "The Graduate School is committed to provide accessible quality assured outcome-based, research-focused, service-oriented advanced education that transform professionals, managers and leaders into people who serve the poor."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Graduate School Objectives",
+          "body": "The Graduate School Strives to:\n- provide quality , accessible and industry-based academic programs in the area of Business, Criminology, Education, Engineering Management, Information Technology, Library and Information Science, Nursing, Public Administration, Public Health and Social Work that are responsive to the changing need of local, regional, national and global society.\n- develop expert professionals in specialized knowledge, research, transformational leadership abilities and ICT proficiency for community growth and national development.\n- produce analytical, critical and creative thinkers capable of conducting research for broadening the field of specialization, advancement of professions and that provide community service.\n- develop spiritually mature and service-driven leaders who seek moral, ethical, and practical solutions to current issues confronting the community’s marginalized people in order to improve their quality of life and environmental stewardship.\n- foster reflective lifelong learners who are committed to staying current in their field of expertise, professional practice and service. 6. promote a culture of reconciliation, act with integrity and practice of the Salettinian core values in professional, civic and social commitments."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Program Educational Objectives",
+          "body": "The students of Master of Arts in Education are expected to:\n- demonstrate theoretical and technical knowledge, skills, and practice in fields of specialization in education such as educational management, English, Filipino, Guidance and Counseling, Mathematics, Physical Education, and Science with the use of information and communication technology.\n- engage in analytical independent research for the advancement of the Philippine Educational System, professional enhancement and national development.\n- demonstrate transformative and servant leadership across areas of social and educational change, professional responsibility and community service.\n- demonstrate desire for self-improvement in their specialized field in education and service.\n- uphold Filipino and Salettinian core values in the practice of professions and act in a socially and ethically responsible manner in service."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Program Educational Objectives",
+          "body": "The students of the Master in Business Management are expected to:\n- demonstrate theoretical and technical knowledge, skills and practice of general and cross-functional management in the field of Business Administration and service with the use of information and communication technology.\n- engage in analytical independent research for company innovation, entrepreneurial development , professional advancement and national growth.\n- demonstrate transformative and service leadership in social and economic change, corporate governance and community engagement .\n- demonstrate desire for self-improvement through continuing professional development in the field of business and management and service efficiency.\n- uphold Filipino and Saletinian core values in the practice of professions and act in a socially and ethically responsible manner in service."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Program Outcomes",
+          "body": "The graduates of Master in Business Management can:\n- demonstrate advanced knowledge, skills, ICT proficiency and expertise in specialized, interdisciplinary or multidisciplinary field of business and management for professional practice and service in local and global contexts.\n- conduct critical self-directed research in corporate management , entrepreneurship, professional enhancement and nation-building.\n- apply lifelong learning and transformational leadership with a highly substantial degree on interdependence that involves individual work or teams of interdisciplinary or multidisciplinary experts.\n- Apply the acquired competencies of the course in research, professional or creative work and initiating socio-civic activities for human growth and community development.\n- Uphold the Salettinian ideals, respect and integrity in their daily lives, at home, at work and in the larger society."
+        }
+      }
+    ]
+  },
+  {
+    "slug": "eteeap",
+    "title": "ETEEAP",
+    "navigation_group": "academics",
+    "parent": null,
+    "navigation_order": 4,
+    "show_in_navigation": true,
+    "status": null,
+    "content": [
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Expanded Tertiary Education Equivalency and Accreditation Program",
+          "body": "- Bachelor of Science in Public Administration\n- Bachelor of Science in Business Administration — Major in: Financial Management, Human Resource Development & Management, and Marketing Management"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "admissions",
+    "title": "Admissions",
+    "navigation_group": "academics",
+    "parent": null,
+    "navigation_order": 5,
+    "show_in_navigation": true,
+    "status": null,
+    "content": [
+      {
+        "type": "cards",
+        "data": {
+          "heading": "Admission Information",
+          "items": [
+            {
+              "title": "Admission Policies",
+              "description": "Who may be admitted and when a student is officially enrolled.",
+              "link_text": "Read the policies",
+              "link_url": "/pages/admission-policies"
+            },
+            {
+              "title": "Admission Requirements",
+              "description": "Documents for new students, transferees, second coursers, returnees, cross enrollees, foreign students, and graduate school.",
+              "link_text": "See the requirements",
+              "link_url": "/pages/admission-requirements"
+            },
+            {
+              "title": "Registration Procedures",
+              "description": "Step-by-step guide from online application to enlistment.",
+              "link_text": "View the steps",
+              "link_url": "/pages/registration-procedures"
+            },
+            {
+              "title": "Scholarships",
+              "description": "University scholarship grants and other financial assistance.",
+              "link_text": "Explore scholarships",
+              "link_url": "/pages/scholarships"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "slug": "admission-policies",
+    "title": "Admission Policies",
+    "navigation_group": null,
+    "parent": "admissions",
+    "navigation_order": 1,
+    "show_in_navigation": true,
+    "status": null,
+    "content": [
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "",
+          "body": "The admission to the University of La Salette is a privilege. The school will admit or re-admit students who meet its admission requirements. The admission shall bind the students to its rules, regulations, traditions and practices.\n- The University adopts an open admission/selective retention policy. Students must meet minimum entrance requirements and comply with the specific policies of their respective colleges. They are expected to uphold academic and non-academic standards, embrace Catholic traditions, and contribute to the University’s philosophy, vision, mission, and objectives.\n- The University reserves the right to refuse admission or re-admission due to: — Limited facilities — Poor academic performance — Lack of moral integrity — Violation of school rules and regulations\n- A student is considered officially enrolled only after: — Taking the University Entrance Examination — Submitting general admission requirements — Complying with specific college requirements — Paying necessary school fees (or arranging payment terms)\n- Students who fail to submit complete requirements may be accepted under conditional enrollment, with a deadline for submission."
+        }
+      }
+    ]
+  },
+  {
+    "slug": "admission-requirements",
+    "title": "Admission Requirements",
+    "navigation_group": null,
+    "parent": "admissions",
+    "navigation_order": 2,
+    "show_in_navigation": true,
+    "status": null,
+    "content": [
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "For New Students / High School Graduates",
+          "body": "- Form 138/137 (original + 2 photocopies)\n- Certificate of Good Moral Character\n- Two (2) recent 2”x2” colored photos\n- NSO-authenticated Birth Certificate (1 copy)\n- Medical Certificate (issued within 3 months) + lab results\n- NSO-authenticated Marriage Certificate (if married)"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "For Transferees",
+          "body": "- Transfer credentials / Honorable Dismissal\n- Certification of Grades\n- Certificate of Good Moral Character or Compliance (if previously sanctioned)\n- Two (2) recent 2”x2” colored photos\n- Police Clearance (photocopy)\n- NSO-authenticated Birth Certificate (1 copy)\n- Medical Certificate + lab results\n- NSO-authenticated Marriage Certificate (if married)"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "For Second Coursers",
+          "body": "- Official Transcript of Records\n- Certificate of Good Moral Character\n- Two (2) recent 2”x2” colored photos\n- NSO-authenticated Birth Certificate (1 copy)\n- Medical Certificate + lab results\n- NSO-authenticated Marriage Certificate (if married)\n- Police Clearance (photocopy)"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "For Returnees (after 2+ years of absence)",
+          "body": "- Clearance Slip\n- Medical Certificate + lab results\n- Entrance Exam (if shifting programs)\n- Police Clearance (photocopy)"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "For Cross Enrollees",
+          "body": "- Written permit from the Registrar of the home school"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "For Foreign Students (Student Visa Application)",
+          "body": "- Notarized letter request\n- General Application Form (BI Form No. MCL-07-01)\n- Medical Certificate from Bureau of Quarantine or government medical institution\n- Passport bio-page (photocopy)\n- National Intelligence Coordinating Agency Clearance\n- Bureau of Immigration Clearance Certificate\n- Alien Certificate of Registration (for visa renewal)\n- School credentials\n\n**Note:** All foreign student documents must be **Red Ribbon authenticated** and bear the **Dry Seal of the Philippine Embassy** in the applicant’s country of origin. Refer to the **CHED Guidebook for Foreign Students** for complete procedures."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "For Graduate School",
+          "body": "- Official Transcript of Records;\n- Transfer Credential (For Transferee);\n- Photocopy of PSA-issued Birth Certificate;\n- If married, copy of Philippine Statistics Authority (PSA) authenticated marriage certificate.\n- Entrance Examination;\n- Two (2) copies of recent 2″ x 2” colored photo;\n- Study Permit (for employed);\n- Affidavit of no employment during the period of enrollment at ULS Graduate School;"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "registration-procedures",
+    "title": "Registration Procedures",
+    "navigation_group": null,
+    "parent": "admissions",
+    "navigation_order": 3,
+    "show_in_navigation": true,
+    "status": null,
+    "content": [
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "For Undergraduate Applicants",
+          "body": "1. **Create your application.** Visit SIAS Online, click the \"Apply for Admission\" button, create an Application Control Number (ACN), and upload the admission requirements. Keep your ACN.\n2. **Get your payment slip.** Visit the campus and get your payment slip from the guard stationed at the Arranz Gate.\n3. **Pay the entrance exam fee** at the Cashier, and keep your Official Receipt.\n4. **Take the entrance exam.** Go to the Testing Venue and present your receipt before the exam.\n5. **Wait for the result.** Once it is released, proceed to the Registrar for enlistment."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "For Graduate Applicants",
+          "body": "Please contact the Graduate School office for the registration procedure for graduate applicants."
+        }
+      }
+    ]
+  },
+  {
+    "slug": "scholarships",
+    "title": "Scholarships",
+    "navigation_group": null,
+    "parent": "admissions",
+    "navigation_order": 4,
+    "show_in_navigation": true,
+    "status": null,
+    "content": [
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Entrance Academic Scholarships",
+          "body": "**Qualification:**\n- High School class valedictorian or salutatorian in a graduating class of not less than 40 members\n\n**Procedure:**\n- Secure a certification on one’s rank or honors in the graduating class from the high school principal then submits the said certification during enrolment/assessment.\n\n**Benefit:**\n- 100% tuition fee discount and 50% tuition fee discount for valedictorian and salutatorian, respectively.\n\n**Terms and Conditions:**\n- Applicable only for the first year of first semester in college."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Performance Academic Scholarship",
+          "body": "**Qualifications:**\n- FULL SCHOLAR is a full-time student with a minimum academic load of 21 units in the immediately preceding term and must have obtained a general average of 92% with no grade lower than 89% in any subject. — HALF SCHOLAR is the same as full scholar except that the general scholastic average should be 90% with no grade lower than 85.\n\n**Procedure:**\n- Secure a certified true copy of grades for the immediately preceding semester at the Registrar’ Office. — Fill up the application form (triplicate) for performance scholarship at the Dean’s Office. Attach your certified true copy of grades from semesteral academic performance and clearance/permit. — Request for an interview with the Dean for his/her endorsement of your application. — Proceed to the Office of the Vice-President for Academic Affairs and Vice President for finance for his/her interview and approval. Give the first copy with attachments to the Accounting Office, the second copy to the College Dean and keep one copy for yourself.\n\n**Benefits:**\n- 100% tuition fee discount and 50% tuition fee discount for full and half scholars, respectively.\n\n**Terms and Conditions:**\n- Renewable every semester must maintain the required scholastic average and minimum academic load."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Reconciler",
+          "body": "**Qualifications:**\n- A graduate of any high school from the La Salette School System and recommended by the high school principal as less privileged but deserving.\n\n**Procedure:**\n- Submit to the Accounting Office your certification as a Reconciler scholar during enrolment/assessment.\n\n**Benefits:**\n- 100% tuition fee discount.\n\n**Terms and Conditions:**\n- Applicable for eight (8) semesters, with no grades below 80% in any subject and no FDA (failure due to Absences), UD (unofficially dropped) or INC (Incomplete) marks, may be required to render office work for at least two (2) hours daily during the school year."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Student Executive Council (SEC) Scholarship Grant",
+          "body": "**Qualifications:**\n- An incoming first-year college student with a general average of 85% and no grades below 80% in any subject in the fourth year level and attested to by the barangay chairman as poor but deserving.\n- A full-time old student who obtained in the immediately preceding semester a general scholastic average of 85% with no grade lower than 80% in any subject and attested by the barangay chairman as poor but deserving.\n\n**Procedure:**\n- Fill up the application form for SEC Scholarship at the SEC Office. Present the original and attach the photocopies of the following requirements: Certified true copy of Form 138 or report card for incoming freshmen or certified true copy of grades for old students.\n- Parents BIR Form 1701-1 or tax exemption certificate for the previous year. — Letter of recommendation from the barangay chairman attesting to the applicant’s qualifications. — Certificate of good moral character from the high school principal for incoming freshmen or from the Prefect of Discipline for old students.\n\n2. Take the qualifying test and interview given by an authorized SEC representative and must pass the evaluation.\n\n3. The background investigation may be conducted.\n\n**Benefits:**\n- 100% tuition fee discount\n\n**Terms and Conditions:**\n- Renewable every semester, must maintain the required scholastic average, enrolled in a non-medical course, with maximum academic load of 21 units (excess units will be shouldered by the grantee), must render service to the DSS and SEC office for at least two (2) hours daily and evaluation must be patterned after the Office Aides/Reconciler rating."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Government Scholarship Program",
+          "body": "Within the University, there are students who enjoy government scholarship grants such as those from the Philippine Veterans Administration Office (PVAO), US Veterans Administration Office (USVAO), Scholarship, Grants-in-Aid and Student Loans administered by the Commission on Higher Education, Congressional and City Government Scholarships."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Private Scholarship Grants",
+          "body": "Other scholarship grants may be sponsored by private entities and individuals."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Office Aids",
+          "body": "**Qualifications:**\n- A high school graduate who is poor but deserving as attested to by the barangay chairman.\n\n**Procedures:**\n- Secure application form for financial assistance from the Coordinator of Student Aide Reconciler Scholars and attach the following requirements. — Parent’s BIR Form 1701-A or individual income tax return for the previous year. — Letter of recommendation either from a barangay chairman or high school principal — Form 138 or report card — Certificate of good moral character — Report for an initial interview with the Coordinator of Student Aide Reconciler Scholars who will endorse the application to the Committee on Student Financial Assistance. — Report for the final interview with the Chairman of the Committee on Student Financial Assistance.\n\n**Benefits:**\n- 100% tuition fee discount\n\n**Terms and Conditions:**\n- Renewable every semester, a minimum academic load of 21 units, no failures, no unofficial dropping of subjects, passes the evaluation of the supervisor to whom he reported daily during his free hours within the terms."
+        }
+      }
+    ]
+  },
+  {
+    "slug": "privacy-notice",
+    "title": "Privacy Notice",
+    "navigation_group": "policies",
+    "parent": null,
+    "navigation_order": 1,
+    "show_in_navigation": true,
+    "status": null,
+    "content": [
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "",
+          "body": "Effective Date: September1, 2025"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "1. Purpose of Collection",
+          "body": "The University of La Salette (“University”) collects and processes personal data to fulfill its mandate as an educational institution. This includes, but is not limited to:\n- Student registration and academic records\n- Faculty and staff employment records\n- Research and institutional development\n- Financial transactions and billing\n- Compliance with government regulations"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "2. Types of Data Collected",
+          "body": "We may collect the following categories of personal data:\n- Basic Information: Name, date of birth, gender, nationality, civil status\n- Contact Information: Address, phone number, email\n- Academic Information: Grades, course enrollments, attendance, disciplinary records\n- Employment Information: Job title, employment history, performance evaluations\n- Financial Information: Tuition payments, scholarships, bank details\n- Sensitive Personal Information: Religion, health records, biometric data (if applicable)"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "3. Data Collection Methods",
+          "body": "Personal data may be collected through:\n- Online and paper-based forms\n- Student Information and Accounting System (SIAS)\n- Email and other digital platforms\n- CCTV and access control systems\n- Interviews and surveys"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "4. Data Use and Sharing",
+          "body": "Your personal data will be used only for legitimate purposes related to education, research, employment, and institutional operations. It may be shared with:\n- Government agencies (e.g., CHED, DepEd, PRC)\n- Accrediting bodies\n- Partner institutions (for internships, exchanges, etc.)\n- Service providers (e.g., IT, security, printing)\n\nWe ensure that third parties uphold the same level of data protection."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "5. Data Protection Measures",
+          "body": "The University implements organizational, physical, and technical security measures to protect personal data, including:\n- Role-based access controls\n- Encryption and secure servers\n- Regular audits and privacy impact assessments\n- Staff training on data privacy"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "6. Data Retention",
+          "body": "Personal data will be retained only for as long as necessary to fulfill its purpose, or as required by law. After this period, data will be securely disposed of or anonymized."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "7. Your Rights",
+          "body": "Under the Data Privacy Act, you have the right to:\n- Be informed\n- Access your data\n- Object to processing\n- Correct inaccurate data\n- Erase or block data\n- File a complaint\n\nTo exercise these rights, contact our Data Protection Officer at:  \n**Email:** dpo@uls.edu.ph **Office:** EMIS Office"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "community-extension",
+    "title": "Community Extension and Outreach",
+    "navigation_group": "community",
+    "parent": null,
+    "navigation_order": 1,
+    "show_in_navigation": true,
+    "status": null,
+    "content": [
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "La Salette Pananagutan Center",
+          "body": "Salettinian volunteerism and community engagement."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Background",
+          "body": "The University of La Salette, Inc., a Catholic institution founded by the Missionaries of Our Lady of La Salette, forms Reconcilers “so that they may have life, and have it to the full” (John 10:10). Anchored in its Vision, Mission, Core Values, and Institutional Objectives, ULS commits itself to a culture of Pananagutan—faith-grounded accountability to God, to people, and to creation. Community engagement and extension services are integral functions of every higher education institution. Guided by the Salettinian core values of Faith, Integrity, Reconciliation, Excellence, and Solidarity, ULS views community engagement not as a peripheral activity, but as an essential expression of its identity as a missionary Catholic university. Extension programs, outreach activities, and service-learning initiatives are thus designed to be transformative—addressing the needs of society while forming graduates who are transformative leaders, reconcilers, industry-competent professionals, research-oriented innovators, ICT-proficient problem-solvers, critical thinkers, and holistic persons.\n\nExtension involves communicating and transferring knowledge and technology to sectors outside the formal degree-enrolled population. The goal is to enhance productivity, strengthen institutional performance, and improve the overall quality of life of communities. It also includes the systematic transfer of innovation and information generated by HEIs and their partners to address development concerns."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Transformative Extension Services",
+          "body": "Through the Community Extension Program Office – La Salette Pananagutan Center, ULS integrates academic expertise and community needs by implementing programs that emphasize:\n- Technology Transfer and Utilization – Making research outputs, innovative practices, and tools usable by communities and partner institutions.\n- Capacity Building – Offering training programs in leadership, literacy, health, disaster preparedness, and entrepreneurship to foster resilience and self-reliance.\n- Technical Assistance and Consultancy – Providing advisory services to communities, organizations, and institutions to strengthen their performance and effectiveness.\n- Volunteerism – Mobilizing students, faculty, employees, parents and alumni as partners in nation-building, nurturing a culture of service, and empowering future leaders.\n- Information Dissemination and Outreach – Extending knowledge through public education campaigns, advocacy initiatives, and direct community services.\n- Sustainable Partnerships – Working hand in hand with local governments, NGOs, schools, and community organizations to ensure long-term, meaningful impact."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Programs and Initiatives",
+          "body": "The Community Extension Program Office (CEPO) of the University of La Salette, Inc. is the institution’s designated office for all community engagement activities—including extension programs, outreach services, service-learning initiatives, and capacity-building efforts. Its physical location is the La Salette Pananagutan Center (LSPC), which has long been recognized as the hub of volunteerism and community service at ULS. Over the years, “LSPC” has become a distinctive branding for the University, known nationwide for its strong culture of faith-driven volunteerism and its award-winning programs.\n\nExtension service at ULS is more than assistance. It is about empowering communities, transferring knowledge and skills, and building resilience—creating pathways toward a more compassionate, just, and sustainable future.\n\n**Building stronger communities through the heart of Salettinian service—empowering lives and forming Salettinians toward the fullness of life.**"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Flagship Community Engagement Activities",
+          "body": "- La Salette Pananagutan Volunteer Program – SVA\n- Capacity Building Program for Barangay Community Leaders and Youth Leaders\n- Capacity Building Program for Barangay Health Workers\n- ULS Tarabay: Salettinian Support for the Public Schools – Edutransform ICT and Teaching Strategies Capacity Building for Public School Teachers\n- ULS Tarabay: Salettinian Support for the Public Schools – Service Learning for Reading Enhancement Program\n- SaletinoNAK(Negosyong Abot Kaya) Livelihood Program\n- Bantay Signal: Enhancing Radio Communication for Resilient Barangay Response Program\n- Salaknib Saletino: Mapping for Resilience and Flood Preparedness Program\n- Dugong Saletino Mobile Blood Drive\n- Red Wednesday Initiative\n- BANYUHAY: Urban Sketch and Planning.\n- Community Health Nursing Program\n- ULS Catechetical Outreach Program\n- Eco-Saletino Environmental Conservation Program\n- Institutional Alay Sa Belen Community Outreach – Free Medical And Legal Aid Mission\n- La Salette Mission Station Support\n- Alay Karunungan at Panalangin na La Salette(AKAP La Salette)Community Outreach\n- Pananagutang Saletino Capacity Building Program\n- Clinical Legal Education Program – Capacity Building for Effective Katarungang Pambarangay\n- Lingkod Saletino Calamity Response and Relief Operation"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Community Extension Program Office",
+          "body": "La Salette Pananagutan Center  \nGround Floor, Our Lady of Miraculous Medal Building, Dubinan East Campus, University of La Salette, Inc."
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Mr. Bernard Joseph L. Ariola",
+          "body": "Director, Community Extension Program  \nMember, National Volunteer Resource Pool (NVRP-PNVSCA)  \nbernardariola@uls.edu.ph"
+        }
+      },
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Departmental Community Engagement Coordinators",
+          "body": "**Jeffren Lloyd R. Gonzales** for CMAMP  \n**Jenor Jeff D. Follante** for CCJE  \n**Jayson Nacorda** for CIT  \n**Noli Fabella** for COA  \n**Gil Vhal M. Mangantulao** for CAS  \n**Dominick R. Domingo** for CTE  \n**Jonileth Vila** for CONPHM  \n**Karl Ignacio** for CEA  \n**Don Sergs Elyser Laureta** for CBE\n\nStudent Volunteer Association Members Volunteer Employees  \nDepartmental Council Officers and Members  \nStudent Executive Council Members and ULS Student Organizations"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "external-affairs-and-linkages",
+    "title": "External Affairs and Linkages",
+    "navigation_group": "community",
+    "parent": null,
+    "navigation_order": 2,
+    "show_in_navigation": true,
+    "status": null,
+    "content": [
+      {
+        "type": "rich_text",
+        "data": {
+          "heading": "Office of External Affairs and Linkages",
+          "body": "**The Office of External Affairs and Linkages (OEAL)** of the University of La Salette, Inc. serves as the vital connection between the university and its local, national, and international partners. Guided by the university’s core values of Faith, Reconciliation, Integrity, Excellence, and Solidarity, the office builds and nurtures strategic collaborations that support academic advancement, research development, community engagement, and global connectivity.\n\nRooted in the Catholic and Salettinian mission of reconciliation, OEAL actively pursues partnerships that align with the university’s commitment to holistic education and social transformation. By fostering meaningful linkages with educational institutions, industries, government agencies, NGOs, and alumni, the office ensures that all external engagements contribute to the university’s vision of forming competent, compassionate, and socially responsible individuals."
+        }
+      }
+    ]
+  }
+]

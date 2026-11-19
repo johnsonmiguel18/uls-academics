@@ -1,0 +1,100 @@
+/* News cards on the home and college pages, taken from the main website styles (university.css, university-v3.css). */
+.ac-news-grid { --ink: #14204f; --label: #192a8a; --muted: #5c5c5c; --navy: #192a8a; --surface: #f5f5f5; --v3-ease: cubic-bezier(0.2, 0.7, 0.2, 1); --v3-radius: 6px; --v3-serif: Georgia, "Times New Roman", serif; }
+.news-media-fallback {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    background: var(--navy);
+}
+.news-media-fallback img {
+    width: 30%;
+    max-width: 120px;
+    height: auto;
+    object-fit: contain;
+}
+.news-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 12px;
+    color: var(--muted);
+    font-size: 13px;
+}
+.news-category {
+    color: var(--label);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+.news-feature h2 a,
+.news-feature h3 a,
+.news-item h4 a,
+.news-card h3 a {
+    color: var(--ink);
+}
+.news-feature h2 a:hover,
+.news-feature h3 a:hover,
+.news-item h4 a:hover,
+.news-card h3 a:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+.news-item-media .news-media-fallback img {
+    width: 50%;
+}
+.news-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 40px 28px;
+    padding-top: 24px;
+}
+.news-card {
+    display: flex;
+    flex-direction: column;
+}
+.news-card-media {
+    display: block;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: var(--surface);
+}
+.news-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 14px;
+}
+.news-card h3 {
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.35;
+}
+.news-card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 14.5px;
+    line-height: 1.6;
+}
+.news-feature-media,
+.news-item-media,
+.news-card-media {
+    border-radius: var(--v3-radius);
+}
+.news-feature-media img,
+.news-card-media img,
+.news-item-media img {
+    transition: scale 0.9s var(--v3-ease);
+}
+.news-feature:hover .news-feature-media img,
+.news-card:hover .news-card-media img,
+.news-item:hover .news-item-media img {
+    scale: 1.06;
+}
+.news-feature h2 a,
+.news-feature h3 a,
+.news-card h3 a {
+    font-family: var(--v3-serif);
+    font-weight: 400;
+}

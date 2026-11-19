@@ -1,0 +1,34 @@
+/* SDG report (/sdgs) and goal pages (/sdgs/{n}). Loaded after academics-college.css. */
+.ac-sdg-title { max-width: 22ch !important; }
+
+.ac-sdg-report { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin: 0 0 12px; padding: 0; list-style: none; }
+.ac-sdg-report a { display: grid; grid-template-rows: auto 1fr auto; gap: 8px; min-height: 150px; padding: 14px; border-radius: 8px; color: var(--sdg-ink); background: var(--sdg); text-decoration: none; transition: transform 0.15s ease; }
+.ac-sdg-report a:hover { transform: translateY(-2px); }
+.ac-sdg-report strong { font-size: 30px; line-height: 1; }
+.ac-sdg-report .ac-sdg-name { font-size: 14px; font-weight: 700; line-height: 1.3; }
+.ac-sdg-report .ac-sdg-count { justify-self: end; min-width: 28px; padding: 2px 8px; border-radius: 999px; color: #1f2330; background: #ffffff; font-size: 13px; font-weight: 700; text-align: center; }
+.ac-sdg-report .is-empty .ac-sdg-name, .ac-sdg-report .is-empty strong { font-weight: 600; }
+
+.ac-table-wrap { overflow-x: auto; }
+.ac-sdg-table { width: 100%; border-collapse: collapse; background: #ffffff; border-radius: 8px; }
+.ac-sdg-table th, .ac-sdg-table td { padding: 12px 14px; border-bottom: 1px solid var(--ac-line); text-align: left; vertical-align: middle; font-size: 15px; }
+.ac-sdg-table thead th { color: var(--ac-muted); font-size: 13px; font-weight: 600; }
+.ac-sdg-table .is-num { text-align: right; white-space: nowrap; }
+.ac-sdg-table .ac-sdgs { margin: 0; }
+
+.ac-sdg-hero { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: clamp(20px, 4vw, 48px); align-items: end; }
+.ac-sdg-badge { display: grid; place-items: center; width: clamp(96px, 14vw, 160px); aspect-ratio: 1; border-radius: 12px; color: var(--sdg-ink); background: var(--sdg); font-size: clamp(44px, 7vw, 80px); font-weight: 700; line-height: 1; }
+
+.ac-sdg-colleges { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.ac-sdg-colleges li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; padding: 14px 16px; border: 1px solid var(--ac-line); border-radius: 8px; background: #ffffff; }
+.ac-sdg-colleges a { font-weight: 700; }
+
+.ac-sdg-pager { padding-top: 0; }
+.ac-sdg-pager .ac-container { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding-top: 24px; border-top: 1px solid var(--ac-line); }
+
+@media (max-width: 640px) {
+    .ac-sdg-hero { grid-template-columns: 1fr; }
+    .ac-sdg-badge { order: -1; width: 72px; font-size: 36px; }
+    .ac-sdg-report { grid-template-columns: repeat(2, 1fr); }
+}
+.ac-sdg-table th a { display: inline-block; padding: 3px 0; }

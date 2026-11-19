@@ -1,0 +1,27 @@
+/* Program page: loaded only on that page (see its @push('styles')). Core styles: academics.css */
+/* ---------- Program page body ---------- */
+.ac-program-layout {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: clamp(32px, 5vw, 72px);
+    padding: clamp(48px, 6vw, 80px) 0;
+}
+
+.ac-program-layout:not(:has(.ac-toc)) { grid-template-columns: minmax(0, 1fr); }
+
+.ac-toc { position: sticky; top: calc(var(--header-height, 0px) + 24px); align-self: start; display: grid; gap: 2px; }
+.ac-toc a { padding: 8px 12px; border-left: 2px solid var(--ac-line); color: var(--ac-muted); font-size: 14px; text-decoration: none; }
+.ac-toc a:hover { color: var(--ac-navy); border-left-color: var(--ac-navy); }
+
+.ac-block { padding-bottom: 40px; margin-bottom: 40px; border-bottom: 1px solid var(--ac-line); scroll-margin-top: 140px; }
+.ac-block:last-child { border-bottom: 0; margin-bottom: 0; }
+.ac-block > h2 { margin: 0 0 20px; font-size: clamp(26px, 2.6vw, 32px); }
+
+
+/* Phone layout lives here, not in academics.css: this file loads after it and would override it. */
+@media (max-width: 900px) {
+    .ac-program-layout { grid-template-columns: 1fr; }
+    .ac-toc { position: static; display: flex; flex-wrap: wrap; gap: 6px; }
+    .ac-toc .ac-kicker { width: 100%; }
+    .ac-toc a { border: 1px solid var(--ac-line); border-radius: 999px; padding: 6px 12px; }
+}
