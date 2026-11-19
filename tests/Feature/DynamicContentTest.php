@@ -51,6 +51,19 @@ class DynamicContentTest extends TestCase
             ->assertSee('Scholarships');
     }
 
+    public function test_only_plain_addresses_on_the_site_host_are_cached(): void
+    {
+        $this->setting('performance.page_cache_minutes', 10);
+
+        $this->get('/news')->assertHeader('X-Page-Cache', 'MISS');
+        $this->get('/news')->assertHeader('X-Page-Cache', 'HIT');
+
+        // Random query strings or Host headers must not each add a cache entry.
+        $this->get('/news?utm=1')->assertOk()->assertHeaderMissing('X-Page-Cache');
+        $this->get('/news?category=extension')->assertOk()->assertHeaderMissing('X-Page-Cache');
+        $this->get('http://attacker.example/news')->assertHeaderMissing('X-Page-Cache');
+    }
+
     public function test_record_changes_refresh_cached_pages(): void
     {
         $this->setting('performance.page_cache_minutes', 10);

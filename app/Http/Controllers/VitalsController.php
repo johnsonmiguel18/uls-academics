@@ -19,7 +19,7 @@ class VitalsController extends Controller
             return response()->noContent(422);
         }
 
-        $path = substr(parse_url((string) ($data['path'] ?? '/'), PHP_URL_PATH) ?: '/', 0, 255);
+        $path = substr(parse_url(is_string($data['path'] ?? null) ? $data['path'] : '/', PHP_URL_PATH) ?: '/', 0, 255);
         $device = ($data['device'] ?? '') === 'mobile' ? 'mobile' : 'desktop';
         $rows = [];
 

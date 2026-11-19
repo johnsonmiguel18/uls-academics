@@ -52,7 +52,7 @@ Route::middleware(\App\Http\Middleware\CachePublicPages::class)
 
 // Header search: programs first, then news.
 Route::get('/search/suggestions', function (Request $request) {
-    $term = trim((string) $request->query('q', ''));
+    $term = is_string($request->query('q')) ? trim($request->query('q')) : '';
 
     if (mb_strlen($term) < 2) {
         return response()->json([]);

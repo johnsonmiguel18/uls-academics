@@ -52,6 +52,14 @@ class ThumbnailTest extends TestCase
         $this->assertSame(1200, getimagesize($this->photo)[0], 'the original photo was overwritten');
     }
 
+    public function test_a_broken_image_is_not_found_instead_of_an_error(): void
+    {
+        file_put_contents($this->dir . '/broken.jpg', 'not an image');
+
+        $this->get('/thumbs/480/storage/thumb-test/broken.jpg.webp')->assertNotFound();
+        $this->assertEmpty(glob(public_path('thumbs/480/storage/thumb-test/*')), 'a partial file was left behind');
+    }
+
     public function test_only_images_inside_the_allowed_folder(): void
     {
         $this->get('/thumbs/480/storage/' . str_repeat('../', 3) . '.env')->assertNotFound();

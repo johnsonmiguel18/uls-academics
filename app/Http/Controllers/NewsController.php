@@ -9,6 +9,13 @@ class NewsController extends Controller
 {
     public function index(Request $request)
     {
+        // Filters are text; a value sent as a list (?search[]=x) is dropped instead of crashing the page.
+        foreach (['search', 'category', 'college', 'sdg'] as $key) {
+            if (! is_string($request->query($key))) {
+                $request->query->remove($key);
+            }
+        }
+
         $query = News::query()->published();
 
         // Search by title, excerpt, or article content.
