@@ -134,6 +134,28 @@ What stays in code, on purpose: the page *templates* (how a section looks), the 
 (Draft, Review, Scheduled, Published, Archived, because the scheduler depends on it), the kinds of
 list (a new kind needs code that uses it), the admin panel's own interface wording, and Google's Core Web Vitals limits.
 
+## Security
+
+Every response from Laravel carries security headers (`App\Http\Middleware\SecurityHeaders`): Content-Security-Policy,
+`X-Content-Type-Options: nosniff`, `X-Frame-Options: SAMEORIGIN`, `Referrer-Policy`, `Permissions-Policy` (camera, microphone,
+location and payment off), `Cross-Origin-Opener-Policy`, and HSTS on HTTPS in production. `X-Powered-By` is removed.
+
+- **Content-Security-Policy:** public pages run only this site's scripts and inline scripts carrying the page's nonce
+  (`nonce="{{ Vite::cspNonce() }}"` on every `<script>` in Blade). The admin needs `'unsafe-inline'` and `'unsafe-eval'`
+  for Filament and Alpine. It starts in report-only mode (`CSP_REPORT_ONLY=true`): open the main pages and the admin,
+  check the browser console for "Content Security Policy" messages, then set `CSP_REPORT_ONLY=false` to enforce it.
+- **Behind a proxy:** set `TRUSTED_PROXIES` (the proxy's IP, or `*`), so Laravel sees HTTPS and visitors' IPs.
+
+Production server (XAMPP); these are server settings, not part of the repository:
+
+| Where | Setting |
+|---|---|
+| `.env` | `APP_ENV=production`, `APP_DEBUG=false`, `SESSION_SECURE_COOKIE=true`, `TRUSTED_PROXIES=...` |
+| `apache/conf/extra/httpd-default.conf` | `ServerTokens Prod` and `ServerSignature Off` (Apache name only, no version or OS) |
+| `php/php.ini` | `expose_php = Off` |
+| Apache virtual host | `DocumentRoot` pointing at the project's `public/` folder, so `/.env`, `/.git` and `/vendor` cannot be opened |
+| HTTPS (the proxy, or Apache's SSL virtual host) | `Strict-Transport-Security: max-age=31536000; includeSubDomains` |
+
 ## Performance
 
 - **Page cache**: finished public pages are kept ready (Site settings → Admin and performance, default 10 minutes).

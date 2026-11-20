@@ -138,7 +138,7 @@
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
     </button>
 
-    <script>
+    <script nonce="{{ Vite::cspNonce() }}">
         // Back to top: shows after 600 px, smooth scroll.
         const backToTop = document.getElementById('backToTop');
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -181,7 +181,7 @@
     @if ((int) Site::get('performance.vitals_sample_rate', 0) > 0)
         {{-- Core Web Vitals from real visits (a share set in Site settings → Admin and performance).
              Sends one small beacon when the visitor leaves the page; no cookies, no personal data. --}}
-        <script>
+        <script nonce="{{ Vite::cspNonce() }}">
             (() => {
                 if (Math.random() * 100 >= {{ (int) Site::get('performance.vitals_sample_rate') }} || ! ('PerformanceObserver' in window)) return;
                 const m = {}, observe = (type, cb) => { try { new PerformanceObserver((l) => l.getEntries().forEach(cb)).observe({ type, buffered: true, durationThreshold: 16 }); } catch (e) {} };
