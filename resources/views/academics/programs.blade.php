@@ -100,7 +100,7 @@
     @include('academics.partials.enroll')
 </main>
 
-<script>
+<script nonce="{{ Vite::cspNonce() }}">
     // Filters apply as soon as a dropdown or checkbox changes; typing still waits for Enter.
     // While the next page loads, the results fade to skeleton cards.
     const finder = document.querySelector('[data-autosubmit]');

@@ -32,6 +32,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Proxies in front of the site (TRUSTED_PROXIES), so HTTPS and the visitor's IP are seen correctly.
+        if (filled(config('security.trusted_proxies'))) {
+            \Illuminate\Http\Middleware\TrustProxies::at(config('security.trusted_proxies') === '*'
+                ? '*'
+                : array_map('trim', explode(',', config('security.trusted_proxies'))));
+        }
+
         News::observe(ContentActivityObserver::class);
         // Academics content is edited by many college admins: keep an audit trail.
         foreach ([\App\Models\College::class, \App\Models\Department::class, \App\Models\Program::class, \App\Models\FacultyMember::class, \App\Models\Document::class] as $model) {
