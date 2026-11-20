@@ -261,7 +261,7 @@
 @endsection
 
 @push('scripts')
-<script>
+<script nonce="{{ Vite::cspNonce() }}">
     // Partner filters (all partners are listed without JavaScript).
     (() => {
         const box = document.querySelector('[data-partner-filters]');
