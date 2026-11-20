@@ -49,6 +49,8 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->navigationGroups(['Academics', 'News & Events', 'Global engagement', 'Site', 'System Administration'])
+            // Initials drawn locally for users without a profile picture (no outside avatar service).
+            ->defaultAvatarProvider(\App\Filament\AvatarProviders\InitialsAvatar::class)
             // Admin pages switch without full page reloads.
             ->spa()
             ->sidebarCollapsibleOnDesktop()
