@@ -74,6 +74,20 @@ class SecurityHeadersTest extends TestCase
         $policy = $response->headers->get('Content-Security-Policy-Report-Only');
         $this->assertStringContainsString("script-src 'self' 'unsafe-inline' 'unsafe-eval'", $policy);
         $this->assertStringNotContainsString("'nonce-", $policy); // a nonce would switch 'unsafe-inline' off
+        $this->assertStringNotContainsString('ui-avatars.com', $policy);
+    }
+
+    public function test_admin_avatars_are_drawn_locally_without_an_outside_service(): void
+    {
+        $admin = \App\Models\User::factory()->create(['name' => '[SYSTEM] Paula Mercado']);
+        $admin->assignRole('super_admin');
+
+        $html = $this->actingAs($admin)->get('/admin')->assertOk()->getContent();
+        $this->assertStringNotContainsString('ui-avatars.com', $html);
+        $this->assertStringContainsString('data:image/svg+xml;base64,', $html);
+
+        $src = (new \App\Filament\AvatarProviders\InitialsAvatar)->get($admin);
+        $this->assertStringContainsString('>SP</text>', base64_decode(substr($src, strlen('data:image/svg+xml;base64,'))));
     }
 
     public function test_the_policy_is_enforced_when_report_only_is_off(): void
