@@ -82,8 +82,8 @@ class SecurityHeaders
             'style-src' => ["'self'", "'unsafe-inline'", ...$cdn, ...$dev],
             'img-src' => [
                 "'self'", 'data:',
-                // Admin: upload previews and the default avatar service; public: YouTube video thumbnails.
-                ...($admin ? ['blob:', 'https://ui-avatars.com'] : ['https://i.ytimg.com']),
+                // Admin: upload previews (avatars are data: images); public: YouTube video thumbnails.
+                ...($admin ? ['blob:'] : ['https://i.ytimg.com']),
                 ...$cdn,
             ],
             'font-src' => ["'self'", 'data:', ...$cdn],
