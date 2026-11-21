@@ -92,7 +92,7 @@ class TermResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('type')->label('List')->formatStateUsing(fn ($state) => Term::TYPES[$state] ?? $state)->sortable(),
-                ColorColumn::make('color')->label('')->visibleFrom('md'),
+                ColorColumn::make('color')->disabledClick()->label('')->visibleFrom('md'),
                 TextColumn::make('label')->searchable()->weight('bold'),
                 TextColumn::make('key')->color('gray')->visibleFrom('md'),
                 TextColumn::make('sort_order')->label('Order')->sortable()->visibleFrom('lg'),

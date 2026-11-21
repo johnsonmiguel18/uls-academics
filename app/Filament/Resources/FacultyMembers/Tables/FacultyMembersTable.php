@@ -16,12 +16,12 @@ class FacultyMembersTable
     {
         return $table
             ->columns([
-                ImageColumn::make('photo')->label('')->disk('public')->circular()->imageSize(36)
+                ImageColumn::make('photo')->disabledClick()->label('')->disk('public')->circular()->imageSize(36)
                     ->defaultImageUrl(fn () => \App\Support\Site::logo()),
                 TextColumn::make('name')->searchable()->sortable()->weight('bold')->description(fn ($record) => $record->position),
                 TextColumn::make('college.name')->label('College')->wrap()->visibleFrom('md')
                     ->visible(fn () => FacultyMemberResource::managesAllColleges()),
-                TextColumn::make('department.name')->label('Department')->visibleFrom('lg'),
+                TextColumn::make('department.name')->label('Department')->placeholder('None')->visibleFrom('lg'),
                 IconColumn::make('is_published')->label('On website')->boolean(),
             ])
             ->filters([
