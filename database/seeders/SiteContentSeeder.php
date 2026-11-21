@@ -410,6 +410,7 @@ class SiteContentSeeder extends Seeder
                 'open_menu' => 'Open menu',
                 'main_navigation' => 'Main navigation',
                 'sdgs' => 'Sustainable Development Goals',
+                'pagination' => 'Pages',
                 'wordmark' => 'University of La Salette, Incorporated',
             ],
             'seo' => [
