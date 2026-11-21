@@ -1152,12 +1152,3 @@ html:not(.dark) .fi-input-wrp-label {
     min-width: 24px;
     min-height: 24px;
 }
-
-/* ---------- Dark mode (chosen in the user menu): the same fixes with light greys ---------- */
-html.dark :is(.fi-resource-edit-record-page, .fi-resource-create-record-page).fi-resource-news .fi-header-subheading,
-html.dark .fi-ta-placeholder {
-    color: #a1a1aa !important; /* 7:1 or more on the dark surfaces */
-}
-html.dark .uls-gantt-day.is-today {
-    color: #fca5a5; /* today's date: light red on the dark grid */
-}
