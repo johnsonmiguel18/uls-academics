@@ -260,27 +260,3 @@
 </main>
 @endsection
 
-@push('scripts')
-<script>
-    // Partner filters (all partners are listed without JavaScript).
-    (() => {
-        const box = document.querySelector('[data-partner-filters]');
-        if (!box) return;
-        box.hidden = false;
-        const items = [...document.querySelectorAll('.gl-partners > li')];
-        const showing = box.querySelector('[data-showing]');
-        const none = document.querySelector('[data-no-match]');
-        const apply = () => {
-            const want = Object.fromEntries([...box.querySelectorAll('select')].map(s => [s.dataset.filter, s.value]));
-            let shown = 0;
-            items.forEach(li => {
-                const ok = (!want.college || li.dataset.college === want.college) && (!want.scope || li.dataset.scope === want.scope);
-                li.hidden = !ok; shown += ok;
-            });
-            showing.textContent = showing.dataset.showing.replace(':shown', shown).replace(':count', items.length);
-            none.hidden = shown > 0;
-        };
-        box.addEventListener('change', apply);
-    })();
-</script>
-@endpush

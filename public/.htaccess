@@ -39,4 +39,13 @@
     <FilesMatch "\.(jpe?g|png|webp|gif|svg|ico|woff2?)$">
         Header set Cache-Control "public, max-age=2592000"
     </FilesMatch>
+
+    # ---- Security ----
+    # Pages get the full set from Laravel (App\Http\Middleware\SecurityHeaders); files Apache serves
+    # directly get these. Hide PHP's version (also set expose_php = Off in php.ini).
+    <FilesMatch "\.(css|js|jpe?g|png|webp|gif|svg|ico|woff2?|txt)$">
+        Header set X-Content-Type-Options "nosniff"
+    </FilesMatch>
+    Header always unset X-Powered-By
+    Header unset X-Powered-By
 </IfModule>
