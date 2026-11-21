@@ -39,7 +39,9 @@ class SecurityHeadersTest extends TestCase
 
     public function test_a_public_page_gets_the_headers_and_a_nonce_policy_its_scripts_match(): void
     {
-        $response = $this->get('/news')->assertOk();
+        \App\Models\News::create(['title' => 'Story', 'slug' => 'story', 'category' => 'research', 'content' => 'Body', 'status' => 'published']);
+
+        $response = $this->get('/news/story')->assertOk();
         $this->assertBasicHeaders($response);
 
         // Report-only by default; nothing is blocked until CSP_REPORT_ONLY=false.
@@ -51,11 +53,13 @@ class SecurityHeadersTest extends TestCase
         $this->assertStringContainsString("frame-ancestors 'self'", $policy);
         $this->assertStringContainsString("object-src 'none'", $policy);
 
-        // Every inline script on the page carries this request's nonce.
+        // Every script tag on the page (the JSON-LD block, and the site script when it is built) carries the nonce.
         preg_match("/'nonce-([^']+)'/", $policy, $nonce);
-        $html = $response->getContent();
-        $this->assertSame(substr_count($html, '<script'), substr_count($html, 'nonce="' . $nonce[1] . '"'));
-        $this->assertGreaterThan(0, substr_count($html, '<script'));
+        preg_match_all('/<script\b[^>]*>/', $response->getContent(), $tags);
+        $this->assertNotEmpty($tags[0]);
+        foreach ($tags[0] as $tag) {
+            $this->assertStringContainsString('nonce="' . $nonce[1] . '"', $tag);
+        }
     }
 
     public function test_a_json_route_gets_the_headers(): void
@@ -75,6 +79,7 @@ class SecurityHeadersTest extends TestCase
         $this->assertStringContainsString("script-src 'self' 'unsafe-inline' 'unsafe-eval'", $policy);
         $this->assertStringNotContainsString("'nonce-", $policy); // a nonce would switch 'unsafe-inline' off
         $this->assertStringNotContainsString('ui-avatars.com', $policy);
+        $this->assertStringContainsString("worker-src 'self' blob:", $policy); // upload field shrinks photos in a worker
     }
 
     public function test_admin_avatars_are_drawn_locally_without_an_outside_service(): void
