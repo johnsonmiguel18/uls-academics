@@ -85,7 +85,7 @@
                     <a class="ac-button ac-button-light ac-nav-enroll" href="#connect">{{ Site::text('global.menu_button') }}</a>
                 @endif
                 @if (! $isGlobal && Site::text('header.search_placeholder'))
-                    <form class="ac-nav-search" action="{{ route('academics.programs') }}" method="get" role="search">
+                    <form class="ac-nav-search" action="{{ route('academics.programs') }}" method="get" role="search" aria-label="{{ Site::text('header.search_placeholder') }}">
                         <label class="sr-only" for="acNavSearch">{{ Site::text('header.search_placeholder') }}</label>
                         <input id="acNavSearch" type="search" name="q" placeholder="{{ Site::text('header.search_placeholder') }}">
                     </form>
