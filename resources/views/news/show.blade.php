@@ -11,8 +11,7 @@
 ])
 
 @push('base-styles')
-    <link rel="stylesheet" href="{{ \App\Support\Asset::url('css/university.css') }}">
-    <link rel="stylesheet" href="{{ \App\Support\Asset::url('css/university-v3.css') }}">
+    <link rel="stylesheet" href="{{ \App\Support\Asset::url('css/news.css') }}">
 @endpush
 
 @push('styles')
