@@ -11,6 +11,12 @@ class CreateNews extends CreateRecord
 
     public static bool $formActionsAreSticky = true;
 
+    /** Three panes (stories, article, settings) need the full width. */
+    public function getMaxContentWidth(): \Filament\Support\Enums\Width
+    {
+        return \Filament\Support\Enums\Width::Full;
+    }
+
     protected function mutateFormDataBeforeCreate(array $data): array
     {
         $user = auth()->user();
