@@ -37,7 +37,7 @@
             <h1>{{ Site::text('home.headline') }}</h1>
             @if (Site::text('home.lead'))<p class="ac-lead">{{ Site::text('home.lead') }}</p>@endif
 
-            <form class="ac-search" action="{{ route('academics.programs') }}" method="get" role="search">
+            <form class="ac-search" action="{{ route('academics.programs') }}" method="get" role="search" aria-label="{{ Site::text('home.search_label') }}">
                 <label class="sr-only" for="ac-search-input">{{ Site::text('home.search_label') }}</label>
                 <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
                 <input id="ac-search-input" type="search" name="q" placeholder="{{ Site::text('home.search_placeholder') }}" autocomplete="off">
