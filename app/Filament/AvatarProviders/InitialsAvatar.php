@@ -22,7 +22,7 @@ class InitialsAvatar implements AvatarProvider
             ->implode('');
 
         $svg = '<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">'
-            . '<rect width="64" height="64" fill="#192a8a"/>'
+            . '<rect width="64" height="64" fill="#18181b"/>'
             . '<text x="32" y="41" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" font-weight="600" fill="#ffffff">'
             . htmlspecialchars(mb_strtoupper($initials ?: '?'), ENT_XML1) . '</text></svg>';
 
