@@ -78,6 +78,18 @@ Route::post('/vitals', \App\Http\Controllers\VitalsController::class)
     ->name('vitals');
 
 // Resized photos for cards; written to public/thumbs on first request, served as files after.
+// News editor preview: the story as visitors will see it, in any status (drafts too). Shown in an
+// iframe on the edit page; only for people who may edit that story (college admins: their own stories).
+Route::get('/admin/news/{id}/preview', function (int $id) {
+    abort_unless(\App\Filament\Resources\News\NewsResource::canViewAny() && (auth()->user()?->can('edit_news') ?? false), 403);
+    $article = \App\Filament\Resources\News\NewsResource::getEloquentQuery()->whereKey($id)->firstOrFail();
+
+    return response()
+        ->view('news.show', ['article' => $article, 'relatedNews' => collect(), 'previousNews' => null, 'nextNews' => null])
+        ->header('X-Robots-Tag', 'noindex, nofollow')
+        ->header('Cache-Control', 'no-store, private');
+})->whereNumber('id')->name('admin.news.preview');
+
 Route::get('/thumbs/{width}/{source}/{path}', ThumbnailController::class)
     ->where(['width' => '480|960', 'source' => 'media|storage', 'path' => '.+'])
     ->name('thumbs');
