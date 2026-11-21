@@ -301,8 +301,8 @@ html {
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 .home-btn-outline {
-    color: var(--navy);
-    border: 1px solid var(--navy);
+    color: var(--ac-link);
+    border: 1px solid var(--ac-link);
 }
 .home-btn-outline:hover,
 .home-btn-outline:focus-visible,
@@ -318,7 +318,7 @@ html {
 }
 .news-read {
     align-self: flex-start;
-    color: var(--navy);
+    color: var(--ac-link);
     font-size: 14px;
     font-weight: 700;
     text-decoration: underline;
@@ -386,13 +386,13 @@ html {
     margin-top: 0.4em;
 }
 .article-prose a {
-    color: var(--navy);
+    color: var(--ac-link);
     text-decoration: underline;
     text-underline-offset: 3px;
 }
 .article-prose blockquote {
     padding: 4px 0 4px 18px;
-    color: #4a4a4a;
+    color: var(--ac-quote, #4a4a4a);
     border-left: 3px solid var(--line);
     font-style: italic;
 }
@@ -401,7 +401,7 @@ html {
 }
 .news-index {
     padding: clamp(32px, 4vw, 48px) 0 clamp(64px, 8vw, 104px);
-    background: #ffffff;
+    background: var(--ac-bg);
 }
 .news-toolbar {
     display: flex;
@@ -438,15 +438,15 @@ html {
     height: 44px;
     padding: 0 12px 0 40px;
     color: var(--ink);
-    background: #ffffff;
-    border: 1px solid #cccccc;
+    background: var(--ac-surface);
+    border: 1px solid var(--ac-field-line-news, #cccccc);
     border-radius: 2px;
     font: inherit;
     font-size: 15px;
 }
 .news-search input[type="search"]:focus {
-    border-color: var(--navy);
-    outline: 2px solid var(--navy);
+    border-color: var(--ac-link);
+    outline: 2px solid var(--ac-link);
     outline-offset: 0;
 }
 .news-search .home-btn {
@@ -471,7 +471,7 @@ html {
 }
 .news-chip[aria-current="page"] {
     color: var(--ink);
-    border-bottom-color: var(--navy);
+    border-bottom-color: var(--ac-link);
 }
 .news-index-heading {
     margin: 0 0 8px;
@@ -562,7 +562,7 @@ html {
 }
 .article-main {
     padding-bottom: clamp(56px, 7vw, 96px);
-    background: #ffffff;
+    background: var(--ac-bg);
 }
 .article-body {
     padding-top: clamp(32px, 4vw, 48px);
@@ -576,7 +576,7 @@ html {
     max-height: 520px;
 }
 .article-prose {
-    color: #3a3a3a;
+    color: var(--ac-prose, #3a3a3a);
     font-size: 17.5px;
     line-height: 1.85;
 }
@@ -652,7 +652,7 @@ html {
     font-weight: 400;
 }
 .back-to-top {
-    box-shadow: 0 0 0 3px #ffffff, 0 12px 28px rgba(13, 22, 80, 0.35) !important;
+    box-shadow: 0 0 0 3px var(--ac-bg), 0 12px 28px rgba(13, 22, 80, 0.35) !important;
 }
 .back-to-top {
     color: #ffffff !important;
