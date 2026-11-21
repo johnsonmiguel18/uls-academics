@@ -1122,3 +1122,34 @@ html:not(.dark) :is(.fi-resource-edit-record-page, .fi-resource-create-record-pa
 html:not(.dark) :is(.fi-resource-edit-record-page, .fi-resource-create-record-page).fi-resource-news .fi-sc-actions .fi-btn.fi-color-primary:hover {
     background: #27272a !important;
 }
+
+/* ---------- Contrast and target size for Filament's defaults (WCAG 2.2 AA) ---------- */
+html:not(.dark) .fi-breadcrumbs-item-label {
+    color: #52525b !important; /* 7.3:1 on the grey page (was 4.4:1) */
+}
+html:not(.dark) .fi-ta-placeholder {
+    color: #71717a !important; /* "University-wide" and other empty cells: 4.8:1 (was 2.6:1) */
+}
+html:not(.dark) .fi-badge.fi-color-primary,
+html:not(.dark) .fi-badge.fi-color-primary .fi-badge-label {
+    color: #27272a !important; /* chips such as the SDGs in the editor: 13:1 (was 3.7:1) */
+}
+html:not(.dark) .fi-header .fi-btn.fi-color-danger.fi-outlined {
+    color: #b91c1c !important; /* outlined Delete on the grey page: 6:1 (was 4.5:1, just under); solid red buttons untouched */
+}
+html:not(.dark) .fi-fo-toggle-buttons-input:checked + .fi-btn:not(.fi-color) {
+    color: #ffffff !important;
+    background: #52525b !important; /* chosen grey option, e.g. "Draft": 7.7:1 (was 2.6:1) */
+}
+html:not(.dark) .fi-input-wrp-label {
+    color: #52525b !important; /* inline labels such as "Group by": 7.3:1 (was 4.4:1) */
+}
+/* The small "x" that removes a chosen item: at least 24 x 24 px to tap */
+.fi-select-input-value-remove-btn,
+.fi-badge-delete-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 24px;
+    min-height: 24px;
+}
