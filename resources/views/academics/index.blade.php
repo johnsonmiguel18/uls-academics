@@ -80,7 +80,7 @@
                                         <a class="ac-college-card" href="{{ route('academics.college', $college) }}">
                                             <span class="ac-college-media">
                                                 @if ($college->banner_image)
-                                                    <img src="{{ \App\Support\Thumb::url($college->banner_image) }}" srcset="{{ \App\Support\Thumb::srcset($college->banner_image) }}" sizes="(max-width: 600px) 92vw, 380px" width="480" height="270" alt="" @if ($loop->index >= 3) loading="lazy" @endif decoding="async">
+                                                    <img src="{{ \App\Support\Thumb::url($college->banner_image) }}" srcset="{{ \App\Support\Thumb::srcset($college->banner_image) }}" sizes="(max-width: 600px) 92vw, 380px" width="480" height="270" alt="" loading="lazy" decoding="async">
                                                 @endif
                                                 @if ($college->seal_image)
                                                     <span class="ac-college-seal"><img src="{{ asset('storage/' . $college->seal_image) }}" alt="" width="44" height="44" loading="lazy" decoding="async"></span>
