@@ -17,9 +17,9 @@ class CollegesTable
         return $table
             ->columns([
                 ImageColumn::make('seal_image')->disabledClick()->label('')->disk('public')->circular()->imageSize(36),
-                TextColumn::make('name')->searchable()->sortable()->weight('bold')
+                TextColumn::make('name')->searchable()->sortable()->weight('bold')->wrap()
                     ->description(fn (College $record) => $record->dean_name),
-                TextColumn::make('level')->badge()->formatStateUsing(fn ($state) => \App\Models\Term::label('level', $state))->visibleFrom('md'),
+                TextColumn::make('level')->badge()->formatStateUsing(fn ($state) => \App\Models\Term::label('level', $state))->visibleFrom('xl'),
                 TextColumn::make('programs_count')->counts('programs')->label('Programs')->visibleFrom('md'),
                 TextColumn::make('status')->badge()->formatStateUsing(fn ($state) => ucfirst($state))->color(fn ($state) => $state === 'published' ? 'primary' : 'gray'),
             ])
