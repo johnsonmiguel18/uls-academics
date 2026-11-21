@@ -28,7 +28,8 @@ class ThumbnailController extends Controller
             in_array($width, self::WIDTHS, true)
                 && $base && $original
                 && str_starts_with($original, $base . DIRECTORY_SEPARATOR)
-                && substr($original, strlen($base) + 1) === $requested
+                // realpath() gives backslashes on Windows (XAMPP); URLs always use "/".
+                && str_replace(DIRECTORY_SEPARATOR, '/', substr($original, strlen($base) + 1)) === $requested
                 && preg_match('/\.(jpe?g|png)$/i', $original),
             404
         );
