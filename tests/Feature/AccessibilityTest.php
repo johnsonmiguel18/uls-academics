@@ -40,5 +40,8 @@ class AccessibilityTest extends TestCase
         $this->assertStringContainsString('<span class="sr-only">: Zero Hunger</span>', $html);
         $this->assertDoesNotMatchRegularExpression('/class="news-sdg"[^>]*title=/', $html);
         $this->assertDoesNotMatchRegularExpression('/<li class="news-sdg-more"[^>]*title=/', $html);
+
+        // The program finder's filter form has its own name, apart from the header search.
+        $this->get('/programs')->assertOk()->assertSee('role="search" aria-label="Filter programs"', false);
     }
 }
