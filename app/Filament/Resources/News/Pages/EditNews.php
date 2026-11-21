@@ -12,6 +12,18 @@ class EditNews extends EditRecord
 {
     protected static string $resource = NewsResource::class;
 
+    // Save and Cancel stay in view while scrolling a long story.
+    public static bool $formActionsAreSticky = true;
+
+    /** Under the title: what visitors see now, the record number and the story's web address. */
+    public function getSubheading(): string
+    {
+        $state = $this->record->state();
+        $label = \App\Models\News::STATES[$state][0] ?? ucfirst($state);
+
+        return "{$label} · Story #{$this->record->getKey()} · /news/{$this->record->slug}";
+    }
+
     protected function mutateFormDataBeforeSave(array $data): array
     {
         $user = auth()->user();
