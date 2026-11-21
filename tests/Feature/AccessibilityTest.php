@@ -41,6 +41,8 @@ class AccessibilityTest extends TestCase
         $this->assertDoesNotMatchRegularExpression('/class="news-sdg"[^>]*title=/', $html);
         $this->assertDoesNotMatchRegularExpression('/<li class="news-sdg-more"[^>]*title=/', $html);
 
+        // The home page's own program search is named too, apart from the header search.
+        $this->get('/')->assertOk()->assertSee('class="ac-search" action="'.route('academics.programs').'" method="get" role="search" aria-label="Search academic programs"', false);
         // The program finder's filter form has its own name, apart from the header search.
         $this->get('/programs')->assertOk()->assertSee('role="search" aria-label="Filter programs"', false);
     }
