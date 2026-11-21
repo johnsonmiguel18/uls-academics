@@ -1047,3 +1047,77 @@ html:not(.dark) .fi-fo-builder-item-header {
 .uls-gantt-backlog li span:last-child { color: var(--g-muted); font-size: 12px; }
 
 @media (max-width: 760px) { .uls-gantt { --side: 170px; } .uls-gantt-when { display: none; } }
+
+/* ---------- Post editor (News: new and edit): neutral cards, boxed tabs, outlined fields ----------
+   Story tabs on the left, Publishing and the photo in side cards, Save bar that stays in view.
+   Same neutral greys and near-black as the data tables; scoped to these two pages. */
+html:not(.dark) .fi-resource-news:is(.fi-resource-edit-record-page, .fi-resource-create-record-page) {
+    --uls-pe-ink: #09090b;
+    --uls-pe-muted: #71717a;
+    --uls-pe-line: #e4e4e7;
+    --uls-pe-soft: #f4f4f5;
+}
+:is(.fi-resource-edit-record-page, .fi-resource-create-record-page).fi-resource-news .fi-header-subheading {
+    color: #52525b !important; /* 7.3:1 on the grey page background (the lighter grey was 4.4:1) */
+    font-size: 13px !important;
+    overflow-wrap: anywhere;
+}
+/* Cards: the tab panel and the side sections */
+html:not(.dark) :is(.fi-resource-edit-record-page, .fi-resource-create-record-page).fi-resource-news :is(.fi-sc-tabs.fi-contained, .fi-section) {
+    border: 1px solid var(--uls-pe-line) !important;
+    border-radius: 10px !important;
+    box-shadow: none !important;
+}
+/* Boxed tabs: a grey strip, the open tab a white box with near-black text */
+html:not(.dark) :is(.fi-resource-edit-record-page, .fi-resource-create-record-page).fi-resource-news .fi-sc-tabs.fi-contained > .fi-tabs {
+    padding: 6px;
+    gap: 4px;
+    background: #fafafa;
+    border-bottom: 1px solid var(--uls-pe-line);
+    border-radius: 10px 10px 0 0;
+}
+html:not(.dark) :is(.fi-resource-edit-record-page, .fi-resource-create-record-page).fi-resource-news .fi-sc-tabs .fi-tabs-item {
+    color: var(--uls-pe-muted) !important;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    background: transparent !important;
+}
+html:not(.dark) :is(.fi-resource-edit-record-page, .fi-resource-create-record-page).fi-resource-news .fi-sc-tabs .fi-tabs-item :is(.fi-tabs-item-label, .fi-icon) {
+    color: inherit !important;
+}
+html:not(.dark) :is(.fi-resource-edit-record-page, .fi-resource-create-record-page).fi-resource-news .fi-sc-tabs .fi-tabs-item:hover {
+    color: var(--uls-pe-ink) !important;
+}
+html:not(.dark) :is(.fi-resource-edit-record-page, .fi-resource-create-record-page).fi-resource-news .fi-sc-tabs .fi-tabs-item.fi-active {
+    color: var(--uls-pe-ink) !important;
+    font-weight: 600;
+    background: #ffffff !important;
+    border-color: var(--uls-pe-line);
+    box-shadow: 0 1px 2px rgba(9, 9, 11, 0.05);
+}
+/* Fields: white with a hairline border instead of the grey fill */
+html:not(.dark) :is(.fi-resource-edit-record-page, .fi-resource-create-record-page).fi-resource-news :is(.fi-input-wrp, .fi-fo-rich-editor, .fi-fo-file-upload .filepond--panel-root) {
+    background-color: #ffffff !important;
+    border: 1px solid var(--uls-pe-line) !important;
+    border-radius: 7px !important;
+}
+html:not(.dark) :is(.fi-resource-edit-record-page, .fi-resource-create-record-page).fi-resource-news :is(.fi-input-wrp .fi-input, .fi-input-wrp .fi-select-input) {
+    background-color: transparent !important;
+}
+html:not(.dark) :is(.fi-resource-edit-record-page, .fi-resource-create-record-page).fi-resource-news .fi-input-wrp:focus-within {
+    border-color: var(--uls-pe-ink) !important;
+    outline: 2px solid var(--uls-pe-ink) !important;
+    outline-offset: 1px;
+}
+/* Save bar: white strip with a hairline; Save in near-black instead of navy */
+html:not(.dark) :is(.fi-resource-edit-record-page, .fi-resource-create-record-page).fi-resource-news .fi-sc-actions.fi-sticky {
+    border-top: 1px solid var(--uls-pe-line);
+    box-shadow: 0 -6px 16px rgba(9, 9, 11, 0.04) !important;
+}
+html:not(.dark) :is(.fi-resource-edit-record-page, .fi-resource-create-record-page).fi-resource-news .fi-sc-actions .fi-btn.fi-color-primary {
+    color: #ffffff !important;
+    background: var(--uls-pe-ink) !important;
+}
+html:not(.dark) :is(.fi-resource-edit-record-page, .fi-resource-create-record-page).fi-resource-news .fi-sc-actions .fi-btn.fi-color-primary:hover {
+    background: #27272a !important;
+}
