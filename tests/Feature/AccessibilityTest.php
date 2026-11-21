@@ -47,11 +47,15 @@ class AccessibilityTest extends TestCase
         $this->get('/programs')->assertOk()->assertSee('role="search" aria-label="Filter programs"', false);
     }
 
-    public function test_admin_is_always_light_while_the_public_site_keeps_its_colour_mode_menu(): void
+    public function test_public_site_is_light_only_while_the_admin_has_a_theme_switcher(): void
     {
-        $this->assertFalse(\Filament\Facades\Filament::getPanel('admin')->hasDarkMode());
+        $panel = \Filament\Facades\Filament::getPanel('admin');
+        $this->assertTrue($panel->hasDarkMode());
+        $this->assertSame(\Filament\Enums\ThemeMode::Light, $panel->getDefaultThemeMode());
 
         $this->seed(\Database\Seeders\SiteContentSeeder::class);
-        $this->get('/programs')->assertOk()->assertSee('class="ac-theme"', false);
+        $this->get('/programs')->assertOk()
+            ->assertDontSee('ac-theme', false)
+            ->assertDontSee('js/theme.js', false);
     }
 }

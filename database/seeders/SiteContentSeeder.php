@@ -414,10 +414,6 @@ class SiteContentSeeder extends Seeder
                 'sdgs' => 'Sustainable Development Goals',
                 'pagination' => 'Pages',
                 'wordmark' => 'University of La Salette, Incorporated',
-                'color_mode' => 'Color mode',
-                'color_mode_system' => 'System',
-                'color_mode_light' => 'Light',
-                'color_mode_dark' => 'Dark',
             ],
             'seo' => [
                 'organization_address' => 'Santiago City, Isabela, Philippines',

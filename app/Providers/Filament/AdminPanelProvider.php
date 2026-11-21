@@ -10,6 +10,7 @@ use Filament\Pages\Dashboard;
 use Filament\Pages\BasePage;
 use Filament\Panel;
 use Filament\PanelProvider;
+use Filament\Enums\ThemeMode;
 use Filament\Support\Colors\Color;
 use Filament\View\PanelsRenderHook;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
@@ -53,8 +54,8 @@ class AdminPanelProvider extends PanelProvider
             ->defaultAvatarProvider(\App\Filament\AvatarProviders\InitialsAvatar::class)
             // No ->spa(): with it, the browser's Back button could rebuild a page without Filament's
             // stylesheet (unstyled admin). Normal page loads are a little slower but always complete.
-            // Admin is always light: no System/Light/Dark switcher in the user menu (the public site keeps its own).
-            ->darkMode(false)
+            // System/Light/Dark switcher in the user menu, starting on Light (the public site is light only).
+            ->defaultThemeMode(ThemeMode::Light)
             ->sidebarCollapsibleOnDesktop()
             // ULS theme: plain CSS through render hooks, no Tailwind build needed.
             ->renderHook(PanelsRenderHook::HEAD_END, fn (): string => '

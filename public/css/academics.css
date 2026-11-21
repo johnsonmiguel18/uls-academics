@@ -17,10 +17,9 @@ h1, h2, h3 { color: var(--ac-heading); line-height: 1.2; }
 button, input, select, textarea { font: inherit; }
 button { cursor: pointer; }
 
-/* ---------- Colours: light, or dark when the visitor's system asks for it or they pick Dark ----------
-   The theme menu in the header sets <html data-theme="light|dark">; without it the system setting decides.
-   Navy stays the brand fill in both themes (header, hero, buttons, footer); text and surfaces switch. */
+/* ---------- Colours: light only (the public site has no dark theme; the admin has its own switcher) ---------- */
 :root {
+    color-scheme: light; /* form controls and scrollbars stay light even when the device is set to dark */
     --ac-navy: var(--v3-navy, #192a8a);     /* fills: header, hero, buttons */
     --ac-navy-deep: var(--v3-navy-deep, #0d1650);
     --ac-bg: #ffffff;                       /* page */
@@ -40,37 +39,6 @@ button { cursor: pointer; }
     --ac-mark: #fff1a8;
     --ac-radius: 10px;
     --ac-serif: Georgia, "Times New Roman", serif;
-}
-
-@media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-        color-scheme: dark;
-        --ac-bg: #0c1020; --ac-surface: #141a2e; --ac-tint: #10162a;
-        --ac-ink: #e3e6ee; --ac-muted: #a7adbf; --ac-muted-soft: #8d93a6; --ac-line: #2a3252; --ac-field-line: #4a5480;
-        --ac-heading: #eef0fa; --ac-link: #aab7ff; --ac-link-deep: #c8d0ff; --ac-accent: #6375dc;
-        --ac-chip: #232c52; --ac-media: #1d2440; --ac-code: #1b2140; --ac-mark: #5c4c00; --ac-row-hover: #1e2646;
-        --ac-skeleton: #1a2038; --ac-skeleton-hi: #262e4e; --ac-error: #ff9d94; --ac-prose: #d6dae6; --ac-quote: #b4b9c9;
-        --ac-field-line-news: #4a5480;
-        /* the main website's styles on the news pages */
-        --text: var(--ac-ink); --uls-text: var(--ac-ink); --uls-white: var(--ac-bg); --uls-surface-white: var(--ac-bg);
-        --light: var(--ac-tint); --ink: #e9ecf6; --muted: #a7adbf; --line: #2a3252; --surface: #181f36;
-        --label: var(--ac-link); /* news category labels */
-        --ac-news-ink: #e9ecf6; --ac-news-label: var(--ac-link); --ac-news-muted: #a7adbf; --ac-news-surface: #181f36; /* news cards on other pages */
-    }
-}
-
-:root[data-theme="dark"] {
-    color-scheme: dark;
-    --ac-bg: #0c1020; --ac-surface: #141a2e; --ac-tint: #10162a;
-    --ac-ink: #e3e6ee; --ac-muted: #a7adbf; --ac-muted-soft: #8d93a6; --ac-line: #2a3252; --ac-field-line: #4a5480;
-    --ac-heading: #eef0fa; --ac-link: #aab7ff; --ac-link-deep: #c8d0ff; --ac-accent: #6375dc;
-    --ac-chip: #232c52; --ac-media: #1d2440; --ac-code: #1b2140; --ac-mark: #5c4c00; --ac-row-hover: #1e2646;
-    --ac-skeleton: #1a2038; --ac-skeleton-hi: #262e4e; --ac-error: #ff9d94; --ac-prose: #d6dae6; --ac-quote: #b4b9c9;
-    --ac-field-line-news: #4a5480;
-    --text: var(--ac-ink); --uls-text: var(--ac-ink); --uls-white: var(--ac-bg); --uls-surface-white: var(--ac-bg);
-    --light: var(--ac-tint); --ink: #e9ecf6; --muted: #a7adbf; --line: #2a3252; --surface: #181f36;
-        --label: var(--ac-link); /* news category labels */
-        --ac-news-ink: #e9ecf6; --ac-news-label: var(--ac-link); --ac-news-muted: #a7adbf; --ac-news-surface: #181f36; /* news cards on other pages */
 }
 
 .ac-page {
@@ -705,16 +673,6 @@ button { cursor: pointer; }
 
 /* Colour mode menu (System, Light, Dark): a header button like the menu button, with a small list under it */
 .ac-masthead > .ac-nav { margin-left: auto; }
-.ac-theme { position: relative; order: 3; }
-.ac-theme-toggle { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 10px; color: #ffffff; background: transparent; }
-.ac-theme-toggle:hover, .ac-theme-toggle[aria-expanded="true"] { background: rgba(255, 255, 255, 0.12); }
-.ac-theme-menu { position: absolute; top: calc(100% + 8px); right: 0; z-index: 60; display: flex; flex-direction: column; gap: 2px; min-width: 170px; padding: 6px; border: 1px solid var(--ac-line); border-radius: var(--ac-radius); background: var(--ac-surface); box-shadow: 0 18px 40px rgba(13, 22, 80, 0.2); }
-.ac-theme-menu[hidden] { display: none; }
-.ac-theme-option { display: flex; gap: 10px; align-items: center; width: 100%; min-height: 40px; padding: 8px 10px; border: 0; border-radius: 6px; color: var(--ac-ink); background: none; font-size: 15px; text-align: left; }
-.ac-theme-option:hover { background: var(--ac-row-hover, #f0f2fa); }
-.ac-theme-option.is-current { color: var(--ac-link); font-weight: 700; }
-.ac-theme-option svg { flex-shrink: 0; }
-.ac-theme-check { margin-left: auto; }
 
 .ac-footer { padding: 56px 0 24px; color: rgba(255, 255, 255, 0.8); background: #0d1650; font-size: 14px; }
 .ac-footer-grid { display: grid; grid-template-columns: 1.3fr 1.4fr 1fr 1fr; gap: 32px; }
@@ -730,8 +688,7 @@ button { cursor: pointer; }
 
 @media (max-width: 1080px) {
     .ac-menu-toggle { display: block; order: 2; }
-    .ac-theme { order: 1; margin: 0 -14px 0 auto; } /* beside the menu button, 10px apart */
-    .ac-nav { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: stretch; padding: 12px 20px 20px; background: #192a8a; }
+        .ac-nav { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: stretch; padding: 12px 20px 20px; background: #192a8a; }
     .ac-nav-open .ac-nav { display: flex; }
     .ac-nav-colleges ul { position: static; width: auto; margin-top: 6px; }
     .ac-nav-search input { width: 100%; }
