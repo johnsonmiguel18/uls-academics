@@ -19,7 +19,7 @@ class NewsTable
     {
         return $table
             ->columns([
-                ImageColumn::make('featured_image')
+                ImageColumn::make('featured_image')->disabledClick()
                     ->label('')
                     ->disk('public')
                     ->imageWidth(72)

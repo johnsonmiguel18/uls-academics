@@ -16,7 +16,7 @@ class CollegesTable
     {
         return $table
             ->columns([
-                ImageColumn::make('seal_image')->label('')->disk('public')->circular()->imageSize(36),
+                ImageColumn::make('seal_image')->disabledClick()->label('')->disk('public')->circular()->imageSize(36),
                 TextColumn::make('name')->searchable()->sortable()->weight('bold')
                     ->description(fn (College $record) => $record->dean_name),
                 TextColumn::make('level')->badge()->formatStateUsing(fn ($state) => \App\Models\Term::label('level', $state))->visibleFrom('md'),

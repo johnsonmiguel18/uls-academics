@@ -42,7 +42,7 @@
             </div>
 
             @forelse ($groups as $group => $items)
-                <div class="uls-gantt-group" role="rowgroup">
+                <div class="uls-gantt-group" role="group" aria-label="{{ $group }}">
                     <div class="uls-gantt-row uls-gantt-grouprow">
                         <div class="uls-gantt-side"><strong>{{ $group }}</strong></div>
                         <div class="uls-gantt-track"></div>
