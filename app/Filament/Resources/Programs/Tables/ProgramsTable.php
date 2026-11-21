@@ -24,8 +24,8 @@ class ProgramsTable
                 TextColumn::make('college.name')->label('College')->sortable()->wrap()->visibleFrom('md')
                     ->visible(fn () => ProgramResource::managesAllColleges()),
                 TextColumn::make('degree_type')->label('Degree')->badge()->color('gray')
-                    ->formatStateUsing(fn ($state) => \App\Models\Term::label('degree_type', $state))->visibleFrom('lg'),
-                IconColumn::make('is_featured')->label('Featured')->boolean()->visibleFrom('lg'),
+                    ->formatStateUsing(fn ($state) => \App\Models\Term::label('degree_type', $state))->visibleFrom('xl'),
+                IconColumn::make('is_featured')->label('Featured')->boolean()->visibleFrom('xl'),
                 TextColumn::make('status')->badge()->formatStateUsing(fn ($state) => ucfirst($state))->color(fn ($state) => $state === 'published' ? 'primary' : 'gray'),
             ])
             ->filters([

@@ -69,11 +69,11 @@ class PartnershipInquiryResource extends Resource
         return $table
             ->defaultSort('created_at', 'desc')
             ->columns([
-                TextColumn::make('created_at')->label('Received')->since()->sortable(),
-                TextColumn::make('name')->searchable()->description(fn (PartnershipInquiry $r) => $r->organization),
-                TextColumn::make('email')->searchable()->copyable(),
-                TextColumn::make('interest')->formatStateUsing(fn (?string $state) => Site::get("global.interests.$state", $state))->toggleable(),
-                TextColumn::make('message')->limit(60)->wrap()->toggleable(),
+                TextColumn::make('created_at')->label('Received')->since()->sortable()->visibleFrom('sm'),
+                TextColumn::make('name')->searchable()->description(fn (PartnershipInquiry $r) => $r->organization)->wrap(),
+                TextColumn::make('email')->searchable()->copyable()->visibleFrom('xl'),
+                TextColumn::make('interest')->formatStateUsing(fn (?string $state) => Site::get("global.interests.$state", $state))->toggleable()->visibleFrom('xl'),
+                TextColumn::make('message')->limit(60)->wrap()->toggleable()->visibleFrom('2xl'),
                 TextColumn::make('status')->badge()
                     ->formatStateUsing(fn (string $state) => PartnershipInquiry::STATUSES[$state] ?? $state)
                     ->color(fn (string $state) => match ($state) { 'new' => 'warning', 'in_progress' => 'info', 'answered' => 'success', default => 'gray' }),
