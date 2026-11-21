@@ -38,8 +38,8 @@ class AdminPanelProvider extends PanelProvider
         ->brandLogoHeight('3rem')
         ->favicon(asset('favicon.ico'))
         ->colors([
-        // Same royal blue as the public site.
-        'primary' => Color::hex('#192a8a'),
+        // Neutral near-black (zinc), like the data tables; the public site keeps its royal blue.
+        'primary' => Color::hex('#18181b'),
     ])
 
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
