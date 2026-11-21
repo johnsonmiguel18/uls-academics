@@ -46,4 +46,12 @@ class AccessibilityTest extends TestCase
         // The program finder's filter form has its own name, apart from the header search.
         $this->get('/programs')->assertOk()->assertSee('role="search" aria-label="Filter programs"', false);
     }
+
+    public function test_admin_is_always_light_while_the_public_site_keeps_its_colour_mode_menu(): void
+    {
+        $this->assertFalse(\Filament\Facades\Filament::getPanel('admin')->hasDarkMode());
+
+        $this->seed(\Database\Seeders\SiteContentSeeder::class);
+        $this->get('/programs')->assertOk()->assertSee('class="ac-theme"', false);
+    }
 }
