@@ -279,7 +279,7 @@ html:not(.dark) .fi-ta-header-heading {
 }
 
 /* ---------- Cards, sections, tables: white fills, no outlines ---------- */
-html:not(.dark) :is(.fi-section, .fi-ta-ctn, .fi-wi-stats-overview-stat, .fi-fo-builder-item, .fi-fo-repeater-item, .fi-simple-main, .fi-dropdown-panel, .fi-modal-window) {
+html:not(.dark) :is(.fi-section, .fi-wi-stats-overview-stat, .fi-fo-builder-item, .fi-fo-repeater-item, .fi-simple-main, .fi-dropdown-panel, .fi-modal-window) {
     border: 0 !important;
     border-radius: 12px !important;
     box-shadow: none !important;
@@ -288,12 +288,6 @@ html:not(.dark) :is(.fi-section, .fi-ta-ctn, .fi-wi-stats-overview-stat, .fi-fo-
 html:not(.dark) .fi-section-header,
 html:not(.dark) .fi-section-content-ctn,
 html:not(.dark) .fi-section-footer,
-html:not(.dark) .fi-ta-header-ctn,
-html:not(.dark) .fi-ta-header-toolbar,
-html:not(.dark) .fi-ta-content-ctn,
-html:not(.dark) .fi-ta-table,
-html:not(.dark) .fi-ta-table *,
-html:not(.dark) .fi-pagination,
 html:not(.dark) .fi-fo-builder-item-header,
 html:not(.dark) .fi-fo-builder-item-content,
 html:not(.dark) .fi-fo-repeater-item-header,
@@ -305,21 +299,210 @@ html:not(.dark) .fi-fo-builder-item .fi-fo-repeater-item {
     background: var(--uls-tint) !important;
 }
 
-html:not(.dark) .fi-ta-header-cell {
-    background: var(--uls-tint);
+/* ---------- Data tables: neutral data-grid look (bordered card, quiet header, row hover) ----------
+   Neutral greys and near-black, not the navy. Filament keeps its search, filters, sorting and paging;
+   only their look changes. */
+:root {
+    --uls-dt-ink: #09090b;      /* text, selected bar, checked boxes */
+    --uls-dt-muted: #71717a;    /* header labels, counts (4.8:1 on white) */
+    --uls-dt-line: #e4e4e7;     /* borders */
+    --uls-dt-soft: #f4f4f5;     /* hover, active page */
+    --uls-dt-head: #fafafa;     /* header row */
 }
 
+html:not(.dark) .fi-ta-ctn {
+    overflow: hidden;
+    border: 1px solid var(--uls-dt-line) !important;
+    border-radius: 10px !important;
+    box-shadow: none !important;
+    background: #ffffff;
+}
+
+/* Toolbar: search field and filter button, same icons, outlined like the grid */
+html:not(.dark) .fi-ta-header-ctn,
+html:not(.dark) .fi-ta-header-toolbar {
+    border-color: var(--uls-dt-line) !important;
+}
+html:not(.dark) .fi-ta-header-toolbar {
+    padding: 10px 16px !important;
+}
+html:not(.dark) .fi-ta-search-field .fi-input-wrp {
+    min-height: 34px;
+    background: #ffffff !important;
+    border: 1px solid var(--uls-dt-line) !important;
+    border-radius: 7px !important;
+}
+html:not(.dark) .fi-ta-ctn .fi-input-wrp:focus-within {
+    /* Neutral focus inside tables: near-black edge and outline (still a clear 2px ring for keyboard users) */
+    border-color: var(--uls-dt-ink) !important;
+    outline: 2px solid var(--uls-dt-ink) !important;
+    outline-offset: 1px;
+    box-shadow: none !important;
+}
+html:not(.dark) .fi-ta-search-field .fi-input-wrp-prefix,
+html:not(.dark) .fi-ta-search-field .fi-input-wrp-prefix .fi-icon {
+    color: var(--uls-dt-muted) !important;
+}
+html:not(.dark) .fi-ta-header-toolbar .fi-icon-btn {
+    width: 34px;
+    height: 34px;
+    color: var(--uls-dt-muted) !important;
+    border: 1px solid var(--uls-dt-line);
+    border-radius: 7px;
+    background: #ffffff;
+}
+html:not(.dark) .fi-ta-header-toolbar .fi-icon-btn:hover,
+html:not(.dark) .fi-ta-header-toolbar .fi-icon-btn[aria-expanded="true"] {
+    color: var(--uls-dt-ink) !important;
+    background: var(--uls-dt-soft);
+}
+html:not(.dark) .fi-ta-header-toolbar .fi-icon-btn .fi-badge {
+    color: #ffffff !important;
+    background: var(--uls-dt-ink) !important;
+}
+
+/* Header row: light grey across the full width, normal-weight muted labels, no capitals */
+html:not(.dark) .fi-ta-table > thead > tr > th {
+    height: 40px;
+    padding-block: 0 !important;
+    background: var(--uls-dt-head) !important;
+    border-bottom: 1px solid var(--uls-dt-line) !important;
+}
 html:not(.dark) .fi-ta-header-cell,
 html:not(.dark) .fi-ta-header-cell-sort-btn {
-    color: #222222 !important;
-    font-size: 12px !important;
-    font-weight: 700 !important;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+    color: var(--uls-dt-muted) !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    letter-spacing: 0;
+    text-transform: none;
+}
+html:not(.dark) .fi-ta-header-cell-sort-btn {
+    margin-inline-start: -8px;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+html:not(.dark) .fi-ta-header-cell-sort-btn:hover,
+html:not(.dark) .fi-ta-header-cell-sort-btn:focus-visible {
+    color: var(--uls-dt-ink) !important;
+    background: var(--uls-dt-soft);
+}
+html:not(.dark) .fi-ta-header-cell-sort-btn .fi-icon {
+    color: inherit !important;
+    opacity: 0.7;
 }
 
+/* Body rows: hairline between rows, soft hover, selected rows get a dark bar on the left */
+html:not(.dark) .fi-ta-table > tbody > tr > td {
+    border-bottom: 1px solid var(--uls-dt-line);
+    color: var(--uls-dt-ink);
+}
+html:not(.dark) .fi-ta-table > tbody > tr:last-child > td {
+    border-bottom: 0;
+}
 html:not(.dark) .fi-ta-row:hover {
-    background: #f0f0f0 !important;
+    background: var(--uls-dt-head) !important;
+}
+html:not(.dark) .fi-ta-row.fi-selected {
+    background: var(--uls-dt-soft) !important;
+}
+html:not(.dark) .fi-ta-row.fi-selected > td:first-child {
+    box-shadow: inset 2px 0 0 var(--uls-dt-ink);
+}
+
+/* Checkboxes in tables: outlined, near-black when checked */
+html:not(.dark) .fi-ta-ctn .fi-checkbox-input {
+    background-color: #ffffff !important;
+    border: 1px solid #a1a1aa !important;
+    border-radius: 4px !important;
+}
+html:not(.dark) .fi-ta-ctn .fi-checkbox-input:checked,
+html:not(.dark) .fi-ta-ctn .fi-checkbox-input:indeterminate {
+    background-color: var(--uls-dt-ink) !important;
+    border-color: var(--uls-dt-ink) !important;
+}
+
+/* Row actions: View and Edit in neutral grey (Delete keeps its red) */
+html:not(.dark) .fi-ta-actions .fi-link:not(.fi-color-danger),
+html:not(.dark) .fi-ta-actions .fi-link:not(.fi-color-danger) .fi-icon {
+    color: #3f3f46 !important;
+}
+html:not(.dark) .fi-ta-actions .fi-link:not(.fi-color-danger):hover {
+    color: var(--uls-dt-ink) !important;
+}
+
+/* Filters panel: an outlined card with outlined selects and a near-black Apply button */
+html:not(.dark) .fi-ta-filters-dropdown .fi-dropdown-panel {
+    border: 1px solid var(--uls-dt-line) !important;
+    border-radius: 10px !important;
+    box-shadow: 0 8px 24px rgba(9, 9, 11, 0.08) !important;
+}
+html:not(.dark) .fi-ta-filters .fi-input-wrp,
+html:not(.dark) .fi-ta-filters .fi-select-input {
+    background-color: #ffffff !important;
+}
+html:not(.dark) .fi-ta-filters .fi-input-wrp {
+    border: 1px solid var(--uls-dt-line) !important;
+    border-radius: 7px !important;
+}
+html:not(.dark) .fi-ta-filters .fi-btn.fi-color-primary,
+html:not(.dark) .fi-ta-filters .fi-btn[type="submit"] {
+    color: #ffffff !important;
+    background: var(--uls-dt-ink) !important;
+}
+html:not(.dark) .fi-ta-filters .fi-btn.fi-color-primary:hover,
+html:not(.dark) .fi-ta-filters .fi-btn[type="submit"]:hover {
+    background: #27272a !important;
+}
+
+/* Footer: record count, per-page and page buttons as small ghost buttons */
+html:not(.dark) .fi-ta-ctn .fi-pagination {
+    padding: 10px 16px !important;
+    border-top: 1px solid var(--uls-dt-line) !important;
+}
+html:not(.dark) .fi-pagination-overview {
+    color: var(--uls-dt-muted) !important;
+    font-size: 13px;
+}
+html:not(.dark) .fi-pagination-records-per-page-select .fi-input-wrp {
+    background: #ffffff !important;
+    border: 1px solid var(--uls-dt-line) !important;
+    border-radius: 7px !important;
+}
+html:not(.dark) .fi-pagination-items {
+    gap: 4px;
+    border: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+html:not(.dark) .fi-pagination-item,
+html:not(.dark) .fi-pagination-item-btn {
+    border: 0 !important;
+    box-shadow: none !important;
+}
+html:not(.dark) .fi-pagination-item-btn {
+    min-width: 30px;
+    height: 30px;
+    justify-content: center;
+    border-radius: 6px !important;
+    color: var(--uls-dt-muted) !important;
+    background: transparent !important;
+}
+html:not(.dark) .fi-pagination-item-btn:hover {
+    color: var(--uls-dt-ink) !important;
+    background: var(--uls-dt-soft) !important;
+}
+html:not(.dark) .fi-pagination-item.fi-active .fi-pagination-item-btn,
+html:not(.dark) .fi-pagination-item.fi-active .fi-pagination-item-label {
+    color: var(--uls-dt-ink) !important;
+    font-weight: 600;
+    background: var(--uls-dt-soft) !important;
+}
+html:not(.dark) .fi-pagination-previous-btn,
+html:not(.dark) .fi-pagination-next-btn {
+    color: var(--uls-dt-ink) !important;
+    background: #ffffff !important;
+    border: 1px solid var(--uls-dt-line) !important;
+    box-shadow: none !important;
 }
 
 /* ---------- Inputs: filled, navy outline when focused ---------- */
