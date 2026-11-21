@@ -7,9 +7,11 @@ Contrast is measured against the nearest solid background; text over photos or
 gradients is listed as "manual" instead of being guessed.
 
 Usage: python3 wcag_check.py http://127.0.0.1:8124 /path1 /path2 ...
+Dark mode: COLOR_SCHEME=dark python3 wcag_check.py ... (the pages follow the device setting).
 """
 import asyncio
 import json
+import os
 import sys
 
 from playwright.async_api import async_playwright
@@ -107,7 +109,8 @@ async def main(base, paths):
         browser = await p.chromium.launch(args=['--no-sandbox'])
         report = {}
         for width in (1440, 390):
-            page = await browser.new_page(viewport={'width': width, 'height': 900})
+            page = await browser.new_page(viewport={'width': width, 'height': 900},
+                                          color_scheme=os.environ.get('COLOR_SCHEME', 'light'))
             for path in paths:
                 await page.goto(base + path, wait_until='networkidle')
                 issues = await page.evaluate(JS)

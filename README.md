@@ -111,9 +111,17 @@ heading order, landmarks, focus rings and 24 px touch targets. To re-check after
 ```bash
 pip install playwright && playwright install chromium   # once
 python3 tools/wcag_check.py https://academics.uls.edu.ph / /programs /colleges/college-of-law
+COLOR_SCHEME=dark python3 tools/wcag_check.py https://academics.uls.edu.ph / /programs /colleges/college-of-law
 ```
 
 For a second opinion, run the free axe DevTools or WAVE browser extension on the same pages.
+
+**Colour mode.** The header button (next to Enroll; beside the menu button on phones) offers System, Light and
+Dark, like the SmartKMS docs. System is the default and follows the device. A Light or Dark choice is kept in
+the browser (`localStorage`) and applied before the page paints by `public/js/theme.js`; the menu is in
+`resources/js/site.js`, its labels in Site settings → Screen reader labels. The colours are variables at the top
+of `public/css/academics.css`: change a colour there for both themes, and keep navy for fills (header, hero,
+buttons), which stay the same in dark mode. Both modes pass the contrast check above.
 
 ## Everything on the site is managed in the admin
 
