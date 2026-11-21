@@ -15,7 +15,7 @@ class AcademicEventsTable
         return $table
             ->columns([
                 TextColumn::make('title')->searchable()->weight('bold')->wrap()->description(fn ($record) => $record->location),
-                TextColumn::make('college.name')->label('College')->placeholder('University-wide')->wrap()->visibleFrom('md'),
+                TextColumn::make('college.name')->label('College')->placeholder('University-wide')->wrap()->visibleFrom('xl'),
                 TextColumn::make('starts_at')->label('Starts')->dateTime('M d, Y g:i A')->sortable(),
                 IconColumn::make('is_published')->label('On website')->boolean(),
             ])

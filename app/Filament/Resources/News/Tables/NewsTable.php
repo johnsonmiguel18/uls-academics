@@ -23,7 +23,8 @@ class NewsTable
                     ->label('')
                     ->disk('public')
                     ->imageWidth(72)
-                    ->imageHeight(48),
+                    ->imageHeight(48)
+                    ->visibleFrom('sm'), // phones: room for the title
 
                 TextColumn::make('title')
                     ->label('Article Title')
@@ -39,7 +40,7 @@ class NewsTable
                     ->formatStateUsing(fn (string $state): string => \App\Models\Term::label('news_category', $state))
                     ->color(fn (string $state): string => $state === 'announcement' ? 'gray' : 'primary')
                     ->sortable()
-                    ->visibleFrom('md'),
+                    ->visibleFrom('xl'),
 
                 TextColumn::make('status')
                     ->label('Status')
@@ -62,14 +63,14 @@ class NewsTable
                     ->falseIcon(Heroicon::OutlinedStar)
                     ->trueColor('primary')
                     ->falseColor('gray')
-                    ->visibleFrom('lg'),
+                    ->visibleFrom('2xl'),
 
                 TextColumn::make('published_at')
                     ->label('Publish date')
                     ->dateTime('M d, Y g:i A')
                     ->description(fn (News $record): ?string => $record->unpublish_at ? 'Until ' . $record->unpublish_at->format('M d, Y') : null)
                     ->sortable()
-                    ->visibleFrom('md'),
+                    ->visibleFrom('xl'),
             ])
             ->filters([
                 SelectFilter::make('category')
