@@ -23,7 +23,7 @@ Laravel 12 + Filament 5 app (see README.md). Public styles are plain CSS in `pub
 
 | Pages | Stylesheets | Class prefix |
 |---|---|---|
-| News (`news/index`, `news/show`) | `university.css` + `university-v3.css` + `news-card.css` | `uls-`, `news-` |
+| News (`news/index`, `news/show`) | `news.css` (the parts of the main website's styles these pages use) + `news-card.css` | `uls-`, `news-` |
 | Home (`academics/index`) | `news-card.css` | `ac-`, `news-` |
 | College (`academics/college`) | `academics-college.css` + `news-card.css` | `ac-`, `news-` |
 | SDG pages (`sdgs/*`) | `academics-college.css` + `academics-sdgs.css` | `ac-` |
@@ -54,6 +54,6 @@ composer.json vs composer.lock, docs vs code), report it to the user. Don't sile
 
 Known:
 - **PHP version**: the README says PHP 8.4. `composer.json` allows `^8.2`, but the locked packages need PHP ≥ 8.4.1
-  (`symfony/html-sanitizer` via Filament), so the code won't install on 8.2/8.3. On PHP 8.3, two tests fail and the
-  college and program pages return errors.
+  (`symfony/html-sanitizer` via Filament), so the code won't install on 8.2/8.3. On PHP 8.3, the
+  college and program pages return errors (three tests fail, including the college design preview test).
 - **Wiki**: there is no wiki in this repository, so README-vs-wiki badges can't be checked from here.
