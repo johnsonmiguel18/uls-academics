@@ -97,7 +97,8 @@
         </div>
     </header>
 
-    <div id="content">
+    {{-- tabindex="-1": "Skip to content" moves keyboard focus here in every browser --}}
+    <div id="content" tabindex="-1">
         @yield('content')
     </div>
 
