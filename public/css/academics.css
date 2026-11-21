@@ -583,6 +583,7 @@ button { cursor: pointer; }
 
 .ac-skip { position: absolute; left: -9999px; top: 8px; z-index: 100; padding: 10px 16px; border-radius: 6px; color: #ffffff; background: #0d1650; }
 .ac-skip:focus { left: 8px; }
+#content:focus { outline: none; } /* the skip link's target is a container, not a control */
 
 .ac-site-header { position: relative; z-index: 50; color: #ffffff; background: #192a8a; }
 
@@ -745,8 +746,9 @@ button { cursor: pointer; }
 
 /* Pagination (Laravel "default" markup) */
 .ac-pagination .pagination { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
-.ac-pagination .page-link,
-.ac-pagination .page-item > span {
+/* Laravel's "default" pagination is <li><a> / <li><span> without classes (the .page-* names are Bootstrap's). */
+.ac-pagination .pagination li > a,
+.ac-pagination .pagination li > span {
     display: grid;
     place-items: center;
     min-width: 44px;
@@ -757,9 +759,9 @@ button { cursor: pointer; }
     color: var(--ac-navy);
     text-decoration: none;
 }
-.ac-pagination .active > span { color: #ffffff; background: var(--ac-navy); border-color: var(--ac-navy); }
-.ac-pagination .disabled > span { color: #6b7080; }
-.ac-pagination .page-link:hover { border-color: var(--ac-navy); }
+.ac-pagination .pagination li.active > span { color: #ffffff; background: var(--ac-navy); border-color: var(--ac-navy); }
+.ac-pagination .pagination li.disabled > span { color: #6b7080; }
+.ac-pagination .pagination li > a:hover { border-color: var(--ac-navy); }
 
 /* 2.4.7: one clear focus ring everywhere on the site */
 .ac-body a:focus-visible, .ac-body button:focus-visible, .ac-body summary:focus-visible,
