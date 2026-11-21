@@ -151,6 +151,35 @@ class AcademicsTest extends TestCase
         $this->assertDatabaseMissing('programs', ['slug' => 'sneaky']);
     }
 
+    public function test_news_editor_has_three_panes_and_previews_only_stories_you_may_edit(): void
+    {
+        $own = $this->college();
+        $other = $this->college();
+        $draft = News::create(['title' => 'Own draft', 'slug' => 'own-draft', 'category' => 'research', 'content' => 'Body', 'status' => 'draft', 'college_id' => $own->id]);
+        $foreign = News::create(['title' => 'Other draft', 'slug' => 'other-draft', 'category' => 'research', 'content' => 'Body', 'status' => 'draft', 'college_id' => $other->id]);
+
+        // Not signed in: no preview.
+        $this->get(route('admin.news.preview', ['id' => $draft->id]))->assertForbidden();
+
+        $admin = User::factory()->create(['college_id' => $own->id]);
+        $admin->assignRole('college_admin');
+        $this->actingAs($admin);
+        Filament::setCurrentPanel(Filament::getPanel('admin'));
+
+        // Drafts preview as the public article, never indexed or cached; another college's story is not found.
+        $this->get(route('admin.news.preview', ['id' => $draft->id]))->assertOk()
+            ->assertSee('Own draft')
+            ->assertHeader('X-Robots-Tag', 'noindex, nofollow');
+        $this->get(route('admin.news.preview', ['id' => $foreign->id]))->assertNotFound();
+
+        // The editor: story list, canvas with Edit / Preview, settings tabs.
+        $this->get("/admin/news/{$draft->id}/edit")->assertOk()
+            ->assertSee('class="uls-pe-list"', false)
+            ->assertSee('uls-pe-toolbar', false)
+            ->assertSee(route('admin.news.preview', ['id' => $draft->id]), false)
+            ->assertDontSee('Other draft');
+    }
+
     public function test_admin_screens_render_for_managers_and_college_admins(): void
     {
         $college = $this->college();

@@ -15,6 +15,12 @@ class EditNews extends EditRecord
     // Save and Cancel stay in view while scrolling a long story.
     public static bool $formActionsAreSticky = true;
 
+    /** Three panes (stories, article, settings) need the full width. */
+    public function getMaxContentWidth(): \Filament\Support\Enums\Width
+    {
+        return \Filament\Support\Enums\Width::Full;
+    }
+
     /** Under the title: what visitors see now, the record number and the story's web address. */
     public function getSubheading(): string
     {

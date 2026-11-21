@@ -56,6 +56,8 @@ class AdminPanelProvider extends PanelProvider
             // Light only, like the public site: no System/Light/Dark switcher in the user menu.
             ->darkMode(false)
             ->sidebarCollapsibleOnDesktop()
+            // Warn before leaving a form with unsaved changes (e.g. jumping to another story in the news editor).
+            ->unsavedChangesAlerts()
             // ULS theme: plain CSS through render hooks, no Tailwind build needed.
             ->renderHook(PanelsRenderHook::HEAD_END, fn (): string => '
                 <link rel="stylesheet" href="' . \App\Support\Asset::url('css/admin.css') . '">')
