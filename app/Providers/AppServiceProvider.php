@@ -32,6 +32,23 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Thumbnails ahead of time: when a save changes a field holding an uploaded JPEG or PNG, its WebP copies are
+        // made now (about 0.2 s per image), so the first visitor does not wait for them. Never blocks a save.
+        Event::listen('eloquent.saved: *', function (string $event, array $models): void {
+            foreach ($models as $model) {
+                // New records: every field; updates: only what changed.
+                foreach ($model->wasRecentlyCreated ? $model->getAttributes() : $model->getChanges() as $value) {
+                    if (is_string($value) && preg_match('/\.(jpe?g|png)$/i', $value) && ! str_contains($value, '..')) {
+                        try {
+                            \App\Support\Thumb::warm($value);
+                        } catch (\Throwable $e) {
+                            report($e);
+                        }
+                    }
+                }
+            }
+        });
+
         // Proxies in front of the site (TRUSTED_PROXIES), so HTTPS and the visitor's IP are seen correctly.
         if (filled(config('security.trusted_proxies'))) {
             \Illuminate\Http\Middleware\TrustProxies::at(config('security.trusted_proxies') === '*'

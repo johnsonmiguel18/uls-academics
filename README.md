@@ -167,7 +167,7 @@ Production server (XAMPP); these are server settings, not part of the repository
 | `.env` | `APP_ENV=production`, `APP_DEBUG=false`, `SESSION_SECURE_COOKIE=true`, `TRUSTED_PROXIES=...`, `SESSION_DRIVER=file`, `CACHE_STORE=file` (or `redis`) |
 | `apache/conf/extra/httpd-default.conf` | `ServerTokens Prod` and `ServerSignature Off` (Apache name only, no version or OS) |
 | `php/php.ini` | `expose_php = Off`; `zend_extension=opcache` and `opcache.enable=1` (PHP keeps compiled code in memory) |
-| After every update | `composer install --no-dev --optimize-autoloader`, `npm ci && npm run build`, `php artisan migrate --force`, then `php artisan optimize` (config, routes, views, events and Filament cached; run it again after any `.env` change) |
+| After every update | `composer install --no-dev --optimize-autoloader`, `npm ci && npm run build`, `php artisan migrate --force`, then `php artisan optimize` (config, routes, views, events and Filament cached; run it again after any `.env` change), `php artisan cache:clear` (cached pages would otherwise keep the old layout for up to 10 minutes) and `php artisan thumbs:warm` (photo thumbnails for images copied in by hand; uploads in the admin get theirs when saved) |
 | Apache virtual host | `DocumentRoot` pointing at the project's `public/` folder, so `/.env`, `/.git` and `/vendor` cannot be opened |
 | HTTPS (the proxy, or Apache's SSL virtual host) | `Strict-Transport-Security: max-age=31536000; includeSubDomains` |
 

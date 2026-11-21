@@ -30,6 +30,7 @@ class ThumbnailTest extends TestCase
     {
         File::deleteDirectory($this->dir);
         File::deleteDirectory(public_path('thumbs/480/storage/thumb-test'));
+        File::deleteDirectory(public_path('thumbs/960/storage/thumb-test'));
         parent::tearDown();
     }
 
@@ -65,5 +66,29 @@ class ThumbnailTest extends TestCase
     {
         $this->get('/thumbs/480/storage/' . str_repeat('../', 3) . '.env')->assertNotFound();
         $this->get('/thumbs/480/storage/thumb-test/missing.png')->assertNotFound();
+    }
+
+    public function test_thumbnails_are_made_ahead_when_an_image_is_saved_and_by_the_warm_command(): void
+    {
+        // Saving a record with a new photo makes both sizes right away.
+        \App\Models\News::create(['title' => 'With photo', 'slug' => 'with-photo', 'category' => 'research', 'content' => 'Body',
+            'status' => 'draft', 'featured_image' => 'thumb-test/photo.png']);
+        $this->assertFileExists(public_path('thumbs/480/storage/thumb-test/photo.png.webp'));
+        $this->assertFileExists(public_path('thumbs/960/storage/thumb-test/photo.png.webp'));
+
+        // The command fills in anything missing (e.g. photos copied in by hand) and skips what exists.
+        imagepng(imagecreatetruecolor(800, 600), $this->dir . '/second.png');
+        $this->artisan('thumbs:warm', ['--source' => 'storage'])->assertSuccessful();
+        $this->assertSame(480, getimagesize(public_path('thumbs/480/storage/thumb-test/second.png.webp'))[0]);
+        $this->assertFileExists(public_path('thumbs/960/storage/thumb-test/second.png.webp'));
+    }
+
+    public function test_palette_png_becomes_a_webp_copy_instead_of_an_error(): void
+    {
+        $palette = imagecreate(1000, 500); // palette image, like many small logos
+        imagecolorallocate($palette, 25, 42, 138);
+        imagepng($palette, $this->dir . '/logo.png');
+
+        $this->get('/thumbs/480/storage/thumb-test/logo.png.webp')->assertOk()->assertHeader('Content-Type', 'image/webp');
     }
 }
