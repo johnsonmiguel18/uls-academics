@@ -39,9 +39,8 @@ class SecurityHeadersTest extends TestCase
 
     public function test_a_public_page_gets_the_headers_and_a_nonce_policy_its_scripts_match(): void
     {
-        \App\Models\News::create(['title' => 'Story', 'slug' => 'story', 'category' => 'research', 'content' => 'Body', 'status' => 'published']);
-
-        $response = $this->get('/news/story')->assertOk();
+        // The home page always has a JSON-LD block; the built site script joins it when "npm run build" has run.
+        $response = $this->get('/')->assertOk();
         $this->assertBasicHeaders($response);
 
         // Report-only by default; nothing is blocked until CSP_REPORT_ONLY=false.
@@ -53,7 +52,7 @@ class SecurityHeadersTest extends TestCase
         $this->assertStringContainsString("frame-ancestors 'self'", $policy);
         $this->assertStringContainsString("object-src 'none'", $policy);
 
-        // Every script tag on the page (the JSON-LD block, and the site script when it is built) carries the nonce.
+        // Every script tag on the page carries the nonce.
         preg_match("/'nonce-([^']+)'/", $policy, $nonce);
         preg_match_all('/<script\b[^>]*>/', $response->getContent(), $tags);
         $this->assertNotEmpty($tags[0]);
