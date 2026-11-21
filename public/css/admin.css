@@ -1278,15 +1278,25 @@ html:not(.dark) .fi-input-wrp-label {
 .uls-pe-preview-frame.is-phone { max-width: 390px; border-radius: 22px; box-shadow: 0 0 0 8px #27272a; }
 @media (prefers-reduced-motion: reduce) { .uls-pe-preview-frame { transition: none; } }
 
-/* Right pane: settings tabs as an inspector; the three tabs share the width and always fit */
+/* Right pane: settings tabs as an inspector. Each tab is as wide as its label plus even padding (the
+   longest, "Publishing", gets more room), so the chosen tab's box never touches its text; all three fit
+   in the narrow pane from 1280 px up. */
 .uls-pe-inspector > .fi-tabs {
-    display: grid !important;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    display: flex !important;
+    gap: 4px !important;
+    padding: 4px !important;
     overflow: visible !important;
 }
 .uls-pe-inspector > .fi-tabs .fi-tabs-item {
+    flex: 1 1 auto;
     justify-content: center;
     min-width: 0;
-    padding: 6px 4px !important;
+    padding: 6px 10px !important;
     font-size: 13px;
+    white-space: nowrap;
+}
+/* Narrowest three-pane widths (1280-1439 px): a little smaller so every label keeps its padding */
+@media (min-width: 1280px) and (max-width: 1439px) {
+    .uls-pe-inspector > .fi-tabs { gap: 2px !important; padding: 3px !important; }
+    .uls-pe-inspector > .fi-tabs .fi-tabs-item { padding: 6px 8px !important; font-size: 12px; }
 }
