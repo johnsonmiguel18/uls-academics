@@ -22,6 +22,7 @@
 @php($label = fn (string $key, array $replace = []) => Site::text("news.labels.$key", $replace))
 
 @section('content')
+<main class="article-main">
 {{-- Compact header like the news page: headline, summary and date, aligned with the article text --}}
 <section class="news-masthead article-masthead">
     <div class="article-masthead-inner">
@@ -45,7 +46,6 @@
     </div>
 </section>
 
-<main class="article-main">
     <article class="article-body {{ $article->featured_image ? 'has-image' : '' }}">
         <div class="article-tags">
             <a class="news-category" href="{{ route('news.index', ['category' => $article->category]) }}">{{ \App\Models\Term::label('news_category', $article->category) }}</a>

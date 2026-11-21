@@ -246,6 +246,7 @@ class SiteContentSeeder extends Seeder
                 'labels' => [
                     'breadcrumb' => 'News',
                     'search_label' => 'Search news',
+                    'categories_label' => 'News categories',
                     'search_placeholder' => 'Search news and announcements...',
                     'search_button' => 'Search',
                     'all_categories' => 'All',

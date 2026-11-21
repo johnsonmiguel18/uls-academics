@@ -76,7 +76,7 @@ class NewsFrontPageTest extends TestCase
         }
 
         $html = $this->get(route('news.index'))->assertOk()->getContent();
-        preg_match('/<ul class="news-lead-related">(.*?)<\/ul>/s', $html, $related);
+        preg_match('/<ul class="news-lead-related"[^>]*>(.*?)<\/ul>/s', $html, $related);
         preg_match('/<div class="news-cards news-rail".*?<\/div>\s*<nav/s', $html, $grid);
 
         // Hero s-1; the next three (s-2 to s-4) as headlines under it; the cards start at s-5 (6 cards = 9 per page).
@@ -97,6 +97,30 @@ class NewsFrontPageTest extends TestCase
 
         // Filtered lists have no lead, so no headline list either.
         $this->assertStringNotContainsString('news-lead-related', $this->get(route('news.index', ['category' => 'college-news']))->getContent());
+    }
+
+    public function test_screen_readers_get_one_main_area_and_distinct_names(): void
+    {
+        foreach (range(1, 12) as $i) {
+            $this->story("s-$i", $i);
+        }
+
+        $html = $this->get(route('news.index'))->assertOk()->getContent();
+
+        // The page title sits inside <main>, so "skip to main content" lands on it.
+        $this->assertMatchesRegularExpression('/<main class="news-index">\s*(\{\{--.*?--\}\}\s*)?<section class="news-masthead">/s', $html);
+        $this->assertStringContainsString('<span aria-current="page">News</span>', $html);
+        $this->assertStringContainsString('role="search" aria-label="Search news"', $html);
+        $this->assertStringContainsString('<nav class="news-chips" aria-label="News categories">', $html);
+        $this->assertStringContainsString('<ul class="news-lead-related" aria-label="More stories">', $html);
+        // The card rail is a named group, not a second landmark with the section's name.
+        $this->assertStringContainsString('role="group" aria-labelledby="news-list-heading"', $html);
+        $this->assertStringNotContainsString('role="region"', $html);
+        // Goal chips: the name is read once, from the hidden text, not again from a tooltip.
+        $this->assertDoesNotMatchRegularExpression('/class="news-sdg-chip"[^>]*title=/', $html);
+
+        $article = $this->get(route('news.show', 's-2'))->assertOk()->getContent();
+        $this->assertMatchesRegularExpression('/<main class="article-main">\s*(\{\{--.*?--\}\}\s*)?<section class="news-masthead article-masthead">/s', $article);
     }
 
     public function test_sdg_labels_link_to_the_filter_and_overflow_after_three(): void

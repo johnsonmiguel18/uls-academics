@@ -31,13 +31,15 @@
     $cards = $news->getCollection()->slice($related->count());
 @endphp
 
-{{-- Compact page header, so the lead story shows without scrolling (CNN-style) --}}
+<main class="news-index">
+{{-- Compact page header, so the lead story shows without scrolling (CNN-style).
+     Inside <main>, so screen readers jumping to the main content start at the page title. --}}
 <section class="news-masthead">
     <div class="home-container news-masthead-inner">
         <nav class="page-breadcrumb" aria-label="{{ \App\Support\Site::text('a11y.breadcrumb') }}">
             <a href="{{ route('academics.index') }}">{{ Site::text('header.brand_label') ?: Site::text('contact.site_name') }}</a>
             <span aria-hidden="true">/</span>
-            <span>{{ $label('breadcrumb') }}</span>
+            <span aria-current="page">{{ $label('breadcrumb') }}</span>
         </nav>
         <h1>{{ Site::text('news.heading') }}</h1>
         {{-- Only on filtered lists: which college or goal is shown, and a way back --}}
@@ -50,12 +52,11 @@
     </div>
 </section>
 
-<main class="news-index">
     <div class="home-container">
 
         {{-- One row: search, category tabs, and the 17 goals in a "Goals" menu; each keeps the other active filters --}}
         <div class="news-toolbar">
-            <form action="{{ route('news.index') }}" method="GET" class="news-search" role="search">
+            <form action="{{ route('news.index') }}" method="GET" class="news-search" role="search" aria-label="{{ $label('search_label') }}">
                 <label for="news-search" class="sr-only">{{ $label('search_label') }}</label>
                 <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
                 <input type="search" id="news-search" name="search"
@@ -69,7 +70,7 @@
                 <button type="submit" class="home-btn home-btn-solid">{{ $label('search_button') }}</button>
             </form>
 
-            <nav class="news-chips" aria-label="{{ $label('search_label') }}">
+            <nav class="news-chips" aria-label="{{ $label('categories_label') }}">
                 @foreach ($categories as $value => $categoryLabel)
                     <a href="{{ $filter(['category' => $value]) }}"
                        class="news-chip"
@@ -91,7 +92,6 @@
                     @foreach ($goals as $n => [$goalName, $color, $ink, $tint, $tintInk])
                         <a href="{{ $filter(['sdg' => $n]) }}" class="news-sdg-chip"
                            style="--sdg: {{ $color }}; --sdg-ink: {{ $ink }}; --sdg-tint: {{ $tint }}; --sdg-tint-ink: {{ $tintInk }}"
-                           title="{{ $goalName }}"
                            @if (request()->integer('sdg') === $n) aria-current="page" @endif>{{ Site::text('sdgs.labels.goal_kicker', ['number' => $n]) }}<span class="sr-only">: {{ $goalName }}</span></a>
                     @endforeach
                 </nav>
@@ -130,7 +130,7 @@
 
                             {{-- The next three stories as plain headlines, in a row under the lead (CNN-style) --}}
                             @if ($related->isNotEmpty())
-                                <ul class="news-lead-related">
+                                <ul class="news-lead-related" aria-label="{{ $label('related_heading') }}">
                                     @foreach ($related as $story)
                                         <li><a href="{{ route('news.show', $story->slug) }}">{{ $story->title }}</a></li>
                                     @endforeach
@@ -149,7 +149,7 @@
                         {{-- A grid on wider screens; on phones a sideways swipe rail (keyboard: focus it, then arrow keys).
                              On phones the site script shows arrow buttons and dots while there is more to swipe. --}}
                         <div class="news-rail-wrap">
-                            <div class="news-cards news-rail" id="news-rail" tabindex="0" role="region" aria-labelledby="news-list-heading">
+                            <div class="news-cards news-rail" id="news-rail" tabindex="0" role="group" aria-labelledby="news-list-heading">
                                 @foreach ($cards as $story)
                                     @include('partials.news-card', ['story' => $story])
                                 @endforeach
