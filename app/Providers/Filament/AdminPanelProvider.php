@@ -53,6 +53,8 @@ class AdminPanelProvider extends PanelProvider
             ->defaultAvatarProvider(\App\Filament\AvatarProviders\InitialsAvatar::class)
             // No ->spa(): with it, the browser's Back button could rebuild a page without Filament's
             // stylesheet (unstyled admin). Normal page loads are a little slower but always complete.
+            // Admin is always light: no System/Light/Dark switcher in the user menu (the public site keeps its own).
+            ->darkMode(false)
             ->sidebarCollapsibleOnDesktop()
             // ULS theme: plain CSS through render hooks, no Tailwind build needed.
             ->renderHook(PanelsRenderHook::HEAD_END, fn (): string => '
