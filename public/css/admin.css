@@ -187,14 +187,23 @@ html:not(.dark) .fi-body {
 }
 
 /* Record counts next to Pages / News */
+/* Count badges: Filament colours the number on an inner label, so set it there too. */
+.fi-sidebar-item .fi-badge,
+.fi-sidebar-item .fi-badge .fi-badge-label {
+    color: #ffffff !important; /* white on the darkened blue: about 9:1 */
+}
 .fi-sidebar-item .fi-badge {
-    color: #ffffff !important;
-    background: rgba(255, 255, 255, 0.16) !important;
+    background: rgba(13, 22, 80, 0.55) !important;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25) !important;
 }
 
-.fi-sidebar-item.fi-active .fi-badge {
+.fi-sidebar-item.fi-active .fi-badge,
+.fi-sidebar-item.fi-active .fi-badge .fi-badge-label {
     color: var(--uls-navy-deep) !important;
+}
+.fi-sidebar-item.fi-active .fi-badge {
     background: rgba(13, 22, 80, 0.12) !important;
+    box-shadow: none !important;
 }
 
 .fi-sidebar-item-grouped-border {
@@ -1129,8 +1138,8 @@ html:not(.dark) .fi-breadcrumbs-item-label {
 html:not(.dark) .fi-ta-placeholder {
     color: #71717a !important; /* "University-wide" and other empty cells: 4.8:1 (was 2.6:1) */
 }
-html:not(.dark) .fi-badge.fi-color-primary,
-html:not(.dark) .fi-badge.fi-color-primary .fi-badge-label {
+html:not(.dark) .fi-main .fi-badge.fi-color-primary,
+html:not(.dark) .fi-main .fi-badge.fi-color-primary .fi-badge-label {
     color: #27272a !important; /* chips such as the SDGs in the editor: 13:1 (was 3.7:1) */
 }
 html:not(.dark) .fi-header .fi-btn.fi-color-danger.fi-outlined {
