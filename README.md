@@ -235,3 +235,30 @@ banner photo and seal · YouTube video · college email · per program: code, su
 objectives, curriculum PDF, careers, FAQs · research cluster (name, emblem, coordinator, agenda link),
 highlights and focus areas · partners and linkages · student benefits · extension projects with SDGs ·
 faculty list · facilities · accreditation certificates.
+
+## Design preview for the deans
+
+The deans approve the design before the content is collected. Empty sections are hidden, so with no content
+yet a college page is mostly blank. Sample content fills every section:
+
+```bash
+php artisan db:seed --class=CollegeDesignPreviewSeeder   # every college, department and program page
+php artisan db:seed --class=NewsDesignPreviewSeeder      # the news pages
+```
+
+- Only empty fields are filled. Whatever a college or program already has (dean, mission, admission
+  requirements...) stays as it is.
+- Every sample starts with **[SAMPLE]** and says what belongs there, so the pages double as a guide for the
+  content request. Each college also gets two sample departments, three sample faculty (after the real
+  ones), two upcoming events and two downloads.
+- A dean who signs in can type over a sample in the admin; the real text stays when the samples are removed.
+
+When the real content is in (or before going live):
+
+```bash
+php artisan academics:remove-design-preview   # clears every field still showing [SAMPLE], deletes sample records
+php artisan news:remove-design-preview
+```
+
+In lists (partners, highlights, projects...) only the sample items are removed. Load the samples on a local
+or staging copy, not on the live site.
