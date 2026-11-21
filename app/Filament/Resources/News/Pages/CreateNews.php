@@ -9,6 +9,8 @@ class CreateNews extends CreateRecord
 {
     protected static string $resource = NewsResource::class;
 
+    public static bool $formActionsAreSticky = true;
+
     protected function mutateFormDataBeforeCreate(array $data): array
     {
         $user = auth()->user();
