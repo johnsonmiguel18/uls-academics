@@ -44,7 +44,8 @@ class ThumbnailTest extends TestCase
     {
         // Enough "../" to climb to the root from both folders, then the photo's own absolute path:
         // the source resolves to the real photo, and the copy would be written over it.
-        $path = str_repeat('../', 20) . ltrim($this->photo, '/');
+        // (On Windows the photo's path has backslashes, which no URL may contain.)
+        $path = str_repeat('../', 20) . ltrim(str_replace('\\', '/', $this->photo), '/');
 
         $this->get("/thumbs/480/storage/$path")->assertNotFound();
         $this->get('/thumbs/480/storage/thumb-test/./photo.png')->assertNotFound();
