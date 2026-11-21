@@ -40,14 +40,13 @@
             <span>{{ $label('breadcrumb') }}</span>
         </nav>
         <h1>{{ Site::text('news.heading') }}</h1>
-        <p class="news-masthead-lead">
-            @if ($college || $sdg)
+        {{-- Only on filtered lists: which college or goal is shown, and a way back --}}
+        @if ($college || $sdg)
+            <p class="news-masthead-lead">
                 {{ $college ? $label('filtered_college', ['college' => $college->name]) : '' }}{{ $college && $sdg ? ' · ' : '' }}{{ $sdg ? $label('filtered_sdg', ['number' => request()->integer('sdg'), 'goal' => $sdg]) : '' }}.
                 <a href="{{ route('news.index') }}">{{ $label('see_all') }}</a>
-            @else
-                {{ Site::text('news.intro') }}
-            @endif
-        </p>
+            </p>
+        @endif
     </div>
 </section>
 

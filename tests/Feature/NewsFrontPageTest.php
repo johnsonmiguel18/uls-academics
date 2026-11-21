@@ -92,6 +92,9 @@ class NewsFrontPageTest extends TestCase
         $this->assertMatchesRegularExpression('/<button[^>]*data-rail="prev"[^>]*aria-controls="news-rail"[^>]*aria-label="Previous stories"[^>]*hidden>/', $html);
         $this->assertMatchesRegularExpression('/<button[^>]*data-rail="next"[^>]*aria-controls="news-rail"[^>]*aria-label="Next stories"[^>]*hidden>/', $html);
 
+        // No introduction sentence under the page title on the front page.
+        $this->assertStringNotContainsString('news-masthead-lead', $html);
+
         // Filtered lists have no lead, so no headline list either.
         $this->assertStringNotContainsString('news-lead-related', $this->get(route('news.index', ['category' => 'college-news']))->getContent());
     }
