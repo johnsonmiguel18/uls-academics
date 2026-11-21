@@ -571,7 +571,9 @@ html:not(.dark) .fi-fo-builder-item-header {
 .fi-ta-ctn,
 .fi-sc-form > *,
 .fi-page-content > .fi-sc > * {
-    animation: ulsAdminRise 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    /* "backwards", not "both": a transform kept after the animation (even a zero one) makes these boxes the
+       frame for fixed-position children, so modals opened inside them were centred on the whole page and cut off. */
+    animation: ulsAdminRise 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
 }
 
 .uls-welcome { animation-delay: 0.05s; }
@@ -582,7 +584,7 @@ html:not(.dark) .fi-fo-builder-item-header {
 .fi-ta-ctn { animation-delay: 0.08s; }
 
 .uls-welcome-seal {
-    animation: ulsAdminSeal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
+    animation: ulsAdminSeal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s backwards;
 }
 
 @keyframes ulsAdminSeal {
