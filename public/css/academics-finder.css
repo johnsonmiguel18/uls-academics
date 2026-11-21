@@ -8,7 +8,7 @@
     padding: 22px;
     border: 1px solid var(--ac-line);
     border-radius: var(--ac-radius);
-    background: #ffffff;
+    background: var(--ac-surface);
     box-shadow: 0 10px 30px rgba(13, 22, 80, 0.06);
 }
 
@@ -19,15 +19,15 @@
     width: 100%;
     min-height: 44px;
     padding: 10px 12px;
-    border: 1px solid #cfd3de;
+    border: 1px solid var(--ac-field-line);
     border-radius: 8px;
     color: var(--ac-ink);
-    background: #ffffff;
+    background: var(--ac-surface);
     font: 15px/1.2 inherit;
 }
 
 .ac-check { display: flex; gap: 8px; align-items: center; font-size: 14px; cursor: pointer; }
-.ac-check input { width: 18px; height: 18px; accent-color: var(--ac-navy); }
+.ac-check input { width: 18px; height: 18px; accent-color: var(--ac-link); }
 .ac-filter-actions { display: flex; grid-column: span 3; gap: 10px; justify-content: flex-end; }
 
 .ac-result-count { margin: 24px 0 18px; color: var(--ac-muted); font-size: 14px; }
@@ -35,7 +35,7 @@
 
 .ac-empty {
     padding: 48px 24px;
-    border: 1px dashed #cfd3de;
+    border: 1px dashed var(--ac-field-line);
     border-radius: var(--ac-radius);
     text-align: center;
 }
@@ -48,7 +48,7 @@
 .ac-results.is-loading .ac-program-card * { color: transparent !important; border-color: transparent; }
 .ac-results.is-loading .ac-program-media img { opacity: 0; }
 .ac-results.is-loading .ac-program-card,
-.ac-results.is-loading .ac-program-media { background: linear-gradient(90deg, #eef0f5 25%, #f7f8fb 50%, #eef0f5 75%); background-size: 200% 100%; animation: ac-shimmer 1.2s linear infinite; }
+.ac-results.is-loading .ac-program-media { background: linear-gradient(90deg, var(--ac-skeleton, #eef0f5) 25%, var(--ac-skeleton-hi, #f7f8fb) 50%, var(--ac-skeleton, #eef0f5) 75%); background-size: 200% 100%; animation: ac-shimmer 1.2s linear infinite; }
 @media (prefers-reduced-motion: reduce) { .ac-results.is-loading .ac-program-card, .ac-results.is-loading .ac-program-media { animation: none; } }
 
 /* Phone layout lives here, not in academics.css: this file loads after it and would override it. */

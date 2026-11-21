@@ -36,6 +36,79 @@ document.querySelector('.ac-menu-toggle')?.addEventListener('click', (event) => 
     const open = document.body.classList.toggle('ac-nav-open');
     event.currentTarget.setAttribute('aria-expanded', open);
 });
+
+// Colour mode menu in the header: System (follows the device; the default), Light or Dark. The button shows the
+// current choice and opens a small menu; ↑/↓ move, Escape or a click elsewhere closes. A Light/Dark choice is kept
+// in localStorage and applied before paint by public/js/theme.js; System removes it. Labels come from Site settings.
+const themeButton = document.getElementById('acTheme');
+const themeMenu = document.getElementById('acThemeMenu');
+if (themeButton && themeMenu) {
+    const KEY = 'uls-academics-theme';
+    const svg = (body) => `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${body}</svg>`;
+    const ICONS = {
+        system: svg('<rect x="2" y="4" width="20" height="14" rx="2"></rect><path d="M8 21h8M12 17v4"></path>'),
+        light: svg('<circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>'),
+        dark: svg('<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path>'),
+    };
+    const CHECK = svg('<polyline points="20 6 9 17 4 12"></polyline>').replace('<svg', '<svg class="ac-theme-check"');
+    const choices = ['system', 'light', 'dark'];
+    const current = () => { try { return localStorage.getItem(KEY) || 'system'; } catch (e) { return 'system'; } };
+    const apply = (choice) => {
+        if (choice === 'system') delete document.documentElement.dataset.theme;
+        else document.documentElement.dataset.theme = choice;
+        try { if (choice === 'system') localStorage.removeItem(KEY); else localStorage.setItem(KEY, choice); } catch (e) { /* private mode */ }
+    };
+    const render = () => {
+        const choice = current();
+        themeButton.innerHTML = ICONS[choice];
+        themeButton.title = `${themeButton.dataset.label}: ${themeButton.dataset[choice]}`;
+        themeButton.setAttribute('aria-label', themeButton.title);
+        themeMenu.replaceChildren(...choices.map((key) => {
+            const option = document.createElement('button');
+            option.type = 'button';
+            option.className = 'ac-theme-option' + (key === choice ? ' is-current' : '');
+            option.setAttribute('role', 'menuitemradio');
+            option.setAttribute('aria-checked', key === choice);
+            option.dataset.choice = key;
+            option.innerHTML = ICONS[key] + '<span></span>' + (key === choice ? CHECK : '');
+            option.querySelector('span').textContent = themeButton.dataset[key]; // admin text, never parsed as HTML
+            return option;
+        }));
+    };
+    const options = () => [...themeMenu.querySelectorAll('button')];
+    const open = (focus) => {
+        themeMenu.hidden = false;
+        themeButton.setAttribute('aria-expanded', 'true');
+        if (focus) (themeMenu.querySelector('.is-current') || options()[0]).focus();
+    };
+    const close = (refocus) => {
+        if (themeMenu.hidden) return;
+        themeMenu.hidden = true;
+        themeButton.setAttribute('aria-expanded', 'false');
+        if (refocus) themeButton.focus();
+    };
+    themeButton.addEventListener('click', () => (themeMenu.hidden ? open(false) : close(false)));
+    themeButton.addEventListener('keydown', (event) => {
+        if (['ArrowDown', 'Enter', ' '].includes(event.key)) { event.preventDefault(); open(true); }
+    });
+    themeMenu.addEventListener('click', (event) => {
+        const option = event.target.closest('[data-choice]');
+        if (! option) return;
+        apply(option.dataset.choice);
+        render();
+        close(true);
+    });
+    themeMenu.addEventListener('keydown', (event) => {
+        const list = options(), i = list.indexOf(document.activeElement);
+        if (event.key === 'Escape') { event.preventDefault(); close(true); }
+        else if (event.key === 'ArrowDown') { event.preventDefault(); list[(i + 1) % list.length].focus(); }
+        else if (event.key === 'ArrowUp') { event.preventDefault(); list[(i - 1 + list.length) % list.length].focus(); }
+        else if (event.key === 'Tab') close(false);
+    });
+    document.addEventListener('click', (event) => { if (! themeButton.parentElement.contains(event.target)) close(false); });
+    render();
+    themeButton.parentElement.hidden = false;
+}
 document.addEventListener('click', (event) => {
     // Open menus close on a click outside them: the Colleges list, and the news page's "Goals" menu.
     document.querySelectorAll('.ac-nav-colleges[open], .news-sdg-menu[open]').forEach((menu) => {

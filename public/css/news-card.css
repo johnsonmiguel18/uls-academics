@@ -1,7 +1,7 @@
 /* News cards (home, college, SDG and global pages, and the news pages), the featured story (.news-feature)
    and the news front page. Taken from the main website styles (university.css, university-v3.css);
    the news pages get the tokens (--ink, --navy, --v3-*) from those files, other pages from .ac-news-grid below. */
-.ac-news-grid { --ink: #14204f; --label: #192a8a; --muted: #5c5c5c; --navy: #192a8a; --surface: #f5f5f5; --v3-ease: cubic-bezier(0.2, 0.7, 0.2, 1); --v3-radius: 6px; --v3-serif: Georgia, "Times New Roman", serif; }
+.ac-news-grid { --ink: var(--ac-news-ink, #14204f); --label: var(--ac-news-label, #192a8a); --muted: var(--ac-news-muted, #5c5c5c); --navy: #192a8a; --surface: var(--ac-news-surface, #f5f5f5); --v3-ease: cubic-bezier(0.2, 0.7, 0.2, 1); --v3-radius: 6px; --v3-serif: Georgia, "Times New Roman", serif; }
 .news-media-fallback {
     display: grid;
     place-items: center;
@@ -148,7 +148,7 @@
 }
 /* Compact page header (CNN-style): the lead story shows without scrolling */
 .news-masthead {
-    background: #ffffff;
+    background: var(--ac-bg);
     border-bottom: 1px solid var(--line);
 }
 .news-masthead-inner {
@@ -186,7 +186,7 @@
     font-size: 15px;
 }
 .news-masthead-lead a {
-    color: var(--navy);
+    color: var(--ac-link);
     text-decoration: underline;
 }
 
@@ -205,7 +205,7 @@
 }
 .article-masthead-lead {
     margin: 0;
-    color: #222222;
+    color: var(--text, #222222);
     font-size: 18px;
     line-height: 1.5;
 }
@@ -248,7 +248,7 @@
     min-height: 36px;
     padding: 4px 12px 4px 14px;
     color: var(--ink);
-    background: #ffffff;
+    background: var(--ac-surface);
     border: 1px solid var(--line);
     border-radius: 999px;
     font-size: 13.5px;
@@ -287,7 +287,7 @@
     z-index: 30;
     width: min(440px, 92vw);
     padding: 12px;
-    background: #ffffff;
+    background: var(--ac-surface);
     border: 1px solid var(--line);
     border-radius: 8px;
     box-shadow: 0 8px 24px rgba(20, 32, 79, 0.12);
@@ -410,7 +410,7 @@
     line-height: 1.5;
 }
 .news-rail:focus-visible {
-    outline: 3px solid var(--navy);
+    outline: 3px solid var(--ac-link);
     outline-offset: 6px;
 }
 
@@ -533,7 +533,7 @@
     background: var(--sdg);
 }
 .news-sdg-chip[aria-current="page"] {
-    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px var(--ink);
+    box-shadow: 0 0 0 2px var(--ac-bg), 0 0 0 4px var(--ink);
 }
 .news-sdg-chip.is-all {
     color: var(--ink);
@@ -683,7 +683,7 @@
         stroke-linejoin: round;
     }
     .news-rail-arrow:focus-visible {
-        outline: 3px solid var(--navy);
+        outline: 3px solid var(--ac-link);
         outline-offset: 2px;
     }
     .news-rail-dots:not([hidden]) {
@@ -695,13 +695,13 @@
     .news-rail-dots span {
         width: 8px;
         height: 8px;
-        background: #c9cddb;
+        background: var(--ac-field-line);
         border-radius: 4px;
         transition: width 0.2s ease, background-color 0.2s ease;
     }
     .news-rail-dots span.is-current {
         width: 22px;
-        background: var(--navy);
+        background: var(--ac-link);
     }
     .news-sdg-menu {
         flex: 1 1 100%; /* full row, so the open list wraps instead of widening the page */

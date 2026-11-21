@@ -9,25 +9,73 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; scroll-padding-top: 100px; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-body { font-family: "Segoe UI", Arial, sans-serif; color: #222222; background: #ffffff; line-height: 1.7; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+body { font-family: "Segoe UI", Arial, sans-serif; color: var(--ac-ink); background: var(--ac-bg); line-height: 1.7; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
 a { color: inherit; text-decoration: none; }
 img { display: block; max-width: 100%; }
 p { overflow-wrap: break-word; }
-h1, h2, h3 { color: #132068; line-height: 1.2; }
+h1, h2, h3 { color: var(--ac-heading); line-height: 1.2; }
 button, input, select, textarea { font: inherit; }
 button { cursor: pointer; }
 
-.ac-page {
-    --ac-navy: var(--v3-navy, #192a8a);
+/* ---------- Colours: light, or dark when the visitor's system asks for it or they pick Dark ----------
+   The theme menu in the header sets <html data-theme="light|dark">; without it the system setting decides.
+   Navy stays the brand fill in both themes (header, hero, buttons, footer); text and surfaces switch. */
+:root {
+    --ac-navy: var(--v3-navy, #192a8a);     /* fills: header, hero, buttons */
     --ac-navy-deep: var(--v3-navy-deep, #0d1650);
+    --ac-bg: #ffffff;                       /* page */
+    --ac-surface: #ffffff;                  /* cards, menus, form fields */
+    --ac-tint: #f5f6f9;                     /* alternate sections */
     --ac-ink: #1f2330;
     --ac-muted: #5c6070;
     --ac-line: #e3e5ec;
-    --ac-tint: #f5f6f9;
+    --ac-field-line: #cfd3de;
+    --ac-heading: #132068;
+    --ac-link: #192a8a;                     /* navy as text */
+    --ac-link-deep: #0d1650;
+    --ac-accent: #192a8a;                   /* card top rules and side bars */
+    --ac-chip: #e8ebf7;
+    --ac-media: #e6e9f2;                    /* image placeholders */
+    --ac-code: #f0f2f7;
+    --ac-mark: #fff1a8;
     --ac-radius: 10px;
     --ac-serif: Georgia, "Times New Roman", serif;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        color-scheme: dark;
+        --ac-bg: #0c1020; --ac-surface: #141a2e; --ac-tint: #10162a;
+        --ac-ink: #e3e6ee; --ac-muted: #a7adbf; --ac-muted-soft: #8d93a6; --ac-line: #2a3252; --ac-field-line: #4a5480;
+        --ac-heading: #eef0fa; --ac-link: #aab7ff; --ac-link-deep: #c8d0ff; --ac-accent: #6375dc;
+        --ac-chip: #232c52; --ac-media: #1d2440; --ac-code: #1b2140; --ac-mark: #5c4c00; --ac-row-hover: #1e2646;
+        --ac-skeleton: #1a2038; --ac-skeleton-hi: #262e4e; --ac-error: #ff9d94; --ac-prose: #d6dae6; --ac-quote: #b4b9c9;
+        --ac-field-line-news: #4a5480;
+        /* the main website's styles on the news pages */
+        --text: var(--ac-ink); --uls-text: var(--ac-ink); --uls-white: var(--ac-bg); --uls-surface-white: var(--ac-bg);
+        --light: var(--ac-tint); --ink: #e9ecf6; --muted: #a7adbf; --line: #2a3252; --surface: #181f36;
+        --label: var(--ac-link); /* news category labels */
+        --ac-news-ink: #e9ecf6; --ac-news-label: var(--ac-link); --ac-news-muted: #a7adbf; --ac-news-surface: #181f36; /* news cards on other pages */
+    }
+}
+
+:root[data-theme="dark"] {
+    color-scheme: dark;
+    --ac-bg: #0c1020; --ac-surface: #141a2e; --ac-tint: #10162a;
+    --ac-ink: #e3e6ee; --ac-muted: #a7adbf; --ac-muted-soft: #8d93a6; --ac-line: #2a3252; --ac-field-line: #4a5480;
+    --ac-heading: #eef0fa; --ac-link: #aab7ff; --ac-link-deep: #c8d0ff; --ac-accent: #6375dc;
+    --ac-chip: #232c52; --ac-media: #1d2440; --ac-code: #1b2140; --ac-mark: #5c4c00; --ac-row-hover: #1e2646;
+    --ac-skeleton: #1a2038; --ac-skeleton-hi: #262e4e; --ac-error: #ff9d94; --ac-prose: #d6dae6; --ac-quote: #b4b9c9;
+    --ac-field-line-news: #4a5480;
+    --text: var(--ac-ink); --uls-text: var(--ac-ink); --uls-white: var(--ac-bg); --uls-surface-white: var(--ac-bg);
+    --light: var(--ac-tint); --ink: #e9ecf6; --muted: #a7adbf; --line: #2a3252; --surface: #181f36;
+        --label: var(--ac-link); /* news category labels */
+        --ac-news-ink: #e9ecf6; --ac-news-label: var(--ac-link); --ac-news-muted: #a7adbf; --ac-news-surface: #181f36; /* news cards on other pages */
+}
+
+.ac-page {
     color: var(--ac-ink);
-    background: #ffffff;
+    background: var(--ac-bg);
 }
 
 .ac-container {
@@ -39,7 +87,7 @@ button { cursor: pointer; }
 
 .ac-kicker {
     margin: 0 0 10px;
-    color: var(--ac-navy);
+    color: var(--ac-link);
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.14em;
@@ -64,7 +112,7 @@ button { cursor: pointer; }
     display: inline-flex;
     gap: 6px;
     margin-top: auto;
-    color: var(--ac-navy);
+    color: var(--ac-link);
     font-size: 14px;
     font-weight: 600;
 }
@@ -88,8 +136,8 @@ button { cursor: pointer; }
 }
 
 .ac-button:hover { background: var(--ac-navy-deep); border-color: var(--ac-navy-deep); }
-.ac-button-ghost { color: var(--ac-navy); background: transparent; }
-.ac-button-ghost:hover { color: #ffffff; }
+.ac-button-ghost { color: var(--ac-link); background: transparent; border-color: var(--ac-link); }
+.ac-button-ghost:hover { color: #ffffff; border-color: var(--ac-navy); }
 .ac-button-light { color: var(--ac-navy-deep); background: #ffffff; border-color: #ffffff; }
 .ac-button-light:hover { color: var(--ac-navy-deep); background: #e8ebf7; border-color: #e8ebf7; }
 .ac-button-outline-light { color: #ffffff; background: transparent; border-color: rgba(255, 255, 255, 0.6); }
@@ -171,6 +219,7 @@ button { cursor: pointer; }
     padding: 6px;
     border-radius: 999px;
     background: #ffffff;
+    color-scheme: light; /* stays white on the navy hero in both themes */
 }
 
 .ac-search svg {
@@ -181,7 +230,7 @@ button { cursor: pointer; }
     height: 20px;
     translate: 0 -50%;
     fill: none;
-    stroke: var(--ac-muted);
+    stroke: #5c6070;
     stroke-width: 2;
     stroke-linecap: round;
 }
@@ -192,7 +241,7 @@ button { cursor: pointer; }
     padding: 12px 12px 12px 48px;
     border: 0;
     border-radius: 999px;
-    color: var(--ac-ink);
+    color: #1f2330;
     background: transparent;
     font: 16px/1.2 inherit;
 }
@@ -279,8 +328,8 @@ button { cursor: pointer; }
     width: 56px;
     height: 56px;
     border-radius: 50%;
-    color: var(--ac-navy);
-    background: #e8ebf7;
+    color: var(--ac-link);
+    background: var(--ac-chip);
     font-family: var(--ac-serif);
     font-size: 20px;
     object-fit: cover;
@@ -301,11 +350,11 @@ button { cursor: pointer; }
     padding: 24px;
     border: 1px solid var(--ac-line);
     border-radius: var(--ac-radius);
-    background: #ffffff;
+    background: var(--ac-surface);
     box-shadow: 0 10px 30px rgba(13, 22, 80, 0.08);
 }
 
-.ac-stat strong { display: block; color: var(--ac-navy); font-family: var(--ac-serif); font-size: 44px; font-weight: 400; line-height: 1; }
+.ac-stat strong { display: block; color: var(--ac-link); font-family: var(--ac-serif); font-size: 44px; font-weight: 400; line-height: 1; }
 .ac-stat span { display: block; margin-top: 10px; color: var(--ac-muted); font-size: 14px; }
 
 /* ---------- Sections ---------- */
@@ -331,7 +380,7 @@ button { cursor: pointer; }
     top: var(--header-height, 0px);
     z-index: 20;
     border-bottom: 1px solid var(--ac-line);
-    background: rgba(255, 255, 255, 0.96);
+    background: color-mix(in srgb, var(--ac-bg) 96%, transparent);
 }
 
 .ac-subnav .ac-container { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
@@ -346,7 +395,7 @@ button { cursor: pointer; }
     text-decoration: none;
 }
 
-.ac-subnav a:hover { color: var(--ac-navy); border-bottom-color: var(--ac-navy); }
+.ac-subnav a:hover { color: var(--ac-link); border-bottom-color: var(--ac-link); }
 
 /* ---------- College cards ---------- */
 .ac-college-grid,
@@ -368,10 +417,10 @@ button { cursor: pointer; }
     height: 100%;
     overflow: hidden;
     border: 1px solid var(--ac-line);
-    border-top: 3px solid var(--ac-navy);
+    border-top: 3px solid var(--ac-accent);
     border-radius: var(--ac-radius);
     color: inherit;
-    background: #ffffff;
+    background: var(--ac-surface);
     text-decoration: none;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
@@ -403,7 +452,7 @@ button { cursor: pointer; }
 .ac-college-body { display: flex; flex: 1; flex-direction: column; gap: 8px; padding: 34px 20px 20px; }
 .ac-college-body strong { font-family: var(--ac-serif); font-size: 20px; font-weight: 400; line-height: 1.25; }
 .ac-college-body .ac-muted { font-size: 13px; line-height: 1.5; }
-.ac-college-level { color: var(--ac-navy); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+.ac-college-level { color: var(--ac-link); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
 
 .ac-tile { gap: 8px; padding: 22px; }
 .ac-tile strong { font-family: var(--ac-serif); font-size: 20px; font-weight: 400; }
@@ -438,7 +487,7 @@ button { cursor: pointer; }
 .ac-program-body h3 a::after { content: ""; position: absolute; inset: 0; } /* whole card clickable */
 .ac-program-card { position: relative; }
 .ac-program-body p { margin: 0; color: var(--ac-muted); font-size: 14px; line-height: 1.55; }
-.ac-program-college { color: var(--ac-navy) !important; font-size: 11px !important; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+.ac-program-college { color: var(--ac-link) !important; font-size: 11px !important; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
 
 .ac-facts { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 6px; padding: 0; list-style: none; }
 .ac-facts li { padding: 3px 10px; border-radius: 999px; background: var(--ac-tint); color: var(--ac-ink); font-size: 12px; }
@@ -450,7 +499,7 @@ button { cursor: pointer; }
 .ac-vm {
     padding: 26px;
     border: 1px solid var(--ac-line);
-    border-top: 3px solid var(--ac-navy);
+    border-top: 3px solid var(--ac-accent);
     border-radius: var(--ac-radius);
 }
 
@@ -459,7 +508,7 @@ button { cursor: pointer; }
 .ac-message {
     margin: 32px 0;
     padding: 28px 32px;
-    border-left: 3px solid var(--ac-navy);
+    border-left: 3px solid var(--ac-accent);
     background: var(--ac-tint);
 }
 
@@ -470,7 +519,7 @@ button { cursor: pointer; }
     margin-top: 12px;
     border: 1px solid var(--ac-line);
     border-radius: var(--ac-radius);
-    background: #ffffff;
+    background: var(--ac-surface);
 }
 
 .ac-details summary {
@@ -481,7 +530,7 @@ button { cursor: pointer; }
 }
 
 .ac-details summary::-webkit-details-marker { display: none; }
-.ac-details summary::after { content: "+"; float: right; color: var(--ac-navy); font-size: 20px; line-height: 1; }
+.ac-details summary::after { content: "+"; float: right; color: var(--ac-link); font-size: 20px; line-height: 1; }
 .ac-details[open] summary::after { content: "−"; }
 .ac-details > :not(summary) { padding: 0 22px 18px; margin: 0; }
 
@@ -497,7 +546,7 @@ button { cursor: pointer; }
 .ac-prose li { margin-bottom: 0.35em; }
 .ac-prose h3 { margin: 1.6em 0 0.5em; font-size: 22px; }
 .ac-prose h4 { margin: 1.4em 0 0.4em; font-size: 17px; }
-.ac-prose a { color: var(--ac-navy); }
+.ac-prose a { color: var(--ac-link); }
 
 /* ---------- People, documents, events, accreditation ---------- */
 .ac-person {
@@ -511,7 +560,7 @@ button { cursor: pointer; }
 
 .ac-person strong { display: block; font-size: 15px; line-height: 1.35; }
 .ac-person div span, .ac-person div a { display: block; font-size: 13px; color: var(--ac-muted); }
-.ac-person div a { color: var(--ac-navy); }
+.ac-person div a { color: var(--ac-link); }
 
 .ac-docs { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
 
@@ -526,8 +575,8 @@ button { cursor: pointer; }
     text-decoration: none;
 }
 
-.ac-docs a:hover { border-color: var(--ac-navy); }
-.ac-docs svg { flex: none; width: 26px; height: 26px; fill: none; stroke: var(--ac-navy); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.ac-docs a:hover { border-color: var(--ac-accent); }
+.ac-docs svg { flex: none; width: 26px; height: 26px; fill: none; stroke: var(--ac-link); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .ac-docs strong, .ac-docs small { display: block; }
 .ac-docs small { color: var(--ac-muted); }
 
@@ -545,7 +594,7 @@ button { cursor: pointer; }
 .ac-events p { margin: 0; font-size: 14px; }
 
 .ac-accreditations { margin: 0; padding: 0; list-style: none; }
-.ac-accreditations li { display: grid; gap: 2px; padding: 14px 18px; margin-bottom: 10px; border-left: 3px solid var(--ac-navy); background: var(--ac-tint); }
+.ac-accreditations li { display: grid; gap: 2px; padding: 14px 18px; margin-bottom: 10px; border-left: 3px solid var(--ac-accent); background: var(--ac-tint); }
 .ac-accreditations span { color: var(--ac-muted); font-size: 14px; }
 
 /* ---------- Enrollment CTA ---------- */
@@ -579,7 +628,7 @@ button { cursor: pointer; }
 /* =====================================================================
    STANDALONE SITE: header, navigation, footer
 ===================================================================== */
-.ac-body { margin: 0; color: #1f2330; background: #ffffff; }
+.ac-body { margin: 0; color: var(--ac-ink); background: var(--ac-bg); }
 
 .ac-skip { position: absolute; left: -9999px; top: 8px; z-index: 100; padding: 10px 16px; border-radius: 6px; color: #ffffff; background: #0d1650; }
 .ac-skip:focus { left: 8px; }
@@ -628,12 +677,12 @@ button { cursor: pointer; }
     margin: 0;
     padding: 8px;
     border-radius: 12px;
-    background: #ffffff;
+    background: var(--ac-surface);
     box-shadow: 0 18px 40px rgba(13, 22, 80, 0.2);
     list-style: none;
 }
-.ac-nav-colleges li a { display: block; padding: 9px 12px; border-radius: 8px; color: #1f2330; font-size: 14px; text-decoration: none; }
-.ac-nav-colleges li a:hover { color: #192a8a; background: #f0f2fa; }
+.ac-nav-colleges li a { display: block; padding: 9px 12px; border-radius: 8px; color: var(--ac-ink); font-size: 14px; text-decoration: none; }
+.ac-nav-colleges li a:hover { color: var(--ac-link); background: var(--ac-row-hover, #f0f2fa); }
 
 .ac-nav-search input {
     width: 180px;
@@ -646,11 +695,26 @@ button { cursor: pointer; }
     font: 14px/1 inherit;
 }
 .ac-nav-search input::placeholder { color: rgba(255, 255, 255, 0.7); }
+/* Room for the colour mode button just above the phone menu's width */
+@media (max-width: 1180px) { .ac-nav-search input { width: 120px; } }
 
 .ac-menu-toggle { display: none; width: 44px; height: 44px; border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 10px; background: transparent; cursor: pointer; }
 .ac-menu-toggle span, .ac-menu-toggle span::before, .ac-menu-toggle span::after { display: block; width: 20px; height: 2px; margin: auto; background: #ffffff; content: ""; position: relative; }
 .ac-menu-toggle span::before { position: absolute; top: -6px; }
 .ac-menu-toggle span::after { position: absolute; top: 6px; }
+
+/* Colour mode menu (System, Light, Dark): a header button like the menu button, with a small list under it */
+.ac-masthead > .ac-nav { margin-left: auto; }
+.ac-theme { position: relative; order: 3; }
+.ac-theme-toggle { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 10px; color: #ffffff; background: transparent; }
+.ac-theme-toggle:hover, .ac-theme-toggle[aria-expanded="true"] { background: rgba(255, 255, 255, 0.12); }
+.ac-theme-menu { position: absolute; top: calc(100% + 8px); right: 0; z-index: 60; display: flex; flex-direction: column; gap: 2px; min-width: 170px; padding: 6px; border: 1px solid var(--ac-line); border-radius: var(--ac-radius); background: var(--ac-surface); box-shadow: 0 18px 40px rgba(13, 22, 80, 0.2); }
+.ac-theme-menu[hidden] { display: none; }
+.ac-theme-option { display: flex; gap: 10px; align-items: center; width: 100%; min-height: 40px; padding: 8px 10px; border: 0; border-radius: 6px; color: var(--ac-ink); background: none; font-size: 15px; text-align: left; }
+.ac-theme-option:hover { background: var(--ac-row-hover, #f0f2fa); }
+.ac-theme-option.is-current { color: var(--ac-link); font-weight: 700; }
+.ac-theme-option svg { flex-shrink: 0; }
+.ac-theme-check { margin-left: auto; }
 
 .ac-footer { padding: 56px 0 24px; color: rgba(255, 255, 255, 0.8); background: #0d1650; font-size: 14px; }
 .ac-footer-grid { display: grid; grid-template-columns: 1.3fr 1.4fr 1fr 1fr; gap: 32px; }
@@ -665,7 +729,8 @@ button { cursor: pointer; }
 .ac-subnav { top: 0; }
 
 @media (max-width: 1080px) {
-    .ac-menu-toggle { display: block; }
+    .ac-menu-toggle { display: block; order: 2; }
+    .ac-theme { order: 1; margin: 0 -14px 0 auto; } /* beside the menu button, 10px apart */
     .ac-nav { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: stretch; padding: 12px 20px 20px; background: #192a8a; }
     .ac-nav-open .ac-nav { display: flex; }
     .ac-nav-colleges ul { position: static; width: auto; margin-top: 6px; }
@@ -756,12 +821,12 @@ button { cursor: pointer; }
     padding: 0 12px;
     border: 1px solid var(--ac-line);
     border-radius: 8px;
-    color: var(--ac-navy);
+    color: var(--ac-link);
     text-decoration: none;
 }
 .ac-pagination .pagination li.active > span { color: #ffffff; background: var(--ac-navy); border-color: var(--ac-navy); }
-.ac-pagination .pagination li.disabled > span { color: #6b7080; }
-.ac-pagination .pagination li > a:hover { border-color: var(--ac-navy); }
+.ac-pagination .pagination li.disabled > span { color: var(--ac-muted-soft, #6b7080); }
+.ac-pagination .pagination li > a:hover { border-color: var(--ac-accent); }
 
 /* 2.4.7: one clear focus ring everywhere on the site */
 .ac-body a:focus-visible, .ac-body button:focus-visible, .ac-body summary:focus-visible,
@@ -773,10 +838,10 @@ button { cursor: pointer; }
 /* Up to five program cards share one row on desktop instead of leaving one card alone below */
 
 /* Rich text from the admin editor (ContentEditor): highlight, details, quotes, code, alignment */
-.ac-prose mark, .article-body mark { padding: 0 2px; border-radius: 3px; color: inherit; background: #fff1a8; }
-.ac-prose blockquote, .article-body blockquote { margin: 1em 0; padding: 4px 0 4px 16px; border-left: 3px solid var(--ac-navy, #192a8a); color: var(--ac-muted, #5c6070); font-style: italic; }
-.ac-prose code, .article-body code { padding: 1px 5px; border-radius: 4px; background: #f0f2f7; font-size: 0.9em; }
-.ac-prose pre, .article-body pre { overflow-x: auto; padding: 14px; border-radius: 8px; background: #f0f2f7; }
+.ac-prose mark, .article-body mark { padding: 0 2px; border-radius: 3px; color: inherit; background: var(--ac-mark); }
+.ac-prose blockquote, .article-body blockquote { margin: 1em 0; padding: 4px 0 4px 16px; border-left: 3px solid var(--ac-accent); color: var(--ac-muted, #5c6070); font-style: italic; }
+.ac-prose code, .article-body code { padding: 1px 5px; border-radius: 4px; background: var(--ac-code); font-size: 0.9em; }
+.ac-prose pre, .article-body pre { overflow-x: auto; padding: 14px; border-radius: 8px; background: var(--ac-code); }
 .ac-prose hr, .article-body hr { margin: 1.6em 0; border: 0; border-top: 1px solid var(--ac-line, #e3e5ec); }
 .ac-prose details, .article-body details { margin: 1em 0; padding: 12px 16px; border: 1px solid var(--ac-line, #e3e5ec); border-radius: 8px; }
 .ac-prose details summary, .article-body details summary { font-weight: 600; cursor: pointer; }
@@ -788,7 +853,7 @@ button { cursor: pointer; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 
 /* Images reserve their space before loading (no layout shift) and show a soft placeholder */
-.ac-college-media, .ac-program-media, .ac-video > a { background-color: #e6e9f2; }
+.ac-college-media, .ac-program-media, .ac-video > a { background-color: var(--ac-media); }
 .ac-college-media > img, .ac-program-media img { height: 100%; }
 
 /* Skeleton shimmer, used while results load */

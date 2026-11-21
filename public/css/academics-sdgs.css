@@ -10,7 +10,7 @@
 .ac-sdg-report .is-empty .ac-sdg-name, .ac-sdg-report .is-empty strong { font-weight: 600; }
 
 .ac-table-wrap { overflow-x: auto; }
-.ac-sdg-table { width: 100%; border-collapse: collapse; background: #ffffff; border-radius: 8px; }
+.ac-sdg-table { width: 100%; border-collapse: collapse; background: var(--ac-surface); border-radius: 8px; }
 .ac-sdg-table th, .ac-sdg-table td { padding: 12px 14px; border-bottom: 1px solid var(--ac-line); text-align: left; vertical-align: middle; font-size: 15px; }
 .ac-sdg-table thead th { color: var(--ac-muted); font-size: 13px; font-weight: 600; }
 .ac-sdg-table .is-num { text-align: right; white-space: nowrap; }
@@ -20,7 +20,7 @@
 .ac-sdg-badge { display: grid; place-items: center; width: clamp(96px, 14vw, 160px); aspect-ratio: 1; border-radius: 12px; color: var(--sdg-ink); background: var(--sdg); font-size: clamp(44px, 7vw, 80px); font-weight: 700; line-height: 1; }
 
 .ac-sdg-colleges { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
-.ac-sdg-colleges li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; padding: 14px 16px; border: 1px solid var(--ac-line); border-radius: 8px; background: #ffffff; }
+.ac-sdg-colleges li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; padding: 14px 16px; border: 1px solid var(--ac-line); border-radius: 8px; background: var(--ac-surface); }
 .ac-sdg-colleges a { font-weight: 700; }
 
 .ac-sdg-pager { padding-top: 0; }
