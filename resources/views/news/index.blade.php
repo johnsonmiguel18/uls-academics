@@ -127,15 +127,16 @@
                                 <p class="news-summary">{{ $featuredNews->summary(220) }}</p>
 
                                 @include('partials.news-sdgs', ['sdgs' => $featuredNews->sdgs, 'max' => 3])
-
-                                @if ($related->isNotEmpty())
-                                    <ul class="news-lead-related">
-                                        @foreach ($related as $story)
-                                            <li><a href="{{ route('news.show', $story->slug) }}">{{ $story->title }}</a></li>
-                                        @endforeach
-                                    </ul>
-                                @endif
                             </div>
+
+                            {{-- The next three stories as plain headlines, in a row under the lead (CNN-style) --}}
+                            @if ($related->isNotEmpty())
+                                <ul class="news-lead-related">
+                                    @foreach ($related as $story)
+                                        <li><a href="{{ route('news.show', $story->slug) }}">{{ $story->title }}</a></li>
+                                    @endforeach
+                                </ul>
+                            @endif
                         </article>
                     </section>
                 @endif
@@ -146,11 +147,21 @@
                     </h2>
 
                     @if ($cards->isNotEmpty())
-                        {{-- A grid on wider screens; on phones a sideways swipe rail (keyboard: focus it, then arrow keys) --}}
-                        <div class="news-cards news-rail" tabindex="0" role="region" aria-labelledby="news-list-heading">
-                            @foreach ($cards as $story)
-                                @include('partials.news-card', ['story' => $story])
-                            @endforeach
+                        {{-- A grid on wider screens; on phones a sideways swipe rail (keyboard: focus it, then arrow keys).
+                             On phones the site script shows arrow buttons and dots while there is more to swipe. --}}
+                        <div class="news-rail-wrap">
+                            <div class="news-cards news-rail" id="news-rail" tabindex="0" role="region" aria-labelledby="news-list-heading">
+                                @foreach ($cards as $story)
+                                    @include('partials.news-card', ['story' => $story])
+                                @endforeach
+                            </div>
+                            <button type="button" class="news-rail-arrow is-prev" data-rail="prev" aria-controls="news-rail" aria-label="{{ $label('rail_previous') }}" hidden>
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+                            </button>
+                            <button type="button" class="news-rail-arrow is-next" data-rail="next" aria-controls="news-rail" aria-label="{{ $label('rail_next') }}" hidden>
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+                            </button>
+                            <div class="news-rail-dots" aria-hidden="true" hidden></div>
                         </div>
 
                         {{ $news->onEachSide(1)->links('pagination::default') }}
