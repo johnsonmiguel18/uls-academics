@@ -111,9 +111,17 @@ heading order, landmarks, focus rings and 24 px touch targets. To re-check after
 ```bash
 pip install playwright && playwright install chromium   # once
 python3 tools/wcag_check.py https://academics.uls.edu.ph / /programs /colleges/college-of-law
+COLOR_SCHEME=dark python3 tools/wcag_check.py https://academics.uls.edu.ph / /programs /colleges/college-of-law
 ```
 
 For a second opinion, run the free axe DevTools or WAVE browser extension on the same pages.
+
+**Colour mode.** The header button (next to Enroll; beside the menu button on phones) offers System, Light and
+Dark, like the SmartKMS docs. System is the default and follows the device. A Light or Dark choice is kept in
+the browser (`localStorage`) and applied before the page paints by `public/js/theme.js`; the menu is in
+`resources/js/site.js`, its labels in Site settings → Screen reader labels. The colours are variables at the top
+of `public/css/academics.css`: change a colour there for both themes, and keep navy for fills (header, hero,
+buttons), which stay the same in dark mode. Both modes pass the contrast check above.
 
 ## Everything on the site is managed in the admin
 
@@ -156,9 +164,10 @@ Production server (XAMPP); these are server settings, not part of the repository
 
 | Where | Setting |
 |---|---|
-| `.env` | `APP_ENV=production`, `APP_DEBUG=false`, `SESSION_SECURE_COOKIE=true`, `TRUSTED_PROXIES=...` |
+| `.env` | `APP_ENV=production`, `APP_DEBUG=false`, `SESSION_SECURE_COOKIE=true`, `TRUSTED_PROXIES=...`, `SESSION_DRIVER=file`, `CACHE_STORE=file` (or `redis`) |
 | `apache/conf/extra/httpd-default.conf` | `ServerTokens Prod` and `ServerSignature Off` (Apache name only, no version or OS) |
-| `php/php.ini` | `expose_php = Off` |
+| `php/php.ini` | `expose_php = Off`; `zend_extension=opcache` and `opcache.enable=1` (PHP keeps compiled code in memory) |
+| After every update | `composer install --no-dev --optimize-autoloader`, `npm ci && npm run build`, `php artisan migrate --force`, then `php artisan optimize` (config, routes, views, events and Filament cached; run it again after any `.env` change) |
 | Apache virtual host | `DocumentRoot` pointing at the project's `public/` folder, so `/.env`, `/.git` and `/vendor` cannot be opened |
 | HTTPS (the proxy, or Apache's SSL virtual host) | `Strict-Transport-Security: max-age=31536000; includeSubDomains` |
 
@@ -168,19 +177,23 @@ Production server (XAMPP); these are server settings, not part of the repository
   The cache key changes on every admin save or delete, and a page never outlives the next scheduled change
   (a story going live or down, an event ending). Browsers get `304 Not Modified` when nothing changed.
   Settings, lists and the colleges menu are cached the same way.
-  In production use a shared cache: `CACHE_STORE=redis` (or `database`).
+  With `CACHE_STORE=file` and `SESSION_DRIVER=file` a cached page runs no database query at all
+  (with `database` it ran 7: 4 cache reads and 3 for the session), about 25% faster to the first byte.
+  `redis` works too; use it when several servers share the site.
 - **Database**: indexes for every public query; pages run 2–13 queries; lazy loading is blocked outside
   production, so a missing eager load (N+1) fails in development and tests.
 - **Images**: cards and headers use WebP thumbnails at 480 and 960 px (a 221 KB photo becomes a 31 KB card image),
   with `srcset`, fixed width/height (no layout shift) and lazy loading below the fold; the header photo is
   preloaded. Uploads larger than 1920 px are shrunk in the browser before upload.
 - **CSS per page**: a core stylesheet plus a small one for the page type (college, program, finder, news cards).
+  News pages take only the main website's rules they use (`news.css`, 13 KB instead of 97 KB).
   No JavaScript framework on the public site; the few scripts are inline and tiny.
 - **CDN**: set `ASSET_URL` to a pull CDN in front of the site; all CSS, images, thumbnails and uploads load from it.
   `public/.htaccess` already sets long browser caching for versioned CSS/JS and images, plus compression.
 - **Smooth loading**: page-to-page transitions in supporting browsers, skeleton cards while finder results load,
   image placeholders, server-side search, filters and paging.
-- **Admin**: switches pages without full reloads (Filament SPA mode).
+- **Admin**: normal page loads. Filament's SPA mode is off: with it, the browser's Back button sometimes
+  showed an admin page without its styles.
 - **Core Web Vitals**: a share of real visits (Site settings, default 25%) reports LCP, INP, CLS, FCP and TTFB.
   The dashboard shows the 75th percentile for the last 7 days, for phones and computers, colored by Google's limits.
   Measurements are kept 90 days. No cookies or personal data.
@@ -231,3 +244,30 @@ banner photo and seal · YouTube video · college email · per program: code, su
 objectives, curriculum PDF, careers, FAQs · research cluster (name, emblem, coordinator, agenda link),
 highlights and focus areas · partners and linkages · student benefits · extension projects with SDGs ·
 faculty list · facilities · accreditation certificates.
+
+## Design preview for the deans
+
+The deans approve the design before the content is collected. Empty sections are hidden, so with no content
+yet a college page is mostly blank. Sample content fills every section:
+
+```bash
+php artisan db:seed --class=CollegeDesignPreviewSeeder   # every college, department and program page
+php artisan db:seed --class=NewsDesignPreviewSeeder      # the news pages
+```
+
+- Only empty fields are filled. Whatever a college or program already has (dean, mission, admission
+  requirements...) stays as it is.
+- Every sample starts with **[SAMPLE]** and says what belongs there, so the pages double as a guide for the
+  content request. Each college also gets two sample departments, three sample faculty (after the real
+  ones), two upcoming events and two downloads.
+- A dean who signs in can type over a sample in the admin; the real text stays when the samples are removed.
+
+When the real content is in (or before going live):
+
+```bash
+php artisan academics:remove-design-preview   # clears every field still showing [SAMPLE], deletes sample records
+php artisan news:remove-design-preview
+```
+
+In lists (partners, highlights, projects...) only the sample items are removed. Load the samples on a local
+or staging copy, not on the live site.

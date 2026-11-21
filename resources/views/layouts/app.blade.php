@@ -26,6 +26,8 @@
         <link rel="preconnect" href="{{ config('app.asset_url') }}" crossorigin>
     @endif
 
+    {{-- The visitor's Light/Dark choice, applied before the page paints (the menu is in site.js). --}}
+    <script src="{{ \App\Support\Asset::url('js/theme.js') }}" nonce="{{ Vite::cspNonce() }}"></script>
     {{-- Core styles on every page. Pages add their own: 'base-styles' load before the core (news pages
          reuse the main website's styles), 'styles' after it. --}}
     @stack('base-styles')
@@ -94,6 +96,16 @@
                     <a class="ac-button ac-button-light ac-nav-enroll" href="{{ Site::text('contact.enroll_url') }}" rel="noopener">{{ Site::text('header.enroll_label') }} <span aria-hidden="true">↗</span></a>
                 @endif
             </nav>
+
+            @if (Site::text('a11y.color_mode'))
+                {{-- Colour mode: System, Light or Dark. Needs the site scripts, which show it. --}}
+                <div class="ac-theme" hidden>
+                    <button class="ac-theme-toggle" id="acTheme" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="acThemeMenu"
+                        data-label="{{ Site::text('a11y.color_mode') }}" data-system="{{ Site::text('a11y.color_mode_system') }}"
+                        data-light="{{ Site::text('a11y.color_mode_light') }}" data-dark="{{ Site::text('a11y.color_mode_dark') }}"></button>
+                    <div class="ac-theme-menu" id="acThemeMenu" role="menu" aria-label="{{ Site::text('a11y.color_mode') }}" hidden></div>
+                </div>
+            @endif
         </div>
     </header>
 

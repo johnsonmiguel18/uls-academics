@@ -6,10 +6,10 @@
 
 .gl-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin: 0; padding: 0; list-style: none; }
 .gl-cards-4 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
-.gl-cards li { padding: 24px; border: 1px solid var(--ac-line); border-radius: var(--ac-radius); background: #ffffff; }
-.gl-cards h3 { margin: 0 0 8px; color: var(--ac-navy-deep); font-size: 20px; }
+.gl-cards li { padding: 24px; border: 1px solid var(--ac-line); border-radius: var(--ac-radius); background: var(--ac-surface); }
+.gl-cards h3 { margin: 0 0 8px; color: var(--ac-link-deep); font-size: 20px; }
 .gl-cards p { margin: 0; color: var(--ac-muted); font-size: 15px; line-height: 1.6; }
-.gl-card-number { display: block; margin-bottom: 14px; color: var(--ac-navy); font-family: var(--ac-serif); font-size: 32px; line-height: 1; }
+.gl-card-number { display: block; margin-bottom: 14px; color: var(--ac-link); font-family: var(--ac-serif); font-size: 32px; line-height: 1; }
 .gl-about { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(24px, 5vw, 64px); align-items: start; }
 .gl-about .ac-section-head { margin: 0; }
 .gl-prose p { margin: 0 0 16px; color: var(--ac-ink); font-size: 17px; line-height: 1.75; }
@@ -18,18 +18,18 @@
 
 .gl-filters { display: flex; flex-wrap: wrap; align-items: end; gap: 12px 16px; margin: 0 0 20px; }
 .gl-filters label { display: grid; gap: 6px; color: var(--ac-muted); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
-.gl-filters select { min-width: 220px; min-height: 44px; padding: 0 12px; border: 1px solid #c9ccd6; border-radius: 8px; color: var(--ac-ink); background: #ffffff; font: inherit; font-size: 15px; letter-spacing: normal; text-transform: none; }
+.gl-filters select { min-width: 220px; min-height: 44px; padding: 0 12px; border: 1px solid var(--ac-field-line); border-radius: 8px; color: var(--ac-ink); background: var(--ac-surface); font: inherit; font-size: 15px; letter-spacing: normal; text-transform: none; }
 .gl-showing { margin: 0 0 10px auto; color: var(--ac-muted); font-size: 14px; }
 .gl-partners { margin: 0; padding: 0; list-style: none; }
 .gl-partners > li { display: flex; }
 .gl-partners > li[hidden] { display: none; }
 .gl-partners .ac-partner { flex: 1; }
 .ac-partner-college { order: -1; margin: 0 0 6px !important; font-size: 12px !important; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
-.ac-partner-college a { color: var(--ac-navy); text-decoration: none; display: inline-block; padding: 3px 0; }
+.ac-partner-college a { color: var(--ac-link); text-decoration: none; display: inline-block; padding: 3px 0; }
 .ac-partner-college a:hover { text-decoration: underline; }
 
-.gl-exchange { margin-top: 24px; padding: 24px 28px; border-left: 4px solid var(--ac-navy); border-radius: var(--ac-radius); background: #ffffff; }
-.gl-exchange h3 { margin: 0 0 10px; color: var(--ac-navy-deep); font-size: 20px; }
+.gl-exchange { margin-top: 24px; padding: 24px 28px; border-left: 4px solid var(--ac-accent); border-radius: var(--ac-radius); background: var(--ac-surface); }
+.gl-exchange h3 { margin: 0 0 10px; color: var(--ac-link-deep); font-size: 20px; }
 .gl-exchange ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 8px 24px; margin: 0 0 12px; padding-left: 20px; }
 
 .gl-sdg-inner { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: clamp(20px, 4vw, 48px); align-items: center; }
@@ -40,9 +40,9 @@
 .gl-faq { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: clamp(24px, 5vw, 64px); align-items: start; }
 .gl-faq .ac-section-head { margin: 0; }
 .gl-faq details { border-bottom: 1px solid var(--ac-line); }
-.gl-faq summary { display: flex; justify-content: space-between; gap: 16px; padding: 18px 0; color: var(--ac-navy-deep); font-size: 17px; font-weight: 700; cursor: pointer; list-style: none; }
+.gl-faq summary { display: flex; justify-content: space-between; gap: 16px; padding: 18px 0; color: var(--ac-link-deep); font-size: 17px; font-weight: 700; cursor: pointer; list-style: none; }
 .gl-faq summary::-webkit-details-marker { display: none; }
-.gl-faq summary::after { content: "+"; color: var(--ac-navy); font-size: 22px; line-height: 1; }
+.gl-faq summary::after { content: "+"; color: var(--ac-link); font-size: 22px; line-height: 1; }
 .gl-faq details[open] summary::after { content: "−"; }
 .gl-faq details p { margin: 0 0 18px; color: var(--ac-muted); line-height: 1.7; }
 
@@ -52,13 +52,13 @@
 .gl-connect p { color: #e4e8ff; line-height: 1.7; }
 .gl-connect h3 { margin: 28px 0 6px; font-size: 18px; }
 .gl-connect-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(24px, 5vw, 64px); align-items: start; }
-.gl-form { display: grid; gap: 6px; padding: clamp(20px, 3vw, 32px); border-radius: var(--ac-radius); color: var(--ac-ink); background: #ffffff; }
+.gl-form { display: grid; gap: 6px; padding: clamp(20px, 3vw, 32px); border-radius: var(--ac-radius); color: var(--ac-ink); background: var(--ac-surface); }
 .gl-form label { margin-top: 10px; color: var(--ac-ink); font-size: 14px; font-weight: 700; }
-.gl-form input, .gl-form select, .gl-form textarea { width: 100%; min-height: 44px; padding: 10px 12px; border: 1px solid #8a8fa0; border-radius: 8px; color: var(--ac-ink); background: #ffffff; font: inherit; font-size: 16px; }
-.gl-form [aria-invalid="true"] { border-color: #b3261e; }
+.gl-form input, .gl-form select, .gl-form textarea { width: 100%; min-height: 44px; padding: 10px 12px; border: 1px solid #8a8fa0; border-radius: 8px; color: var(--ac-ink); background: var(--ac-surface); font: inherit; font-size: 16px; }
+.gl-form [aria-invalid="true"] { border-color: var(--ac-error, #b3261e); }
 .gl-form button { justify-self: start; margin-top: 16px; }
 .gl-form p { color: var(--ac-muted); }
-.gl-error { margin: 0; color: #b3261e !important; font-size: 14px; }
+.gl-error { margin: 0; color: var(--ac-error, #b3261e) !important; font-size: 14px; }
 .gl-form-status { margin: 0 0 6px; padding: 12px 14px; border-radius: 8px; font-weight: 600; }
 .gl-form-status.is-success { color: #0f5132 !important; background: #d1e7dd; }
 .gl-form-status.is-error { color: #842029 !important; background: #f8d7da; }
