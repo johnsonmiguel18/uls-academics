@@ -1057,7 +1057,7 @@ html:not(.dark) .fi-resource-news:is(.fi-resource-edit-record-page, .fi-resource
     --uls-pe-line: #e4e4e7;
     --uls-pe-soft: #f4f4f5;
 }
-:is(.fi-resource-edit-record-page, .fi-resource-create-record-page).fi-resource-news .fi-header-subheading {
+html:not(.dark) :is(.fi-resource-edit-record-page, .fi-resource-create-record-page).fi-resource-news .fi-header-subheading {
     color: #52525b !important; /* 7.3:1 on the grey page background (the lighter grey was 4.4:1) */
     font-size: 13px !important;
     overflow-wrap: anywhere;
@@ -1151,4 +1151,13 @@ html:not(.dark) .fi-input-wrp-label {
     justify-content: center;
     min-width: 24px;
     min-height: 24px;
+}
+
+/* ---------- Dark mode (chosen in the user menu): the same fixes with light greys ---------- */
+html.dark :is(.fi-resource-edit-record-page, .fi-resource-create-record-page).fi-resource-news .fi-header-subheading,
+html.dark .fi-ta-placeholder {
+    color: #a1a1aa !important; /* 7:1 or more on the dark surfaces */
+}
+html.dark .uls-gantt-day.is-today {
+    color: #fca5a5; /* today's date: light red on the dark grid */
 }
