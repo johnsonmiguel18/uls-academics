@@ -71,6 +71,7 @@ document.querySelectorAll('.news-rail-wrap').forEach((wrap) => {
             button.hidden = hide;
         }
         dots.hidden = ! scrollable;
+        rail.tabIndex = scrollable ? 0 : -1; // a Tab stop only where it scrolls (phones), not on the desktop grid
         const current = atEnd ? cards.length - 1 : Math.round(rail.scrollLeft / step());
         [...dots.children].forEach((dot, i) => dot.classList.toggle('is-current', i === current));
     };

@@ -116,11 +116,18 @@
 .news-item:hover .news-item-media img {
     scale: 1.06;
 }
+/* Story headlines: bold sans-serif, the same on every page that shows news (CNN-style); academics pages
+   set serif on every h3, so the heading itself gets the site's sans-serif (body) font */
+.news-feature h2,
+.news-feature h3,
+.news-card h3 {
+    font-family: "Segoe UI", Arial, sans-serif;
+}
 .news-feature h2 a,
 .news-feature h3 a,
 .news-card h3 a {
-    font-family: var(--v3-serif);
-    font-weight: 400;
+    font-family: inherit;
+    font-weight: 700;
 }
 
 
@@ -181,6 +188,32 @@
 .news-masthead-lead a {
     color: var(--navy);
     text-decoration: underline;
+}
+
+/* Article page: the same compact header, aligned with the article text */
+.article-masthead-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: min(820px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 24px 0 20px;
+}
+.article-masthead h1 {
+    font-size: clamp(30px, 4vw, 44px);
+    line-height: 1.12;
+}
+.article-masthead-lead {
+    margin: 0;
+    color: #222222;
+    font-size: 18px;
+    line-height: 1.5;
+}
+.article-masthead-date {
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 600;
 }
 
 /* One toolbar row: search, category tabs, "Goals" menu */
@@ -329,13 +362,9 @@
     text-underline-offset: 3px;
 }
 
-/* Bold sans-serif headlines and section titles with a bar, on the front page only */
-.news-front .news-feature h3 a,
-.news-front .news-card h3 a {
-    font-family: inherit;
-    font-weight: 700;
-}
-.news-front .news-index-heading {
+/* Section titles with a bar: the news page and the article page's "More stories" */
+.news-front .news-index-heading,
+.article-related h2 {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -349,7 +378,8 @@
     letter-spacing: 0.04em;
     text-transform: uppercase;
 }
-.news-front .news-index-heading::before {
+.news-front .news-index-heading::before,
+.article-related h2::before {
     content: "";
     flex: none;
     width: 4px;
@@ -556,8 +586,9 @@
     text-transform: uppercase;
 }
 .article-pager-title {
-    font-family: var(--v3-serif);
-    font-size: 18px;
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: 700;
     line-height: 1.35;
 }
 .article-pager a:hover .article-pager-title {

@@ -126,6 +126,7 @@ class NewsFrontPageTest extends TestCase
             ->assertSee(route('news.show', 'last'))
             ->assertSee('Previous story')
             ->assertSee('Next story')
+            ->assertSee('<section class="news-masthead article-masthead">', false) // same compact header as the news page
             ->assertSee(route('news.index', ['sdg' => 4]), false);
     }
 }
