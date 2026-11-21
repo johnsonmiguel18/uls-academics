@@ -1,7 +1,7 @@
 <div align="center"><img src="public/media/uls-seal.png" width="100" alt="University of La Salette seal"></div>
 <h1 align="center">ULS Academics</h1>
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.1.0-192A8A?style=flat-square" alt="version">
+  <img src="https://img.shields.io/badge/version-0.2.0-192A8A?style=flat-square" alt="version">
   <img src="https://img.shields.io/badge/status-in%20development-192A8A?style=flat-square" alt="status">
   <img src="https://img.shields.io/badge/Laravel-12-FF2D20?style=flat-square&logo=laravel&logoColor=white" alt="Laravel">
   <img src="https://img.shields.io/badge/PHP-8.4+-777BB4?style=flat-square&logo=php&logoColor=white" alt="PHP">
@@ -9,8 +9,8 @@
   <img src="https://img.shields.io/badge/MySQL-database-4479A1?style=flat-square&logo=mysql&logoColor=white" alt="MySQL">
 </p>
 <p align="center">
-  <b>Download v0.1.0:</b>
-  <a href="https://github.com/johnsonmiguel18/uls-academics/archive/refs/tags/v0.1.0.zip">Source (.zip)</a> |
+  <b>Download v0.2.0:</b>
+  <a href="https://github.com/johnsonmiguel18/uls-academics/archive/refs/tags/v0.2.0.zip">Source (.zip)</a> |
   <a href="https://github.com/johnsonmiguel18/uls-academics/releases">All releases</a>
 </p>
 
@@ -18,23 +18,26 @@ The standalone Academics website of the University of La Salette, with its own C
 (Filament admin at `/admin`), its own database and its own users. It runs next to the
 main university website (University Website v5), which is not changed.
 
-> **Current version: v0.1.0**: a news front page with one large featured story, the previous stories in a
-> 3-column grid (a swipe rail on phones), a sidebar of headline rows, and colored SDG labels that filter the news.
+> **Current version: v0.2.0**: a news front page in the style of a news site (lead story with three headlines,
+> story cards that swipe on phones, a "More headlines" column, SDG labels and a Goals filter); admin tables as
+> data grids and a three-pane news editor with a desktop and phone preview; security headers; screen reader,
+> keyboard and small-screen fixes; photo thumbnails made ahead of time.
 > See [Releases](https://github.com/johnsonmiguel18/uls-academics/releases) for the release notes.
 
 <p align="center">
-  <img width="400" alt="News front page with the featured story, previous stories and headline rows" src="docs/screenshots/news.png" />
-  <img width="400" alt="News filtered by SDG 4 with the goal filter row and colored SDG labels" src="docs/screenshots/news-filtered-by-sdg.png" />
-  <img width="400" alt="Full article page with its category and SDG labels" src="docs/screenshots/news-article.png" />
-  <img width="400" alt="SDG report with story counts for the 17 goals" src="docs/screenshots/sdg-report.png" />
-  <img width="400" alt="Admin article list with the featured column" src="docs/screenshots/admin-news.png" />
-  <img width="400" alt="Article form with publishing status and the feature switch" src="docs/screenshots/admin-news-publishing.png" />
+  <img width="400" alt="News front page: lead story with three headlines, More headlines column and the toolbar with search, categories and Goals" src="docs/screenshots/news.png" />
+  <img width="400" alt="News filtered by SDG 6, with the chosen goal shown on the Goals button" src="docs/screenshots/news-filtered-by-sdg.png" />
+  <img width="400" alt="Article page with its compact header, category and SDG labels" src="docs/screenshots/news-article.png" />
+  <img width="400" alt="SDG report: the 17 goals with story counts" src="docs/screenshots/sdg-report.png" />
+  <img width="400" alt="Admin news list as a data grid with search and filter" src="docs/screenshots/admin-news.png" />
+  <img width="400" alt="News editor in three panes: recent stories, the article on a canvas, and Publishing settings" src="docs/screenshots/admin-news-editor.png" />
+  <img width="400" alt="News editor preview of the article at phone width" src="docs/screenshots/admin-news-preview.png" />
 </p>
 
 <p align="center">
-  <img width="190" alt="Mobile news featured story" src="docs/screenshots/mobile-news.png" />
-  <img width="190" alt="Mobile news swipe rail with the next card peeking in" src="docs/screenshots/mobile-news-rail.png" />
-  <img width="190" alt="Mobile article with SDG labels" src="docs/screenshots/mobile-news-article.png" />
+  <img width="190" alt="Mobile news page with the lead story" src="docs/screenshots/mobile-news.png" />
+  <img width="190" alt="Mobile story rail with arrow buttons and dots, the next card peeking in" src="docs/screenshots/mobile-news-rail.png" />
+  <img width="190" alt="Mobile article header with SDG labels" src="docs/screenshots/mobile-news-article.png" />
   <img width="190" alt="Mobile SDG report with goals served per college" src="docs/screenshots/mobile-sdg-report.png" />
 </p>
 
@@ -50,6 +53,7 @@ php artisan key:generate
 php artisan migrate               # tables + roles: super_admin, admin, editor, college_admin
 php artisan db:seed               # site settings and lists, then colleges, programs, deans from the current ULS website
 php artisan storage:link
+php artisan thumbs:warm           # WebP thumbnails of the seeded photos
 npm ci && npm run build           # site scripts into public/build (run again after every update)
 
 php artisan make:filament-user                 # first administrator
@@ -104,24 +108,23 @@ own subdomain. Academics pages then stay on `APP_URL`'s host and `/global` redir
 
 ## Accessibility (WCAG 2.2 AA)
 
-The public pages were checked at desktop and phone widths for contrast (SDG badges use the
+The public pages and the admin were checked at desktop and phone widths for contrast (SDG badges use the
 text color that passes on each official SDG color), image alt text, link, button and form labels,
-heading order, landmarks, focus rings and 24 px touch targets. To re-check after design changes:
+heading order, landmarks, focus rings and 24 px touch targets. axe (WCAG 2.2 AA) reports no violations on any
+public page or on 18 admin pages. Screen reader checks (the browser's accessibility tree and a virtual screen
+reader): every search form, navigation and landmark has its own name, the page title is inside the main area,
+SDG labels are read once. Keyboard: the skip link moves focus to the content, and every control can be reached
+and shows a focus ring. To re-check after design changes:
 
 ```bash
 pip install playwright && playwright install chromium   # once
 python3 tools/wcag_check.py https://academics.uls.edu.ph / /programs /colleges/college-of-law
-COLOR_SCHEME=dark python3 tools/wcag_check.py https://academics.uls.edu.ph / /programs /colleges/college-of-law
 ```
 
 For a second opinion, run the free axe DevTools or WAVE browser extension on the same pages.
 
-**Colour mode.** The header button (next to Enroll; beside the menu button on phones) offers System, Light and
-Dark, like the SmartKMS docs. System is the default and follows the device. A Light or Dark choice is kept in
-the browser (`localStorage`) and applied before the page paints by `public/js/theme.js`; the menu is in
-`resources/js/site.js`, its labels in Site settings → Screen reader labels. The colours are variables at the top
-of `public/css/academics.css`: change a colour there for both themes, and keep navy for fills (header, hero,
-buttons), which stay the same in dark mode. Both modes pass the contrast check above.
+**Light only.** The public site and the admin have one light theme and no colour-mode switch; pages stay
+light when the device is set to dark. The colours are variables at the top of `public/css/academics.css`.
 
 ## Everything on the site is managed in the admin
 
@@ -180,14 +183,15 @@ Production server (XAMPP); these are server settings, not part of the repository
   With `CACHE_STORE=file` and `SESSION_DRIVER=file` a cached page runs no database query at all
   (with `database` it ran 7: 4 cache reads and 3 for the session), about 25% faster to the first byte.
   `redis` works too; use it when several servers share the site.
-- **Database**: indexes for every public query; pages run 2–13 queries; lazy loading is blocked outside
-  production, so a missing eager load (N+1) fails in development and tests.
+- **Database**: indexes for every public query; a page built fresh runs 8–20 queries and a cached page none;
+  lazy loading is blocked outside production, so a missing eager load (N+1) fails in development and tests.
 - **Images**: cards and headers use WebP thumbnails at 480 and 960 px (a 221 KB photo becomes a 31 KB card image),
   with `srcset`, fixed width/height (no layout shift) and lazy loading below the fold; the header photo is
-  preloaded. Uploads larger than 1920 px are shrunk in the browser before upload.
+  preloaded. Uploads larger than 1920 px are shrunk in the browser before upload. Thumbnails are made when an
+  image is saved in the admin; `php artisan thumbs:warm` makes any that are missing (e.g. photos copied in by hand).
 - **CSS per page**: a core stylesheet plus a small one for the page type (college, program, finder, news cards).
   News pages take only the main website's rules they use (`news.css`, 13 KB instead of 97 KB).
-  No JavaScript framework on the public site; the few scripts are inline and tiny.
+  No JavaScript framework on the public site: one small built script (`resources/js/site.js`, about 4 KB compressed).
 - **CDN**: set `ASSET_URL` to a pull CDN in front of the site; all CSS, images, thumbnails and uploads load from it.
   `public/.htaccess` already sets long browser caching for versioned CSS/JS and images, plus compression.
 - **Smooth loading**: page-to-page transitions in supporting browsers, skeleton cards while finder results load,
@@ -210,6 +214,16 @@ admins if you remove their `publish_news` permission) can only save drafts and s
 **News & Events → Publishing timeline** shows every story as a bar from its publish date to its
 take-down date, grouped by college and colored by status, with events alongside. Drag a bar
 (or focus it and press Alt + ← / →) to move it by days. Stories not scheduled yet are listed below.
+
+**The news editor** (News → New or Edit) has three panes, like a page builder: recently edited stories and
+**New story** on the left; the article (headline, summary, content) on a canvas in the middle; Publishing, Details
+and Image tabs on the right. **Preview** shows the last saved version as the real article page, at desktop or phone
+width, drafts included (`/admin/news/{id}/preview`, only for people who may edit that story, never indexed or cached).
+Save and Cancel stay in view, and the admin warns before leaving a form with unsaved changes. On screens narrower
+than 1280 px the story list is hidden; on phones the panes stack.
+
+Admin lists are data grids with the same search, filters, sorting and paging as before. On tablets and small
+laptops the row actions become icons and less important columns are hidden.
 
 Scheduled stories appear on the website on time by themselves. To keep the admin status labels
 current, add Laravel's scheduler to the server's crontab once:
