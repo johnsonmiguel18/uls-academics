@@ -100,12 +100,4 @@
     @include('academics.partials.enroll')
 </main>
 
-<script>
-    // Filters apply as soon as a dropdown or checkbox changes; typing still waits for Enter.
-    // While the next page loads, the results fade to skeleton cards.
-    const finder = document.querySelector('[data-autosubmit]');
-    finder.querySelectorAll('select, input[type=checkbox]').forEach((el) => el.addEventListener('change', () => finder.requestSubmit()));
-    finder.addEventListener('submit', () => document.querySelector('.ac-results')?.classList.add('is-loading'));
-    document.querySelectorAll('.ac-pagination a').forEach((a) => a.addEventListener('click', () => document.querySelector('.ac-results')?.classList.add('is-loading')));
-</script>
 @endsection

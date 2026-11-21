@@ -31,9 +31,13 @@
     @stack('base-styles')
     <link rel="stylesheet" href="{{ \App\Support\Asset::url('css/academics.css') }}">
     @stack('styles')
+    {{-- Site scripts (resources/js/site.js), built and obfuscated by "npm run build". --}}
+    @if (\App\Support\Asset::viteReady())
+        @vite('resources/js/site.js')
+    @endif
     @stack('head')
 </head>
-<body class="ac-body">
+<body class="ac-body" @if ((int) Site::get('performance.vitals_sample_rate', 0) > 0) data-vitals-rate="{{ (int) Site::get('performance.vitals_sample_rate') }}" data-vitals-url="{{ route('vitals') }}" @endif>
     <a class="ac-skip" href="#content">{{ Site::text('a11y.skip_link') }}</a>
 
     <header class="ac-site-header">
@@ -138,72 +142,7 @@
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
     </button>
 
-    <script>
-        // Back to top: shows after 600 px, smooth scroll.
-        const backToTop = document.getElementById('backToTop');
-        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' }));
-        const toggleBackToTop = () => backToTop.classList.toggle('is-visible', window.scrollY > 600);
-        window.addEventListener('scroll', toggleBackToTop, { passive: true });
-        toggleBackToTop();
-
-        // Long lists: preview with a "Show all" button; button texts come from Site settings (data-more / data-less).
-        // Without JavaScript everything stays visible.
-        document.querySelectorAll('[data-clamp]').forEach((box) => {
-            box.classList.add('is-clamped');
-            const button = document.createElement('button');
-            button.type = 'button';
-            button.className = 'ac-button ac-button-ghost ac-clamp-toggle';
-            button.setAttribute('aria-controls', box.id);
-            button.setAttribute('aria-expanded', 'false');
-            button.textContent = box.dataset.more;
-            button.addEventListener('click', () => {
-                const open = box.classList.toggle('is-clamped') === false;
-                button.setAttribute('aria-expanded', open);
-                button.textContent = open ? box.dataset.less : box.dataset.more;
-                if (! open) box.parentElement.scrollIntoView({ block: 'start', behavior: reduceMotion ? 'auto' : 'smooth' });
-            });
-            box.after(button);
-        });
-
-        // Mobile menu; the Colleges list is a native <details>, so it works without JavaScript.
-        document.querySelector('.ac-menu-toggle')?.addEventListener('click', (event) => {
-            const open = document.body.classList.toggle('ac-nav-open');
-            event.currentTarget.setAttribute('aria-expanded', open);
-        });
-        document.addEventListener('click', (event) => {
-            const menu = document.querySelector('.ac-nav-colleges[open]');
-            if (menu && ! menu.contains(event.target)) menu.removeAttribute('open');
-        });
-    </script>
     @stack('scripts')
 
-    @if ((int) Site::get('performance.vitals_sample_rate', 0) > 0)
-        {{-- Core Web Vitals from real visits (a share set in Site settings → Admin and performance).
-             Sends one small beacon when the visitor leaves the page; no cookies, no personal data. --}}
-        <script>
-            (() => {
-                if (Math.random() * 100 >= {{ (int) Site::get('performance.vitals_sample_rate') }} || ! ('PerformanceObserver' in window)) return;
-                const m = {}, observe = (type, cb) => { try { new PerformanceObserver((l) => l.getEntries().forEach(cb)).observe({ type, buffered: true, durationThreshold: 16 }); } catch (e) {} };
-                let cls = 0, win = 0, last = 0, first = 0, inp = 0;
-                observe('largest-contentful-paint', (e) => { m.LCP = e.startTime; });
-                observe('paint', (e) => { if (e.name === 'first-contentful-paint') m.FCP = e.startTime; });
-                observe('layout-shift', (e) => {   // CLS: largest burst of unexpected shifts
-                    if (e.hadRecentInput) return;
-                    if (win && e.startTime - last < 1000 && e.startTime - first < 5000) { win += e.value; } else { win = e.value; first = e.startTime; }
-                    last = e.startTime; cls = Math.max(cls, win); m.CLS = cls;
-                });
-                observe('event', (e) => { if (e.interactionId) { inp = Math.max(inp, e.duration); m.INP = inp; } });  // slowest interaction
-                const nav = performance.getEntriesByType('navigation')[0];
-                if (nav) m.TTFB = nav.responseStart;
-                let sent = false;
-                addEventListener('visibilitychange', () => {
-                    if (sent || document.visibilityState !== 'hidden') return;
-                    sent = true;
-                    navigator.sendBeacon('{{ route('vitals') }}', JSON.stringify({ path: location.pathname, device: matchMedia('(max-width: 760px)').matches ? 'mobile' : 'desktop', metrics: m }));
-                });
-            })();
-        </script>
-    @endif
 </body>
 </html>
