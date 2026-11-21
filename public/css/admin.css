@@ -8,10 +8,11 @@
 :root {
     --font-family: "Segoe UI", Arial, sans-serif;
     --uls-heading-font: Georgia, "Times New Roman", serif;
-    --uls-navy: #192a8a;
-    --uls-navy-deep: #0d1650;
-    --uls-ice: #ffffff;   /* accent on navy: one strong color, like the website */
-    --uls-blue: #192a8a;  /* focus rings on white */
+    /* Neutral near-black instead of the website's navy (the names stay so the rules below read the same) */
+    --uls-navy: #18181b;       /* zinc-900: sidebar, buttons */
+    --uls-navy-deep: #09090b;  /* zinc-950: topbar, darkest fills */
+    --uls-ice: #ffffff;   /* accent on the dark bars */
+    --uls-blue: #09090b;  /* focus rings on white */
     --uls-tint: #f5f5f5;
     --uls-tint-dark: #e6e6e6;
 }
@@ -194,7 +195,7 @@ html:not(.dark) .fi-body {
 
 .fi-sidebar-item.fi-active .fi-badge {
     color: var(--uls-navy-deep) !important;
-    background: rgba(13, 22, 80, 0.12) !important;
+    background: rgba(9, 9, 11, 0.12) !important;
 }
 
 .fi-sidebar-item-grouped-border {
@@ -646,7 +647,7 @@ html:not(.dark) .fi-fo-builder-item-header {
 }
 
 .uls-welcome-actions a:hover {
-    background: #0d1650;
+    background: var(--uls-navy-deep);
 }
 
 .uls-welcome-actions a:first-child:hover {
@@ -690,7 +691,7 @@ html:not(.dark) .fi-fo-builder-item-header {
 /* ---------- Login: campus photo under a solid navy wash ---------- */
 .fi-simple-layout {
     background:
-        linear-gradient(rgba(13, 22, 80, 0.85), rgba(13, 22, 80, 0.85)),
+        linear-gradient(rgba(9, 9, 11, 0.85), rgba(9, 9, 11, 0.85)),
         url("../media/campus-1.jpg") center / cover no-repeat !important;
 }
 
@@ -962,9 +963,9 @@ html:not(.dark) .fi-fo-builder-item-header {
     border: 1px solid var(--g-line); border-radius: 8px;
     color: var(--g-text); background: transparent; font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: none;
 }
-.uls-gantt-nav button:hover, .uls-gantt-new:hover { border-color: #192a8a; }
-.uls-gantt-nav button[aria-pressed="true"] { color: #ffffff; background: #192a8a; border-color: #192a8a; }
-.uls-gantt-new { color: #ffffff; background: #192a8a; border-color: #192a8a; }
+.uls-gantt-nav button:hover, .uls-gantt-new:hover { border-color: var(--uls-navy); }
+.uls-gantt-nav button[aria-pressed="true"] { color: #ffffff; background: var(--uls-navy); border-color: var(--uls-navy); }
+.uls-gantt-new { color: #ffffff; background: var(--uls-navy); border-color: var(--uls-navy); }
 .uls-gantt-range { margin-left: 6px; color: var(--g-muted); font-size: 14px; font-weight: 600; }
 
 .uls-gantt {
@@ -1042,7 +1043,7 @@ html:not(.dark) .fi-fo-builder-item-header {
 .uls-gantt-backlog h2 { margin: 0 0 10px; color: var(--g-text); font-size: 15px; font-weight: 700; }
 .uls-gantt-backlog ul { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
 .uls-gantt-backlog li { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 14px; }
-.uls-gantt-backlog a { color: #192a8a; font-weight: 600; }
+.uls-gantt-backlog a { color: var(--uls-navy); font-weight: 600; }
 .dark .uls-gantt-backlog a { color: #a5b4fc; }
 .uls-gantt-backlog li span:last-child { color: var(--g-muted); font-size: 12px; }
 
