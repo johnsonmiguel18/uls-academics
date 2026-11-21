@@ -37,8 +37,17 @@ document.querySelector('.ac-menu-toggle')?.addEventListener('click', (event) => 
     event.currentTarget.setAttribute('aria-expanded', open);
 });
 document.addEventListener('click', (event) => {
-    const menu = document.querySelector('.ac-nav-colleges[open]');
-    if (menu && ! menu.contains(event.target)) menu.removeAttribute('open');
+    // Open menus close on a click outside them: the Colleges list, and the news page's "Goals" menu.
+    document.querySelectorAll('.ac-nav-colleges[open], .news-sdg-menu[open]').forEach((menu) => {
+        if (! menu.contains(event.target)) menu.removeAttribute('open');
+    });
+});
+document.addEventListener('keydown', (event) => {
+    const menu = document.querySelector('.news-sdg-menu[open]');
+    if (event.key === 'Escape' && menu) {
+        menu.removeAttribute('open');
+        menu.querySelector('summary').focus();
+    }
 });
 
 // Program finder: filters apply as soon as a dropdown or checkbox changes; typing still waits for Enter.

@@ -69,6 +69,28 @@ class NewsFrontPageTest extends TestCase
         $this->assertEmpty($rows->intersect($shown));
     }
 
+    public function test_the_lead_story_lists_the_next_three_headlines_and_the_cards_continue(): void
+    {
+        foreach (range(1, 12) as $i) {
+            $this->story("s-$i", $i);
+        }
+
+        $html = $this->get(route('news.index'))->assertOk()->getContent();
+        preg_match('/<ul class="news-lead-related">(.*?)<\/ul>/s', $html, $related);
+        preg_match('/<div class="news-cards news-rail".*?<\/div>\s*<nav/s', $html, $grid);
+
+        // Hero s-1; the next three (s-2 to s-4) as headlines under it; the cards start at s-5 (6 cards = 9 per page).
+        $this->assertSame(3, substr_count($related[1], '<li>'));
+        $this->assertStringContainsString('Story s-2', $related[1]);
+        $this->assertStringContainsString('Story s-4', $related[1]);
+        $this->assertSame(6, substr_count($grid[0], 'class="news-card "'));
+        $this->assertStringContainsString('Story s-5', $grid[0]);
+        $this->assertStringNotContainsString('Story s-4', $grid[0]);
+
+        // Filtered lists have no lead, so no headline list either.
+        $this->assertStringNotContainsString('news-lead-related', $this->get(route('news.index', ['category' => 'college-news']))->getContent());
+    }
+
     public function test_sdg_labels_link_to_the_filter_and_overflow_after_three(): void
     {
         $this->story('hero', 1);
