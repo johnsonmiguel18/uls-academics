@@ -21,9 +21,9 @@ class DocumentsTable
             ->columns([
                 TextColumn::make('title')->searchable()->weight('bold')->wrap(),
                 TextColumn::make('category')->badge()->color('gray')->formatStateUsing(fn ($state) => \App\Models\Term::label('document_category', $state)),
-                TextColumn::make('college.name')->label('College')->placeholder('University-wide')->wrap()->visibleFrom('md'),
+                TextColumn::make('college.name')->label('College')->placeholder('University-wide')->wrap()->visibleFrom('xl'),
                 IconColumn::make('is_public')->label('Public')->boolean(),
-                TextColumn::make('updated_at')->label('Updated')->date('M d, Y')->sortable()->visibleFrom('lg'),
+                TextColumn::make('updated_at')->label('Updated')->date('M d, Y')->sortable()->visibleFrom('xl'),
             ])
             ->filters([SelectFilter::make('category')->options(fn () => \App\Models\Term::options('document_category'))])
             ->defaultSort('updated_at', 'desc')
