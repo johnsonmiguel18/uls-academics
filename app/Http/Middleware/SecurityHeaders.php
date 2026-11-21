@@ -38,10 +38,13 @@ class SecurityHeaders
         $headers->set('Referrer-Policy', 'strict-origin-when-cross-origin');
         $headers->set('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), payment=(), usb=()');
         $headers->set('Cross-Origin-Opener-Policy', 'same-origin');
-        $headers->set(
-            config('security.csp_report_only') ? 'Content-Security-Policy-Report-Only' : 'Content-Security-Policy',
-            $this->policy($request),
-        );
+        // Laravel's debug error page (APP_DEBUG=true, never in production) has its own inline scripts.
+        if (! (config('app.debug') && $response->getStatusCode() >= 500)) {
+            $headers->set(
+                config('security.csp_report_only') ? 'Content-Security-Policy-Report-Only' : 'Content-Security-Policy',
+                $this->policy($request),
+            );
+        }
 
         // Only over HTTPS (behind a proxy this needs TRUSTED_PROXIES), and only in production,
         // so a local or staging copy never pins a browser to HTTPS.
@@ -88,6 +91,8 @@ class SecurityHeaders
             ],
             'font-src' => ["'self'", 'data:', ...$cdn],
             'connect-src' => ["'self'", ...$dev],
+            // Admin: the upload field shrinks large photos in a background worker started from a blob: URL.
+            ...($admin ? ['worker-src' => ["'self'", 'blob:']] : []),
             'object-src' => ["'none'"],
             'base-uri' => ["'self'"],
             'form-action' => ["'self'", ...$hosts],
