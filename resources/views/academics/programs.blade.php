@@ -33,7 +33,7 @@
     <section class="ac-section ac-section-flush">
         <div class="ac-container">
             {{-- Server-side filtering and paging: plain GET form, so every result list has its own shareable, crawlable URL. --}}
-            <form class="ac-filters" action="{{ route('academics.programs') }}" method="get" role="search" data-autosubmit>
+            <form class="ac-filters" action="{{ route('academics.programs') }}" method="get" role="search" aria-label="{{ $label('filters') }}" data-autosubmit>
                 <div class="ac-field ac-field-wide">
                     <label for="f-q">{{ $label('search') }}</label>
                     <input id="f-q" type="search" name="q" value="{{ $filters['q'] ?? '' }}" placeholder="{{ $label('search_placeholder') }}">

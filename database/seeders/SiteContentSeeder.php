@@ -227,6 +227,7 @@ class SiteContentSeeder extends Seeder
                 'heading' => 'Find your program',
                 'per_page' => 24,
                 'labels' => [
+                    'filters' => 'Filter programs',
                     'search' => 'Search', 'search_placeholder' => 'Program name or code',
                     'level' => 'Academic level', 'level_all' => 'All levels',
                     'college' => 'College', 'college_all' => 'All colleges',
