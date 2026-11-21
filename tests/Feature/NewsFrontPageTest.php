@@ -87,6 +87,11 @@ class NewsFrontPageTest extends TestCase
         $this->assertStringContainsString('Story s-5', $grid[0]);
         $this->assertStringNotContainsString('Story s-4', $grid[0]);
 
+        // The rail's arrow buttons (shown by the site script on phones) point at the rail and carry their labels.
+        $this->assertStringContainsString('id="news-rail"', $html);
+        $this->assertMatchesRegularExpression('/<button[^>]*data-rail="prev"[^>]*aria-controls="news-rail"[^>]*aria-label="Previous stories"[^>]*hidden>/', $html);
+        $this->assertMatchesRegularExpression('/<button[^>]*data-rail="next"[^>]*aria-controls="news-rail"[^>]*aria-label="Next stories"[^>]*hidden>/', $html);
+
         // Filtered lists have no lead, so no headline list either.
         $this->assertStringNotContainsString('news-lead-related', $this->get(route('news.index', ['category' => 'college-news']))->getContent());
     }

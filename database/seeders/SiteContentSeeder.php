@@ -265,6 +265,8 @@ class SiteContentSeeder extends Seeder
                     'sdg_filter' => 'Filter by Sustainable Development Goal',
                     'all_sdgs' => 'All goals',
                     'sdg_menu' => 'Goals',
+                    'rail_previous' => 'Previous stories',
+                    'rail_next' => 'Next stories',
                     'more_sdgs' => '+:count',
                     'story_nav' => 'Previous and next stories',
                     'previous_story' => 'Previous story',
