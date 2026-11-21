@@ -184,7 +184,8 @@ Production server (XAMPP); these are server settings, not part of the repository
   `public/.htaccess` already sets long browser caching for versioned CSS/JS and images, plus compression.
 - **Smooth loading**: page-to-page transitions in supporting browsers, skeleton cards while finder results load,
   image placeholders, server-side search, filters and paging.
-- **Admin**: switches pages without full reloads (Filament SPA mode).
+- **Admin**: normal page loads. Filament's SPA mode is off: with it, the browser's Back button sometimes
+  showed an admin page without its styles.
 - **Core Web Vitals**: a share of real visits (Site settings, default 25%) reports LCP, INP, CLS, FCP and TTFB.
   The dashboard shows the 75th percentile for the last 7 days, for phones and computers, colored by Google's limits.
   Measurements are kept 90 days. No cookies or personal data.

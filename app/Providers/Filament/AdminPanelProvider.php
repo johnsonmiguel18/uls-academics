@@ -51,8 +51,8 @@ class AdminPanelProvider extends PanelProvider
             ->navigationGroups(['Academics', 'News & Events', 'Global engagement', 'Site', 'System Administration'])
             // Initials drawn locally for users without a profile picture (no outside avatar service).
             ->defaultAvatarProvider(\App\Filament\AvatarProviders\InitialsAvatar::class)
-            // Admin pages switch without full page reloads.
-            ->spa()
+            // No ->spa(): with it, the browser's Back button could rebuild a page without Filament's
+            // stylesheet (unstyled admin). Normal page loads are a little slower but always complete.
             ->sidebarCollapsibleOnDesktop()
             // ULS theme: plain CSS through render hooks, no Tailwind build needed.
             ->renderHook(PanelsRenderHook::HEAD_END, fn (): string => '
