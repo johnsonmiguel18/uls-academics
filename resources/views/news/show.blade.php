@@ -22,8 +22,10 @@
 @php($label = fn (string $key, array $replace = []) => Site::text("news.labels.$key", $replace))
 
 @section('content')
-<section class="page-banner article-banner">
-    <div class="page-banner-inner">
+<main class="article-main">
+{{-- Compact header like the news page: headline, summary and date, aligned with the article text --}}
+<section class="news-masthead article-masthead">
+    <div class="article-masthead-inner">
         <nav class="page-breadcrumb" aria-label="{{ \App\Support\Site::text('a11y.breadcrumb') }}">
             <a href="{{ route('academics.index') }}">{{ Site::text('header.brand_label') ?: Site::text('contact.site_name') }}</a>
             <span aria-hidden="true">/</span>
@@ -37,14 +39,13 @@
         <h1>{{ $article->title }}</h1>
 
         @if ($article->excerpt)
-            <p class="page-banner-lead">{{ $article->excerpt }}</p>
+            <p class="article-masthead-lead">{{ $article->excerpt }}</p>
         @endif
 
-        <p class="article-date">{{ $label('published', ['date' => $article->displayDate()]) }}</p>
+        <p class="article-masthead-date">{{ $label('published', ['date' => $article->displayDate()]) }}</p>
     </div>
 </section>
 
-<main class="article-main">
     <article class="article-body {{ $article->featured_image ? 'has-image' : '' }}">
         <div class="article-tags">
             <a class="news-category" href="{{ route('news.index', ['category' => $article->category]) }}">{{ \App\Models\Term::label('news_category', $article->category) }}</a>

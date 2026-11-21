@@ -69,6 +69,60 @@ class NewsFrontPageTest extends TestCase
         $this->assertEmpty($rows->intersect($shown));
     }
 
+    public function test_the_lead_story_lists_the_next_three_headlines_and_the_cards_continue(): void
+    {
+        foreach (range(1, 12) as $i) {
+            $this->story("s-$i", $i);
+        }
+
+        $html = $this->get(route('news.index'))->assertOk()->getContent();
+        preg_match('/<ul class="news-lead-related"[^>]*>(.*?)<\/ul>/s', $html, $related);
+        preg_match('/<div class="news-cards news-rail".*?<\/div>\s*<nav/s', $html, $grid);
+
+        // Hero s-1; the next three (s-2 to s-4) as headlines under it; the cards start at s-5 (6 cards = 9 per page).
+        $this->assertSame(3, substr_count($related[1], '<li>'));
+        $this->assertStringContainsString('Story s-2', $related[1]);
+        $this->assertStringContainsString('Story s-4', $related[1]);
+        $this->assertSame(6, substr_count($grid[0], 'class="news-card "'));
+        $this->assertStringContainsString('Story s-5', $grid[0]);
+        $this->assertStringNotContainsString('Story s-4', $grid[0]);
+
+        // The rail's arrow buttons (shown by the site script on phones) point at the rail and carry their labels.
+        $this->assertStringContainsString('id="news-rail"', $html);
+        $this->assertMatchesRegularExpression('/<button[^>]*data-rail="prev"[^>]*aria-controls="news-rail"[^>]*aria-label="Previous stories"[^>]*hidden>/', $html);
+        $this->assertMatchesRegularExpression('/<button[^>]*data-rail="next"[^>]*aria-controls="news-rail"[^>]*aria-label="Next stories"[^>]*hidden>/', $html);
+
+        // No introduction sentence under the page title on the front page.
+        $this->assertStringNotContainsString('news-masthead-lead', $html);
+
+        // Filtered lists have no lead, so no headline list either.
+        $this->assertStringNotContainsString('news-lead-related', $this->get(route('news.index', ['category' => 'college-news']))->getContent());
+    }
+
+    public function test_screen_readers_get_one_main_area_and_distinct_names(): void
+    {
+        foreach (range(1, 12) as $i) {
+            $this->story("s-$i", $i);
+        }
+
+        $html = $this->get(route('news.index'))->assertOk()->getContent();
+
+        // The page title sits inside <main>, so "skip to main content" lands on it.
+        $this->assertMatchesRegularExpression('/<main class="news-index">\s*(\{\{--.*?--\}\}\s*)?<section class="news-masthead">/s', $html);
+        $this->assertStringContainsString('<span aria-current="page">News</span>', $html);
+        $this->assertStringContainsString('role="search" aria-label="Search news"', $html);
+        $this->assertStringContainsString('<nav class="news-chips" aria-label="News categories">', $html);
+        $this->assertStringContainsString('<ul class="news-lead-related" aria-label="More stories">', $html);
+        // The card rail is a named group, not a second landmark with the section's name.
+        $this->assertStringContainsString('role="group" aria-labelledby="news-list-heading"', $html);
+        $this->assertStringNotContainsString('role="region"', $html);
+        // Goal chips: the name is read once, from the hidden text, not again from a tooltip.
+        $this->assertDoesNotMatchRegularExpression('/class="news-sdg-chip"[^>]*title=/', $html);
+
+        $article = $this->get(route('news.show', 's-2'))->assertOk()->getContent();
+        $this->assertMatchesRegularExpression('/<main class="article-main">\s*(\{\{--.*?--\}\}\s*)?<section class="news-masthead article-masthead">/s', $article);
+    }
+
     public function test_sdg_labels_link_to_the_filter_and_overflow_after_three(): void
     {
         $this->story('hero', 1);
@@ -96,6 +150,7 @@ class NewsFrontPageTest extends TestCase
             ->assertSee(route('news.show', 'last'))
             ->assertSee('Previous story')
             ->assertSee('Next story')
+            ->assertSee('<section class="news-masthead article-masthead">', false) // same compact header as the news page
             ->assertSee(route('news.index', ['sdg' => 4]), false);
     }
 }

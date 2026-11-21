@@ -37,8 +37,50 @@ document.querySelector('.ac-menu-toggle')?.addEventListener('click', (event) => 
     event.currentTarget.setAttribute('aria-expanded', open);
 });
 document.addEventListener('click', (event) => {
-    const menu = document.querySelector('.ac-nav-colleges[open]');
-    if (menu && ! menu.contains(event.target)) menu.removeAttribute('open');
+    // Open menus close on a click outside them: the Colleges list, and the news page's "Goals" menu.
+    document.querySelectorAll('.ac-nav-colleges[open], .news-sdg-menu[open]').forEach((menu) => {
+        if (! menu.contains(event.target)) menu.removeAttribute('open');
+    });
+});
+document.addEventListener('keydown', (event) => {
+    const menu = document.querySelector('.news-sdg-menu[open]');
+    if (event.key === 'Escape' && menu) {
+        menu.removeAttribute('open');
+        menu.querySelector('summary').focus();
+    }
+});
+
+// News page on phones: the story rail scrolls sideways. Arrow buttons (shown only while there is more in that
+// direction) and dots make that visible; swiping and the keyboard keep working without them.
+document.querySelectorAll('.news-rail-wrap').forEach((wrap) => {
+    const rail = wrap.querySelector('.news-rail');
+    const cards = [...rail.children];
+    const prev = wrap.querySelector('[data-rail="prev"]');
+    const next = wrap.querySelector('[data-rail="next"]');
+    const dots = wrap.querySelector('.news-rail-dots');
+    if (cards.length < 2 || ! prev || ! next || ! dots) return;
+
+    cards.forEach(() => dots.append(document.createElement('span')));
+    const step = () => cards[1].offsetLeft - cards[0].offsetLeft;
+    const update = () => {
+        const scrollable = rail.scrollWidth > rail.clientWidth + 2; // a grid (wider screens) does not scroll
+        const atStart = rail.scrollLeft < 4;
+        const atEnd = rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 4;
+        for (const [button, hide] of [[prev, ! scrollable || atStart], [next, ! scrollable || atEnd]]) {
+            if (hide && document.activeElement === button) rail.focus(); // keep keyboard focus on the page
+            button.hidden = hide;
+        }
+        dots.hidden = ! scrollable;
+        rail.tabIndex = scrollable ? 0 : -1; // a Tab stop only where it scrolls (phones), not on the desktop grid
+        const current = atEnd ? cards.length - 1 : Math.round(rail.scrollLeft / step());
+        [...dots.children].forEach((dot, i) => dot.classList.toggle('is-current', i === current));
+    };
+    const move = (direction) => rail.scrollBy({ left: direction * step(), behavior: reduceMotion ? 'auto' : 'smooth' });
+    prev.addEventListener('click', () => move(-1));
+    next.addEventListener('click', () => move(1));
+    rail.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
 });
 
 // Program finder: filters apply as soon as a dropdown or checkbox changes; typing still waits for Enter.

@@ -116,11 +116,18 @@
 .news-item:hover .news-item-media img {
     scale: 1.06;
 }
+/* Story headlines: bold sans-serif, the same on every page that shows news (CNN-style); academics pages
+   set serif on every h3, so the heading itself gets the site's sans-serif (body) font */
+.news-feature h2,
+.news-feature h3,
+.news-card h3 {
+    font-family: "Segoe UI", Arial, sans-serif;
+}
 .news-feature h2 a,
 .news-feature h3 a,
 .news-card h3 a {
-    font-family: var(--v3-serif);
-    font-weight: 400;
+    font-family: inherit;
+    font-weight: 700;
 }
 
 
@@ -131,49 +138,289 @@
 .news-front {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: 56px;
+    gap: 40px;
 }
 .news-front-main {
     display: flex;
     flex-direction: column;
-    gap: 48px;
+    gap: 32px;
     min-width: 0;
 }
-.news-section-label {
-    margin: 0 0 16px;
-    color: var(--label);
+/* Compact page header (CNN-style): the lead story shows without scrolling */
+.news-masthead {
+    background: #ffffff;
+    border-bottom: 1px solid var(--line);
+}
+.news-masthead-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 20px;
+    padding: 18px 0 14px;
+}
+.news-masthead .page-breadcrumb {
+    flex-basis: 100%;
+    margin: 0;
+    color: var(--muted);
+    font-size: 12px;
+}
+.news-masthead .page-breadcrumb a {
+    color: var(--muted);
+}
+.news-masthead .page-breadcrumb a:hover,
+.news-masthead .page-breadcrumb a:focus-visible {
+    color: var(--ink);
+}
+.news-masthead h1 {
+    margin: 0;
+    color: var(--ink);
     font-family: inherit;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    font-size: clamp(26px, 3vw, 34px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+}
+.news-masthead-lead {
+    margin: 0;
+    color: var(--muted);
+    font-size: 15px;
+}
+.news-masthead-lead a {
+    color: var(--navy);
+    text-decoration: underline;
 }
 
-/* The featured story stays dominant: full width of the main column, large serif headline */
-.news-feature-hero .news-feature-body {
+/* Article page: the same compact header, aligned with the article text */
+.article-masthead-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: min(820px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 24px 0 20px;
+}
+.article-masthead h1 {
+    font-size: clamp(30px, 4vw, 44px);
+    line-height: 1.12;
+}
+.article-masthead-lead {
+    margin: 0;
+    color: #222222;
+    font-size: 18px;
+    line-height: 1.5;
+}
+.article-masthead-date {
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* One toolbar row: search, category tabs, "Goals" menu */
+.news-index {
+    padding-top: 0;
+}
+.news-index .news-toolbar {
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px 24px;
+    margin-bottom: 24px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+}
+.news-index .news-search {
+    flex: 0 1 280px;
+}
+.news-index .news-chips {
+    flex: 1 1 auto;
+    min-width: 0;
+    gap: 4px 14px;
+}
+.news-sdg-menu {
+    position: relative;
+    flex: none;
+    margin-left: auto;
+}
+.news-sdg-menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 36px;
+    padding: 4px 12px 4px 14px;
+    color: var(--ink);
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 13.5px;
+    font-weight: 700;
+    list-style: none;
+    cursor: pointer;
+    white-space: nowrap;
+}
+.news-sdg-menu-toggle::-webkit-details-marker {
+    display: none;
+}
+.news-sdg-menu-toggle svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    transition: rotate 0.15s ease;
+}
+.news-sdg-menu[open] .news-sdg-menu-toggle svg {
+    rotate: 180deg;
+}
+.news-sdg-menu-toggle.is-active {
+    color: var(--sdg-ink);
+    background: var(--sdg);
+    border-color: var(--sdg);
+}
+.news-sdg-menu-toggle:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
+}
+.news-sdg-menu .news-sdg-filter {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    z-index: 30;
+    width: min(440px, 92vw);
+    padding: 12px;
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(20, 32, 79, 0.12);
+}
+
+/* Lead story (CNN-style): headline and summary on the left, the photo on the right (as tall as the
+   text beside it, never shorter than 16:9), then the next stories as a row of plain headlines.
+   On phones: headline, photo, summary, headlines. */
+.news-lead-story {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: "head media" "body media" "related related";
+    gap: 12px 24px;
+    align-items: start;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--line);
+}
+.news-lead-head {
+    grid-area: head;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.news-lead-story .news-feature-media {
+    grid-area: media;
+    align-self: stretch;
+    justify-self: stretch;
+    width: 100%; /* the column's width; only the height follows the text (without this the 16:9 ratio widens it) */
+}
+.news-lead-story .news-feature-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.news-lead-body {
+    grid-area: body;
+    display: flex;
+    flex-direction: column;
     gap: 12px;
 }
-.news-feature-hero h3 {
-    font-size: clamp(28px, 3.4vw, 42px);
+.news-lead-story h3 {
+    font-size: clamp(24px, 2.2vw, 30px);
     line-height: 1.15;
+    letter-spacing: -0.01em;
 }
-.news-feature-hero .news-lead,
-.news-feature-hero .news-summary {
-    max-width: 68ch;
-    font-size: 17px;
+.news-lead-body .news-summary {
+    font-size: 15px;
+    line-height: 1.55;
+}
+.news-lead-related {
+    grid-area: related;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0 24px;
+    margin: 8px 0 0;
+    padding: 0;
+    list-style: none;
+}
+.news-lead-related li {
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
+}
+.news-lead-related a {
+    color: var(--ink);
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.35;
+}
+.news-lead-related a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* Section titles with a bar: the news page and the article page's "More stories" */
+.news-front .news-index-heading,
+.article-related h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    color: var(--ink);
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+.news-front .news-index-heading::before,
+.article-related h2::before {
+    content: "";
+    flex: none;
+    width: 4px;
+    height: 1.15em;
+    background: var(--ink);
 }
 
 /* Previous stories: 3 columns inside the main column */
 .news-rail {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 36px 24px;
+    gap: 28px 20px;
+    padding-top: 16px;
 }
 .news-rail .news-card h3 {
-    font-size: 17px;
+    font-size: 16px;
+    line-height: 1.3;
+}
+.news-rail .news-card-body {
+    gap: 6px;
+    padding-top: 10px;
+}
+.news-rail .news-card p {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    font-size: 14px;
+    line-height: 1.5;
 }
 .news-rail:focus-visible {
     outline: 3px solid var(--navy);
     outline-offset: 6px;
+}
+
+/* Rail controls: only on phones (see the phone section); a grid needs none */
+.news-rail-wrap {
+    position: relative;
+}
+.news-rail-arrow,
+.news-rail-dots {
+    display: none;
 }
 
 /* Sidebar: compact rows (small thumbnail, title, date, category, SDGs) */
@@ -260,10 +507,9 @@
     cursor: default;
 }
 
-/* SDG filter row under the category chips: pale tint of each goal, its full color when chosen */
+/* SDG filter (inside the "Goals" menu): pale tint of each goal, its full color when chosen */
 .news-sdg-filter {
     display: flex;
-    flex-basis: 100%;
     min-width: 0;
     flex-wrap: wrap;
     gap: 6px;
@@ -340,8 +586,9 @@
     text-transform: uppercase;
 }
 .article-pager-title {
-    font-family: var(--v3-serif);
-    font-size: 18px;
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: 700;
     line-height: 1.35;
 }
 .article-pager a:hover .article-pager-title {
@@ -401,11 +648,85 @@
     .news-rail:focus-visible {
         outline-offset: -3px;
     }
-    .news-sdg-filter {
-        flex-wrap: nowrap;
-        margin: 0 -20px;
-        padding: 4px 20px;
-        overflow-x: auto;
+    /* Round arrows over the photos (CNN-style) and dots under the rail show that it scrolls sideways.
+       Cards are 80% of the rail and their photos 16:10, so the photo's middle is 25% of the width down. */
+    .news-rail-arrow:not([hidden]) {
+        position: absolute;
+        top: calc(20px + (100vw - 40px) * 0.25);
+        z-index: 2;
+        display: grid;
+        place-items: center;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        color: #ffffff;
+        background: rgba(20, 32, 79, 0.92);
+        border: 2px solid #ffffff;
+        border-radius: 50%;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
+    .news-rail-arrow.is-prev {
+        left: 4px;
+    }
+    .news-rail-arrow.is-next {
+        right: 4px;
+    }
+    .news-rail-arrow svg {
+        width: 22px;
+        height: 22px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+    .news-rail-arrow:focus-visible {
+        outline: 3px solid var(--navy);
+        outline-offset: 2px;
+    }
+    .news-rail-dots:not([hidden]) {
+        display: flex;
+        justify-content: center;
+        gap: 6px;
+        margin-top: 4px;
+    }
+    .news-rail-dots span {
+        width: 8px;
+        height: 8px;
+        background: #c9cddb;
+        border-radius: 4px;
+        transition: width 0.2s ease, background-color 0.2s ease;
+    }
+    .news-rail-dots span.is-current {
+        width: 22px;
+        background: var(--navy);
+    }
+    .news-sdg-menu {
+        flex: 1 1 100%; /* full row, so the open list wraps instead of widening the page */
+        margin-left: 0;
+    }
+    .news-sdg-menu .news-sdg-filter {
+        position: static;
+        width: auto;
+        margin-top: 8px;
+        box-shadow: none;
+    }
+    .news-lead-story {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: auto;
+        grid-template-areas: "head" "media" "body" "related";
+    }
+    .news-lead-related {
+        grid-template-columns: minmax(0, 1fr);
+        margin-top: 4px;
+    }
+    .news-lead-related li {
+        padding: 10px 0;
+    }
+    .news-lead-story h3 {
+        font-size: 24px;
     }
     .news-row {
         grid-template-columns: 84px minmax(0, 1fr);
@@ -425,6 +746,9 @@
 @media (prefers-reduced-motion: reduce) {
     .news-rail {
         scroll-behavior: auto;
+    }
+    .news-rail-dots span {
+        transition: none;
     }
     .news-feature-media img,
     .news-card-media img,
