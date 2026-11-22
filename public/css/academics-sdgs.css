@@ -2,11 +2,12 @@
 .ac-sdg-title { max-width: 22ch !important; }
 
 .ac-sdg-report { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin: 0 0 12px; padding: 0; list-style: none; }
-.ac-sdg-report a { display: grid; grid-template-rows: auto 1fr auto; gap: 8px; min-height: 150px; padding: 14px; border-radius: 8px; color: var(--sdg-ink); background: var(--sdg); text-decoration: none; transition: transform 0.15s ease; }
+.ac-sdg-report a { display: grid; grid-template-rows: auto 1fr auto auto; gap: 8px; min-height: 150px; padding: 14px; border-radius: 8px; color: var(--sdg-ink); background: var(--sdg); text-decoration: none; transition: transform 0.15s ease; }
 .ac-sdg-report a:hover { transform: translateY(-2px); }
 .ac-sdg-report strong { font-size: 30px; line-height: 1; }
 .ac-sdg-report .ac-sdg-name { font-size: 14px; font-weight: 700; line-height: 1.3; }
 .ac-sdg-report .ac-sdg-count { justify-self: end; min-width: 28px; padding: 2px 8px; border-radius: 999px; color: #1f2330; background: #ffffff; font-size: 13px; font-weight: 700; text-align: center; }
+.ac-sdg-report .ac-sdg-split { justify-self: end; font-size: 12px; font-weight: 600; text-align: right; } /* stories · projects */
 .ac-sdg-report .is-empty .ac-sdg-name, .ac-sdg-report .is-empty strong { font-weight: 600; }
 
 .ac-table-wrap { overflow-x: auto; }

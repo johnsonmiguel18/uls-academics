@@ -91,6 +91,27 @@ class News extends Model
             ->where(fn (Builder $q) => $q->whereNull('unpublish_at')->orWhere('unpublish_at', '>', now()));
     }
 
+    /**
+     * Published stories on one goal: the number /news?sdg=N lists and /sdgs/N shows. Same scopes as the lists.
+     */
+    public static function sdgStoryCount(int $goal): int
+    {
+        return self::query()->published()->forSdg($goal)->count();
+    }
+
+    /**
+     * Published stories per goal, [goal => stories], for the SDG report and the college SDG grids
+     * (optionally one college's stories). Each story counts once per goal; agrees with sdgStoryCount().
+     */
+    public static function sdgStoryCounts(?int $collegeId = null): array
+    {
+        return self::query()->published()->whereNotNull('sdgs')
+            ->when($collegeId, fn (Builder $q) => $q->where('college_id', $collegeId))
+            ->pluck('sdgs')
+            ->flatMap(fn ($tags) => \App\Support\Sdg::numbers($tags))
+            ->countBy()->sortKeys()->all();
+    }
+
     /** One of the STATES keys. */
     public function state(): string
     {

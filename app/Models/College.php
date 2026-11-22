@@ -27,18 +27,26 @@ class College extends Model
     {
         $tagged = collect([$this->focus_areas, $this->partners, $this->extension_projects])
             ->flatMap(fn ($items) => collect($items ?? [])->pluck('sdgs')->flatten())
-            ->merge($this->news()->published()->pluck('sdgs')->flatten());
+            ->merge(array_keys(News::sdgStoryCounts($this->id)));
 
-        return $tagged->filter()->map(fn ($n) => (int) $n)->unique()->sort()->values()->all();
+        return \App\Support\Sdg::numbers($tagged->all());
     }
 
-    /** Stories per SDG (published news and extension projects), for the SDG grid. */
+    /**
+     * Stories and extension projects per SDG, for the college SDG grid: the college's published stories
+     * counted as on the news pages (News::sdgStoryCounts), plus its projects; each item once per goal.
+     */
     public function sdgStoryCounts(): array
     {
-        return collect($this->extension_projects ?? [])->pluck('sdgs')
-            ->merge($this->news()->published()->pluck('sdgs'))
-            ->flatten()->filter()->map(fn ($n) => (int) $n)
-            ->countBy()->all();
+        $counts = News::sdgStoryCounts($this->id);
+        foreach ($this->extension_projects ?? [] as $project) {
+            foreach (\App\Support\Sdg::numbers($project['sdgs'] ?? []) as $goal) {
+                $counts[$goal] = ($counts[$goal] ?? 0) + 1;
+            }
+        }
+        ksort($counts);
+
+        return $counts;
     }
 
     /** YouTube id of the college video, for its thumbnail; null for other links. */

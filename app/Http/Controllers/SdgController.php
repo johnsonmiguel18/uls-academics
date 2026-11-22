@@ -8,8 +8,9 @@ use App\Support\Sdg;
 use Illuminate\Support\Collection;
 
 /**
- * SDG report (/sdgs) and one page per goal (/sdgs/{goal}). Counts come from published stories'
- * SDG tags and the extension projects on each published college page; texts from Site settings → SDG pages.
+ * SDG report (/sdgs) and one page per goal (/sdgs/{goal}). Stories are the same published News records the
+ * news pages list (News::sdgStoryCounts / sdgStoryCount, one count for every page); the totals add the extension
+ * projects on each published college page, shown separately. Texts from Site settings → SDG pages.
  */
 class SdgController extends Controller
 {
@@ -18,6 +19,9 @@ class SdgController extends Controller
         [$colleges, $items] = $this->items();
 
         $counts = $items->flatMap(fn ($item) => $item['sdgs'])->countBy()->all();
+        // Shown on each goal: stories (the number /news?sdg=N lists) and projects, so the total is clear.
+        $storyCounts = News::sdgStoryCounts();
+        $projectCounts = $items->where('type', 'project')->flatMap(fn ($item) => $item['sdgs'])->countBy()->all();
         $byCollege = $colleges
             ->map(function (College $college) use ($items) {
                 $own = $items->where('college_id', $college->id);
@@ -30,6 +34,8 @@ class SdgController extends Controller
 
         return view('sdgs.index', [
             'counts' => $counts,
+            'storyCounts' => $storyCounts,
+            'projectCounts' => $projectCounts,
             'byCollege' => $byCollege,
             'stats' => ['goals' => count($counts), 'items' => $items->count(), 'colleges' => $byCollege->count()],
         ]);
@@ -56,7 +62,7 @@ class SdgController extends Controller
             'collegeCounts' => $collegeCounts,
             'projects' => $tagged->where('type', 'project')->values(),
             'stories' => (clone $stories)->take(6)->get(),
-            'storyCount' => $stories->count(),
+            'storyCount' => News::sdgStoryCount($goal),
             'previous' => array_key_last(array_filter($goals, fn ($n) => $n < $goal, ARRAY_FILTER_USE_KEY)),
             'next' => array_key_first(array_filter($goals, fn ($n) => $n > $goal, ARRAY_FILTER_USE_KEY)),
         ]);
@@ -69,13 +75,11 @@ class SdgController extends Controller
     private function items(): array
     {
         $colleges = College::query()->published()->get(['id', 'name', 'short_name', 'slug', 'extension_projects']);
-        $goals = fn ($tags) => collect($tags ?? [])->map(fn ($n) => (int) $n)->filter()->unique()->values()->all();
-
         $stories = News::query()->published()->whereNotNull('sdgs')->get(['id', 'college_id', 'sdgs'])
-            ->map(fn (News $n) => ['type' => 'story', 'college_id' => $n->college_id, 'sdgs' => $goals($n->sdgs)]);
+            ->map(fn (News $n) => ['type' => 'story', 'college_id' => $n->college_id, 'sdgs' => Sdg::numbers($n->sdgs)]);
 
         $projects = $colleges->flatMap(fn (College $c) => collect($c->extension_projects ?? [])
-            ->map(fn ($p) => ['type' => 'project', 'college_id' => $c->id, 'college' => $c, 'project' => $p, 'sdgs' => $goals($p['sdgs'] ?? [])]));
+            ->map(fn ($p) => ['type' => 'project', 'college_id' => $c->id, 'college' => $c, 'project' => $p, 'sdgs' => Sdg::numbers($p['sdgs'] ?? [])]));
 
         /** @var Collection $items */
         $items = $stories->concat($projects)->filter(fn ($item) => $item['sdgs'])->values();
