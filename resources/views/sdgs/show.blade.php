@@ -89,6 +89,8 @@
                     'id' => 'stories-heading',
                     'link' => route('news.index', ['sdg' => $goal]),
                 ])
+                {{-- The same count, in the same words, as the news page filtered to this goal --}}
+                <p class="ac-muted ac-sdg-story-count">{{ \App\Support\Sdg::countText('story', $storyCount) }}</p>
                 <div class="ac-news-grid">
                     @foreach ($stories as $story)
                         @include('partials.news-card')

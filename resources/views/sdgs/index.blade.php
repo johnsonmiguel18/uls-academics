@@ -55,6 +55,10 @@
                             <strong>{{ $n }}</strong>
                             <span class="ac-sdg-name">{{ $name }}</span>
                             <span class="ac-sdg-count">{{ $count }}<span class="sr-only"> {{ $label('stories_mapped') }}</span></span>
+                            @if ($count)
+                                {{-- Stories are the ones /news?sdg=N lists; projects come from the college pages --}}
+                                <span class="ac-sdg-split">{{ Sdg::countText('story', $storyCounts[$n] ?? 0) }} · {{ Sdg::countText('project', $projectCounts[$n] ?? 0) }}</span>
+                            @endif
                         </a>
                     </li>
                 @endforeach

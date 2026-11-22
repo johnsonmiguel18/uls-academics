@@ -37,7 +37,8 @@ class AcademicsController extends Controller
                     ->orderBy('sort_order')->take((int) ($sections['featured']['limit'] ?? 6))->get()
                 : collect(),
             'news' => isset($sections['news'])
-                ? News::published()->whereNotNull('college_id')->latest('published_at')->take((int) ($sections['news']['limit'] ?? 3))->get()
+                // Same stories as the news page: every published story, university-wide ones included.
+                ? News::published()->latest('published_at')->take((int) ($sections['news']['limit'] ?? 3))->get()
                 : collect(),
             'events' => isset($sections['news']) ? AcademicEvent::upcoming()->with('college')->take(4)->get() : collect(),
         ]);

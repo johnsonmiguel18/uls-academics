@@ -39,6 +39,21 @@ class Sdg
         return $options;
     }
 
+    /**
+     * The goal numbers in a list of tags, as every page reads them: whole numbers 1-17, each once. Stories and
+     * extension projects both go through this, and it matches News::forSdg(), so no page counts them differently.
+     */
+    public static function numbers(?array $tags): array
+    {
+        return collect($tags ?? [])->map(fn ($n) => (int) $n)->filter(fn ($n) => $n >= 1 && $n <= 17)->unique()->sort()->values()->all();
+    }
+
+    /** "9 stories", "1 story", "12 projects": the wording every SDG and news page uses for these counts. */
+    public static function countText(string $kind, int $count): string
+    {
+        return Site::text("sdgs.labels.{$kind}_count" . ($count === 1 ? '_one' : ''), ['count' => $count]);
+    }
+
     public static function name(int $number): ?string
     {
         return self::goals()[$number][0] ?? null;
