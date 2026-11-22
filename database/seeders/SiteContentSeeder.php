@@ -294,6 +294,11 @@ class SiteContentSeeder extends Seeder
                     'goals_column' => 'Goals served',
                     'items_column' => 'Stories and projects',
                     'goal_kicker' => 'SDG :number',
+                    // Counts on the SDG and news pages (Sdg::countText), so every page words them the same way
+                    'story_count' => ':count stories',
+                    'story_count_one' => '1 story',
+                    'project_count' => ':count projects',
+                    'project_count_one' => '1 project',
                     'goal_colleges_heading' => 'Colleges working on this goal',
                     'goal_college_count' => 'Stories and projects: :count',
                     'goal_projects_heading' => 'Extension projects',
