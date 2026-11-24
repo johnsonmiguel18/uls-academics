@@ -83,6 +83,7 @@
 
 /* Partners */
 .ac-partner-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+.ac-partner-logo { display: block; width: 64px; height: 64px; margin: 0 0 12px; object-fit: contain; }
 .ac-partner { display: flex; flex-direction: column; gap: 4px; padding: 24px; border: 1px solid var(--ac-line); border-radius: var(--ac-radius); background: var(--ac-surface); }
 .ac-partner .ac-kicker { margin-bottom: 4px; font-size: 11px; }
 .ac-partner h3 { margin: 0; font-size: 21px; }

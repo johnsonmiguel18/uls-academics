@@ -10,8 +10,9 @@ use App\Models\Program;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-// Global Engagement & Linkages: on its own subdomain when GLOBAL_DOMAIN is set (e.g. global.uls.edu.ph),
-// otherwise under /global. Registered first, so its "/" wins on that subdomain.
+// Global Engagement & Linkages: a page of this site at /global. If the old Global subdomain is still pointed here
+// (GLOBAL_DOMAIN, e.g. global.uls.edu.ph), every address on it goes to the Academics home (deans' decision,
+// November 2026); the Global page is reached from the Academics menu.
 $global = function () {
     Route::get('/', [GlobalController::class, 'index'])->middleware(\App\Http\Middleware\CachePublicPages::class)->name('global.home');
     // No CSRF token: the page is cached for everyone. Rate limit and a hidden trap field keep spam out.
@@ -20,12 +21,15 @@ $global = function () {
         ->withoutMiddleware(\Illuminate\Foundation\Http\Middleware\ValidateCsrfToken::class)
         ->name('global.inquire');
 };
-config('app.global_domain')
-    ? Route::domain(config('app.global_domain'))->group($global)
-    : Route::prefix('global')->group($global);
+if (config('app.global_domain')) {
+    Route::domain(config('app.global_domain'))->group(function () {
+        Route::get('/{any?}', fn () => redirect()->away(rtrim((string) config('app.url'), '/') . '/', 301))->where('any', '.*');
+    });
+}
+Route::prefix('global')->domain(config('app.global_domain') ? parse_url(config('app.url'), PHP_URL_HOST) : null)->group($global);
 
 // ULS Academics: a standalone site. The main university website links here.
-// With GLOBAL_DOMAIN set, these pages stay on APP_URL's host, so links from Global point back there.
+// With GLOBAL_DOMAIN set, these pages stay on APP_URL's host (the subdomain only redirects here).
 // Public pages are kept ready (App\Http\Middleware\CachePublicPages) and refreshed on every admin change.
 Route::middleware(\App\Http\Middleware\CachePublicPages::class)
     ->domain(config('app.global_domain') ? parse_url(config('app.url'), PHP_URL_HOST) : null)
@@ -44,10 +48,6 @@ Route::middleware(\App\Http\Middleware\CachePublicPages::class)
     Route::get('/news', [NewsController::class, 'index'])->name('news.index');
     Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
 
-    // With Global on its own subdomain, the old /global address (and menu links to it) still works.
-    if (config('app.global_domain')) {
-        Route::redirect('/global', (parse_url(config('app.url'), PHP_URL_SCHEME) ?: 'https') . '://' . config('app.global_domain'), 301);
-    }
 });
 
 // Header search: programs first, then news.
