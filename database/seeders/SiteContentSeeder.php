@@ -439,6 +439,13 @@ class SiteContentSeeder extends Seeder
                 'sdgs' => 'Sustainable Development Goals',
                 'pagination' => 'Pages',
                 'wordmark' => 'University of La Salette, Incorporated',
+                'search_suggestions' => 'Suggestions',
+                'search_results' => ':count suggestions. Use the up and down arrow keys to choose one.',
+                'search_none' => 'No suggestions. Press Enter to search all programs.',
+            ],
+            // Live search suggestions in the header and home page search boxes
+            'search' => [
+                'labels' => ['program' => 'Program', 'college' => 'College', 'news' => 'News'],
             ],
             'seo' => [
                 'organization_address' => 'Santiago City, Isabela, Philippines',

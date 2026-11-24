@@ -128,19 +128,23 @@ html:not(.dark) .fi-body {
 
 .fi-sidebar-nav {
     padding-top: 20px;
-    /* A thin scrollbar on the navy, not the browser's grey and white one (Windows draws it in full).
-       Thumb: white at 45% on navy, about 3.7:1, so it stays visible. */
+    /* Scrollbar hidden until the pointer is over the menu or keyboard focus is in it (reviewers, November 2026);
+       thin and white on the navy when shown. The gutter stays reserved so the menu does not shift. */
     scrollbar-width: thin;
-    scrollbar-color: rgba(255, 255, 255, 0.45) transparent;
+    scrollbar-color: transparent transparent;
+    scrollbar-gutter: stable;
 }
-.fi-sidebar-nav:hover {
-    scrollbar-color: rgba(255, 255, 255, 0.7) transparent;
+.fi-sidebar-nav:hover,
+.fi-sidebar-nav:focus-within {
+    scrollbar-color: rgba(255, 255, 255, 0.6) transparent;
 }
 /* Browsers without scrollbar-color (older Safari) */
 @supports not (scrollbar-color: auto) {
     .fi-sidebar-nav::-webkit-scrollbar { width: 8px; }
     .fi-sidebar-nav::-webkit-scrollbar-track { background: transparent; }
-    .fi-sidebar-nav::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.45); border-radius: 8px; }
+    .fi-sidebar-nav::-webkit-scrollbar-thumb { background: transparent; border-radius: 8px; }
+    .fi-sidebar-nav:hover::-webkit-scrollbar-thumb,
+    .fi-sidebar-nav:focus-within::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.6); }
 }
 
 .fi-sidebar-group-label {

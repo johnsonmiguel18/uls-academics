@@ -41,7 +41,7 @@
             <form class="ac-search" action="{{ route('academics.programs') }}" method="get" role="search" aria-label="{{ Site::text('home.search_label') }}">
                 <label class="sr-only" for="ac-search-input">{{ Site::text('home.search_label') }}</label>
                 <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
-                <input id="ac-search-input" type="search" name="q" placeholder="{{ Site::text('home.search_placeholder') }}" autocomplete="off">
+                <input id="ac-search-input" type="search" name="q" placeholder="{{ Site::text('home.search_placeholder') }}" autocomplete="off" data-suggest="{{ route('search.suggestions') }}" data-suggest-label="{{ \App\Support\Site::text('a11y.search_suggestions') }}" data-suggest-results="{{ \App\Support\Site::text('a11y.search_results') }}" data-suggest-none="{{ \App\Support\Site::text('a11y.search_none') }}">
                 <button type="submit">{{ Site::text('home.search_button') }}</button>
             </form>
 

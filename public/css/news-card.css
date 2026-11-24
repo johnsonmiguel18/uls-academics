@@ -76,7 +76,7 @@
 }
 .news-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
     gap: 40px 28px;
     padding-top: 24px;
 }
@@ -638,12 +638,13 @@
     .news-rail {
         display: flex;
         gap: 16px;
-        margin: 0 -20px;
-        padding: 20px 20px 16px;
+        /* Bleeds to the screen edges: as wide as the page gutter (academics.css) */
+        margin: 0 calc(-1 * var(--ac-gutter, 20px));
+        padding: 20px var(--ac-gutter, 20px) 16px;
         overflow-x: auto;
         overscroll-behavior-x: contain;
         scroll-snap-type: x mandatory;
-        scroll-padding-inline: 20px;
+        scroll-padding-inline: var(--ac-gutter, 20px);
         -webkit-overflow-scrolling: touch;
         scrollbar-width: thin;
     }
