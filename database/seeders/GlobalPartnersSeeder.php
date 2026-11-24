@@ -6,6 +6,7 @@ use App\Models\SiteSetting;
 use App\Support\ContentVersion;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * University-wide partners from the Office of Global Engagement's list (ULS GLOBAL, "Salette Internationalization
@@ -61,14 +62,16 @@ class GlobalPartnersSeeder extends Seeder
             ContentVersion::bump();
         }
 
-        $this->command?->info("Global partners: $added added, " . (count(self::PARTNERS) - $added) . ' already listed.');
+        $this->command?->info("Global partners: $added added, ".(count(self::PARTNERS) - $added).' already listed.');
     }
 
-    /** Copies a logo into public storage (partners/) and returns its stored path. */
+    /** Copies a logo onto the public disk (partners/), keeping a file already there, and returns its path. */
     private function logo(string $file): string
     {
-        File::ensureDirectoryExists(storage_path('app/public/partners'));
-        File::copy(database_path("seeders/data/partners/$file"), storage_path("app/public/partners/$file"));
+        $disk = Storage::disk('public');
+        if (! $disk->exists("partners/$file")) {
+            $disk->put("partners/$file", File::get(database_path("seeders/data/partners/$file")));
+        }
 
         return "partners/$file";
     }

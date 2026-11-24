@@ -8,8 +8,13 @@ use App\Models\News;
 use App\Models\PartnershipInquiry;
 use App\Models\SiteSetting;
 use App\Models\User;
+use App\Support\Site;
+use Database\Seeders\GlobalPartnersSeeder;
+use Database\Seeders\SiteContentSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Routing\RouteCollection;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 /** Global Engagement & Linkages: /global (or its own subdomain), partners, stories, inquiries. */
@@ -74,7 +79,7 @@ class GlobalEngagementTest extends TestCase
     public function test_inquiries_are_saved_and_shown_to_admins(): void
     {
         $this->post(route('global.inquire'), ['name' => 'Ana Cruz', 'email' => 'ana@example.edu', 'organization' => 'Partner U', 'interest' => 'exchange', 'message' => 'Student exchange in 2027?'])
-            ->assertRedirect(route('global.home') . '#connect');
+            ->assertRedirect(route('global.home').'#connect');
         $this->assertDatabaseHas('partnership_inquiries', ['email' => 'ana@example.edu', 'interest' => 'exchange', 'status' => 'new']);
 
         // The thank-you page is shown to this visitor only, never cached.
@@ -100,7 +105,7 @@ class GlobalEngagementTest extends TestCase
     {
         config(['app.global_domain' => 'global.uls.test', 'app.url' => 'http://academics.uls.test']);
         app('router')->setRoutes(new RouteCollection);
-        \Illuminate\Support\Facades\Route::middleware('web')->group(base_path('routes/web.php'));
+        Route::middleware('web')->group(base_path('routes/web.php'));
         app('router')->getRoutes()->refreshNameLookups();
 
         // The old Global subdomain sends every address to the Academics home (deans' decision).
@@ -115,29 +120,28 @@ class GlobalEngagementTest extends TestCase
 
     public function test_partners_from_the_global_office_list_are_added_once_with_logos(): void
     {
-        $this->seed(\Database\Seeders\SiteContentSeeder::class);
+        $this->seed(SiteContentSeeder::class);
         // A partner an admin already entered, with their own wording, under one of the same names.
-        $setting = \App\Models\SiteSetting::query()->first();
+        $setting = SiteSetting::query()->first();
         $data = $setting->data;
         $data['global']['partners'] = [['name' => 'Panpacific University', 'type' => 'Edited in the admin', 'scope' => 'local']];
         $setting->update(['data' => $data]);
 
-        try {
-            $this->seed(\Database\Seeders\GlobalPartnersSeeder::class);
-            $this->seed(\Database\Seeders\GlobalPartnersSeeder::class); // second run adds nothing
+        // A fake disk: the real storage/app/public/partners also holds logos uploaded in the admin.
+        Storage::fake('public');
 
-            $partners = collect(\App\Support\Site::get('global.partners'));
-            $this->assertCount(12, $partners);
-            $this->assertSame('Edited in the admin', $partners->firstWhere('name', 'Panpacific University')['type']);
-            $this->assertSame('international', $partners->firstWhere('name', 'Universidade da Paz (UNPAZ)')['scope']);
-            $this->assertFileExists(storage_path('app/public/partners/unpaz.jpg'));
+        $this->seed(GlobalPartnersSeeder::class);
+        $this->seed(GlobalPartnersSeeder::class); // second run adds nothing
 
-            $this->get(route('global.home'))->assertOk()
-                ->assertSee('National Chi Nan University (NCNU)')
-                ->assertSee('storage/partners/ncnu.png', false)
-                ->assertSee('Philippine National Red Cross, Santiago City Chapter');
-        } finally {
-            \Illuminate\Support\Facades\File::deleteDirectory(storage_path('app/public/partners'));
-        }
+        $partners = collect(Site::get('global.partners'));
+        $this->assertCount(12, $partners);
+        $this->assertSame('Edited in the admin', $partners->firstWhere('name', 'Panpacific University')['type']);
+        $this->assertSame('international', $partners->firstWhere('name', 'Universidade da Paz (UNPAZ)')['scope']);
+        Storage::disk('public')->assertExists('partners/unpaz.jpg');
+
+        $this->get(route('global.home'))->assertOk()
+            ->assertSee('National Chi Nan University (NCNU)')
+            ->assertSee('storage/partners/ncnu.png', false)
+            ->assertSee('Philippine National Red Cross, Santiago City Chapter');
     }
 }
