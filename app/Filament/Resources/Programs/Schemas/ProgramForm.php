@@ -4,13 +4,12 @@ namespace App\Filament\Resources\Programs\Schemas;
 
 use App\Filament\Forms\ContentEditor;
 use App\Filament\Resources\Programs\ProgramResource;
-use App\Models\College;
-use App\Models\Program;
+use App\Models\Term;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Tabs;
@@ -40,8 +39,8 @@ class ProgramForm
                             ->label('Department')
                             ->relationship('department', 'name', fn (Builder $query, Get $get) => $query->where('college_id', $get('college_id') ?? 0))
                             ->placeholder('None'),
-                        Select::make('level')->options(fn () => \App\Models\Term::options('level'))->required(),
-                        Select::make('degree_type')->options(fn () => \App\Models\Term::options('degree_type'))->required(),
+                        Select::make('level')->options(fn () => Term::options('level'))->required(),
+                        Select::make('degree_type')->options(fn () => Term::options('degree_type'))->required(),
                         TextInput::make('code')->placeholder('e.g. BSIT')->maxLength(20),
                         TextInput::make('duration')->placeholder('e.g. 4 years')->maxLength(50),
                         TextInput::make('majors')->placeholder('Comma-separated, if any')->columnSpanFull(),
@@ -70,7 +69,8 @@ class ProgramForm
                     ContentEditor::make('careers')->label('Career opportunities'),
                 ]),
                 Tab::make('Admission')->schema([
-                    ContentEditor::make('admission_requirements')->label('Admission requirements'),
+                    ContentEditor::make('admission_requirements')->label('Admission requirements (not shown)')
+                        ->helperText('Kept for reference only. Program pages link to the official admission page instead (Site settings → General → Admission requirements link).'),
                 ]),
                 Tab::make('FAQs')->schema([
                     Repeater::make('faqs')

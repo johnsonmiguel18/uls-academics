@@ -160,10 +160,28 @@ class SiteSettings extends Page
                             ->columns(3)->reorderable()->defaultItems(0)->addActionLabel('Add number')
                             ->itemLabel(fn (array $state) => $state['label'] ?? null),
                     ]),
+                    Section::make('Accreditation and rankings')
+                        ->description('University-wide, shown on the home page and in the Accreditation section of every college page. Program accreditations are added on each program.')
+                        ->collapsed()->schema([
+                            Repeater::make('recognitions.items')->hiddenLabel()
+                                ->schema([
+                                    TextInput::make('name')->label('Short name')->required()->placeholder('e.g. PACUCOA'),
+                                    TextInput::make('full_name')->label('Full name'),
+                                    TextInput::make('result')->label('Our result')->placeholder('e.g. Level III accredited: 12 programs')
+                                        ->helperText('The University\'s level, rank or award. Shown in bold.'),
+                                    TextInput::make('year')->label('Year')->maxLength(20),
+                                    Textarea::make('description')->label('Description')->rows(2)->columnSpanFull(),
+                                    TextInput::make('url')->label('Link')->url(),
+                                    FileUpload::make('logo')->label('Logo')
+                                        ->image()->disk('public')->directory('recognitions')->visibility('public')->maxSize(1024),
+                                ])
+                                ->columns(2)->reorderable()->collapsible()->defaultItems(0)->addActionLabel('Add accreditation or ranking')
+                                ->itemLabel(fn (array $state) => $state['name'] ?? null),
+                        ]),
                     Section::make('Sections')->description('Drag to reorder; switch off to hide.')->schema([
                         self::sections('home.sections', [
                             'stats' => 'Numbers', 'colleges' => 'Colleges', 'featured' => 'Featured programs',
-                            'news' => 'News and events', 'cta' => 'Enrollment call to action',
+                            'recognitions' => 'Accreditation and rankings', 'news' => 'News and events', 'cta' => 'Enrollment call to action',
                         ], withLink: true),
                     ]),
                 ]),
@@ -185,7 +203,8 @@ class SiteSettings extends Page
                     Section::make('Sections')->description('Same order and headings for every college. '.$placeholders.' Sections without content are skipped for that college.')->schema([
                         self::sections('college.sections', [
                             'about' => 'About: vision, mission, goals, video', 'programs' => 'Programs', 'research' => 'Research cluster',
-                            'partners' => 'Partners and linkages', 'students' => 'For students', 'sdgs' => 'Extension and SDGs',
+                            'partners' => 'Partners and linkages', 'accreditation' => 'Accreditation and recognition',
+                            'students' => 'For students', 'extension' => 'Extension projects',
                             'faculty' => 'Faculty', 'resources' => 'Facilities and documents', 'news' => 'News and events',
                         ], withNav: true),
                     ]),

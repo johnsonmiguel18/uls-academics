@@ -25,3 +25,7 @@
     .ac-toc .ac-kicker { width: 100%; }
     .ac-toc a { border: 1px solid var(--ac-line); border-radius: 999px; padding: 6px 12px; }
 }
+
+/* Admission: a short note and the button to the official admission page */
+.ac-admission { display: flex; flex-wrap: wrap; gap: 16px 24px; align-items: center; justify-content: space-between; padding: 20px 24px; border: 1px solid var(--ac-line); border-left: 3px solid var(--ac-accent); border-radius: var(--ac-radius); background: var(--ac-tint); }
+.ac-admission p { flex: 1 1 280px; margin: 0; color: var(--ac-ink); }
