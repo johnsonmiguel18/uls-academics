@@ -1,7 +1,7 @@
 /* SDG report (/sdgs) and goal pages (/sdgs/{n}). Loaded after academics-college.css. */
 .ac-sdg-title { max-width: 22ch !important; }
 
-.ac-sdg-report { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin: 0 0 12px; padding: 0; list-style: none; }
+.ac-sdg-report { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(150px, 100%), 1fr)); gap: 10px; margin: 0 0 12px; padding: 0; list-style: none; }
 .ac-sdg-report a { display: grid; grid-template-rows: auto 1fr auto auto; gap: 8px; min-height: 150px; padding: 14px; border-radius: 8px; color: var(--sdg-ink); background: var(--sdg); text-decoration: none; transition: transform 0.15s ease; }
 .ac-sdg-report a:hover { transform: translateY(-2px); }
 .ac-sdg-report strong { font-size: 30px; line-height: 1; }

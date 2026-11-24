@@ -1,12 +1,18 @@
 <?php
 
+use App\Filament\Resources\News\NewsResource;
 use App\Http\Controllers\AcademicsController;
 use App\Http\Controllers\GlobalController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\SdgController;
 use App\Http\Controllers\ThumbnailController;
+use App\Http\Controllers\VitalsController;
+use App\Http\Middleware\CachePublicPages;
+use App\Http\Middleware\ValidateCsrfToken;
+use App\Models\College;
 use App\Models\News;
 use App\Models\Program;
+use App\Support\Site;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,16 +20,16 @@ use Illuminate\Support\Facades\Route;
 // (GLOBAL_DOMAIN, e.g. global.uls.edu.ph), every address on it goes to the Academics home (deans' decision,
 // November 2026); the Global page is reached from the Academics menu.
 $global = function () {
-    Route::get('/', [GlobalController::class, 'index'])->middleware(\App\Http\Middleware\CachePublicPages::class)->name('global.home');
+    Route::get('/', [GlobalController::class, 'index'])->middleware(CachePublicPages::class)->name('global.home');
     // No CSRF token: the page is cached for everyone. Rate limit and a hidden trap field keep spam out.
     Route::post('/inquiries', [GlobalController::class, 'inquire'])
         ->middleware('throttle:5,10')
-        ->withoutMiddleware(\Illuminate\Foundation\Http\Middleware\ValidateCsrfToken::class)
+        ->withoutMiddleware(ValidateCsrfToken::class)
         ->name('global.inquire');
 };
 if (config('app.global_domain')) {
     Route::domain(config('app.global_domain'))->group(function () {
-        Route::get('/{any?}', fn () => redirect()->away(rtrim((string) config('app.url'), '/') . '/', 301))->where('any', '.*');
+        Route::get('/{any?}', fn () => redirect()->away(rtrim((string) config('app.url'), '/').'/', 301))->where('any', '.*');
     });
 }
 Route::prefix('global')->domain(config('app.global_domain') ? parse_url(config('app.url'), PHP_URL_HOST) : null)->group($global);
@@ -31,58 +37,67 @@ Route::prefix('global')->domain(config('app.global_domain') ? parse_url(config('
 // ULS Academics: a standalone site. The main university website links here.
 // With GLOBAL_DOMAIN set, these pages stay on APP_URL's host (the subdomain only redirects here).
 // Public pages are kept ready (App\Http\Middleware\CachePublicPages) and refreshed on every admin change.
-Route::middleware(\App\Http\Middleware\CachePublicPages::class)
+Route::middleware(CachePublicPages::class)
     ->domain(config('app.global_domain') ? parse_url(config('app.url'), PHP_URL_HOST) : null)
     ->group(function () {
-    Route::controller(AcademicsController::class)->name('academics.')->group(function () {
-        Route::get('/', 'index')->name('index');
-        Route::get('/programs', 'programs')->name('programs');
-        Route::get('/programs/{program:slug}', 'program')->name('program');
-        Route::get('/colleges/{college:slug}', 'college')->name('college');
-        Route::get('/colleges/{college:slug}/{department:slug}', 'department')->scopeBindings()->name('department');
+        Route::controller(AcademicsController::class)->name('academics.')->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/programs', 'programs')->name('programs');
+            Route::get('/programs/{program:slug}', 'program')->name('program');
+            Route::get('/colleges/{college:slug}', 'college')->name('college');
+            Route::get('/colleges/{college:slug}/{department:slug}', 'department')->scopeBindings()->name('department');
+        });
+
+        Route::get('/sdgs', [SdgController::class, 'index'])->name('sdgs.index');
+        Route::get('/sdgs/{goal}', [SdgController::class, 'show'])->whereNumber('goal')->name('sdgs.show');
+
+        Route::get('/news', [NewsController::class, 'index'])->name('news.index');
+        Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
+
     });
 
-    Route::get('/sdgs', [SdgController::class, 'index'])->name('sdgs.index');
-    Route::get('/sdgs/{goal}', [SdgController::class, 'show'])->whereNumber('goal')->name('sdgs.show');
-
-    Route::get('/news', [NewsController::class, 'index'])->name('news.index');
-    Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
-
-});
-
-// Header search: programs first, then news.
+// Live search suggestions (header and home page search boxes): programs, then colleges, then news.
 Route::get('/search/suggestions', function (Request $request) {
     $term = is_string($request->query('q')) ? trim($request->query('q')) : '';
 
-    if (mb_strlen($term) < 2) {
+    if (mb_strlen($term) < 2 || mb_strlen($term) > 100) {
         return response()->json([]);
     }
+    $like = "%{$term}%";
+    $type = fn (string $key) => Site::text("search.labels.$key");
 
     $programs = Program::published()
-        ->where(fn ($q) => $q->where('name', 'like', "%{$term}%")->orWhere('code', 'like', "%{$term}%"))
+        ->whereHas('college', fn ($q) => $q->where('status', 'published'))
+        ->where(fn ($q) => $q->where('name', 'like', $like)->orWhere('code', 'like', $like)->orWhere('majors', 'like', $like))
         ->orderBy('name')->limit(5)->get(['name', 'slug'])
-        ->map(fn ($p) => ['title' => $p->name, 'type' => 'Program', 'url' => route('academics.program', $p->slug)]);
+        ->map(fn ($p) => ['title' => $p->name, 'type' => $type('program'), 'url' => route('academics.program', $p->slug)]);
+
+    $colleges = College::published()
+        ->where(fn ($q) => $q->where('name', 'like', $like)->orWhere('short_name', 'like', $like))
+        ->limit(3)->get(['name', 'slug'])
+        ->map(fn ($c) => ['title' => $c->name, 'type' => $type('college'), 'url' => route('academics.college', $c->slug)]);
 
     $news = News::published()
-        ->where(fn ($q) => $q->where('title', 'like', "%{$term}%")->orWhere('excerpt', 'like', "%{$term}%"))
+        ->where(fn ($q) => $q->where('title', 'like', $like)->orWhere('excerpt', 'like', $like)->orWhere('keywords', 'like', $like))
         ->latest('published_at')->limit(3)->get(['title', 'slug'])
-        ->map(fn ($n) => ['title' => $n->title, 'type' => 'News', 'url' => route('news.show', $n->slug)]);
+        ->map(fn ($n) => ['title' => $n->title, 'type' => $type('news'), 'url' => route('news.show', $n->slug)]);
 
-    return response()->json($programs->concat($news)->values());
-})->name('search.suggestions');
+    return response()->json($programs->concat($colleges)->concat($news)->values())
+        ->header('Cache-Control', 'public, max-age=60');
+})->middleware('throttle:120,1')->name('search.suggestions');
 
 // Loading-speed measurements from real visits (Core Web Vitals); see the dashboard.
-Route::post('/vitals', \App\Http\Controllers\VitalsController::class)
+Route::post('/vitals', VitalsController::class)
     ->middleware('throttle:30,1')
-    ->withoutMiddleware(\Illuminate\Foundation\Http\Middleware\ValidateCsrfToken::class)
+    ->withoutMiddleware(ValidateCsrfToken::class)
     ->name('vitals');
 
 // Resized photos for cards; written to public/thumbs on first request, served as files after.
 // News editor preview: the story as visitors will see it, in any status (drafts too). Shown in an
 // iframe on the edit page; only for people who may edit that story (college admins: their own stories).
 Route::get('/admin/news/{id}/preview', function (int $id) {
-    abort_unless(\App\Filament\Resources\News\NewsResource::canViewAny() && (auth()->user()?->can('edit_news') ?? false), 403);
-    $article = \App\Filament\Resources\News\NewsResource::getEloquentQuery()->whereKey($id)->firstOrFail();
+    abort_unless(NewsResource::canViewAny() && (auth()->user()?->can('edit_news') ?? false), 403);
+    $article = NewsResource::getEloquentQuery()->whereKey($id)->firstOrFail();
 
     return response()
         ->view('news.show', ['article' => $article, 'relatedNews' => collect(), 'previousNews' => null, 'nextNews' => null])

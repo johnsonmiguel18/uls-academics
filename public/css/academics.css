@@ -46,8 +46,12 @@ button { cursor: pointer; }
     background: var(--ac-bg);
 }
 
+/* Page width (deans' recommendation, November 2026: less empty margin on wide screens). Text blocks keep
+   their own readable measure (max-width in ch), so only grids and cards use the extra width. */
+:root { --ac-page-width: 1440px; --ac-gutter: clamp(16px, 3vw, 40px); }
+
 .ac-container {
-    width: min(1200px, calc(100% - 40px));
+    width: min(var(--ac-page-width), calc(100% - 2 * var(--ac-gutter)));
     margin: 0 auto;
 }
 
@@ -348,7 +352,7 @@ button { cursor: pointer; }
 
 .ac-stats-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
     gap: 16px;
 }
 
@@ -408,7 +412,7 @@ button { cursor: pointer; }
 .ac-list-grid,
 .ac-people {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
     gap: 20px;
     margin: 0;
     padding: 0;
@@ -501,7 +505,7 @@ button { cursor: pointer; }
 /* ---------- Program cards ---------- */
 .ac-card-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
     gap: 20px;
 }
 
@@ -542,7 +546,7 @@ button { cursor: pointer; }
 .ac-facts .ac-fact-accredited { color: #ffffff; background: var(--ac-navy); }
 
 /* ---------- College overview ---------- */
-.ac-vm-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 28px 0; }
+.ac-vm-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px; margin: 28px 0; }
 
 .ac-vm {
     padding: 26px;
@@ -582,7 +586,7 @@ button { cursor: pointer; }
 .ac-details[open] summary::after { content: "−"; }
 .ac-details > :not(summary) { padding: 0 22px 18px; margin: 0; }
 
-.ac-two-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: clamp(32px, 5vw, 72px); }
+.ac-two-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: clamp(32px, 5vw, 72px); }
 .ac-two-col h2 { margin: 0 0 18px; }
 
 /* ---------- Rich text from the CMS ---------- */
@@ -610,7 +614,7 @@ button { cursor: pointer; }
 .ac-person div span, .ac-person div a { display: block; font-size: 13px; color: var(--ac-muted); }
 .ac-person div a { color: var(--ac-link); }
 
-.ac-docs { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
+.ac-docs { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
 
 .ac-docs a {
     display: flex;
@@ -629,7 +633,7 @@ button { cursor: pointer; }
 .ac-docs small { color: var(--ac-muted); }
 
 .ac-updates.has-events { display: grid; grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr); gap: 32px; }
-.ac-news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
+.ac-news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr)); gap: 20px; }
 
 .ac-events { margin: 0; padding: 0; list-style: none; }
 .ac-events li { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--ac-line); }
@@ -912,7 +916,7 @@ button { cursor: pointer; }
 .ac-page-college .ac-hero-split { box-shadow: inset 0 -6px 0 var(--college); }
 
 /* ---------- Accreditation and rankings (home page and college pages) ---------- */
-.ac-recognition-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; margin: 0; padding: 0; list-style: none; }
+.ac-recognition-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr)); gap: 20px; margin: 0; padding: 0; list-style: none; }
 .ac-recognition { display: flex; flex-direction: column; gap: 6px; padding: 24px; border: 1px solid var(--ac-line); border-top: 3px solid var(--ac-accent); border-radius: var(--ac-radius); background: var(--ac-surface); }
 .ac-recognition h3, .ac-recognition h4 { margin: 0; color: var(--ac-heading); font-family: var(--ac-serif); font-size: 22px; font-weight: 400; }
 .ac-recognition p { margin: 0; color: var(--ac-muted); font-size: 14px; line-height: 1.6; }
@@ -926,3 +930,42 @@ button { cursor: pointer; }
 /* Home news: the news page's front layout, then upcoming events */
 .ac-home-events { margin-top: clamp(32px, 4vw, 48px); padding-top: 28px; border-top: 1px solid var(--ac-line); }
 .ac-home-events .ac-subhead { margin-top: 0; }
+
+/* ---------- Live search suggestions (header and home page search boxes) ---------- */
+form.has-suggest { position: relative; }
+.ac-suggest {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    z-index: 60;
+    width: max(100%, 340px);
+    max-height: min(420px, 70vh);
+    margin: 0;
+    padding: 6px;
+    overflow-y: auto;
+    border: 1px solid var(--ac-line);
+    border-radius: 12px;
+    background: var(--ac-surface);
+    box-shadow: 0 18px 44px rgba(13, 22, 80, 0.18);
+    list-style: none;
+    text-align: left;
+}
+.ac-nav-search .ac-suggest { right: 0; left: auto; }
+.ac-suggest [role="option"] {
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 10px 12px;
+    border-radius: 8px;
+    color: var(--ac-ink);
+    font-size: 14px;
+    line-height: 1.4;
+    cursor: pointer;
+}
+.ac-suggest [role="option"]:hover,
+.ac-suggest [aria-selected="true"] { background: var(--ac-chip); color: var(--ac-link-deep); }
+.ac-suggest [aria-selected="true"] { outline: 2px solid var(--ac-link); outline-offset: -2px; }
+.ac-suggest-title { font-weight: 600; }
+.ac-suggest-type { flex: none; color: var(--ac-muted); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+@media (max-width: 900px) { .ac-nav-search .ac-suggest { left: 0; right: auto; width: 100%; } }

@@ -87,7 +87,7 @@
                 @if (! $isGlobal && Site::text('header.search_placeholder'))
                     <form class="ac-nav-search" action="{{ route('academics.programs') }}" method="get" role="search" aria-label="{{ Site::text('header.search_placeholder') }}">
                         <label class="sr-only" for="acNavSearch">{{ Site::text('header.search_placeholder') }}</label>
-                        <input id="acNavSearch" type="search" name="q" placeholder="{{ Site::text('header.search_placeholder') }}">
+                        <input id="acNavSearch" type="search" name="q" placeholder="{{ Site::text('header.search_placeholder') }}" autocomplete="off" data-suggest="{{ route('search.suggestions') }}" data-suggest-label="{{ \App\Support\Site::text('a11y.search_suggestions') }}" data-suggest-results="{{ \App\Support\Site::text('a11y.search_results') }}" data-suggest-none="{{ \App\Support\Site::text('a11y.search_none') }}">
                     </form>
                 @endif
                 @if (! $isGlobal && Site::text('header.enroll_label') && Site::text('contact.enroll_url'))

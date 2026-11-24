@@ -141,3 +141,113 @@ if (vitals.vitalsUrl && Math.random() * 100 < Number(vitals.vitalsRate) && 'Perf
         navigator.sendBeacon(vitals.vitalsUrl, JSON.stringify({ path: location.pathname, device: matchMedia('(max-width: 760px)').matches ? 'mobile' : 'desktop', metrics: m }));
     });
 }
+
+// Live search suggestions (header and home page search boxes): programs, colleges and news while typing.
+// An ARIA 1.2 combobox: arrow keys move through the list, Enter opens the chosen one (or searches all programs),
+// Escape closes it; a polite status announces the number of suggestions. Without JavaScript the form still works.
+let suggestStatus;
+document.querySelectorAll('input[data-suggest]').forEach((input, index) => {
+    const form = input.form;
+    const list = document.createElement('ul');
+    list.id = `ac-suggest-${index}`;
+    list.className = 'ac-suggest';
+    list.setAttribute('role', 'listbox');
+    list.setAttribute('aria-label', input.dataset.suggestLabel || '');
+    list.hidden = true;
+    form.classList.add('has-suggest');
+    form.append(list);
+    if (! suggestStatus) {
+        suggestStatus = document.createElement('div');
+        suggestStatus.className = 'sr-only';
+        suggestStatus.setAttribute('role', 'status');
+        document.body.append(suggestStatus);
+    }
+
+    input.setAttribute('role', 'combobox');
+    input.setAttribute('aria-autocomplete', 'list');
+    input.setAttribute('aria-expanded', 'false');
+    input.setAttribute('aria-controls', list.id);
+
+    let items = [];
+    let active = -1;
+    let timer;
+    let request;
+
+    const close = () => {
+        list.hidden = true;
+        input.setAttribute('aria-expanded', 'false');
+        input.removeAttribute('aria-activedescendant');
+        active = -1;
+    };
+    const highlight = (next) => {
+        const options = list.querySelectorAll('[role="option"]');
+        if (! options.length) return;
+        active = (next + options.length) % options.length;
+        options.forEach((option, i) => option.setAttribute('aria-selected', i === active ? 'true' : 'false'));
+        input.setAttribute('aria-activedescendant', options[active].id);
+        options[active].scrollIntoView({ block: 'nearest' });
+    };
+    const render = (results, term) => {
+        items = results;
+        list.replaceChildren(...results.map((item, i) => {
+            const option = document.createElement('li');
+            option.id = `${list.id}-${i}`;
+            option.setAttribute('role', 'option');
+            option.setAttribute('aria-selected', 'false');
+            const title = document.createElement('span');
+            title.className = 'ac-suggest-title';
+            title.textContent = item.title;
+            const type = document.createElement('span');
+            type.className = 'ac-suggest-type';
+            type.textContent = item.type;
+            option.append(title, type);
+            option.addEventListener('mousedown', (event) => event.preventDefault()); // keep focus in the box
+            option.addEventListener('click', () => { window.location.href = item.url; });
+            return option;
+        }));
+        active = -1;
+        input.removeAttribute('aria-activedescendant');
+        const open = results.length > 0 && document.activeElement === input;
+        list.hidden = ! open;
+        input.setAttribute('aria-expanded', open ? 'true' : 'false');
+        suggestStatus.textContent = term ? (results.length ? (input.dataset.suggestResults || '').replace(':count', results.length) : input.dataset.suggestNone || '') : '';
+    };
+    const lookup = () => {
+        const term = input.value.trim();
+        request?.abort();
+        if (term.length < 2) {
+            render([], '');
+            return;
+        }
+        request = new AbortController();
+        fetch(`${input.dataset.suggest}?q=${encodeURIComponent(term)}`, { signal: request.signal, headers: { Accept: 'application/json' } })
+            .then((response) => (response.ok ? response.json() : []))
+            .then((results) => { if (input.value.trim() === term) render(Array.isArray(results) ? results : [], term); })
+            .catch(() => {});
+    };
+
+    input.addEventListener('input', () => {
+        clearTimeout(timer);
+        timer = setTimeout(lookup, 200);
+    });
+    input.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+            if (list.hidden && items.length) {
+                list.hidden = false;
+                input.setAttribute('aria-expanded', 'true');
+            }
+            if (items.length) {
+                event.preventDefault();
+                highlight(active + (event.key === 'ArrowDown' ? 1 : -1));
+            }
+        } else if (event.key === 'Enter' && active >= 0 && ! list.hidden) {
+            event.preventDefault();
+            window.location.href = items[active].url;
+        } else if (event.key === 'Escape' && ! list.hidden) {
+            event.preventDefault();
+            close();
+        }
+    });
+    input.addEventListener('blur', close);
+    input.addEventListener('focus', () => { if (items.length && input.value.trim().length >= 2) { list.hidden = false; input.setAttribute('aria-expanded', 'true'); } });
+});

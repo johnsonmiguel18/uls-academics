@@ -4,8 +4,8 @@
 .gl-hero h1 em { display: block; color: #c9d3ff; font-style: italic; }
 .gl-hero .ac-lead { max-width: 60ch; }
 
-.gl-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin: 0; padding: 0; list-style: none; }
-.gl-cards-4 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.gl-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 16px; margin: 0; padding: 0; list-style: none; }
+.gl-cards-4 { grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); }
 .gl-cards li { padding: 24px; border: 1px solid var(--ac-line); border-radius: var(--ac-radius); background: var(--ac-surface); }
 .gl-cards h3 { margin: 0 0 8px; color: var(--ac-link-deep); font-size: 20px; }
 .gl-cards p { margin: 0; color: var(--ac-muted); font-size: 15px; line-height: 1.6; }
@@ -30,7 +30,7 @@
 
 .gl-exchange { margin-top: 24px; padding: 24px 28px; border-left: 4px solid var(--ac-accent); border-radius: var(--ac-radius); background: var(--ac-surface); }
 .gl-exchange h3 { margin: 0 0 10px; color: var(--ac-link-deep); font-size: 20px; }
-.gl-exchange ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 8px 24px; margin: 0 0 12px; padding-left: 20px; }
+.gl-exchange ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 8px 24px; margin: 0 0 12px; padding-left: 20px; }
 
 .gl-sdg-inner { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: clamp(20px, 4vw, 48px); align-items: center; }
 .gl-sdg-inner p { max-width: 65ch; margin: 0 0 18px; color: var(--ac-ink); font-size: 17px; line-height: 1.7; }
