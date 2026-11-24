@@ -234,3 +234,48 @@ a.ac-linkage:hover { border-color: var(--ac-accent); }
 .ac-hero-college .ac-college-mark { width: 76px; height: 76px; margin-bottom: 18px; padding: 5px; box-shadow: 0 0 0 4px var(--college, transparent); }
 .ac-hero-college .ac-monogram { font-size: 22px; }
 .ac-hero-college .ac-monogram.is-long { font-size: 13px; }
+
+/* ---------- Faculty as an organization chart: the dean, a connector, then one card per unit ---------- */
+.ac-org, .ac-org ul { margin: 0; padding: 0; list-style: none; }
+.ac-org-top { display: flex; flex-direction: column; align-items: center; }
+.ac-org-root { position: relative; width: min(100%, 360px); padding: 18px 20px; border: 1px solid var(--ac-line); border-top: 4px solid var(--ac-accent); border-radius: var(--ac-radius); background: var(--ac-surface); box-shadow: 0 10px 28px rgba(13, 22, 80, 0.08); }
+.ac-org-units {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+    gap: 20px;
+    width: 100%;
+    margin-top: 40px !important;
+    padding-top: 22px !important;
+}
+/* Line from the dean down to the row of units */
+.ac-org-units::before { content: ""; position: absolute; top: -42px; left: 50%; width: 2px; height: 40px; background: var(--ac-line); }
+.ac-org-unit { position: relative; padding: 18px 20px; border: 1px solid var(--ac-line); border-top: 3px solid var(--ac-accent); border-radius: var(--ac-radius); background: var(--ac-surface); }
+/* Short line down to each unit, and the row line joining them (from the first unit's middle to the last one's) */
+.ac-org-unit::before { content: ""; position: absolute; top: -24px; left: 50%; width: 2px; height: 21px; background: var(--ac-line); }
+.ac-org-unit::after { content: ""; position: absolute; top: -24px; right: -11px; left: -11px; height: 2px; background: var(--ac-line); }
+.ac-org-unit:first-child::after { left: 50%; }
+.ac-org-unit:last-child::after { right: 50%; }
+.ac-org-unit:only-child::after { display: none; }
+.ac-org-unit-name { margin: 0 0 12px; font-size: 18px; }
+.ac-org-unit-name a { color: inherit; text-decoration: none; }
+.ac-org-unit-name a:hover { color: var(--ac-link); text-decoration: underline; }
+.ac-org-lead { padding-bottom: 12px; margin-bottom: 12px; border-bottom: 1px solid var(--ac-line); }
+.ac-org-members { display: grid; gap: 12px; }
+.ac-org-person { display: flex; gap: 12px; align-items: center; }
+.ac-org-person > div { display: flex; flex-direction: column; min-width: 0; }
+.ac-org-person strong { font-size: 15px; line-height: 1.35; }
+.ac-org-person span { color: var(--ac-ink); font-size: 13px; }
+.ac-org-person .ac-muted { color: var(--ac-muted); }
+.ac-org-person a { color: var(--ac-link); font-size: 13px; overflow-wrap: anywhere; }
+.ac-org-person .ac-avatar { flex: none; width: 44px; height: 44px; font-size: 15px; }
+.ac-org-person.is-lead .ac-avatar { width: 56px; height: 56px; font-size: 18px; }
+.ac-org-person.is-lead strong { font-size: 17px; }
+/* One unit: no horizontal row line */
+.ac-org-units:has(> :only-child) { width: min(100%, 420px); }
+@media (max-width: 700px) {
+    .ac-org-units { padding-top: 0 !important; margin-top: 24px !important; }
+    .ac-org-units::before { top: -26px; height: 24px; }
+    .ac-org-unit::before,
+    .ac-org-unit::after { display: none; }
+}
