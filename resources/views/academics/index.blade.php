@@ -139,25 +139,19 @@
                 @break
 
             @case('news')
-                @if ($news->isNotEmpty() || $events->isNotEmpty())
-                    <section class="ac-section" aria-labelledby="updates-heading">
+                @if ($featuredNews || $events->isNotEmpty())
+                    <section class="ac-section ac-home-news" aria-labelledby="updates-heading">
                         <div class="ac-container">
                             @include('academics.partials.section-head', ['section' => $section, 'id' => 'updates-heading', 'link' => route('news.index')])
-                            <div class="ac-updates {{ $news->isNotEmpty() && $events->isNotEmpty() ? 'has-events' : '' }}">
-                                @if ($news->isNotEmpty())
-                                    <div class="ac-news-grid">
-                                        @foreach ($news as $story)
-                                            @include('partials.news-card')
-                                        @endforeach
-                                    </div>
-                                @endif
-                                @if ($events->isNotEmpty())
-                                    <aside aria-label="{{ $section['events_heading'] ?? '' }}">
-                                        @if (! empty($section['events_heading']))<h3 class="ac-subhead">{{ $section['events_heading'] }}</h3>@endif
-                                        @include('academics.partials.events', ['showCollege' => true])
-                                    </aside>
-                                @endif
-                            </div>
+                            @if ($featuredNews)
+                                @include('partials.news-front', ['prefix' => 'home-news', 'level' => 3])
+                            @endif
+                            @if ($events->isNotEmpty())
+                                <div class="ac-home-events">
+                                    @if (! empty($section['events_heading']))<h3 class="ac-subhead" id="events-heading">{{ $section['events_heading'] }}</h3>@endif
+                                    @include('academics.partials.events', ['showCollege' => true])
+                                </div>
+                            @endif
                         </div>
                     </section>
                 @endif

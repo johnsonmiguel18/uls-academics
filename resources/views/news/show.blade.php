@@ -2,12 +2,33 @@
 
 @use('App\Support\Site')
 
-@section('title', $article->title . ' | ' . Site::text('contact.site_name'))
+{{-- Search and sharing fields from the editor, or generated from the story (App\Support\NewsSeo) --}}
+@php($seo = \App\Support\NewsSeo::for($article))
+
+@section('title', $seo['meta_title'] . ' | ' . Site::text('contact.site_name'))
 
 @include('academics.partials.seo', [
-    'title' => $article->title,
-    'description' => \Illuminate\Support\Str::limit($article->excerpt ?: $article->plainText(), 160),
+    'title' => $seo['meta_title'],
+    'description' => $seo['meta_description'],
+    'ogTitle' => $seo['og_title'],
+    'ogDescription' => $seo['og_description'],
+    'ogType' => 'article',
+    'keywords' => $seo['keywords'],
+    'tags' => $seo['tags'],
+    'published' => $article->published_at?->toIso8601String(),
     'image' => $article->featured_image,
+    'schema' => array_filter([
+        '@context' => 'https://schema.org',
+        '@type' => 'NewsArticle',
+        'headline' => $seo['og_title'],
+        'description' => $seo['meta_description'],
+        'keywords' => $seo['keywords'],
+        'datePublished' => $article->published_at?->toIso8601String(),
+        'dateModified' => $article->updated_at?->toIso8601String(),
+        'image' => $article->featured_image ? asset('storage/' . $article->featured_image) : null,
+        'publisher' => ['@type' => 'CollegeOrUniversity', 'name' => Site::text('contact.university_name')],
+        'mainEntityOfPage' => url()->current(),
+    ]),
 ])
 
 @push('base-styles')

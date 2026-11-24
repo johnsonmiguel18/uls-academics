@@ -10,11 +10,13 @@ use App\Support\Sdg;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Schemas\Components\Group;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Tabs;
 use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Schemas\Components\Utilities\Get;
@@ -158,7 +160,25 @@ class NewsForm
                                 ->label('Sustainable Development Goals')
                                 ->options(fn () => Sdg::options())
                                 ->multiple()
-                                ->helperText('Tagged stories are counted in the SDG grid of the college page.'),
+                                ->helperText('Tagged stories are counted on the SDG pages.'),
+
+                            // Search engines and link previews. Empty fields are filled in from the story when it is
+                            // saved and follow later edits; text typed here is kept (App\Support\NewsSeo).
+                            Section::make('Search and sharing')
+                                ->description('Filled in automatically when saved. Type your own to override.')
+                                ->compact()->collapsible()->collapsed()
+                                ->schema([
+                                    TextInput::make('meta_title')->label('Search title')->maxLength(120)
+                                        ->helperText('Shown in search results. Best under 60 characters.'),
+                                    Textarea::make('meta_description')->label('Search description')->rows(3)->maxLength(320)
+                                        ->helperText('Best under 155 characters.'),
+                                    TextInput::make('og_title')->label('Share title')->maxLength(200)
+                                        ->helperText('Shown when the link is shared (Facebook, Messenger, X).'),
+                                    Textarea::make('og_description')->label('Share description')->rows(3),
+                                    TextInput::make('keywords')->label('Keywords')->maxLength(255)
+                                        ->helperText('Separated by commas.'),
+                                    TagsInput::make('tags')->label('Tags'),
+                                ]),
                         ]),
 
                     Tab::make('Image')

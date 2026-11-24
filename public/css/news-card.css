@@ -1,7 +1,13 @@
 /* News cards (home, college, SDG and global pages, and the news pages), the featured story (.news-feature)
    and the news front page. Taken from the main website styles (university.css, university-v3.css);
    the news pages get the tokens (--ink, --navy, --v3-*) from those files, other pages from .ac-news-grid below. */
-.ac-news-grid { --ink: var(--ac-news-ink, #14204f); --label: var(--ac-news-label, #192a8a); --muted: var(--ac-news-muted, #5c5c5c); --navy: #192a8a; --surface: var(--ac-news-surface, #f5f5f5); --v3-ease: cubic-bezier(0.2, 0.7, 0.2, 1); --v3-radius: 6px; --v3-serif: Georgia, "Times New Roman", serif; }
+.ac-news-grid,
+.ac-home-news .news-front { --ink: var(--ac-news-ink, #14204f); --label: var(--ac-news-label, #192a8a); --muted: var(--ac-news-muted, #5c5c5c); --navy: #192a8a; --surface: var(--ac-news-surface, #f5f5f5); --line: #e0e0e0; --text: #222222; --v3-ease: cubic-bezier(0.2, 0.7, 0.2, 1); --v3-radius: 6px; --v3-serif: Georgia, "Times New Roman", serif; }
+
+/* The news front layout on the home page: the few news.css rules it needs (the news pages load news.css) */
+.ac-home-news .news-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; color: var(--muted); font-size: 13px; }
+.ac-home-news .news-card-media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.ac-home-news .news-category { color: var(--label); font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
 .news-media-fallback {
     display: grid;
     place-items: center;
@@ -33,7 +39,7 @@
     padding-top: 20px;
 }
 .news-feature h2,
-.news-feature h3 {
+.news-feature :is(h3, h4) {
     margin: 0;
     font-size: clamp(22px, 2.4vw, 30px);
 }
@@ -53,13 +59,13 @@
     text-transform: uppercase;
 }
 .news-feature h2 a,
-.news-feature h3 a,
+.news-feature :is(h3, h4) a,
 .news-item h4 a,
 .news-card h3 a {
     color: var(--ink);
 }
 .news-feature h2 a:hover,
-.news-feature h3 a:hover,
+.news-feature :is(h3, h4) a:hover,
 .news-item h4 a:hover,
 .news-card h3 a:hover {
     text-decoration: underline;
@@ -119,12 +125,12 @@
 /* Story headlines: bold sans-serif, the same on every page that shows news (CNN-style); academics pages
    set serif on every h3, so the heading itself gets the site's sans-serif (body) font */
 .news-feature h2,
-.news-feature h3,
+.news-feature :is(h3, h4),
 .news-card h3 {
     font-family: "Segoe UI", Arial, sans-serif;
 }
 .news-feature h2 a,
-.news-feature h3 a,
+.news-feature :is(h3, h4) a,
 .news-card h3 a {
     font-family: inherit;
     font-weight: 700;
@@ -329,7 +335,7 @@
     flex-direction: column;
     gap: 12px;
 }
-.news-lead-story h3 {
+.news-lead-story :is(h3, h4) {
     font-size: clamp(24px, 2.2vw, 30px);
     line-height: 1.15;
     letter-spacing: -0.01em;
@@ -725,7 +731,7 @@
     .news-lead-related li {
         padding: 10px 0;
     }
-    .news-lead-story h3 {
+    .news-lead-story :is(h3, h4) {
         font-size: 24px;
     }
     .news-row {
