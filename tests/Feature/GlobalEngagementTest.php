@@ -96,18 +96,48 @@ class GlobalEngagementTest extends TestCase
         $this->actingAs($dean)->get(PartnershipInquiryResource::getUrl())->assertForbidden();
     }
 
-    public function test_runs_on_its_own_subdomain(): void
+    public function test_the_old_subdomain_redirects_to_the_academics_home(): void
     {
         config(['app.global_domain' => 'global.uls.test', 'app.url' => 'http://academics.uls.test']);
         app('router')->setRoutes(new RouteCollection);
         \Illuminate\Support\Facades\Route::middleware('web')->group(base_path('routes/web.php'));
         app('router')->getRoutes()->refreshNameLookups();
 
-        $this->get('http://global.uls.test/')->assertOk()->assertSee('Our shared future.');
+        // The old Global subdomain sends every address to the Academics home (deans' decision).
+        $this->get('http://global.uls.test/')->assertStatus(301)->assertRedirect('http://academics.uls.test/');
+        $this->get('http://global.uls.test/partners')->assertStatus(301)->assertRedirect('http://academics.uls.test/');
         $this->get('http://academics.uls.test/')->assertOk()->assertSee('Academic Excellence at ULS');
-        $this->get('http://academics.uls.test/global')->assertRedirect('http://global.uls.test');
-        // Links from Global back to Academics keep the Academics host.
+        // The Global page lives on the Academics host, with its links there too.
+        $this->get('http://academics.uls.test/global')->assertOk()->assertSee('Our shared future.');
+        $this->assertSame('http://academics.uls.test/global', route('global.home'));
         $this->assertSame('http://academics.uls.test/sdgs/17', route('sdgs.show', 17));
-        $this->get('http://global.uls.test/')->assertSee('http://academics.uls.test/sdgs/17', false);
+    }
+
+    public function test_partners_from_the_global_office_list_are_added_once_with_logos(): void
+    {
+        $this->seed(\Database\Seeders\SiteContentSeeder::class);
+        // A partner an admin already entered, with their own wording, under one of the same names.
+        $setting = \App\Models\SiteSetting::query()->first();
+        $data = $setting->data;
+        $data['global']['partners'] = [['name' => 'Panpacific University', 'type' => 'Edited in the admin', 'scope' => 'local']];
+        $setting->update(['data' => $data]);
+
+        try {
+            $this->seed(\Database\Seeders\GlobalPartnersSeeder::class);
+            $this->seed(\Database\Seeders\GlobalPartnersSeeder::class); // second run adds nothing
+
+            $partners = collect(\App\Support\Site::get('global.partners'));
+            $this->assertCount(12, $partners);
+            $this->assertSame('Edited in the admin', $partners->firstWhere('name', 'Panpacific University')['type']);
+            $this->assertSame('international', $partners->firstWhere('name', 'Universidade da Paz (UNPAZ)')['scope']);
+            $this->assertFileExists(storage_path('app/public/partners/unpaz.jpg'));
+
+            $this->get(route('global.home'))->assertOk()
+                ->assertSee('National Chi Nan University (NCNU)')
+                ->assertSee('storage/partners/ncnu.png', false)
+                ->assertSee('Philippine National Red Cross, Santiago City Chapter');
+        } finally {
+            \Illuminate\Support\Facades\File::deleteDirectory(storage_path('app/public/partners'));
+        }
     }
 }

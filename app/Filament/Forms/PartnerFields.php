@@ -21,6 +21,9 @@ class PartnerFields
             ->label($label)
             ->schema([
                 TextInput::make('name')->required(),
+                \Filament\Forms\Components\FileUpload::make('logo')->label('Logo')
+                    ->image()->disk('public')->directory('partners')->visibility('public')->maxSize(2048)
+                    ->imagePreviewHeight('80')->helperText('Square or round logo, at least 200 px. Optional.'),
                 TextInput::make('type')->placeholder('Government partner, Partner school, Industry...'),
                 Select::make('scope')->label('Local or international')
                     ->options(fn () => Term::options('partner_scope'))->default(fn () => array_key_first(Term::options('partner_scope'))),

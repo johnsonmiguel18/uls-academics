@@ -1,5 +1,7 @@
 {{-- One partner card: college pages and the Global Engagement site. Expects $partner; $showCollege adds the college (Global site). --}}
-<article class="ac-partner">
+<article @class(['ac-partner', 'has-logo' => ! empty($partner['logo'])])>
+    {{-- The logo is decorative: the partner's name is the heading right after it --}}
+    @if (! empty($partner['logo']))<img class="ac-partner-logo" src="{{ asset('storage/' . ltrim($partner['logo'], '/')) }}" alt="" width="64" height="64" loading="lazy" decoding="async">@endif
     @if (! empty($partner['period']))<p class="ac-kicker">{{ $partner['period'] }}</p>@endif
     <h3>{{ $partner['name'] ?? '' }}</h3>
     @php($meta = array_filter([$partner['type'] ?? null, $partner['country'] ?? null]))
