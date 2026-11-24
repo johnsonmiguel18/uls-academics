@@ -3,14 +3,17 @@
 namespace App\Filament\Resources\Colleges\Schemas;
 
 use App\Filament\Forms\ContentEditor;
+use App\Filament\Forms\PartnerFields;
 use App\Filament\Resources\Colleges\CollegeResource;
 use App\Models\College;
+use App\Models\Term;
 use App\Support\Sdg;
+use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Tabs;
 use Filament\Schemas\Components\Tabs\Tab;
@@ -47,7 +50,10 @@ class CollegeForm
                             ->helperText('Web address: /colleges/<slug>. Changing it breaks old links.'),
                         TextInput::make('short_name')->placeholder('e.g. CIT')->maxLength(20)
                             ->helperText('Used in headings such as "What you can study at CIT".'),
-                        Select::make('level')->options(fn () => \App\Models\Term::options('level'))->required(),
+                        ColorPicker::make('color')->label('College color')
+                            ->regex('/^#[0-9a-fA-F]{6}$/')
+                            ->helperText('Used on the college name, its cards and program placeholders. Very light colors are darkened for text so names stay readable.'),
+                        Select::make('level')->options(fn () => Term::options('level'))->required(),
                         TextInput::make('headline')
                             ->maxLength(120)
                             ->columnSpanFull()
@@ -121,7 +127,7 @@ class CollegeForm
 
                 Tab::make('Partners')->schema([
                     Textarea::make('partners_intro')->label('Introduction')->rows(2),
-                    \App\Filament\Forms\PartnerFields::repeater('partners', 'Partner institutions')
+                    PartnerFields::repeater('partners', 'Partner institutions')
                         ->helperText('Also listed on the Global Engagement site.'),
                     Repeater::make('linkages')
                         ->label('Academic, government and professional linkages')

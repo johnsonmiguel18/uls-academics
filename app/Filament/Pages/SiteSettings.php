@@ -2,16 +2,18 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Forms\PartnerFields;
 use App\Models\SiteSetting;
 use App\Models\Term;
 use BackedEnum;
 use Filament\Actions\Action;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\KeyValue;
 use Filament\Forms\Components\Repeater;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
-use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Filament\Schemas\Components\Actions;
@@ -87,7 +89,7 @@ class SiteSettings extends Page
                 Tab::make('General')->icon(Heroicon::OutlinedBuildingOffice2)->schema([
                     Section::make('University and contact')->columns(2)->schema([
                         TextInput::make('contact.site_name')->label('Site name')->required()->helperText('Browser tabs and search results.'),
-                        \Filament\Forms\Components\FileUpload::make('contact.logo')->label('Seal / logo')
+                        FileUpload::make('contact.logo')->label('Seal / logo')
                             ->image()->disk('public')->directory('site')->visibility('public')->maxSize(1024)
                             ->helperText('Square image, shown in the header, footer and admin. Empty: the bundled ULS seal.'),
                         TextInput::make('contact.university_name')->label('University (legal name)')->required(),
@@ -142,6 +144,11 @@ class SiteSettings extends Page
                         TextInput::make('home.search_button')->label('Search button'),
                         TextInput::make('home.college_card_link')->label('College card link text'),
                         $links('home.quick_links', 'Quick links under the search box')->columnSpanFull(),
+                        FileUpload::make('home.hero_image')->label('Hero photo')
+                            ->image()->disk('public')->directory('site')->visibility('public')->maxSize(4096)
+                            ->helperText('Shown beside the title, about 4:3 (e.g. 1200 × 900 px). Empty: a placeholder with the university seal.'),
+                        TextInput::make('home.hero_image_alt')->label('Hero photo description (screen readers)')
+                            ->helperText('What the photo shows, e.g. "Students on the university grounds". Leave empty if it is only decorative.'),
                     ]),
                     Section::make('Numbers')->description('Counted live from the database.')->schema([
                         Repeater::make('home.stats')->hiddenLabel()
@@ -175,14 +182,14 @@ class SiteSettings extends Page
                             ->columns(3)->reorderable()->defaultItems(0)->addActionLabel('Add number')
                             ->itemLabel(fn (array $state) => $state['label'] ?? null),
                     ]),
-                    Section::make('Sections')->description('Same order and headings for every college. ' . $placeholders . ' Sections without content are skipped for that college.')->schema([
+                    Section::make('Sections')->description('Same order and headings for every college. '.$placeholders.' Sections without content are skipped for that college.')->schema([
                         self::sections('college.sections', [
                             'about' => 'About: vision, mission, goals, video', 'programs' => 'Programs', 'research' => 'Research cluster',
                             'partners' => 'Partners and linkages', 'students' => 'For students', 'sdgs' => 'Extension and SDGs',
                             'faculty' => 'Faculty', 'resources' => 'Facilities and documents', 'news' => 'News and events',
                         ], withNav: true),
                     ]),
-                    Section::make('Labels and buttons')->description($placeholders . ' :count = number.')->collapsed()->schema([
+                    Section::make('Labels and buttons')->description($placeholders.' :count = number.')->collapsed()->schema([
                         KeyValue::make('college.labels')->hiddenLabel()->keyLabel('Where')->valueLabel('Text')->addable(false)->deletable(false)->editableKeys(false),
                     ]),
                 ]),
@@ -238,7 +245,7 @@ class SiteSettings extends Page
 
                 Tab::make('Global engagement')->icon(Heroicon::OutlinedLink)->schema([
                     Section::make('Site and menu')
-                        ->description(fn () => 'Address: ' . route('global.home') . (config('app.global_domain') ? '' : '. Set GLOBAL_DOMAIN in .env to serve it on its own subdomain.'))
+                        ->description(fn () => 'Address: '.route('global.home').(config('app.global_domain') ? '' : '. Set GLOBAL_DOMAIN in .env to serve it on its own subdomain.'))
                         ->columns(2)->schema([
                             TextInput::make('global.brand_label')->label('Name next to the logo'),
                             TextInput::make('global.meta_title')->label('Browser tab title'),
@@ -287,7 +294,7 @@ class SiteSettings extends Page
                     ]),
                     Section::make('University-wide partners')
                         ->description("Partners not tied to one college. College partners are edited on each college's page and appear here automatically.")
-                        ->schema([\App\Filament\Forms\PartnerFields::repeater('global.partners', 'Partners')]),
+                        ->schema([PartnerFields::repeater('global.partners', 'Partners')]),
                     Section::make('Labels')->collapsed()->schema([
                         KeyValue::make('global.labels')->hiddenLabel()->helperText('Placeholders: :shown and :count.')
                             ->addable(false)->deletable(false)->editableKeys(false),
@@ -344,7 +351,7 @@ class SiteSettings extends Page
             ->addable(false)
             ->deletable(false)
             ->collapsible()
-            ->itemLabel(fn (array $state) => ($types[$state['type'] ?? ''] ?? 'Section') . (($state['enabled'] ?? true) ? '' : ' (hidden)'));
+            ->itemLabel(fn (array $state) => ($types[$state['type'] ?? ''] ?? 'Section').(($state['enabled'] ?? true) ? '' : ' (hidden)'));
     }
 
     /** Home page numbers: fixed counts, plus "programs at level X" for every academic level. */

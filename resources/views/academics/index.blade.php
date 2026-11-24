@@ -25,8 +25,9 @@
 @section('content')
 <main class="ac-page">
     {{-- Hero: title, search and quick links (Site settings → Home page) --}}
-    <section class="ac-hero">
-        <div class="ac-container">
+    <section class="ac-hero ac-hero-home">
+        <div class="ac-container ac-hero-home-grid">
+          <div class="ac-hero-home-text">
             <nav class="ac-breadcrumb" aria-label="{{ \App\Support\Site::text('a11y.breadcrumb') }}">
                 @if (Site::text('home.breadcrumb_parent') && Site::text('contact.main_site_url'))
                     <a href="{{ Site::text('contact.main_site_url') }}">{{ Site::text('home.breadcrumb_parent') }}</a>
@@ -50,6 +51,18 @@
                         <li><a href="{{ url($link['url'] ?? '/') }}">{{ $link['label'] ?? '' }}</a></li>
                     @endforeach
                 </ul>
+            @endif
+          </div>
+
+            {{-- Hero photo (Site settings → Home page → Hero photo); a placeholder with the seal until one is set --}}
+            @if (Site::get('home.hero_image'))
+                <figure class="ac-hero-photo">
+                    <img src="{{ \App\Support\Thumb::url(Site::get('home.hero_image'), 960) }}" width="960" height="720" alt="{{ Site::text('home.hero_image_alt') }}" fetchpriority="high" decoding="async">
+                </figure>
+            @else
+                <div class="ac-hero-photo is-placeholder" aria-hidden="true">
+                    <img src="{{ Site::logo() }}" alt="" width="140" height="140" decoding="async">
+                </div>
             @endif
         </div>
     </section>
@@ -77,14 +90,12 @@
                             <ul class="ac-college-grid">
                                 @foreach ($colleges as $college)
                                     <li>
-                                        <a class="ac-college-card" href="{{ route('academics.college', $college) }}">
-                                            <span class="ac-college-media">
+                                        <a class="ac-college-card" href="{{ route('academics.college', $college) }}" style="{{ $college->accentStyle() }}">
+                                            <span @class(['ac-college-media', 'is-empty' => ! $college->banner_image])>
                                                 @if ($college->banner_image)
                                                     <img src="{{ \App\Support\Thumb::url($college->banner_image) }}" srcset="{{ \App\Support\Thumb::srcset($college->banner_image) }}" sizes="(max-width: 600px) 92vw, 380px" width="480" height="270" alt="" loading="lazy" decoding="async">
                                                 @endif
-                                                @if ($college->seal_image)
-                                                    <span class="ac-college-seal"><img src="{{ asset('storage/' . $college->seal_image) }}" alt="" width="44" height="44" loading="lazy" decoding="async"></span>
-                                                @endif
+                                                @include('academics.partials.college-mark')
                                             </span>
                                             <span class="ac-college-body">
                                                 <span class="ac-college-level">{{ \App\Models\Term::label('level', $college->level) }}</span>

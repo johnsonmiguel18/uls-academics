@@ -218,8 +218,8 @@ class AcademicsSeeder extends Seeder
     }
 
     /**
-     * ETEEAP tracks are saved as drafts: the source page lists them without a college,
-     * so the registrar confirms the assignment before publishing.
+     * ETEEAP tracks, in the ETEEAP unit (EteeapUnitSeeder). The source page lists them without a college;
+     * the matching college still gives each track its photo.
      */
     private function seedEteeap(): void
     {
@@ -237,12 +237,12 @@ class AcademicsSeeder extends Seeder
             }
 
             Program::updateOrCreate(['slug' => Str::slug("$name eteeap")], [
-                'college_id' => $college->id,
+                'college_id' => EteeapUnitSeeder::unit()->id, // its own unit, like Basic Education (deans, Nov 2026)
                 'name' => "$name (ETEEAP)",
                 'majors' => $majors ? preg_replace('/^Major in:?\s*/', '', $majors) : null,
                 'level' => 'undergraduate',
                 'degree_type' => 'eteeap',
-                'status' => 'draft',
+                'status' => 'published',
                 'sort_order' => 90,
                 'image' => $college->banner_image,
                 'summary' => 'Expanded Tertiary Education Equivalency and Accreditation Program: a degree for working adults that credits prior learning and work experience.',
@@ -281,7 +281,7 @@ class AcademicsSeeder extends Seeder
             return null;
         }
 
-        $target = 'academics/' . str_replace('/', '-', $path);
+        $target = 'academics/'.str_replace('/', '-', $path);
         Storage::disk('public')->put($target, file_get_contents($source));
 
         return $target;

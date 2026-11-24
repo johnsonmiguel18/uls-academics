@@ -1,12 +1,15 @@
 {{-- One program: photo, degree, name, summary, facts, link. Needs $program with college + accreditations loaded. --}}
 @php
-    $image = $program->image ?: $program->college?->banner_image;
+    $image = $program->ownImage();
     $accreditation = $program->accreditations->first();
 @endphp
-<article class="ac-program-card">
-    <a href="{{ route('academics.program', $program) }}" class="ac-program-media" tabindex="-1" aria-hidden="true">
+<article class="ac-program-card" @if ($program->college) style="{{ $program->college->accentStyle() }}" @endif>
+    <a href="{{ route('academics.program', $program) }}" @class(['ac-program-media', 'is-placeholder' => ! $image]) tabindex="-1" aria-hidden="true">
         @if ($image)
             <img src="{{ \App\Support\Thumb::url($image) }}" srcset="{{ \App\Support\Thumb::srcset($image) }}" sizes="(max-width: 700px) 92vw, 380px" width="480" height="240" alt="" loading="lazy" decoding="async">
+        @elseif ($program->college)
+            {{-- Placeholder until the program has its own photo: the college color and seal --}}
+            @include('academics.partials.college-mark', ['college' => $program->college, 'size' => 72])
         @endif
         <span class="ac-badge">{{ $program->degreeLabel() }}</span>
     </a>

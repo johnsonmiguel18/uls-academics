@@ -167,6 +167,44 @@ button { cursor: pointer; }
 
 .ac-hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 
+/* Home: text on the left, hero photo (or the seal placeholder) on the right */
+.ac-hero-home-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(280px, 1fr);
+    gap: clamp(28px, 4vw, 64px);
+    align-items: center;
+}
+
+.ac-hero-home-text { min-width: 0; }
+
+.ac-hero-photo {
+    margin: 0;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+}
+
+.ac-hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+.ac-hero-photo.is-placeholder {
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background:
+        radial-gradient(circle at 30% 25%, rgba(199, 208, 255, 0.22), transparent 55%),
+        linear-gradient(140deg, var(--ac-navy), var(--ac-navy-deep));
+    box-shadow: none;
+}
+
+.ac-hero-photo.is-placeholder img { width: 38%; height: auto; max-width: 160px; opacity: 0.9; filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.35)); }
+
+@media (max-width: 900px) {
+    .ac-hero-home-grid { grid-template-columns: 1fr; }
+    .ac-hero-photo { aspect-ratio: 16 / 9; }
+    .ac-hero-photo.is-placeholder { display: none; } /* nothing to show on small screens until a photo is set */
+}
+
 .ac-breadcrumb {
     display: flex;
     flex-wrap: wrap;
@@ -400,25 +438,59 @@ button { cursor: pointer; }
     box-shadow: 0 14px 34px rgba(13, 22, 80, 0.1);
 }
 
-.ac-college-media { position: relative; display: block; aspect-ratio: 16 / 9; background: #dfe3f0; }
-.ac-college-media > img { width: 100%; height: 100%; object-fit: cover; }
+/* Each college has its own color (Colleges → College color): top rule, name, and the photo overlay. */
+.ac-college-card,
+.ac-program-card { border-top-color: var(--college, var(--ac-accent)); }
 
-.ac-college-seal {
-    position: absolute;
-    bottom: -24px;
-    left: 20px;
-    width: 52px;
-    height: 52px;
-    padding: 4px;
-    border-radius: 50%;
-    background: #ffffff;
-    box-shadow: 0 4px 12px rgba(13, 22, 80, 0.15);
+.ac-college-media {
+    position: relative;
+    display: grid;
+    place-items: center;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--college, var(--ac-navy));
 }
 
-.ac-college-seal img { width: 100%; height: 100%; object-fit: contain; }
+.ac-college-media > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 
-.ac-college-body { display: flex; flex: 1; flex-direction: column; gap: 8px; padding: 34px 20px 20px; }
-.ac-college-body strong { font-family: var(--ac-serif); font-size: 20px; font-weight: 400; line-height: 1.25; }
+/* Overlay in the college color so the seal stands out on any photo */
+.ac-college-media:not(.is-empty)::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(13, 22, 80, 0.2), color-mix(in srgb, var(--college, #0d1650) 62%, transparent));
+}
+
+.ac-college-mark {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 96px;
+    height: 96px;
+    padding: 6px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 8px 24px rgba(13, 22, 80, 0.28);
+    transition: transform 0.25s ease;
+}
+
+.ac-college-mark img { width: 100%; height: 100%; object-fit: contain; }
+.ac-college-card:hover .ac-college-mark { transform: scale(1.05); }
+
+.ac-monogram {
+    color: var(--college-ink, var(--ac-link));
+    font-family: var(--ac-serif);
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1;
+}
+
+.ac-monogram.is-long { font-size: 15px; }
+
+.ac-college-body { display: flex; flex: 1; flex-direction: column; gap: 8px; padding: 20px; }
+.ac-college-body strong { color: var(--college-ink, var(--ac-heading)); font-family: var(--ac-serif); font-size: 20px; font-weight: 400; line-height: 1.25; }
 .ac-college-body .ac-muted { font-size: 13px; line-height: 1.5; }
 .ac-college-level { color: var(--ac-link); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
 
@@ -436,6 +508,14 @@ button { cursor: pointer; }
 .ac-program-media { position: relative; display: block; aspect-ratio: 16 / 8; background: #dfe3f0; }
 .ac-program-media { overflow: hidden; }
 .ac-program-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+/* Program without its own photo: the college color and seal */
+.ac-program-media.is-placeholder { display: grid; place-items: center; }
+
+.ac-program-media .ac-college-mark { width: 72px; height: 72px; padding: 5px; }
+.ac-program-media .ac-monogram { font-size: 20px; }
+.ac-program-media .ac-monogram.is-long { font-size: 12px; }
+.ac-program-card:hover .ac-college-mark { transform: scale(1.05); }
 
 .ac-badge {
     position: absolute;
@@ -812,6 +892,14 @@ button { cursor: pointer; }
 /* Images reserve their space before loading (no layout shift) and show a soft placeholder */
 .ac-college-media, .ac-program-media, .ac-video > a { background-color: var(--ac-media); }
 .ac-college-media > img, .ac-program-media img { height: 100%; }
+/* No photo yet: the college color instead of the grey placeholder */
+.ac-college-media.is-empty,
+.ac-program-media.is-placeholder {
+    background-color: var(--college, var(--ac-navy));
+    background-image:
+        radial-gradient(circle at 78% 18%, rgba(255, 255, 255, 0.16), transparent 46%),
+        linear-gradient(135deg, transparent, rgba(13, 22, 80, 0.35));
+}
 
 /* Skeleton shimmer, used while results load */
 @keyframes ac-shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }

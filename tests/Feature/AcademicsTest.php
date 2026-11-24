@@ -83,7 +83,7 @@ class AcademicsTest extends TestCase
         $this->get(route('academics.college', $college))->assertOk()
             ->assertSee('Building engineers for resilient communities')
             ->assertSee('What you can study at CEA')
-            ->assertSee('mailto:cea@example.com?subject=' . rawurlencode('Inquiry: ' . $program->name), false)
+            ->assertSee('mailto:cea@example.com?subject='.rawurlencode('Inquiry: '.$program->name), false)
             ->assertSee('TIBAY')
             ->assertSee('Philippine Institute of Civil Engineers')
             ->assertSee('Ready for the boards')
@@ -220,13 +220,14 @@ class AcademicsTest extends TestCase
         $this->seed(AcademicsSeeder::class);
         $this->seed(AcademicsSeeder::class); // re-runnable
 
-        $this->assertSame(12, College::count());
+        $this->assertSame(13, College::count()); // 12 from the site plus the ETEEAP unit
         $bsit = Program::where('slug', 'bachelor-of-science-in-information-technology')->firstOrFail();
         $this->assertSame('college-of-information-technology', $bsit->college->slug);
         $this->assertStringContainsString('hardware and software', $bsit->overview);
         $this->assertSame('Bienvenido B. Abad, Jr., DIT', $bsit->college->dean_name);
         $this->assertSame('English, Filipino, Mathematics, Sciences, and Social Studies', Program::where('slug', 'bachelor-of-secondary-education')->value('majors'));
-        $this->assertSame(0, Program::where('degree_type', 'eteeap')->where('status', 'published')->count());
+        // ETEEAP tracks sit in their own unit, published (deans, November 2026)
+        $this->assertSame(['eteeap'], Program::where('degree_type', 'eteeap')->where('status', 'published')->with('college')->get()->pluck('college.slug')->unique()->values()->all());
         Storage::disk('public')->assertExists($bsit->college->banner_image);
     }
 }

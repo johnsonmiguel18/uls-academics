@@ -41,6 +41,15 @@ class Program extends Model
         return $this->hasMany(Accreditation::class)->latest('valid_until');
     }
 
+    /**
+     * The program's own photo; null when it has none or only repeats its college's banner (as imported), so the
+     * cards show the program placeholder in the college color instead of the same photo on every card.
+     */
+    public function ownImage(): ?string
+    {
+        return $this->image && $this->image !== $this->college?->banner_image ? $this->image : null;
+    }
+
     public function degreeLabel(): string
     {
         return Term::label('degree_type', $this->degree_type);
