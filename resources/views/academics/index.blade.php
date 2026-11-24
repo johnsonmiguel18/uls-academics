@@ -112,6 +112,17 @@
                 @endif
                 @break
 
+            @case('recognitions')
+                @if ($recognitions)
+                    <section class="ac-section" id="recognitions" aria-labelledby="recognitions-heading">
+                        <div class="ac-container">
+                            @include('academics.partials.section-head', ['section' => $section, 'id' => 'recognitions-heading'])
+                            @include('academics.partials.recognitions', ['items' => $recognitions])
+                        </div>
+                    </section>
+                @endif
+                @break
+
             @case('featured')
                 @if ($featured->isNotEmpty())
                     <section class="ac-section ac-section-tint" aria-labelledby="featured-heading">

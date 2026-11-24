@@ -122,6 +122,7 @@ class SiteContentSeeder extends Seeder
                     ['type' => 'stats', 'enabled' => true, 'kicker' => '', 'heading' => 'Academics at a glance', 'link_label' => ''],
                     ['type' => 'colleges', 'enabled' => true, 'kicker' => 'Academic units', 'heading' => 'Our colleges and schools', 'link_label' => 'All programs'],
                     ['type' => 'featured', 'enabled' => true, 'kicker' => 'Program highlights', 'heading' => 'Featured programs', 'link_label' => 'Find a program', 'limit' => 6],
+                    ['type' => 'recognitions', 'enabled' => true, 'kicker' => 'Quality and recognition', 'heading' => 'Accreditation, rankings and recognition', 'link_label' => '', 'limit' => 6],
                     ['type' => 'news', 'enabled' => true, 'kicker' => 'From the colleges', 'heading' => 'News and announcements', 'link_label' => 'All news', 'limit' => 3, 'events_heading' => 'Upcoming events'],
                     ['type' => 'cta', 'enabled' => true],
                 ],
@@ -131,7 +132,7 @@ class SiteContentSeeder extends Seeder
                 'stats' => [
                     ['metric' => 'programs', 'label' => 'Programs', 'enabled' => true],
                     ['metric' => 'partners', 'label' => 'Partner institutions and agencies', 'enabled' => true],
-                    ['metric' => 'sdgs', 'label' => 'Sustainable Development Goals supported', 'enabled' => true],
+                    ['metric' => 'sdgs', 'label' => 'Sustainable Development Goals supported', 'enabled' => false],
                     ['metric' => 'stories', 'label' => 'Stories published', 'enabled' => true],
                 ],
                 'sections' => [
@@ -139,8 +140,9 @@ class SiteContentSeeder extends Seeder
                     ['type' => 'programs', 'enabled' => true, 'nav_label' => 'Programs', 'kicker' => 'Academic programs', 'heading' => 'What you can study at :short'],
                     ['type' => 'research', 'enabled' => true, 'nav_label' => 'Research', 'kicker' => 'Research · Research and Development Center', 'heading' => 'Our research cluster'],
                     ['type' => 'partners', 'enabled' => true, 'nav_label' => 'Partners', 'kicker' => 'Partnerships and linkages', 'heading' => 'Who we work with'],
+                    ['type' => 'accreditation', 'enabled' => true, 'nav_label' => 'Accreditation', 'kicker' => 'Quality assurance', 'heading' => 'Accreditation and recognition'],
                     ['type' => 'students', 'enabled' => true, 'nav_label' => 'For students', 'kicker' => 'For students', 'heading' => 'What these linkages mean for you'],
-                    ['type' => 'sdgs', 'enabled' => true, 'nav_label' => 'Extension & SDGs', 'kicker' => 'Extension and the SDGs', 'heading' => 'Work that serves communities'],
+                    ['type' => 'extension', 'enabled' => true, 'nav_label' => 'Extension', 'kicker' => 'Community extension', 'heading' => 'Work that serves communities'],
                     ['type' => 'faculty', 'enabled' => true, 'nav_label' => 'Faculty', 'kicker' => 'Faculty directory', 'heading' => 'Our faculty'],
                     ['type' => 'resources', 'enabled' => true, 'nav_label' => 'Resources', 'kicker' => 'Facilities', 'heading' => 'Where we learn'],
                     ['type' => 'news', 'enabled' => true, 'nav_label' => 'News', 'kicker' => 'Latest from :short', 'heading' => 'News and articles'],
@@ -179,6 +181,9 @@ class SiteContentSeeder extends Seeder
                     'sdg_help' => 'Bright goals have :short stories or projects; the number shows how many. Tap a bright goal to read them. Pale goals have none yet.',
                     'documents_kicker' => 'Resources',
                     'documents_heading' => 'Documents and downloads',
+                    'accredited_programs' => 'Accredited programs of the :short',
+                    'university_recognitions' => 'University-wide accreditation and rankings',
+                    'valid_until' => 'Valid until',
                     'all_news' => 'All :short news',
                     'events_heading' => 'Upcoming events',
                     'cta_heading' => 'Join the :college',
@@ -192,6 +197,19 @@ class SiteContentSeeder extends Seeder
                     'accreditation_kicker' => 'Accreditation', 'accreditation_heading' => 'Quality assurance',
                     'resources_kicker' => 'Resources', 'resources_heading' => 'Documents and downloads',
                 ],
+            ],
+            // University-wide accreditation and rankings (Site settings → Home page → Recognitions). What each body is;
+            // the University's own results (levels, ranks, years) are filled in by the admin.
+            'recognitions' => [
+                'items' => [
+                    ['name' => 'PACUCOA', 'full_name' => 'Philippine Association of Colleges and Universities Commission on Accreditation', 'result' => '', 'year' => '', 'url' => '',
+                        'description' => 'Accredits the programs of private colleges and universities in the Philippines through peer review against quality standards.'],
+                    ['name' => 'UI GreenMetric', 'full_name' => 'UI GreenMetric World University Rankings', 'result' => '', 'year' => '', 'url' => '',
+                        'description' => 'Ranks universities worldwide on campus sustainability: setting and infrastructure, energy and climate change, waste, water, transportation, and education and research.'],
+                    ['name' => 'WURI', 'full_name' => "World's Universities with Real Impact", 'result' => '', 'year' => '', 'url' => '',
+                        'description' => 'Ranks universities on their real-world impact: industrial application, entrepreneurship, ethical values, and student mobility and openness.'],
+                ],
+                'labels' => ['more' => 'About :name'],
             ],
             'program' => [
                 'sections' => [
@@ -211,6 +229,8 @@ class SiteContentSeeder extends Seeder
                     'fact_degree' => 'Degree', 'fact_level' => 'Level', 'fact_duration' => 'Duration', 'fact_code' => 'Program code', 'fact_accreditation' => 'Accreditation',
                     'valid_until' => 'Valid until',
                     'certificate' => 'Certificate',
+                    'admission_text' => 'Requirements, documents and steps for applying are on the official admission page of the University of La Salette.',
+                    'admission_button' => 'See admission requirements',
                     'empty_heading' => 'Program details are on the way',
                     'empty_text' => 'The :college is preparing the full description of this program. For questions, contact the college or the Admissions Office.',
                     'related_kicker' => 'Also in the :college',
@@ -364,7 +384,7 @@ class SiteContentSeeder extends Seeder
                 'sdg_text' => 'Our linkages follow the UN Sustainable Development Goals, especially Goal 17: working together across schools, government, industry and communities so that progress reaches more people.',
                 'story_categories' => ['linkages', 'extension'],
                 'faq' => [
-                    ['question' => 'How can my institution propose a collaboration?', 'answer' => "Send us a message through the form below with your institution, your area of interest and a short description. The office will reply with the next steps."],
+                    ['question' => 'How can my institution propose a collaboration?', 'answer' => 'Send us a message through the form below with your institution, your area of interest and a short description. The office will reply with the next steps.'],
                     ['question' => 'Where can I find open exchange or scholarship calls?', 'answer' => 'This site does not announce open calls. Calls are posted by the university and the colleges in the news section.'],
                     ['question' => 'I am a ULS student or faculty member. Whom do I ask?', 'answer' => "Start with your college's dean's office, which works with this office on partner activities."],
                     ['question' => 'Can community organizations partner with ULS?', 'answer' => "Yes. Many of our linkages are extension programs with barangays, parishes and civic groups. Tell us about your community's needs through the form below."],

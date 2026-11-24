@@ -3,7 +3,6 @@
 @section('title', $college->name . ' | ' . \App\Support\Site::text('contact.site_name'))
 
 @use('App\Support\Prose')
-@use('App\Support\Sdg')
 @use('App\Support\Site')
 @use('Illuminate\Support\Str')
 
@@ -15,7 +14,7 @@
     $label = fn (string $key) => Site::text("college.labels.$key", $replace);
     $lead = $college->tagline ?: Str::limit((string) ($college->overview ?: $college->mission), 220);
     $partners = collect($college->partners ?? []);
-    $sdgCounts = isset($sections['sdgs']) ? $college->sdgStoryCounts() : [];
+    $accredited = $college->programs->filter(fn ($program) => $program->accreditations->isNotEmpty());
 
     $hasContent = [
         'about' => $college->vision || $college->mission || $college->goals || $college->objectives || $college->overview || $college->video_url || $college->dean_message,
@@ -23,7 +22,8 @@
         'research' => $college->research_cluster || $college->research_description || $college->research_highlights || $college->focus_areas,
         'partners' => $partners->isNotEmpty() || $college->linkages,
         'students' => (bool) $college->student_benefits,
-        'sdgs' => $college->sdg_summary || $college->extension_projects || $sdgCounts,
+        'accreditation' => $accredited->isNotEmpty() || $recognitions,
+        'extension' => (bool) $college->extension_projects,
         'faculty' => $college->relationLoaded('faculty') && $college->faculty->isNotEmpty(),
         'resources' => $college->facilities || ($college->relationLoaded('documents') && $college->documents->isNotEmpty()),
         'news' => $news->isNotEmpty() || $events->isNotEmpty(),
@@ -53,7 +53,7 @@
 @endpush
 
 @section('content')
-<main class="ac-page">
+<main class="ac-page ac-page-college" style="{{ $college->accentStyle() }}; --ac-accent: {{ $college->accent() }}">
     {{-- Header: title and actions; dean and research cluster on the right --}}
     <section class="ac-hero ac-hero-split ac-hero-college" @if ($college->banner_image) style="--ac-hero-image: url('{{ \App\Support\Thumb::url($college->banner_image, 960) }}')" @endif>
         <div class="ac-container ac-hero-grid">
@@ -62,6 +62,7 @@
                     <a href="{{ route('academics.index') }}">{{ Site::text('header.brand_label') ?: Site::text('contact.site_name') }}</a>
                     <span aria-current="page">{{ $college->name }}</span>
                 </nav>
+                @include('academics.partials.college-mark', ['size' => 72])
                 <p class="ac-kicker">{{ $college->name }}</p>
                 <h1>{{ $college->headline ?: $college->name }}</h1>
                 @if ($lead)<p class="ac-lead">{{ $lead }}</p>@endif
@@ -332,47 +333,46 @@
                 </section>
                 @break
 
-            @case('sdgs')
-                <section class="ac-section ac-section-tint" id="sdgs" aria-labelledby="sdgs-heading">
-                    <div class="ac-container ac-research-grid">
-                        <div>
-                            @include('academics.partials.section-head', ['id' => 'sdgs-heading'])
-                            @if ($college->sdg_summary)<p class="ac-prose">{{ $college->sdg_summary }}</p>@endif
-                            <ul class="ac-sdg-grid" aria-label="{{ $heading($section, 'heading') }}">
-                                @foreach (Sdg::goals() as $n => [$name, $color, $ink, $tint, $tintInk])
-                                    @if (! empty($sdgCounts[$n]))
-                                        <li style="--sdg: {{ $color }}; --sdg-ink: {{ $ink }}">
-                                            <a href="{{ route('news.index', ['college' => $college->slug, 'sdg' => $n]) }}" title="SDG {{ $n }}: {{ $name }}">
-                                                <strong>{{ $n }}</strong>
-                                                <span class="ac-sdg-count">{{ $sdgCounts[$n] }}</span>
-                                                <span class="sr-only">{{ Site::text('college.labels.sdg_stories', ['goal' => $name, 'count' => $sdgCounts[$n]]) }}</span>
-                                            </a>
-                                        </li>
-                                    @else
-                                        {{-- Same hue, paler and lower in saturation: no stories for this goal yet. Not a link. --}}
-                                        <li class="is-empty" style="--sdg: {{ $tint }}; --sdg-ink: {{ $tintInk }}" title="SDG {{ $n }}: {{ $name }}">
-                                            <span class="ac-sdg-tile"><strong>{{ $n }}</strong><span class="sr-only">{{ Site::text('college.labels.sdg_none', ['goal' => $name]) }}</span></span>
-                                        </li>
-                                    @endif
-                                @endforeach
-                            </ul>
-                            @if ($label('sdg_help'))<p class="ac-small ac-muted">{{ $label('sdg_help') }}</p>@endif
-                        </div>
-
-                        @if ($college->extension_projects)
-                            <ul class="ac-projects">
-                                @foreach ($college->extension_projects as $project)
+            @case('accreditation')
+                <section class="ac-section" id="accreditation" aria-labelledby="accreditation-heading">
+                    <div class="ac-container">
+                        @include('academics.partials.section-head', ['id' => 'accreditation-heading'])
+                        @if ($accredited->isNotEmpty())
+                            <h3 class="ac-linkages-title">{{ $label('accredited_programs') }}</h3>
+                            <ul class="ac-accredited-list">
+                                @foreach ($accredited as $program)
                                     <li>
-                                        <h3>{{ $project['title'] ?? '' }}</h3>
-                                        <p>{{ $project['description'] ?? '' }}@if (! empty($project['year'])) ({{ $project['year'] }})@endif</p>
-                                        <div class="ac-project-foot">
-                                            @include('academics.partials.sdgs', ['sdgs' => $project['sdgs'] ?? []])
-                                            @if (! empty($project['url']))<a href="{{ $project['url'] }}" rel="noopener">{{ $label('read_more') }} <span aria-hidden="true">→</span></a>@endif
-                                        </div>
+                                        <a href="{{ route('academics.program', $program) }}">{{ $program->name }}</a>
+                                        @foreach ($program->accreditations as $accreditation)
+                                            <span class="ac-accredited-badge">{{ $accreditation->label() }}@if ($accreditation->valid_until && $label('valid_until')) · {{ $label('valid_until') }} {{ $accreditation->valid_until->format('F Y') }}@endif</span>
+                                        @endforeach
                                     </li>
                                 @endforeach
                             </ul>
                         @endif
+                        @if ($recognitions)
+                            <h3 class="ac-linkages-title">{{ $label('university_recognitions') }}</h3>
+                            @include('academics.partials.recognitions', ['items' => $recognitions, 'level' => 4])
+                        @endif
+                    </div>
+                </section>
+                @break
+
+            @case('extension')
+                <section class="ac-section ac-section-tint" id="extension" aria-labelledby="extension-heading">
+                    <div class="ac-container">
+                        @include('academics.partials.section-head', ['id' => 'extension-heading'])
+                        <ul class="ac-projects ac-projects-grid">
+                            @foreach ($college->extension_projects as $project)
+                                <li>
+                                    <h3>{{ $project['title'] ?? '' }}</h3>
+                                    <p>{{ $project['description'] ?? '' }}@if (! empty($project['year'])) ({{ $project['year'] }})@endif</p>
+                                    @if (! empty($project['url']))
+                                        <div class="ac-project-foot"><a href="{{ $project['url'] }}" rel="noopener">{{ $label('read_more') }} <span aria-hidden="true">→</span></a></div>
+                                    @endif
+                                </li>
+                            @endforeach
+                        </ul>
                     </div>
                 </section>
                 @break

@@ -41,7 +41,16 @@ class AcademicsController extends Controller
                 ? News::published()->latest('published_at')->take((int) ($sections['news']['limit'] ?? 3))->get()
                 : collect(),
             'events' => isset($sections['news']) ? AcademicEvent::upcoming()->with('college')->take(4)->get() : collect(),
+            'recognitions' => isset($sections['recognitions'])
+                ? array_slice(self::recognitions(), 0, (int) ($sections['recognitions']['limit'] ?? 6))
+                : [],
         ]);
+    }
+
+    /** University-wide accreditation and rankings with a name (Site settings → Home page). */
+    public static function recognitions(): array
+    {
+        return array_values(array_filter((array) Site::get('recognitions.items', []), fn ($item) => filled($item['name'] ?? null)));
     }
 
     /** [label => number] for the numbers chosen in Site settings; zeros are left out. */
@@ -72,15 +81,15 @@ class AcademicsController extends Controller
     {
         $filters = $request->validate([
             'q' => ['nullable', 'string', 'max:100'],
-            'level' => ['nullable', 'in:' . implode(',', array_keys(Term::options('level')))],
+            'level' => ['nullable', 'in:'.implode(',', array_keys(Term::options('level')))],
             'college' => ['nullable', 'string', 'max:255'],
-            'degree' => ['nullable', 'in:' . implode(',', array_keys(Term::options('degree_type')))],
+            'degree' => ['nullable', 'in:'.implode(',', array_keys(Term::options('degree_type')))],
             'accredited' => ['nullable', 'boolean'],
         ]);
 
         // Level order follows the "Academic levels" list in the admin.
         $levelOrder = collect(array_keys(Term::options('level')))
-            ->map(fn ($key, $i) => 'when ' . \DB::getPdo()->quote($key) . ' then ' . $i)->implode(' ');
+            ->map(fn ($key, $i) => 'when '.\DB::getPdo()->quote($key).' then '.$i)->implode(' ');
 
         $programs = Program::published()
             ->with('college', 'accreditations')
@@ -139,6 +148,7 @@ class AcademicsController extends Controller
             'stats' => $stats,
             'news' => isset($sections['news']) ? $college->news()->published()->latest('published_at')->take(3)->get() : collect(),
             'events' => isset($sections['news']) ? AcademicEvent::upcoming()->where('college_id', $college->id)->take(4)->get() : collect(),
+            'recognitions' => isset($sections['accreditation']) ? self::recognitions() : [],
         ]);
     }
 

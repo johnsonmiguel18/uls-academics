@@ -60,7 +60,7 @@ class AcademicsTest extends TestCase
         $this->get(route('academics.department', [$this->college(), $department]))->assertNotFound();
     }
 
-    public function test_college_page_shows_bcu_style_sections_and_sdg_counts(): void
+    public function test_college_page_shows_bcu_style_sections_without_the_sdg_grid(): void
     {
         $college = $this->college([
             'short_name' => 'CEA',
@@ -88,10 +88,13 @@ class AcademicsTest extends TestCase
             ->assertSee('Philippine Institute of Civil Engineers')
             ->assertSee('Ready for the boards')
             ->assertSee('Water survey')
-            // Goals with stories link to them; goals without stay as plain, lighter tiles.
-            ->assertSee(route('news.index', ['college' => $college->slug, 'sdg' => 9]))
-            ->assertDontSee(route('news.index', ['college' => $college->slug, 'sdg' => 1]))
-            ->assertSee('No Poverty, no stories yet');
+            // No SDG grid on college pages (deans, November 2026); the goals stay on the news and SDG pages.
+            ->assertSee('id="extension"', false)
+            ->assertDontSee('ac-sdg-grid', false)
+            ->assertDontSee('No Poverty, no stories yet')
+            // Accreditation section: university-wide accreditation and rankings from Site settings.
+            ->assertSee('id="accreditation"', false)
+            ->assertSee('UI GreenMetric');
 
         $this->get(route('news.index', ['college' => $college->slug, 'sdg' => 9]))->assertOk()
             ->assertSee('Bridge study')

@@ -16,7 +16,8 @@
         'objectives' => (bool) $program->objectives,
         'curriculum' => $program->curriculum || $program->curriculum_file,
         'careers' => (bool) $program->careers,
-        'admission' => (bool) $program->admission_requirements,
+        // Requirements live on the University's official admission page (deans, November 2026): a button, not a copy.
+        'admission' => Site::text('contact.admission_url') && $label('admission_button'),
         'accreditation' => $program->accreditations->isNotEmpty(),
         'faqs' => (bool) $program->faqs,
     ];
@@ -55,7 +56,7 @@
 @endpush
 
 @section('content')
-<main class="ac-page">
+<main class="ac-page ac-page-college" style="{{ $college->accentStyle() }}; --ac-accent: {{ $college->accent() }}">
     <section class="ac-hero ac-hero-split" @if ($image) style="--ac-hero-image: url('{{ \App\Support\Thumb::url($image, 960) }}')" @endif>
         <div class="ac-container ac-hero-grid">
             <div>
@@ -124,7 +125,12 @@
                         @case('overview')<div class="ac-prose">{!! Prose::html($program->overview) !!}</div>@break
                         @case('objectives')<div class="ac-prose">{!! Prose::html($program->objectives) !!}</div>@break
                         @case('careers')<div class="ac-prose">{!! Prose::html($program->careers) !!}</div>@break
-                        @case('admission')<div class="ac-prose">{!! Prose::html($program->admission_requirements) !!}</div>@break
+                        @case('admission')
+                            <div class="ac-admission">
+                                @if ($label('admission_text'))<p>{{ $label('admission_text') }}</p>@endif
+                                <a class="ac-button" href="{{ Site::text('contact.admission_url') }}" rel="noopener">{{ $label('admission_button') }} <span aria-hidden="true">↗</span></a>
+                            </div>
+                            @break
                         @case('curriculum')
                             @if ($program->curriculum)<div class="ac-prose">{!! Prose::html($program->curriculum) !!}</div>@endif
                             @if ($program->curriculum_file && $label('download_curriculum_full'))

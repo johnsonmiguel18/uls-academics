@@ -94,6 +94,17 @@
 .ac-partner-links a { color: var(--ac-link); font-size: 13px; font-weight: 600; text-decoration: none; }
 
 .ac-linkages-title { margin: 48px 0 18px; font-size: 24px; }
+.ac-section-head + .ac-linkages-title { margin-top: 8px; }
+
+/* Accreditation section: the college's accredited programs */
+.ac-accredited-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
+.ac-accredited-list li { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 16px 18px; border: 1px solid var(--ac-line); border-left: 3px solid var(--ac-accent); border-radius: 8px; background: var(--ac-surface); }
+.ac-accredited-list a { color: var(--ac-heading); font-weight: 700; text-decoration: none; }
+.ac-accredited-list a:hover { color: var(--ac-link); text-decoration: underline; }
+.ac-accredited-badge { padding: 4px 10px; border-radius: 6px; color: #ffffff; background: var(--ac-navy); font-size: 12px; }
+
+/* Extension projects in a grid now that the section has no SDG panel */
+.ac-projects-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
 .ac-linkage-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
 .ac-linkage { display: block; padding: 16px 18px; border: 1px solid var(--ac-line); border-radius: 8px; color: inherit; background: var(--ac-surface); text-decoration: none; }
 a.ac-linkage:hover { border-color: var(--ac-accent); }
@@ -218,3 +229,8 @@ a.ac-linkage:hover { border-color: var(--ac-accent); }
 .ac-sdg-grid .is-empty .ac-sdg-tile { box-shadow: none; cursor: default; }
 .ac-sdg-grid .is-empty strong { font-weight: 600; }
 .ac-offer-grid { grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+
+/* College seal above the name in the header */
+.ac-hero-college .ac-college-mark { width: 76px; height: 76px; margin-bottom: 18px; padding: 5px; box-shadow: 0 0 0 4px var(--college, transparent); }
+.ac-hero-college .ac-monogram { font-size: 22px; }
+.ac-hero-college .ac-monogram.is-long { font-size: 13px; }
