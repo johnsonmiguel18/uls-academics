@@ -381,11 +381,8 @@
                 <section class="ac-section" id="faculty" aria-labelledby="faculty-heading">
                     <div class="ac-container">
                         @include('academics.partials.section-head', ['id' => 'faculty-heading'])
-                        <ul class="ac-people">
-                            @foreach ($college->faculty as $person)
-                                @include('academics.partials.person')
-                            @endforeach
-                        </ul>
+                        {{-- An organization chart by default (reviewers, November 2026), built from positions and departments --}}
+                        @include('academics.partials.faculty-tree')
                     </div>
                 </section>
                 @break
