@@ -36,15 +36,34 @@ class AcademicsController extends Controller
                 ? Program::published()->where('is_featured', true)->with('college', 'accreditations')
                     ->orderBy('sort_order')->take((int) ($sections['featured']['limit'] ?? 6))->get()
                 : collect(),
-            'news' => isset($sections['news'])
-                // Same stories as the news page: every published story, university-wide ones included.
-                ? News::published()->latest('published_at')->take((int) ($sections['news']['limit'] ?? 3))->get()
-                : collect(),
+            // Same stories and the same layout as the news page: every published story, university-wide ones included.
+            ...(isset($sections['news']) ? $this->newsFront((int) ($sections['news']['limit'] ?? 3)) : ['featuredNews' => null]),
             'events' => isset($sections['news']) ? AcademicEvent::upcoming()->with('college')->take(4)->get() : collect(),
             'recognitions' => isset($sections['recognitions'])
                 ? array_slice(self::recognitions(), 0, (int) ($sections['recognitions']['limit'] ?? 6))
                 : [],
         ]);
+    }
+
+    /**
+     * The news page's front layout for the home page: the lead story (newest featured, or newest), three headlines
+     * under it, $limit cards and up to five "More headlines" rows.
+     */
+    private function newsFront(int $limit): array
+    {
+        $limit = max(3, $limit);
+        $hero = News::published()->where('is_featured', true)->latest('published_at')->first()
+            ?? News::published()->latest('published_at')->first();
+        $rest = $hero ? News::published()->whereKeyNot($hero->id)->latest('published_at')->take(3 + $limit + 5)->get() : collect();
+        $related = $rest->count() >= 3 + $limit ? $rest->take(3) : collect();
+        $cards = $rest->slice($related->count())->take($limit)->values();
+
+        return [
+            'featuredNews' => $hero,
+            'related' => $related,
+            'cards' => $cards,
+            'latestNews' => $rest->slice($related->count() + $cards->count())->take(5)->values(),
+        ];
     }
 
     /** University-wide accreditation and rankings with a name (Site settings → Home page). */

@@ -123,7 +123,7 @@ class SiteContentSeeder extends Seeder
                     ['type' => 'colleges', 'enabled' => true, 'kicker' => 'Academic units', 'heading' => 'Our colleges and schools', 'link_label' => 'All programs'],
                     ['type' => 'featured', 'enabled' => true, 'kicker' => 'Program highlights', 'heading' => 'Featured programs', 'link_label' => 'Find a program', 'limit' => 6],
                     ['type' => 'recognitions', 'enabled' => true, 'kicker' => 'Quality and recognition', 'heading' => 'Accreditation, rankings and recognition', 'link_label' => '', 'limit' => 6],
-                    ['type' => 'news', 'enabled' => true, 'kicker' => 'From the colleges', 'heading' => 'News and announcements', 'link_label' => 'All news', 'limit' => 3, 'events_heading' => 'Upcoming events'],
+                    ['type' => 'news', 'enabled' => true, 'kicker' => 'From the colleges', 'heading' => 'News and announcements', 'link_label' => 'All news', 'limit' => 6, 'events_heading' => 'Upcoming events'],
                     ['type' => 'cta', 'enabled' => true],
                 ],
                 'college_card_link' => 'Explore',

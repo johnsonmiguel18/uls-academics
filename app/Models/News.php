@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
+use App\Support\NewsSeo;
+use App\Support\Sdg;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 
 class News extends Model
@@ -15,6 +18,12 @@ class News extends Model
         'college_id',
         'sdgs',
         'excerpt',
+        'meta_title',
+        'meta_description',
+        'og_title',
+        'og_description',
+        'keywords',
+        'tags',
         'content',
         'featured_image',
         'status',
@@ -50,6 +59,9 @@ class News extends Model
             // The admin picker may send goal numbers as text; store numbers so SDG filters match.
             $news->sdgs = $news->sdgs ? array_values(array_unique(array_map('intval', $news->sdgs))) : null;
 
+            // Search and sharing fields left empty (or still generated) are written from the story.
+            NewsSeo::fill($news);
+
             if (! in_array($news->status, ['published', 'scheduled'])) {
                 return;
             }
@@ -70,12 +82,13 @@ class News extends Model
         return [
             'is_featured' => 'boolean',
             'sdgs' => 'array',
+            'tags' => 'array',
             'published_at' => 'datetime',
             'unpublish_at' => 'datetime',
         ];
     }
 
-    public function college(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function college(): BelongsTo
     {
         return $this->belongsTo(College::class);
     }
@@ -108,7 +121,7 @@ class News extends Model
         return self::query()->published()->whereNotNull('sdgs')
             ->when($collegeId, fn (Builder $q) => $q->where('college_id', $collegeId))
             ->pluck('sdgs')
-            ->flatMap(fn ($tags) => \App\Support\Sdg::numbers($tags))
+            ->flatMap(fn ($tags) => Sdg::numbers($tags))
             ->countBy()->sortKeys()->all();
     }
 
