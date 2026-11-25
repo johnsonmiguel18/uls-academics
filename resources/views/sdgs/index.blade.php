@@ -55,8 +55,7 @@
                             <strong>{{ $n }}</strong>
                             <span class="ac-sdg-name">{{ $name }}</span>
                             @if (! $count)
-                                {{-- No work yet: the goal's aim (Lists and categories → SDGs) instead of an empty tile --}}
-                                @if ($aim = \App\Models\Term::entries('sdg')[$n]['description'] ?? null)<span class="ac-sdg-aim">{{ $aim }}</span>@endif
+                                {{-- No work yet: a note instead of a bare 0 --}}
                                 <span class="ac-sdg-none">{{ $label('tile_empty') }}</span>
                             @else
                             <span class="ac-sdg-count">{{ $count }}<span class="sr-only"> {{ $label('stories_mapped') }}</span></span>

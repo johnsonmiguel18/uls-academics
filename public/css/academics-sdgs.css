@@ -12,9 +12,8 @@
 .ac-sdg-report .ac-sdg-count { justify-self: end; min-width: 28px; padding: 2px 8px; border-radius: 999px; color: #1f2330; background: #ffffff; font-size: 13px; font-weight: 700; text-align: center; }
 .ac-sdg-report .ac-sdg-split { justify-self: end; font-size: 12px; font-weight: 600; text-align: right; } /* stories · projects */
 .ac-sdg-report .is-empty .ac-sdg-name, .ac-sdg-report .is-empty strong { font-weight: 600; }
-/* Goals without stories yet: the goal's aim and a "No stories yet" note fill the tile */
-.ac-sdg-report .is-empty a { grid-template-rows: auto auto 1fr auto; }
-.ac-sdg-report .ac-sdg-aim { display: -webkit-box; overflow: hidden; align-self: start; font-size: 12.5px; line-height: 1.45; -webkit-box-orient: vertical; -webkit-line-clamp: 3; line-clamp: 3; } /* full aim on the goal page */
+/* Goals without stories yet: a "No stories yet" note at the bottom, where other tiles have their counts */
+.ac-sdg-report .is-empty a { grid-template-rows: auto 1fr auto; }
 .ac-sdg-report .ac-sdg-none { justify-self: end; padding: 3px 10px; border: 1px dashed currentColor; border-radius: 999px; font-size: 12px; font-weight: 700; }
 .ac-sdg-report .is-empty a:hover .ac-sdg-none { border-style: solid; }
 
