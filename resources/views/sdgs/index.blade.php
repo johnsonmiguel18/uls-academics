@@ -50,7 +50,7 @@
             <ul class="ac-sdg-report">
                 @foreach (Sdg::goals() as $n => [$name, $color, $ink, $tint, $tintInk])
                     @php($count = $counts[$n] ?? 0)
-                    <li @class(['is-empty' => ! $count]) style="--sdg: {{ $count ? $color : $tint }}; --sdg-ink: {{ $count ? $ink : $tintInk }}">
+                    <li @class(["sdg-$n", 'is-empty' => ! $count, 'is-tint' => ! $count])>
                         <a href="{{ route('sdgs.show', $n) }}">
                             <strong>{{ $n }}</strong>
                             <span class="ac-sdg-name">{{ $name }}</span>

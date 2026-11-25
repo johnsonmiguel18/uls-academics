@@ -17,7 +17,10 @@ use Symfony\Component\HttpFoundation\Response;
  * - admin (Filament, Livewire, Alpine): Filament has inline scripts without a nonce and Alpine
  *   evaluates expressions, so it needs 'unsafe-inline' and 'unsafe-eval' (with a nonce in the
  *   list, browsers would ignore 'unsafe-inline').
- * Styles allow 'unsafe-inline' on both, for style="..." attributes (SDG colors, Filament).
+ * Styles: public pages only from this site and the nonce'd <style> block (App\Support\Theme turns admin colors
+ * into classes, so pages have no style="..." attributes); the admin allows 'unsafe-inline' (Filament, Alpine).
+ * With HTTPS in production this earns an A+ on securityheaders.com (every graded header, no unsafe sources)
+ * once CSP_REPORT_ONLY=false.
  * config('security.csp_report_only'): only report violations, or enforce the policy.
  */
 class SecurityHeaders
@@ -36,10 +39,18 @@ class SecurityHeaders
         $headers->set('X-Content-Type-Options', 'nosniff');
         $headers->set('X-Frame-Options', 'SAMEORIGIN');
         $headers->set('Referrer-Policy', 'strict-origin-when-cross-origin');
-        $headers->set('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), payment=(), usb=()');
+        $headers->set('Permissions-Policy', 'accelerometer=(), autoplay=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), '
+            .'magnetometer=(), microphone=(), midi=(), payment=(), publickey-credentials-get=(), usb=(), xr-spatial-tracking=(), '
+            .'browsing-topics=()');
         $headers->set('Cross-Origin-Opener-Policy', 'same-origin');
+        // Other sites may not embed this site's pages and files in theirs (link previews fetch from servers, unaffected).
+        $headers->set('Cross-Origin-Resource-Policy', 'same-site');
+        $headers->set('X-Permitted-Cross-Domain-Policies', 'none');
         // Laravel's debug error page (APP_DEBUG=true, never in production) has its own inline scripts.
-        if (! (config('app.debug') && $response->getStatusCode() >= 500)) {
+        // No policy on "304 Not Modified": the browser shows the page it kept, with the nonce of the policy it
+        // kept; a 304's headers replace the kept ones, so a fresh nonce here would block that page's styles.
+        $status = $response->getStatusCode();
+        if ($status !== 304 && ! (config('app.debug') && $status >= 500)) {
             $headers->set(
                 config('security.csp_report_only') ? 'Content-Security-Policy-Report-Only' : 'Content-Security-Policy',
                 $this->policy($request),
@@ -72,17 +83,17 @@ class SecurityHeaders
         // Forms may post to this site's own host names (the Global subdomain searches the Academics host).
         $hosts = array_filter([
             self::origin(config('app.url')),
-            config('app.global_domain') ? (parse_url((string) config('app.url'), PHP_URL_SCHEME) ?: 'https') . '://' . config('app.global_domain') : null,
+            config('app.global_domain') ? (parse_url((string) config('app.url'), PHP_URL_SCHEME) ?: 'https').'://'.config('app.global_domain') : null,
         ]);
 
         $directives = [
             'default-src' => ["'self'"],
             'script-src' => [
                 "'self'",
-                ...($admin ? ["'unsafe-inline'", "'unsafe-eval'"] : ["'nonce-" . Vite::cspNonce() . "'"]),
+                ...($admin ? ["'unsafe-inline'", "'unsafe-eval'"] : ["'nonce-".Vite::cspNonce()."'"]),
                 ...$cdn, ...$dev,
             ],
-            'style-src' => ["'self'", "'unsafe-inline'", ...$cdn, ...$dev],
+            'style-src' => ["'self'", ...($admin ? ["'unsafe-inline'"] : ["'nonce-".Vite::cspNonce()."'"]), ...$cdn, ...$dev],
             'img-src' => [
                 "'self'", 'data:',
                 // Admin: upload previews (avatars are data: images); public: YouTube video thumbnails.
@@ -100,7 +111,7 @@ class SecurityHeaders
         ];
 
         return collect($directives)
-            ->map(fn (array $sources, string $name) => $name . ' ' . implode(' ', array_unique($sources)))
+            ->map(fn (array $sources, string $name) => $name.' '.implode(' ', array_unique($sources)))
             ->implode('; ');
     }
 
@@ -113,6 +124,6 @@ class SecurityHeaders
             return null;
         }
 
-        return $parts['scheme'] . '://' . $parts['host'] . (isset($parts['port']) ? ':' . $parts['port'] : '');
+        return $parts['scheme'].'://'.$parts['host'].(isset($parts['port']) ? ':'.$parts['port'] : '');
     }
 }

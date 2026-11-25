@@ -76,7 +76,8 @@ class HomeCollegesRevisionTest extends TestCase
 
         $html = $this->get(route('academics.index'))->assertOk()->getContent();
 
-        $this->assertStringContainsString('--college: #6B21A8', $html);
+        $this->assertStringContainsString(".college-{$college->id}{--college:#6B21A8;", $html);
+        $this->assertStringContainsString("ac-college-card college-{$college->id}", $html);
         $this->assertStringContainsString('class="ac-monogram">CL<', $html, 'no seal: initials');
         // The program only repeats its college's banner, so its card shows the placeholder, not the same photo.
         $this->assertSame(null, Program::where('slug', 'jd')->first()->ownImage());

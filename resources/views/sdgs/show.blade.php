@@ -24,7 +24,7 @@
 @section('content')
 <main class="ac-page">
     <section class="ac-hero ac-hero-compact">
-        <div class="ac-container ac-sdg-hero" style="--sdg: {{ $color }}; --sdg-ink: {{ $ink }}">
+        <div class="ac-container ac-sdg-hero sdg-{{ $goal }}">
             <div>
                 <nav class="ac-breadcrumb" aria-label="{{ Site::text('a11y.breadcrumb') }}">
                     <a href="{{ route('academics.index') }}">{{ Site::text('header.brand_label') ?: Site::text('contact.site_name') }}</a>

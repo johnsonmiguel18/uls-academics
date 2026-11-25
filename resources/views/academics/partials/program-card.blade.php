@@ -3,7 +3,7 @@
     $image = $program->ownImage();
     $accreditation = $program->accreditations->first();
 @endphp
-<article class="ac-program-card" @if ($program->college) style="{{ $program->college->accentStyle() }}" @endif>
+<article @class(['ac-program-card', 'college-' . $program->college_id => $program->college_id])>
     <a href="{{ route('academics.program', $program) }}" @class(['ac-program-media', 'is-placeholder' => ! $image]) tabindex="-1" aria-hidden="true">
         @if ($image)
             <img src="{{ \App\Support\Thumb::url($image) }}" srcset="{{ \App\Support\Thumb::srcset($image) }}" sizes="(max-width: 700px) 92vw, 380px" width="480" height="240" alt="" loading="lazy" decoding="async">

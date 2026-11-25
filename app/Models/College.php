@@ -73,12 +73,6 @@ class College extends Model
         return Sdg::ink($this->accent());
     }
 
-    /** CSS custom properties for the college color, for a style attribute on its cards. */
-    public function accentStyle(): string
-    {
-        return "--college: {$this->accent()}; --college-ink: {$this->accentInk()}; --college-on: {$this->accentOn()}";
-    }
-
     /** Up to three initials for colleges without a seal, e.g. "CL" for College of Law. */
     public function monogram(): string
     {

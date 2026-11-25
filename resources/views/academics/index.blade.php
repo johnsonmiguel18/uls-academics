@@ -90,7 +90,7 @@
                             <ul class="ac-college-grid">
                                 @foreach ($colleges as $college)
                                     <li>
-                                        <a class="ac-college-card" href="{{ route('academics.college', $college) }}" style="{{ $college->accentStyle() }}">
+                                        <a class="ac-college-card college-{{ $college->id }}" href="{{ route('academics.college', $college) }}">
                                             <span @class(['ac-college-media', 'is-empty' => ! $college->banner_image])>
                                                 @if ($college->banner_image)
                                                     <img src="{{ \App\Support\Thumb::url($college->banner_image) }}" srcset="{{ \App\Support\Thumb::srcset($college->banner_image) }}" sizes="(max-width: 600px) 92vw, 380px" width="480" height="270" alt="" loading="lazy" decoding="async">

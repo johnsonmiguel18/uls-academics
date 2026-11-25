@@ -81,16 +81,14 @@
 
             {{-- A native disclosure: opens and closes without JavaScript --}}
             <details class="news-sdg-menu">
-                <summary class="news-sdg-menu-toggle {{ $active ? 'is-active' : '' }}"
-                         @if ($active) style="--sdg: {{ $active[1] }}; --sdg-ink: {{ $active[2] }}" @endif>
+                <summary @class(['news-sdg-menu-toggle', 'is-active' => $active, 'sdg-' . request()->integer('sdg') => $active])>
                     {{ $active ? Site::text('sdgs.labels.goal_kicker', ['number' => request()->integer('sdg')]) : $label('sdg_menu') }}
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
                 </summary>
                 <nav class="news-sdg-filter" aria-label="{{ $label('sdg_filter') }}">
                     <a href="{{ $filter(['sdg' => null]) }}" class="news-sdg-chip is-all" @unless ($sdg) aria-current="page" @endunless>{{ $label('all_sdgs') }}</a>
                     @foreach ($goals as $n => [$goalName, $color, $ink, $tint, $tintInk])
-                        <a href="{{ $filter(['sdg' => $n]) }}" class="news-sdg-chip"
-                           style="--sdg: {{ $color }}; --sdg-ink: {{ $ink }}; --sdg-tint: {{ $tint }}; --sdg-tint-ink: {{ $tintInk }}"
+                        <a href="{{ $filter(['sdg' => $n]) }}" class="news-sdg-chip sdg-{{ $n }}"
                            @if (request()->integer('sdg') === $n) aria-current="page" @endif>{{ Site::text('sdgs.labels.goal_kicker', ['number' => $n]) }}<span class="sr-only">: {{ $goalName }}</span></a>
                     @endforeach
                 </nav>

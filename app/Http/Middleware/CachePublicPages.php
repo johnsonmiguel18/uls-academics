@@ -8,7 +8,9 @@ use App\Support\ContentVersion;
 use App\Support\Site;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Vite;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -23,6 +25,9 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class CachePublicPages
 {
+    /** Stands in for the Content-Security-Policy nonce in kept pages; each visit gets its own (SecurityHeaders). */
+    private const NONCE = '@@csp-nonce@@';
+
     public function handle(Request $request, Closure $next): Response
     {
         $minutes = (int) Site::get('performance.page_cache_minutes', 0);
@@ -36,7 +41,7 @@ class CachePublicPages
             return $next($request);
         }
 
-        $key = 'page:' . ContentVersion::current() . ':' . sha1($request->fullUrl());
+        $key = 'page:'.ContentVersion::current().':'.sha1($request->fullUrl());
         $cached = Cache::get($key);
 
         if ($cached) {
@@ -47,25 +52,29 @@ class CachePublicPages
 
         if ($response->getStatusCode() === 200 && str_starts_with((string) $response->headers->get('Content-Type'), 'text/html')) {
             $ttl = min($minutes * 60, self::secondsUntilNextScheduledChange());
+            $nonce = Vite::cspNonce();
+            $template = $nonce ? str_replace($nonce, self::NONCE, (string) $response->getContent()) : (string) $response->getContent();
             if ($ttl > 0) {
-                Cache::put($key, ['html' => $response->getContent(), 'type' => $response->headers->get('Content-Type')], $ttl);
+                Cache::put($key, ['html' => $template, 'type' => $response->headers->get('Content-Type')], $ttl);
             }
 
-            return $this->respond($request, $response->getContent(), $response->headers->get('Content-Type'), 'MISS', $response);
+            return $this->respond($request, $template, $response->headers->get('Content-Type'), 'MISS', $response);
         }
 
         return $response;
     }
 
-    private function respond(Request $request, string $html, string $type, string $state, ?Response $response = null): Response
+    /** $template is the page with the nonce placeholder: the ETag stays the same across visits, the nonce does not. */
+    private function respond(Request $request, string $template, string $type, string $state, ?Response $response = null): Response
     {
-        $etag = '"' . md5($html) . '"';
+        $etag = '"'.md5($template).'"';
 
         if ($request->headers->get('If-None-Match') === $etag) {
             return response('', 304, ['ETag' => $etag, 'X-Page-Cache' => $state]);
         }
 
-        $response ??= response($html, 200, ['Content-Type' => $type]);
+        // A fresh page already holds this visit's nonce; a kept one gets it filled in.
+        $response ??= response(str_replace(self::NONCE, (string) Vite::cspNonce(), $template), 200, ['Content-Type' => $type]);
         $response->headers->set('ETag', $etag);
         $response->headers->set('X-Page-Cache', $state);
         // Browsers must check back each time (cheap thanks to the ETag), so admin changes show at once.
@@ -89,7 +98,7 @@ class CachePublicPages
             News::whereIn('status', ['published', 'scheduled'])->where('unpublish_at', '>', $now)->min('unpublish_at'),
             AcademicEvent::where('is_published', true)->where('ends_at', '>', $now)->min('ends_at'),
             AcademicEvent::where('is_published', true)->whereNull('ends_at')->where('starts_at', '>=', $now->copy()->startOfDay())->min('starts_at'),
-        ])->filter()->map(fn ($date) => \Illuminate\Support\Carbon::parse($date))->min();
+        ])->filter()->map(fn ($date) => Carbon::parse($date))->min();
 
         // Events without an end date drop off the "upcoming" list at the end of their day.
         $nextMidnight = $now->copy()->addDay()->startOfDay();

@@ -45,6 +45,7 @@
     # directly get these. Hide PHP's version (also set expose_php = Off in php.ini).
     <FilesMatch "\.(css|js|jpe?g|png|webp|gif|svg|ico|woff2?|txt)$">
         Header set X-Content-Type-Options "nosniff"
+        Header set Cross-Origin-Resource-Policy "same-site"
     </FilesMatch>
     Header always unset X-Powered-By
     Header unset X-Powered-By

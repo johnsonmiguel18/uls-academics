@@ -31,6 +31,9 @@
     @stack('base-styles')
     <link rel="stylesheet" href="{{ \App\Support\Asset::url('css/academics.css') }}">
     @stack('styles')
+    {{-- Colors from the admin (colleges, SDGs) and page photos as classes, with the CSP nonce: no style="..."
+         attributes, so the Content-Security-Policy needs no 'unsafe-inline' (App\Support\Theme). --}}
+    <style nonce="{{ Vite::cspNonce() }}">{!! \App\Support\Theme::css() !!}@stack('inline-styles')</style>
     {{-- Site scripts (resources/js/site.js), built and obfuscated by "npm run build". --}}
     @if (\App\Support\Asset::viteReady())
         @vite('resources/js/site.js')
