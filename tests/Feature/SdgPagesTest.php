@@ -29,9 +29,9 @@ class SdgPagesTest extends TestCase
         return $college;
     }
 
-    public function test_goals_without_stories_show_their_aim_instead_of_a_zero(): void
+    public function test_goals_without_stories_show_a_note_instead_of_a_zero(): void
     {
-        $this->seed(SiteContentSeeder::class); // the 17 goals with their aims
+        $this->seed(SiteContentSeeder::class); // the 17 goals
         News::create(['title' => 'Reading camp', 'slug' => 'camp', 'category' => 'extension', 'content' => 'x',
             'status' => 'published', 'published_at' => now()->subDay(), 'sdgs' => [4]]);
 
@@ -43,17 +43,13 @@ class SdgPagesTest extends TestCase
             return $m[0] ?? '';
         };
 
-        // Goal 1 has no stories: its aim and "No stories yet", no "0" badge.
-        $aim = Term::where('type', 'sdg')->where('key', '1')->value('description');
-        $this->assertNotEmpty($aim);
-        $this->assertStringContainsString(e($aim), $tile(1));
+        // Goal 1 has no stories: "No stories yet", no "0" badge and no description.
         $this->assertStringContainsString('No stories yet', $tile(1));
+        $this->assertStringNotContainsString(e(Term::where('type', 'sdg')->where('key', '1')->value('description')), $tile(1));
         $this->assertStringNotContainsString('ac-sdg-count', $tile(1));
 
-        // Goal 4 has a story: its count, no aim.
-        $four = $tile(4);
-        $this->assertStringContainsString('ac-sdg-count', $four);
-        $this->assertStringNotContainsString('ac-sdg-aim', $four);
+        // Goal 4 has a story: its count.
+        $this->assertStringContainsString('ac-sdg-count', $tile(4));
     }
 
     public function test_report_counts_published_stories_and_projects_per_goal(): void
