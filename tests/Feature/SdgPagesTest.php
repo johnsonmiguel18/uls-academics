@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\College;
 use App\Models\News;
 use App\Models\Term;
+use Database\Seeders\SiteContentSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -26,6 +27,33 @@ class SdgPagesTest extends TestCase
         News::create(['title' => 'Draft water story', 'slug' => 'draft', 'college_id' => $college->id, 'status' => 'draft', 'category' => 'news', 'content' => 'x', 'sdgs' => [6]]);
 
         return $college;
+    }
+
+    public function test_goals_without_stories_show_their_aim_instead_of_a_zero(): void
+    {
+        $this->seed(SiteContentSeeder::class); // the 17 goals with their aims
+        News::create(['title' => 'Reading camp', 'slug' => 'camp', 'category' => 'extension', 'content' => 'x',
+            'status' => 'published', 'published_at' => now()->subDay(), 'sdgs' => [4]]);
+
+        $html = $this->get(route('sdgs.index'))->assertOk()->getContent();
+        // One goal's tile: from its <li class="sdg-N..."> to the closing </li>.
+        $tile = function (int $n) use ($html) {
+            preg_match('~<li class="sdg-'.$n.'[" ].*?</li>~s', $html, $m);
+
+            return $m[0] ?? '';
+        };
+
+        // Goal 1 has no stories: its aim and "No stories yet", no "0" badge.
+        $aim = Term::where('type', 'sdg')->where('key', '1')->value('description');
+        $this->assertNotEmpty($aim);
+        $this->assertStringContainsString(e($aim), $tile(1));
+        $this->assertStringContainsString('No stories yet', $tile(1));
+        $this->assertStringNotContainsString('ac-sdg-count', $tile(1));
+
+        // Goal 4 has a story: its count, no aim.
+        $four = $tile(4);
+        $this->assertStringContainsString('ac-sdg-count', $four);
+        $this->assertStringNotContainsString('ac-sdg-aim', $four);
     }
 
     public function test_report_counts_published_stories_and_projects_per_goal(): void
