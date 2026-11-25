@@ -313,6 +313,7 @@ class SiteContentSeeder extends Seeder
                     'colleges_involved' => 'Colleges involved',
                     'grid_heading' => 'The 17 goals',
                     'grid_help' => 'Bright goals have stories or projects; the number shows how many. Pale goals have none yet.',
+                    'tile_empty' => 'No stories yet',
                     'by_college_heading' => 'By college',
                     'college_column' => 'College',
                     'goals_column' => 'Goals served',
