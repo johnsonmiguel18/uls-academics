@@ -36,7 +36,9 @@ class CachePublicPages
         // Only plain addresses on the site's own host names are kept: every other query string or Host header
         // would add a new cache entry, so anyone could fill the cache (and the disk) with random variants.
         // Filtered and paged lists are cheap and simply skip the cache.
-        if (! $request->isMethodCacheable() || $minutes <= 0 || $request->user() || ($request->hasSession() && $request->session()->get('_flash.old'))
+        // Only GET: Laravel empties the body of a HEAD response before it gets here, and keeping that would serve
+        // a blank page to everyone (uptime monitors and link checkers send HEAD requests).
+        if (! $request->isMethod('GET') || $minutes <= 0 || $request->user() || ($request->hasSession() && $request->session()->get('_flash.old'))
             || $request->getQueryString() !== null || ! in_array($request->getHost(), self::hosts(), true)) {
             return $next($request);
         }
@@ -50,7 +52,8 @@ class CachePublicPages
 
         $response = $next($request);
 
-        if ($response->getStatusCode() === 200 && str_starts_with((string) $response->headers->get('Content-Type'), 'text/html')) {
+        if ($response->getStatusCode() === 200 && str_starts_with((string) $response->headers->get('Content-Type'), 'text/html')
+            && trim((string) $response->getContent()) !== '') {
             $ttl = min($minutes * 60, self::secondsUntilNextScheduledChange());
             $nonce = Vite::cspNonce();
             $template = $nonce ? str_replace($nonce, self::NONCE, (string) $response->getContent()) : (string) $response->getContent();
