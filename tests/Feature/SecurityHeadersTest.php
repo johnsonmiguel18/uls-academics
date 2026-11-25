@@ -122,6 +122,17 @@ class SecurityHeadersTest extends TestCase
             ->assertHeaderMissing('Content-Security-Policy-Report-Only')->assertHeaderMissing('Content-Security-Policy');
     }
 
+    public function test_a_head_request_never_leaves_a_blank_page_in_the_cache(): void
+    {
+        $this->call('HEAD', '/sdgs')->assertOk();
+        $this->call('HEAD', '/sdgs')->assertOk();
+
+        $page = $this->get('/sdgs')->assertOk();
+        $this->assertStringContainsString('</html>', $page->getContent());
+        $this->assertNotSame('"'.md5('').'"', $page->headers->get('ETag'));
+        $this->get('/sdgs')->assertHeader('X-Page-Cache', 'HIT')->assertSee('</html>', false);
+    }
+
     public function test_theme_rules_skip_values_that_are_not_colors_and_urls_cannot_break_out(): void
     {
         College::create(['name' => 'X', 'slug' => 'x', 'status' => 'published', 'color' => 'red;}</style><script>']);
