@@ -15,7 +15,7 @@ use Illuminate\Support\Collection;
 class FacultyTree
 {
     /** Positions read as the dean, a deputy of the dean, or a department chair. */
-    private const DEAN = '/^\s*(college\s+)?dean\b/i';
+    private const DEAN = '/^\s*(college\s+)?dean\b(?![\'’])/iu'; // not "Dean's Secretary"
 
     private const DEPUTY = '/\b(assistant|associate|vice)\s+dean\b/i';
 

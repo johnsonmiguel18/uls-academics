@@ -48,6 +48,8 @@
             </section>
         @endif
 
+        {{-- The story list; left out when the lead story is the only one (no "no stories" message under it) --}}
+        @if ($cards->isNotEmpty() || ! $featuredNews)
         <section class="news-front-section" aria-labelledby="{{ $prefix }}-list-heading">
             <h{{ $level }} class="news-index-heading" id="{{ $prefix }}-list-heading">
                 {{ ($filtered ?? false) ? $label('results_heading') : $label('list_heading') }}
@@ -82,6 +84,7 @@
                 </div>
             @endif
         </section>
+        @endif
     </div>
 
     @if ($latestNews->isNotEmpty())

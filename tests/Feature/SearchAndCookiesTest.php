@@ -36,6 +36,8 @@ class SearchAndCookiesTest extends TestCase
             ['title' => 'Nursing board results', 'type' => 'News', 'url' => route('news.show', 'board')],
         ]);
         $this->getJson(route('search.suggestions', ['q' => 'n']))->assertExactJson([]);
+        // Cached by the browser only: the response also carries the session cookie, so no shared cache may keep it.
+        $this->assertStringContainsString('private', $this->getJson(route('search.suggestions', ['q' => 'nurs']))->headers->get('Cache-Control'));
         $this->getJson(route('search.suggestions', ['q' => ['nurs']]))->assertExactJson([]);
     }
 

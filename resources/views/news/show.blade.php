@@ -4,6 +4,8 @@
 
 {{-- Search and sharing fields from the editor, or generated from the story (App\Support\NewsSeo) --}}
 @php($seo = \App\Support\NewsSeo::for($article))
+@php($seo['meta_description'] = $seo['meta_description'] ?: Site::text('seo.default_description'))
+@php($seo['og_description'] = $seo['og_description'] ?: $seo['meta_description'])
 
 @section('title', $seo['meta_title'] . ' | ' . Site::text('contact.site_name'))
 
