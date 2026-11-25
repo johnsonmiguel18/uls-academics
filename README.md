@@ -151,12 +151,19 @@ list (a new kind needs code that uses it), the admin panel's own interface wordi
 
 Every response from Laravel carries security headers (`App\Http\Middleware\SecurityHeaders`): Content-Security-Policy,
 `X-Content-Type-Options: nosniff`, `X-Frame-Options: SAMEORIGIN`, `Referrer-Policy`, `Permissions-Policy` (camera, microphone,
-location and payment off), `Cross-Origin-Opener-Policy`, and HSTS on HTTPS in production. `X-Powered-By` is removed.
+location, payment, sensors and similar off), `Cross-Origin-Opener-Policy`, `Cross-Origin-Resource-Policy`,
+`X-Permitted-Cross-Domain-Policies`, and HSTS on HTTPS in production. `X-Powered-By` is removed.
 
-- **Content-Security-Policy:** public pages run only this site's scripts and inline scripts carrying the page's nonce
-  (`nonce="{{ Vite::cspNonce() }}"` on every `<script>` in Blade). The admin needs `'unsafe-inline'` and `'unsafe-eval'`
-  for Filament and Alpine. It starts in report-only mode (`CSP_REPORT_ONLY=true`): open the main pages and the admin,
-  check the browser console for "Content Security Policy" messages, then set `CSP_REPORT_ONLY=false` to enforce it.
+- **Content-Security-Policy:** public pages load scripts and styles only from this site, plus inline ones carrying the page's
+  nonce (`nonce="{{ Vite::cspNonce() }}"` on every `<script>` and `<style>` in Blade). No `style="..."` attributes on public
+  pages: colors chosen in the admin (colleges, SDGs) and header photos become classes in one nonce'd `<style>` block
+  (`App\Support\Theme`), so the policy needs no `'unsafe-inline'`. Cached pages get each visitor's own nonce. The admin
+  needs `'unsafe-inline'` and `'unsafe-eval'` for Filament and Alpine. It starts in report-only mode (`CSP_REPORT_ONLY=true`):
+  open the main pages and the admin, check the browser console for "Content Security Policy" messages, then set
+  `CSP_REPORT_ONLY=false` to enforce it.
+- **Grade:** public pages are built for an A+ on securityheaders.com: over HTTPS in production, with `CSP_REPORT_ONLY=false`
+  and `TRUSTED_PROXIES` set if a proxy terminates HTTPS (otherwise HSTS is not sent). The admin rates lower because of the
+  two allowances above.
 - **Scripts:** `npm run build` obfuscates the site's own scripts (`javascript-obfuscator`, settings in `vite.config.js`; no source
   maps). This only makes them harder to read: browsers still receive and run them, so they must never hold secrets.
   `OBFUSCATE=false npm run build` makes a readable build for debugging. If the build is missing, pages still work without

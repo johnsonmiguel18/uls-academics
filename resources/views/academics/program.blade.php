@@ -56,8 +56,11 @@
 @endpush
 
 @section('content')
-<main class="ac-page ac-page-college" style="{{ $college->accentStyle() }}; --ac-accent: {{ $college->accent() }}">
-    <section class="ac-hero ac-hero-split" @if ($image) style="--ac-hero-image: url('{{ \App\Support\Thumb::url($image, 960) }}')" @endif>
+@if ($image)
+    @push('inline-styles'){!! \App\Support\Theme::url('.ac-hero-split', '--ac-hero-image', \App\Support\Thumb::url($image, 960)) !!}@endpush
+@endif
+<main class="ac-page ac-page-college college-{{ $college->id }}">
+    <section class="ac-hero ac-hero-split">
         <div class="ac-container ac-hero-grid">
             <div>
                 <nav class="ac-breadcrumb" aria-label="{{ \App\Support\Site::text('a11y.breadcrumb') }}">

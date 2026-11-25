@@ -14,7 +14,7 @@
     <ul class="news-sdgs" aria-label="{{ \App\Support\Site::text('a11y.sdgs') }}">
         @foreach ($shown as $n)
             <li>
-                <a class="news-sdg" href="{{ route('news.index', ['sdg' => $n]) }}" style="--sdg: {{ $goals[$n][1] }}; --sdg-ink: {{ $goals[$n][2] }}">{{ \App\Support\Site::text('sdgs.labels.goal_kicker', ['number' => $n]) }}<span class="sr-only">: {{ $goals[$n][0] }}</span></a>
+                <a class="news-sdg sdg-{{ $n }}" href="{{ route('news.index', ['sdg' => $n]) }}">{{ \App\Support\Site::text('sdgs.labels.goal_kicker', ['number' => $n]) }}<span class="sr-only">: {{ $goals[$n][0] }}</span></a>
             </li>
         @endforeach
         @if ($rest->isNotEmpty())

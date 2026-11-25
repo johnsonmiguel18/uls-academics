@@ -154,7 +154,7 @@
 
             @case('sdg')
                 @php($goal17 = \App\Support\Sdg::goals()[17] ?? null)
-                <section class="ac-section gl-sdg" aria-labelledby="sdg-heading" @if ($goal17) style="--sdg: {{ $goal17[1] }}; --sdg-ink: {{ $goal17[2] }}" @endif>
+                <section @class(['ac-section', 'gl-sdg', 'sdg-17' => $goal17]) aria-labelledby="sdg-heading">
                     <div class="ac-container gl-sdg-inner">
                         <span class="gl-sdg-badge" aria-hidden="true">17</span>
                         <div>

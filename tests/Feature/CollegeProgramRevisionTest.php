@@ -100,9 +100,10 @@ class CollegeProgramRevisionTest extends TestCase
 
     public function test_college_pages_show_the_college_color_and_seal_placeholder(): void
     {
-        $this->get(route('academics.college', $this->college()))->assertOk()
-            ->assertSee('--college: #0E7490', false)
-            ->assertSee('--ac-accent: #0E7490', false)
+        $college = $this->college();
+        $this->get(route('academics.college', $college))->assertOk()
+            ->assertSee(".college-{$college->id}{--college:#0E7490;", false) // rule in the page's <style> block
+            ->assertSee("ac-page-college college-{$college->id}", false)       // the page uses it
             ->assertSee('class="ac-monogram">CIT<', false);
     }
 }

@@ -53,9 +53,12 @@
 @endpush
 
 @section('content')
-<main class="ac-page ac-page-college" style="{{ $college->accentStyle() }}; --ac-accent: {{ $college->accent() }}">
+@if ($college->banner_image)
+    @push('inline-styles'){!! \App\Support\Theme::url('.ac-hero-split', '--ac-hero-image', \App\Support\Thumb::url($college->banner_image, 960)) !!}@endpush
+@endif
+<main class="ac-page ac-page-college college-{{ $college->id }}">
     {{-- Header: title and actions; dean and research cluster on the right --}}
-    <section class="ac-hero ac-hero-split ac-hero-college" @if ($college->banner_image) style="--ac-hero-image: url('{{ \App\Support\Thumb::url($college->banner_image, 960) }}')" @endif>
+    <section class="ac-hero ac-hero-split ac-hero-college">
         <div class="ac-container ac-hero-grid">
             <div>
                 <nav class="ac-breadcrumb" aria-label="{{ \App\Support\Site::text('a11y.breadcrumb') }}">
