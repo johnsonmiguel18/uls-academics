@@ -83,7 +83,7 @@ Route::get('/search/suggestions', function (Request $request) {
         ->map(fn ($n) => ['title' => $n->title, 'type' => $type('news'), 'url' => route('news.show', $n->slug)]);
 
     return response()->json($programs->concat($colleges)->concat($news)->values())
-        ->header('Cache-Control', 'public, max-age=60');
+        ->header('Cache-Control', 'private, max-age=60'); // browser only: the response also sets the session cookie
 })->middleware('throttle:120,1')->name('search.suggestions');
 
 // Loading-speed measurements from real visits (Core Web Vitals); see the dashboard.

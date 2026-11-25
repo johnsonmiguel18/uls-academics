@@ -30,6 +30,7 @@ class FacultyTreeTest extends TestCase
     {
         $college = College::create(['name' => 'College of Engineering and Architecture', 'short_name' => 'CEA', 'slug' => 'cea', 'status' => 'published']);
         $civil = Department::create(['college_id' => $college->id, 'name' => 'Civil Engineering', 'slug' => 'civil']);
+        $this->person($college, 'Aaron Abad', "Dean's Secretary"); // listed first, but not the dean
         $this->person($college, 'Dr. Paolo Navarro', 'Dean');
         $this->person($college, 'Engr. Ana Cruz', 'Assistant Dean');
         $this->person($college, 'Engr. Ben Reyes', 'Department Chair', $civil);
@@ -44,7 +45,7 @@ class FacultyTreeTest extends TestCase
         $this->assertSame(['Engr. Ana Cruz'], $tree['units'][0]['members']->pluck('name')->all());
         $this->assertSame('Engr. Ben Reyes', $tree['units'][1]['lead']->name);
         $this->assertSame(['Engr. Carla Santos'], $tree['units'][1]['members']->pluck('name')->all());
-        $this->assertSame(['Arch. Dan Lim'], $tree['units'][2]['members']->pluck('name')->all());
+        $this->assertSame(['Aaron Abad', 'Arch. Dan Lim'], $tree['units'][2]['members']->pluck('name')->all());
 
         $html = $this->get(route('academics.college', $college))->assertOk()->getContent();
         $this->assertStringContainsString('class="ac-org"', $html);

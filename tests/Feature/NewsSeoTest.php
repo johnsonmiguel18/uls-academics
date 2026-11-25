@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\College;
 use App\Models\News;
+use App\Support\Site;
 use Database\Seeders\SiteContentSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -80,6 +81,19 @@ class NewsSeoTest extends TestCase
         foreach (['latin-300-normal', 'latin-300-italic', 'latin-600-normal', 'latin-ext-300-normal'] as $file) {
             $this->assertFileExists(public_path("fonts/literata/literata-$file.woff2"));
         }
+    }
+
+    public function test_a_lone_story_has_no_empty_message_under_it_and_a_description(): void
+    {
+        $news = $this->story(['excerpt' => null, 'content' => '']);
+
+        foreach ([route('academics.index'), route('news.index')] as $url) {
+            $this->get($url)->assertOk()->assertSee('news-lead-story', false)->assertDontSee('news-empty-state', false);
+        }
+        $this->get(route('news.index', ['search' => 'nothing-matches-this']))->assertSee('news-empty-state', false);
+
+        $default = Site::text('seo.default_description');
+        $this->get(route('news.show', $news->slug))->assertSee('<meta name="description" content="'.e($default).'">', false);
     }
 
     public function test_the_home_page_shows_news_in_the_news_page_layout(): void
