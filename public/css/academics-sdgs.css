@@ -15,7 +15,7 @@
 /* Goals without stories yet: the goal's aim and a "No stories yet" note fill the tile */
 .ac-sdg-report .is-empty a { grid-template-rows: auto auto 1fr auto; }
 .ac-sdg-report .ac-sdg-aim { display: -webkit-box; overflow: hidden; align-self: start; font-size: 12.5px; line-height: 1.45; -webkit-box-orient: vertical; -webkit-line-clamp: 3; line-clamp: 3; } /* full aim on the goal page */
-.ac-sdg-report .ac-sdg-none { justify-self: start; padding: 3px 10px; border: 1px dashed currentColor; border-radius: 999px; font-size: 12px; font-weight: 700; }
+.ac-sdg-report .ac-sdg-none { justify-self: end; padding: 3px 10px; border: 1px dashed currentColor; border-radius: 999px; font-size: 12px; font-weight: 700; }
 .ac-sdg-report .is-empty a:hover .ac-sdg-none { border-style: solid; }
 
 .ac-table-wrap { overflow-x: auto; }
